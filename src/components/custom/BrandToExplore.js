@@ -203,18 +203,20 @@ const BrandToExplore = ({ staticItems, title, title1, brand }) => {
                             aria-label={`Favorite ${item.name}`}
                             disabled={isAuthenticated == false}
                           />
-                          <label htmlFor={`favorite-${item.id}`}>
-                            <img
-                              src={
-                                buttonStatus?.[item.id] === true
-                                  ? "/images/user-bookmark-2.png"
-                                  : "/images/user-bookmark.png"
-                              }
-                              alt="Bookmark"
-                              width={25}
-                              height={23}
-                            />
-                          </label>
+                          {isAuthenticated == true && (
+                            <label htmlFor={`favorite-${item.id}`}>
+                              <img
+                                src={
+                                  buttonStatus?.[item.id] === true
+                                    ? "/images/user-bookmark-2.png"
+                                    : "/images/user-bookmark.png"
+                                }
+                                alt="Bookmark"
+                                width={25}
+                                height={23}
+                              />
+                            </label>
+                          )}
                         </div>
                         <img
                           src={`${BASE_URL}/${

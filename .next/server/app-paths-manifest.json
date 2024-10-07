@@ -1,7 +1,3 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
-  "/page": "app/page.js",
-  "/(user)/my/profile/page": "app/(user)/my/profile/page.js",
-  "/(user)/my/voopons/page": "app/(user)/my/voopons/page.js",
-  "/(user)/my/events/page": "app/(user)/my/events/page.js"
+  "/page": "app/page.js"
 }
