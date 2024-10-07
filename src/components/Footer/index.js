@@ -12,7 +12,7 @@ const Footer = () => {
     if (!isAuthenticated) {
       e.preventDefault();
       // router.push(`/login?lastPath=${pathName}`);
-      router.push("/login");
+      router.push("auth-users");
     }
   };
   return (

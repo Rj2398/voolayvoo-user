@@ -153,7 +153,7 @@ const BrandToExplore = ({ staticItems, title, title1, brand }) => {
 
   // Inline styles
   const buttonStyle = {
-    backgroundColor: "red", // Change color on hover
+    backgroundColor: "#e60023", // Change color on hover
     color: "white",
     padding: "10px 20px",
     border: "none",
