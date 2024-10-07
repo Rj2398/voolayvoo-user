@@ -1,6 +1,8 @@
 import { BASE_URL } from "@/constant/constant";
 import React, { useState } from "react";
 import Link from "next/link";
+import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 
 const NewlyVoopons = ({ staticItems, title, title1, brand }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -25,6 +27,13 @@ const NewlyVoopons = ({ staticItems, title, title1, brand }) => {
     }
     return description; // If under the limit, return the full description
   };
+  const truncateDescriptionTitle = (description, wordLimit1) => {
+    const words = description.split(" ");
+    if (words.length > wordLimit1) {
+      return words.slice(0, wordLimit1).join(" ") + "..."; // Truncate and add ellipsis
+    }
+    return description; // If under the limit, return the full description
+  };
 
   // Inline CSS styles
   const carouselStyles = {
@@ -44,7 +53,7 @@ const NewlyVoopons = ({ staticItems, title, title1, brand }) => {
     flex: `0 0 ${100 / itemsPerPage}%`,
     boxSizing: "border-box",
     textAlign: "center",
-    height: "500px",
+    height: "450px",
   };
 
   const buttonStyles = {
@@ -62,11 +71,23 @@ const NewlyVoopons = ({ staticItems, title, title1, brand }) => {
   const prevButtonStyles = {
     ...buttonStyles,
     left: "0%",
+    padding: "10px 20px",
+    backgroundColor: "rgba(0, 0, 0, 0.5)", // Semi-transparent background
+    color: "#fff",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
   };
 
   const nextButtonStyles = {
     ...buttonStyles,
     right: "0%",
+    padding: "10px 20px",
+    backgroundColor: "rgba(0, 0, 0, 0.5)", // Semi-transparent background
+    color: "#fff",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
   };
 
   const boxStyles = {
@@ -87,6 +108,7 @@ const NewlyVoopons = ({ staticItems, title, title1, brand }) => {
           <div className="col-lg-12">
             <div className="heading mb-3">
               {title}
+
               <span> {title1} </span>
             </div>
           </div>
@@ -94,11 +116,11 @@ const NewlyVoopons = ({ staticItems, title, title1, brand }) => {
           <div className="col-lg-12">
             <div style={carouselStyles}>
               <button style={prevButtonStyles} onClick={handlePrev}>
-                &lt;
+                <KeyboardArrowLeftIcon />
               </button>
 
               <div
-                className="owl-carousel owl-loaded owl-drag"
+                className="owl-carousel owl-loaded owl-drag "
                 style={itemContainerStyles}
               >
                 {/* //   .slice(currentIndex, currentIndex + itemsPerPage) */}
@@ -124,31 +146,37 @@ const NewlyVoopons = ({ staticItems, title, title1, brand }) => {
                           style={imgStyles}
                         />
                       </div>
-                      <div className="voopon-heading">
-                        {item.voopons_name || item.name}
-                      </div>
-                      <h6>
-                        {item?.voopons_description
-                          ? truncateDescription(
-                              item.voopons_description,
-                              MAX_WORDS
-                            )
-                          : "No Description Available"}
-                      </h6>
+                      <div style={{ height: "40%" }}>
+                        <div className="voopon-heading">
+                          {item.voopons_name || item.name
+                            ? truncateDescriptionTitle(
+                                item.voopons_name || item.name,
+                                3
+                              )
+                            : "No Title Available"}
+                        </div>
+                        <h6>
+                          {item?.voopons_description
+                            ? truncateDescription(
+                                item.voopons_description,
+                                MAX_WORDS
+                              )
+                            : "No Description Available"}
+                        </h6>
 
-                      <p>
-                        {" "}
-                        Valid thru:{" "}
-                        {new Date(item.voopons_valid_thru).toLocaleDateString(
-                          "en-US",
-                          {
-                            year: "numeric",
-                            month: "short",
-                            day: "numeric",
-                          }
-                        )}
-                      </p>
-                      {/* <p>
+                        <p>
+                          {" "}
+                          Valid thru:{" "}
+                          {new Date(item.voopons_valid_thru).toLocaleDateString(
+                            "en-US",
+                            {
+                              year: "numeric",
+                              month: "short",
+                              day: "numeric",
+                            }
+                          )}
+                        </p>
+                        {/* <p>
                         {item &&
                           item.hasOwnProperty("voopons_description") &&
                           truncateDescription(
@@ -156,10 +184,12 @@ const NewlyVoopons = ({ staticItems, title, title1, brand }) => {
                             MAX_WORDS
                           )}
                       </p> */}
+                      </div>
                       <Link
                         className="btn btn-viewmore"
                         href={`/voopons/${item.category_id}`} // Use curly braces for JavaScript expressions
                         role="button"
+                        // style={{ marginBottom: "5px" }}
                       >
                         View
                       </Link>
@@ -169,7 +199,7 @@ const NewlyVoopons = ({ staticItems, title, title1, brand }) => {
               </div>
 
               <button style={nextButtonStyles} onClick={handleNext}>
-                &gt;
+                <KeyboardArrowRightIcon />
               </button>
             </div>
           </div>

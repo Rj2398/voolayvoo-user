@@ -3,6 +3,12 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { DateTime } from "luxon";
 import { convertTo12HourFormat } from "@/utils/eventFunction";
+
+//
+
+import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+//
 const EventsNearYou = ({ staticItems, title, title1, brand }) => {
   // here is to merge data into array
 
@@ -33,6 +39,19 @@ const EventsNearYou = ({ staticItems, title, title1, brand }) => {
       }
     }
   }, [staticItems]);
+
+  //
+
+  //
+
+  const truncateDescriptionTitle = (description, wordLimit1) => {
+    const words = description.split(" ");
+    if (words.length > wordLimit1) {
+      return words.slice(0, wordLimit1).join(" ") + "..."; // Truncate and add ellipsis
+    }
+    return description; // If under the limit, return the full description
+  };
+  //
 
   // Merge both arrays
 
@@ -78,7 +97,7 @@ const EventsNearYou = ({ staticItems, title, title1, brand }) => {
     boxSizing: "border-box",
 
     textAlign: "center",
-    height: "425px",
+    height: "440px",
   };
 
   const buttonStyles = {
@@ -96,11 +115,23 @@ const EventsNearYou = ({ staticItems, title, title1, brand }) => {
   const prevButtonStyles = {
     ...buttonStyles,
     left: "0%",
+    padding: "10px 20px",
+    backgroundColor: "rgba(0, 0, 0, 0.5)", // Semi-transparent background
+    color: "#fff",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
   };
 
   const nextButtonStyles = {
     ...buttonStyles,
     right: "0%",
+    padding: "10px 20px",
+    backgroundColor: "rgba(0, 0, 0, 0.5)", // Semi-transparent background
+    color: "#fff",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
   };
 
   const boxStyles = {
@@ -128,7 +159,7 @@ const EventsNearYou = ({ staticItems, title, title1, brand }) => {
           <div className="col-lg-12">
             <div style={carouselStyles}>
               <button style={prevButtonStyles} onClick={handlePrev}>
-                &lt;
+                <KeyboardArrowLeftIcon />
               </button>
 
               <div
@@ -159,8 +190,12 @@ const EventsNearYou = ({ staticItems, title, title1, brand }) => {
                           style={imgStyles}
                         />
                       </div>
-                      <div className="event-pad">
-                        <h6>{item.events_name}</h6>
+                      <div className="event-pad" style={{ height: "42%" }}>
+                        <h6>
+                          {item.events_name
+                            ? truncateDescriptionTitle(item.events_name, 5)
+                            : "No Title Available"}
+                        </h6>
                         <p>
                           {" "}
                           {item?.description
@@ -168,41 +203,85 @@ const EventsNearYou = ({ staticItems, title, title1, brand }) => {
                             : "No Description Available"}
                         </p>
                         <div className="point-icon">
-                          <span>
-                            <img src="images/location-dot.png" />{" "}
-                            {item.distance.toFixed(2)}
-                            miles away
+                          {/* <span>
+                            <img src="images/location-dot.png" />
+                            {item.distance.toFixed(2)} miles away
                           </span>
+                          <br />
                           <span>
-                            <img src="images/calendar.png" />{" "}
+                            <img src="images/calendar.png" />
                             {DateTime.fromFormat(
                               item.events_date,
                               "yyyy-MM-dd"
-                            ).toFormat("MMMM dd, yyyy")}{" "}
+                            ).toFormat("MMMM dd, yyyy")}
                           </span>
                           <span>
-                            <img src="images/watch.png" />{" "}
-                            {convertTo12HourFormat(item.events_start_time)} to{" "}
-                            {convertTo12HourFormat(item.events_end_time)}{" "}
-                          </span>
-                        </div>
+                            <img src="images/watch.png" />
+                            {convertTo12HourFormat(
+                              item.events_start_time
+                            )} to {convertTo12HourFormat(item.events_end_time)}{" "}
+                          </span> */}
 
-                        <Link
-                          className="btn btn-viewmore-border btn-align"
-                          // href={`/events/${item.id}?promoter_id=${item.promoter_id}`}
-                          href={`/events/${item.checked_id}?promoter_id=${item.promoter_id}`}
-                          role="button"
-                        >
-                          View More
-                        </Link>
+                          <div className="point-icon">
+                            <div
+                              style={{
+                                width: "90%",
+
+                                textAlign: "left",
+                              }}
+                            >
+                              <img
+                                src="images/location-dot.png"
+                                alt="Location Icon"
+                              />
+                              {item.distance.toFixed(2)} miles away
+                            </div>
+                            <div
+                              style={{
+                                width: "90%",
+
+                                textAlign: "left",
+                              }}
+                            >
+                              <img
+                                src="images/calendar.png"
+                                alt="Calendar Icon"
+                              />
+                              {DateTime.fromFormat(
+                                item.events_date,
+                                "yyyy-MM-dd"
+                              ).toFormat("MMMM dd, yyyy")}
+                            </div>
+                            <div
+                              style={{
+                                width: "90%",
+                                textAlign: "left",
+                              }}
+                            >
+                              <img src="images/watch.png" alt="Watch Icon" />
+                              {convertTo12HourFormat(
+                                item.events_start_time
+                              )} to{" "}
+                              {convertTo12HourFormat(item.events_end_time)}
+                            </div>
+                          </div>
+                        </div>
                       </div>
+                      <Link
+                        className="btn btn-viewmore-border btn-align"
+                        // href={`/events/${item.id}?promoter_id=${item.promoter_id}`}
+                        href={`/events/${item.checked_id}?promoter_id=${item.promoter_id}`}
+                        role="button"
+                      >
+                        View More
+                      </Link>
                     </div>
                   );
                 })}
               </div>
 
               <button style={nextButtonStyles} onClick={handleNext}>
-                &gt;
+                <KeyboardArrowRightIcon />
               </button>
             </div>
           </div>

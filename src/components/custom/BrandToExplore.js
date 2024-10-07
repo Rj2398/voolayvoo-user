@@ -4,12 +4,24 @@ import Link from "next/link";
 import { useAuth } from "@/app/UserProvider";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 
 const BrandToExplore = ({ staticItems, title, title1, brand }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const { userDetails, isAuthenticated } = useAuth();
   //
   const router = useRouter();
+  //
+
+  //
+  const truncateDescriptionTitle = (description, wordLimit1) => {
+    const words = description.split(" ");
+    if (words.length > wordLimit1) {
+      return words.slice(0, wordLimit1).join(" ") + "..."; // Truncate and add ellipsis
+    }
+    return description; // If under the limit, return the full description
+  };
   //
 
   const [buttonStatus, setButtonStatus] = useState({});
@@ -135,11 +147,23 @@ const BrandToExplore = ({ staticItems, title, title1, brand }) => {
   const prevButtonStyles = {
     ...buttonStyles,
     left: "0%",
+    padding: "10px 20px",
+    backgroundColor: "rgba(0, 0, 0, 0.5)", // Semi-transparent background
+    color: "#fff",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
   };
 
   const nextButtonStyles = {
     ...buttonStyles,
     right: "0%",
+    padding: "10px 20px",
+    backgroundColor: "rgba(0, 0, 0, 0.5)", // Semi-transparent background
+    color: "#fff",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
   };
 
   const boxStyles = {
@@ -178,7 +202,7 @@ const BrandToExplore = ({ staticItems, title, title1, brand }) => {
           <div className="col-lg-12">
             <div style={carouselStyles}>
               <button style={prevButtonStyles} onClick={handlePrev}>
-                &lt;
+                <KeyboardArrowLeftIcon />
               </button>
 
               <div
@@ -226,19 +250,26 @@ const BrandToExplore = ({ staticItems, title, title1, brand }) => {
                           style={imgStyles}
                         />
                       </div>
-                      <div className="brand-heading">
-                        {item.voopons_name || item.name}
-                      </div>
-                      {/* <h5>{item.voopons_name}</h5> */}
-                      <p>
-                        {item &&
-                          item.hasOwnProperty("voopons_description") &&
-                          truncateDescription(
-                            item.voopons_description,
-                            MAX_WORDS
-                          )}
-                      </p>
-                      {/* <Link
+
+                      <div style={{ height: "30%" }}>
+                        <div className="brand-heading">
+                          {item.voopons_name || item.name
+                            ? truncateDescriptionTitle(
+                                item.voopons_name || item.name,
+                                3
+                              )
+                            : "No Title Available"}
+                        </div>
+                        {/* <h5>{item.voopons_name}</h5> */}
+                        <p>
+                          {item &&
+                            item.hasOwnProperty("voopons_description") &&
+                            truncateDescription(
+                              item.voopons_description,
+                              MAX_WORDS
+                            )}
+                        </p>
+                        {/* <Link
                         className="btn btn-viewmore"
                         // href={`/voopons/${item.id}?promoter_id=${item.promoter_id}`}
                         href={
@@ -250,7 +281,7 @@ const BrandToExplore = ({ staticItems, title, title1, brand }) => {
                       >
                         View More  
                       </Link> */}
-
+                      </div>
                       <button
                         style={buttonStyle}
                         onClick={() => handleClick(item)}
@@ -264,7 +295,7 @@ const BrandToExplore = ({ staticItems, title, title1, brand }) => {
               </div>
 
               <button style={nextButtonStyles} onClick={handleNext}>
-                &gt;
+                <KeyboardArrowRightIcon />
               </button>
             </div>
           </div>
