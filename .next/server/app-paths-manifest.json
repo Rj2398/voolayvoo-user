@@ -1,6 +1,6 @@
 {
   "/page": "app/page.js",
   "/(page)/auth-users/page": "app/(page)/auth-users/page.js",
-  "/voopons/page": "app/voopons/page.js",
-  "/voopons/[detail]/page": "app/voopons/[detail]/page.js"
+  "/(onboard)/login/page": "app/(onboard)/login/page.js",
+  "/businesses/[detail]/page": "app/businesses/[detail]/page.js"
 }

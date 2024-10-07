@@ -83,16 +83,18 @@ const BrandToExplore = ({ staticItems, title, title1, brand }) => {
 
   //
 
-  const handleClick = () => {
+  const handleClick = (item) => {
     if (!isAuthenticated) {
       // Redirect to auth-users if not authenticated
       router.push("/auth-users");
     } else {
       // Navigate to the appropriate link
-      const href = brand
-        ? `/voopons/${item.category_id}`
-        : `/businesses/${item?.id}?business_id=${item?.id}`;
-      router.push(href); // Navigate to the determined URL
+
+      router.push(
+        brand == true
+          ? `/voopons/${item.category_id}`
+          : `/businesses/${item?.id}?business_id=${item?.id}`
+      );
     }
   };
 
