@@ -16,31 +16,30 @@
       "static/chunks/main-app.js",
       "static/chunks/app/not-found.js"
     ],
-    "/events/page": [
+    "/(user)/my/profile/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/events/page.js"
+      "static/chunks/app/(user)/my/profile/page.js"
     ],
-    "/events/[detail]/page": [
+    "/(user)/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/events/[detail]/page.css",
-      "static/chunks/app/events/[detail]/page.js"
+      "static/chunks/app/(user)/layout.js"
     ],
-    "/voopons/page": [
+    "/(user)/my/voopons/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/voopons/page.js"
+      "static/chunks/app/(user)/my/voopons/page.js"
     ],
-    "/voopons/[detail]/page": [
+    "/_not-found/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/voopons/[detail]/page.js"
+      "static/chunks/app/_not-found/page.js"
     ],
-    "/promoters/page": [
+    "/(user)/my/events/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/promoters/page.js"
+      "static/chunks/app/(user)/my/events/page.js"
     ]
   }
 }

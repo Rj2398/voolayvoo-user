@@ -1,22 +1,22 @@
 {
   "node": {
-    "3a233406ae4924927190c3e275fab37d18b5bc1a": {
+    "99e681c6570f71188a4d5a190a077aa1f68bfa88": {
       "workers": {
-        "app/events/[detail]/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Frajanmalakar%2FDownloads%2FRajanWorking%2FwebFolder%2F7-10-24%20voolayvoo%2Fvoolayvoo-user%2Fsrc%2Fapp%2Fevents%2F%5Bdetail%5D%2Fpage.js%22%2C%5B%22default%22%5D%5D%5D&__client_imported__=!"
+        "app/(user)/my/voopons/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Frajanmalakar%2FDownloads%2FRajanWorking%2FwebFolder%2F7-10-24%20voolayvoo%2Fvoolayvoo-user%2Fsrc%2Fapp%2F(user)%2Fmy%2Fvoopons%2Fpage.js%22%2C%5B%22default%22%5D%5D%5D&__client_imported__=!"
       },
       "layer": {
-        "app/events/[detail]/page": "rsc"
+        "app/(user)/my/voopons/page": "rsc"
       }
     },
-    "9af3464fb228f00c5f7082bba64516b5790449d3": {
+    "f5691e25bddaf73ca75c344f9b916ad612b7fc66": {
       "workers": {
-        "app/voopons/[detail]/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Frajanmalakar%2FDownloads%2FRajanWorking%2FwebFolder%2F7-10-24%20voolayvoo%2Fvoolayvoo-user%2Fsrc%2Fapp%2Fvoopons%2F%5Bdetail%5D%2Fpage.js%22%2C%5B%22default%22%5D%5D%5D&__client_imported__=!"
+        "app/(user)/my/events/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Frajanmalakar%2FDownloads%2FRajanWorking%2FwebFolder%2F7-10-24%20voolayvoo%2Fvoolayvoo-user%2Fsrc%2Fapp%2F(user)%2Fmy%2Fevents%2Fpage.js%22%2C%5B%22default%22%5D%5D%5D&__client_imported__=!"
       },
       "layer": {
-        "app/voopons/[detail]/page": "rsc"
+        "app/(user)/my/events/page": "rsc"
       }
     }
   },
   "edge": {},
-  "encryptionKey": "yoj4QU9rxbuFniyg0gDHenfDcBNGTyrxbbacUq4JRE0="
+  "encryptionKey": "kdQJipzPvLQKDp0SEZudcIZhdidoxUPhOSdj+F6PM3E="
 }

@@ -57,17 +57,26 @@ export const convertTo12HourFormat = (time24hr) => {
   }
 };
 
+// export function getCurrentLocation() {
+//   return (
+//     new Promise() <
+//     Coordinates >
+//     ((resolve, reject) => {
+//       navigator.geolocation.getCurrentPosition(
+//         (position) => resolve(position.coords),
+//         (error) => reject(error)
+//       );
+//     })
+//   );
+// }
+
 export function getCurrentLocation() {
-  return (
-    new Promise() <
-    Coordinates >
-    ((resolve, reject) => {
-      navigator.geolocation.getCurrentPosition(
-        (position) => resolve(position.coords),
-        (error) => reject(error)
-      );
-    })
-  );
+  return new Promise((resolve, reject) => {
+    navigator.geolocation.getCurrentPosition(
+      (position) => resolve(position.coords),
+      (error) => reject(error)
+    );
+  });
 }
 
 export function calculateDistanceInMiles(coord1, coord2) {
