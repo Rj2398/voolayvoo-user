@@ -38,7 +38,8 @@ const ClientComponent = ({ voopon_detail }) => {
     pathName + `?promoter_id=${searchParams.get("promoter_id")}`;
   const handleBookNow = () => {
     if (!isAuthenticated) {
-      router.push(`/login?lastPath=${tempPathName}`);
+      // router.push(`/login?lastPath=${tempPathName}`);
+      router.push(`/auth-users`);
     } else {
       // setOpenCard(true);
 

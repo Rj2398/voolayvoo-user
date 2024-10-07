@@ -433,7 +433,6 @@ const ClientComponent = ({ categoryList, businessList }) => {
   };
 
   useEffect(() => {
-    console.log(categoryId.toString(), "type of category iddd data");
     if (categoryId !== null) {
       handleCategorySelect({
         category_id: parseInt(categoryId),

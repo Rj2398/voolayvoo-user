@@ -33,7 +33,8 @@ const CarouselHeader = ({ categories }) => {
 
   const handleRouting = async (id) => {
     if (!isAuthenticated) {
-      router.push("/login");
+      // router.push("/login");
+      router.push("auth-users");
     } else {
       router.push("/businesses");
       dispatch(setCategory(id));

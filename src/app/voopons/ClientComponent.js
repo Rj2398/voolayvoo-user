@@ -400,7 +400,7 @@ const ClientComponent = ({ categoryList, voopanList }) => {
                           href={`/voopons/${item.unique_number}`}
                           role="button"
                         >
-                          View More11
+                          View More
                         </Link>
                       </div>
                     </div>

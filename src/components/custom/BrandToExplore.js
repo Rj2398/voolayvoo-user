@@ -3,11 +3,15 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useAuth } from "@/app/UserProvider";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const BrandToExplore = ({ staticItems, title, title1, brand }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const { userDetails, isAuthenticated } = useAuth();
   //
+  const router = useRouter();
+  //
+
   const [buttonStatus, setButtonStatus] = useState({});
   console.log(buttonStatus, "fasdfsdfg");
   //
@@ -79,6 +83,21 @@ const BrandToExplore = ({ staticItems, title, title1, brand }) => {
 
   //
 
+  const handleClick = () => {
+    if (!isAuthenticated) {
+      // Redirect to auth-users if not authenticated
+      router.push("/auth-users");
+    } else {
+      // Navigate to the appropriate link
+      const href = brand
+        ? `/voopons/${item.category_id}`
+        : `/businesses/${item?.id}?business_id=${item?.id}`;
+      router.push(href); // Navigate to the determined URL
+    }
+  };
+
+  //
+
   // Inline CSS styles
   const carouselStyles = {
     position: "relative",
@@ -130,6 +149,17 @@ const BrandToExplore = ({ staticItems, title, title1, brand }) => {
   const imgStyles = {
     width: "100%",
     height: "200Px",
+  };
+
+  // Inline styles
+  const buttonStyle = {
+    backgroundColor: "red", // Change color on hover
+    color: "white",
+    padding: "10px 20px",
+    border: "none",
+    borderRadius: "4px",
+    cursor: "pointer",
+    transition: "background-color 0.3s ease",
   };
 
   return (
@@ -204,7 +234,7 @@ const BrandToExplore = ({ staticItems, title, title1, brand }) => {
                             MAX_WORDS
                           )}
                       </p>
-                      <Link
+                      {/* <Link
                         className="btn btn-viewmore"
                         // href={`/voopons/${item.id}?promoter_id=${item.promoter_id}`}
                         href={
@@ -214,8 +244,16 @@ const BrandToExplore = ({ staticItems, title, title1, brand }) => {
                         }
                         role="button"
                       >
+                        View More  
+                      </Link> */}
+
+                      <button
+                        style={buttonStyle}
+                        onClick={() => handleClick(item)}
+                        role="button"
+                      >
                         View More
-                      </Link>
+                      </button>
                     </div>
                   );
                 })}
