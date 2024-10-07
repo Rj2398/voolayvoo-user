@@ -334,7 +334,7 @@ const ClientComponent = ({ voopon_detail }) => {
               <a
                 onClick={handleBookNow}
                 className="btn btn-learnmore"
-                href="#"
+                // href="#"
                 role="button"
               >
                 Buy Now

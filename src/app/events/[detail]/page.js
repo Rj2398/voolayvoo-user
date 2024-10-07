@@ -2,7 +2,7 @@
 
 import { BASE_URL } from "@/constant/constant";
 import { getFormData } from "@/fetchData/fetchApi";
-import ClientComponent from "../ClientComponent";
+import ClientComponent from "./ClientComponent";
 
 async function getData(detail, promoter_id) {
   const resEvent = await fetch(`${BASE_URL}/api/user_event_detail_list`, {

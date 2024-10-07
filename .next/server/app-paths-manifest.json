@@ -1,6 +1,8 @@
 {
+  "/events/page": "app/events/page.js",
   "/page": "app/page.js",
-  "/(page)/auth-users/page": "app/(page)/auth-users/page.js",
-  "/(onboard)/login/page": "app/(onboard)/login/page.js",
-  "/businesses/[detail]/page": "app/businesses/[detail]/page.js"
+  "/events/[detail]/page": "app/events/[detail]/page.js",
+  "/voopons/page": "app/voopons/page.js",
+  "/voopons/[detail]/page": "app/voopons/[detail]/page.js",
+  "/promoters/page": "app/promoters/page.js"
 }
