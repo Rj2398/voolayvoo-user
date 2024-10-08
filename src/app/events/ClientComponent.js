@@ -365,7 +365,7 @@ const ClientComponent = ({ categoryList, eventList }) => {
                             {" "}
                             {truncateDescriptionByWords(item.events_name, 20)}
                           </h6>
-                          <p style={{ height: "50px" }}>
+                          <p style={{}}>
                             {" "}
                             {truncateDescriptionByWords(
                               item.events_description,

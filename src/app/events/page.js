@@ -6,6 +6,7 @@ import { BASE_URL } from "@/constant/constant";
 import { countCategory, filterEvent } from "@/utils/eventFunction";
 import { useAuth } from "@/app/UserProvider";
 import Loader from "@/components/custom/Loader";
+import { useRouter } from "next/navigation";
 
 async function getData(id) {
   const resCategory = await fetch(`${BASE_URL}/api/user_category_list`, {
@@ -42,9 +43,11 @@ const Events = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const router = useRouter();
   useLayoutEffect(() => {
     const fetchData = async () => {
       if (!userDetails || !userDetails.user_id) {
+        router.push("auth-users");
         setLoading(false);
         return;
       }

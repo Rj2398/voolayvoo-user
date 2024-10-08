@@ -8,6 +8,7 @@ import { countCategory, filterEvent } from "@/utils/eventFunction";
 import Loader from "@/components/custom/Loader";
 import { useLayoutEffect, useState } from "react";
 import { useAuth } from "../UserProvider";
+import { useRouter } from "next/navigation";
 
 async function getData(id) {
   const resCategory = await fetch(`${BASE_URL}/api/user_category_list`, {
@@ -60,12 +61,13 @@ const Promoters = () => {
   });
 
   // console.log(data?.resPromoteresList, "hello user form promoter");
-
+  const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   useLayoutEffect(() => {
     const fetchData = async () => {
       if (!userDetails || !userDetails.user_id) {
+        router.push("auth-users");
         setLoading(false);
         return;
       }

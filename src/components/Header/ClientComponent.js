@@ -17,6 +17,23 @@ const ClientComponent = ({ notificationData }) => {
 
   const dispatch = useDispatch();
 
+  const hitLogOutApi = async () => {
+    try {
+      const formData = new FormData();
+      formData.append("email", userDetails?.email);
+
+      const res = await axios.post(`${BASE_URL}/api/user_logout`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      console.log(res.data, "log out api hitted");
+    } catch (error) {
+      console.error("Error during logout:", error);
+    }
+  };
+
   const goToProfile = (e) => {
     e.preventDefault();
     router.push("/my/profile");
@@ -28,6 +45,7 @@ const ClientComponent = ({ notificationData }) => {
       if (true) {
         await logout();
         router.push("/");
+        hitLogOutApi();
         dispatch(setUserState());
       }
     } catch (error) {}

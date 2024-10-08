@@ -8,6 +8,7 @@ import { countCategory, filterEvent } from "@/utils/eventFunction";
 import Loader from "@/components/custom/Loader";
 import { useLayoutEffect, useState } from "react";
 import { useAuth } from "../UserProvider";
+import { useRouter } from "next/navigation";
 
 // async function getData() {
 //   const resBusinessesList = await fetch(`${BASE_URL}/api/user_business_list_categories`, {
@@ -76,12 +77,14 @@ const Businesses = () => {
     categoryList: [],
     resBusinessesList: [],
   });
+  const router = useRouter();
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   useLayoutEffect(() => {
     const fetchData = async () => {
       if (!userDetails || !userDetails.user_id) {
+        router.push("auth-users");
         setLoading(false);
         return;
       }
