@@ -6,6 +6,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import { BackHand } from "@mui/icons-material";
 
 const BrandToExplore = ({ staticItems, title, title1, brand }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -123,13 +124,15 @@ const BrandToExplore = ({ staticItems, title, title1, brand }) => {
     display: "flex",
     transform: `translateX(-${currentIndex * (100 / itemsPerPage)}%)`,
     transition: "transform 0.5s ease",
-    gap: "7px",
+    // gap: "7px",
   };
 
   const itemStyles = {
     flex: `0 0 ${100 / itemsPerPage}%`,
+
     boxSizing: "border-box",
     textAlign: "center",
+    height: "360px",
   };
 
   const buttonStyles = {

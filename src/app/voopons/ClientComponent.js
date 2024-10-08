@@ -378,22 +378,24 @@ const ClientComponent = ({ categoryList, voopanList }) => {
                             alt=""
                           />
                         </div>
-                        <div className="voopon-heading">
-                          {truncateDescription(item?.voopons_name, 2)}
+                        <div style={{ height: "50%" }}>
+                          <div className="voopon-heading">
+                            {truncateDescription(item?.voopons_name, 2)}
+                          </div>
+                          <h5>
+                            {truncateDescription(
+                              item?.voopons_description,
+                              MAX_WORDS
+                            )}
+                          </h5>
+                          <p>
+                            Valid Thru:{" "}
+                            {DateTime.fromFormat(
+                              item?.voopons_valid_thru,
+                              "yyyy-MM-dd"
+                            ).toFormat("MMMM dd, yyyy")}
+                          </p>
                         </div>
-                        <h5>
-                          {truncateDescription(
-                            item?.voopons_description,
-                            MAX_WORDS
-                          )}
-                        </h5>
-                        <p>
-                          Valid Thru:{" "}
-                          {DateTime.fromFormat(
-                            item?.voopons_valid_thru,
-                            "yyyy-MM-dd"
-                          ).toFormat("MMMM dd, yyyy")}
-                        </p>
                         <Link
                           className="btn btn-viewmore"
                           // href={`/voopons/${item.id}?promoter_id=${item.promoter_id}`}

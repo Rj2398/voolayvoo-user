@@ -538,14 +538,18 @@ const CardItem = ({ item }) => {
             }}
           />
         </div>
-        <div className="voopon-heading mynamestyling">{item?.voopons_name}</div>
-        <h5>{truncateDescription(item?.voopons_description, MAX_WORDS)}</h5>
-        <p>
-          <Image width={20} height={20} src="/images/calendar.png" alt="" />{" "}
-          {DateTime.fromFormat(item?.voopons_date, "yyyy-MM-dd").toFormat(
-            "MMMM dd, yyyy"
-          )}
-        </p>
+        <div style={{}}>
+          <div className="voopon-heading " style={{ width: "100%" }}>
+            {truncateDescription(item?.voopons_name, 2)}
+          </div>
+          <h5>{truncateDescription(item?.voopons_description, 2)}</h5>
+          <p>
+            <Image width={20} height={20} src="/images/calendar.png" alt="" />{" "}
+            {DateTime.fromFormat(item?.voopons_date, "yyyy-MM-dd").toFormat(
+              "MMMM dd, yyyy"
+            )}
+          </p>
+        </div>
         <Link
           className="btn btn-viewmore"
           href={`#`}

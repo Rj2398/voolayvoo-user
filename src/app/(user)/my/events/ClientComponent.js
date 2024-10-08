@@ -585,8 +585,8 @@ const CardItem = ({ item }) => {
           <p className="truncate-text">
             {item?.promoter_event?.events_description}
           </p>
-          <div className="point-icon">
-            <span>
+          <div className="point-icon" style={{ height: "40%" }}>
+            <div style={{ width: "80%" }}>
               <Image
                 width={20}
                 height={20}
@@ -594,13 +594,13 @@ const CardItem = ({ item }) => {
                 alt=""
               />{" "}
               {item?.event_away_distance} miles away
-            </span>
-            <span>
+            </div>
+            <div>
               <Image width={20} height={20} src="/images/calendar.png" alt="" />{" "}
               {DateTime.fromFormat(item?.events_date, "yyyy-MM-dd").toFormat(
                 "MMMM dd, yyyy"
               )}
-            </span>
+            </div>
             <span>
               <Image width={20} height={20} src="/images/watch.png" alt="" />{" "}
               {convertTo12HourFormat(item?.events_start_time)} to{" "}

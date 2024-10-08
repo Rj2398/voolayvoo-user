@@ -781,7 +781,10 @@ const ClientComponent = ({ categoryList, businessList }) => {
                         precision={0.5}
                         disabled={true}
                       />
-                      <p>{truncateDescriptionByWords(item?.description, 10)}</p>
+                      <p>
+                        {truncateDescriptionByWords(item?.description, 10) ||
+                          "description"}
+                      </p>
                       <div className="point-icon">
                         <span>
                           {" "}

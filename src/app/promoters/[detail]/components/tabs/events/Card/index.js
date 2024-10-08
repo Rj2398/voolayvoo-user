@@ -1,5 +1,6 @@
 import { BASE_URL } from "@/constant/constant";
 import { convertTo12HourFormat } from "@/utils/eventFunction";
+import { Widgets } from "@mui/icons-material";
 import { DateTime } from "luxon";
 
 const Card = ({ cardData }) => {
@@ -38,39 +39,41 @@ const Card = ({ cardData }) => {
             </div>
           </div>
           <div className="event-pad">
-            <h6 className="title-capitilize">
-              {cardData?.events_data?.events_name ||
-                cardData?.events_data_business?.events_name ||
-                cardData?.events_name}
-            </h6>
-            <p className="truncate-text">
-              {cardData?.events_data?.events_description ||
-                cardData?.events_data_business?.events_description ||
-                cardData?.events_description}
-            </p>
-            <div className="point-icon">
-              <span>
-                <img src="/images/location-dot.png" alt="" />{" "}
-                {cardData?.event_away_distance || null} miles away{" "}
-              </span>
-              <span>
-                <img src="/images/calendar.png" alt="" />
-                {cardData?.events_data?.events_date ||
-                  cardData?.events_data_business?.events_date ||
-                  cardData?.events_date}
-              </span>
-              <span>
-                <img src="/images/watch.png" alt="" />
-                {/* {convertTo12HourFormat(cardData?.events_start_time)} to{" "}
+            <div style={{ height: "80%" }}>
+              <h6 className="title-capitilize">
+                {cardData?.events_data?.events_name ||
+                  cardData?.events_data_business?.events_name ||
+                  cardData?.events_name}
+              </h6>
+              <p className="truncate-text">
+                {cardData?.events_data?.events_description ||
+                  cardData?.events_data_business?.events_description ||
+                  cardData?.events_description}
+              </p>
+              <div className="point-icon">
+                <div style={{ width: "80%" }}>
+                  <img src="/images/location-dot.png" alt="" />{" "}
+                  {cardData?.event_away_distance || null} miles away{" "}
+                </div>
+                <div>
+                  <img src="/images/calendar.png" alt="" />
+                  {cardData?.events_data?.events_date ||
+                    cardData?.events_data_business?.events_date ||
+                    cardData?.events_date}
+                </div>
+                <div>
+                  <img src="/images/watch.png" alt="" />
+                  {/* {convertTo12HourFormat(cardData?.events_start_time)} to{" "}
                 {convertTo12HourFormat(cardData?.events_end_time)}{" "} */}
-                {cardData?.events_data?.events_start_time ||
-                  cardData?.events_data_business?.events_start_time ||
-                  cardData?.events_start_time}{" "}
-                to{" "}
-                {cardData?.events_data?.events_end_time ||
-                  cardData?.events_data_business?.events_end_time ||
-                  cardData?.events_end_time}
-              </span>
+                  {cardData?.events_data?.events_start_time ||
+                    cardData?.events_data_business?.events_start_time ||
+                    cardData?.events_start_time}{" "}
+                  to{" "}
+                  {cardData?.events_data?.events_end_time ||
+                    cardData?.events_data_business?.events_end_time ||
+                    cardData?.events_end_time}
+                </div>
+              </div>
             </div>
             <a
               className="btn btn-viewmore-border"

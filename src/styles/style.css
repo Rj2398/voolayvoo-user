@@ -345,7 +345,7 @@ a.sign-in:hover {
 }
 
 .voopon-heading {
-  font-size: 34px;
+  font-size: 26px;
   font-weight: 700;
   color: #e60023;
   margin-top: 20px;
@@ -563,7 +563,7 @@ section.how-it-section::before {
 
 .event-pad {
   padding: 15px;
-  height: 276px;
+  /* height: 276px; */
   display: flex;
   flex-direction: column;
 }

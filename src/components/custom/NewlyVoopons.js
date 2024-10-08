@@ -45,15 +45,17 @@ const NewlyVoopons = ({ staticItems, title, title1, brand }) => {
   const itemContainerStyles = {
     display: "flex",
     transform: `translateX(-${currentIndex * (100 / itemsPerPage)}%)`,
+
     transition: "transform 0.5s ease",
-    gap: "7px",
+    // gap: "7px",
   };
 
   const itemStyles = {
     flex: `0 0 ${100 / itemsPerPage}%`,
     boxSizing: "border-box",
     textAlign: "center",
-    height: "450px",
+    // height: "450px",
+    height: "400px",
   };
 
   const buttonStyles = {
@@ -146,7 +148,7 @@ const NewlyVoopons = ({ staticItems, title, title1, brand }) => {
                           style={imgStyles}
                         />
                       </div>
-                      <div style={{ height: "40%" }}>
+                      <div style={{ height: "30%" }}>
                         <div className="voopon-heading">
                           {item.voopons_name || item.name
                             ? truncateDescriptionTitle(
