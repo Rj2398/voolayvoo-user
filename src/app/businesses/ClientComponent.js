@@ -398,6 +398,116 @@ const ClientComponent = ({ categoryList, businessList }) => {
       }
     }
   };
+
+  // for toggle code
+
+  /*  
+
+
+ useEffect(() => {
+    if (businessList?.length > 12) {
+      setAppliedFilter((pre) => ({ ...pre, isPaginationApply: true }));
+    } else {
+      setMainList(businessList);
+      setRenderList(businessList);
+    }
+  }, [categoryList, businessList]);
+
+  // for likes code
+
+  // favorite code
+
+  // favorite code
+
+  const [buttonStatus, setButtonStatus] = useState({});
+  console.log(buttonStatus, "fasdfsdfg");
+
+  useEffect(() => {
+    const initialButtonStatus = renderList.reduce((acc, item) => {
+      acc[item.id] = false;
+      return acc;
+    }, {});
+    setButtonStatus(initialButtonStatus);
+  }, [renderList]);
+  const handleFavoriteClick = async (item) => {
+    console.log(item, "comes form thishjfhsdjfhsjdfhjshfjshfshfsh");
+
+    // Prepare FormData
+    const formData = new FormData();
+    formData.append("user_id", userDetails?.user_id);
+    formData.append("business_id", item);
+    formData.append("like_status", "1");
+
+    //
+
+    try {
+      const response = await axios.post(
+        `${BASE_URL}/api/auth/user_favorite_business`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${userDetails.token}`,
+          },
+        }
+      );
+
+      setButtonStatus((prevStatus) => ({
+        ...prevStatus,
+        [item]: true, // Disable the button that is pressed
+      }));
+
+      console.log(response.data, "response of like data from business"); // Log the response for debugging
+    } catch (error) {
+      console.error("Error updating like status:", error);
+    }
+  };
+
+
+*/
+  const [likesState, setLikesState] = useState({});
+
+  useEffect(() => {
+    const initialButtonStatus = renderList.reduce((acc, item) => {
+      acc[item.business_id] = item?.follow_status;
+      return acc;
+    }, {});
+    setLikesState(initialButtonStatus);
+  }, [renderList]);
+  console.log(likesState, "likes status data comes formthis");
+  //
+
+  const handleCheckboxClick = async (event, business_id) => {
+    const newStatus = likesState[business_id] == 0 ? 1 : 0;
+    const formData = new FormData();
+    formData.append("user_id", userDetails.user_id);
+
+    formData.append("business_id", business_id);
+    formData.append("follow_status", newStatus);
+
+    try {
+      const response = await axios.post(
+        `${BASE_URL}/api/auth/user_follower_promoter_business`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${userDetails?.token}`,
+          },
+        }
+      );
+
+      setLikesState((prevStatus) => ({
+        ...prevStatus,
+        [business_id]: newStatus,
+      }));
+      console.log("Response: promoter", response.data);
+    } catch (error) {
+      // console.error('Error:', error.response ? error.response.data : error.message);
+    }
+  };
+
+  //
   const handleUnFollow = async (id) => {
     if (!isAuthenticated) {
       router.push(`/login?lastPath=${pathName}`);
@@ -660,6 +770,7 @@ const ClientComponent = ({ categoryList, businessList }) => {
           {Array.isArray(renderList) &&
             renderList.length > 0 &&
             renderList.map((item, index) => {
+              console.log(item, "comes form businness data field");
               return (
                 <div
                   key={`${item.name}-${index}`}
@@ -721,6 +832,33 @@ const ClientComponent = ({ categoryList, businessList }) => {
                           </label>
                         </form> */}
 
+                        {/* testing code */}
+
+                        <form>
+                          <div key={item.business_id}>
+                            <input
+                              type="checkbox"
+                              name="favorite"
+                              id={`follow-${item.business_id}`} // Unique ID for each checkbox
+                              checked={likesState[item.business_id] == 1} // Check if liked
+                              onChange={(e) =>
+                                handleCheckboxClick(e, item.business_id)
+                              } // Pass business_id
+                            />
+                            <label htmlFor={`follow-${item.business_id}`}>
+                              <img
+                                className="brand-follow-check"
+                                src="/images/promoter/follow-plus.svg"
+                                alt="Follow"
+                              />
+                              <img
+                                className="brand-follow-check-fill"
+                                src="/images/promoter/follow-check.svg"
+                                alt="Following"
+                              />
+                            </label>
+                          </div>
+                        </form>
                         {/* code written by rajan */}
 
                         {/* <form>
@@ -739,8 +877,8 @@ const ClientComponent = ({ categoryList, businessList }) => {
                             />
                           </label>
                         </form> */}
-
-                        <form>
+                        {/*  date 09-oct-2024 */}
+                        {/* <form>
                           <button
                             type="button"
                             id="follow"
@@ -769,7 +907,7 @@ const ClientComponent = ({ categoryList, businessList }) => {
                               />
                             )}
                           </button>
-                        </form>
+                        </form> */}
                       </div>
                     </div>
                     <div className="event-pad">
