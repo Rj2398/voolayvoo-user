@@ -17,21 +17,23 @@ import axios from "axios";
 import { truncateDescriptionByWords } from "@/utils/eventFunction";
 
 // Function to fetch favorite data
-async function getData(id) {
+async function getData(id, token) {
   const formData = new FormData();
   formData.append("user_id", id);
 
   const resFavorite = await fetch(
-    `${BASE_URL}/api/user_home_screen_my_favorites_brand_business_list`,
+    `${BASE_URL}/api/auth/user_favorite_business_get`,
     {
       method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`, // Adding the token to the Authorization header
+      },
       body: formData,
     }
   );
 
   const resultFavorite = await resFavorite.json();
-
-  if (!resFavorite) {
+  if (!resFavorite.ok) {
     throw new Error("Failed to fetch data");
   }
 
@@ -47,17 +49,18 @@ const Favorites = () => {
   const [error, setError] = useState(null);
   const [pageNo, setPageNo] = useState(1);
   const [renderList, setRenderList] = useState([]);
+  // console.log(renderList, "render list aayy");
   const targetDivRef = useRef(null);
 
   // code for like
   const [likeStatus, setLikeStatus] = useState(true);
 
   const [buttonStatus, setButtonStatus] = useState({});
-  console.log(data?.favoriteList, "fasdfsdfg");
+  // console.log(buttonStatus, "fasdfsdfg");
 
   useEffect(() => {
     const initialButtonStatus = renderList.reduce((acc, item) => {
-      acc[item.id] = true;
+      acc[item.business_id] = true;
       return acc;
     }, {});
     setButtonStatus(initialButtonStatus);
@@ -66,10 +69,11 @@ const Favorites = () => {
   // favorite code
 
   const handleFavoriteClick = async (businessId) => {
+    // console.log(businessId, "comes form this ");
     // Prepare FormData
     const formData = new FormData();
     formData.append("user_id", userDetails.user_id);
-    formData.append("business_id", businessId.toString());
+    formData.append("business_id", businessId);
     formData.append("like_status", "0");
 
     //
@@ -88,10 +92,10 @@ const Favorites = () => {
 
       setButtonStatus((prevStatus) => ({
         ...prevStatus,
-        [businessId]: false, // Disable the button that is pressed
+        [businessId]: false,
       }));
       setLikeStatus((prev) => !prev);
-      console.log(response.data, "response of like data"); // Log the response for debugging
+      // console.log(response.data, "response of like data");
     } catch (error) {
       console.error("Error updating like status:", error);
     }
@@ -107,9 +111,15 @@ const Favorites = () => {
       }
 
       try {
-        const result = await getData(userDetails.user_id);
+        const result = await getData(userDetails.user_id, userDetails?.token);
         setData(result);
-        setRenderList(result.favoriteList.slice(0, itemsPerPage)); // Initialize with the first page data
+        // console.log(result?.favoriteList, "favorite list data comes form");
+        setRenderList(result.favoriteList.slice(0, itemsPerPage));
+        // if (result.favoriteList == "undefined") {
+        //   setRenderList([]);
+        // } else {
+        //   setRenderList(result.favoriteList.slice(0, itemsPerPage));
+        // }
       } catch (err) {
         setError(err.message || "An error occurred");
       } finally {
@@ -174,11 +184,11 @@ const Favorites = () => {
       <div
         style={{
           display: "flex",
-          justifyContent: "center",
+          justifyContent: "flex-end",
           alignItems: "center",
         }}
       >
-        <p>No favorites found.</p>
+        <p style={{ fontSize: 30 }}>No favorites found.</p>
       </div>
     );
 
@@ -188,93 +198,101 @@ const Favorites = () => {
         <h1>My Favorites</h1>
       </div>
       <div className="user-my-favorites-inner">
-        {renderList.map((business) => (
-          <div key={business.id} className="event-brand-box">
-            <div className="brand-logo">
-              <div className="brand-heart">
-                <input
-                  type="checkbox"
-                  id={`favorite-${business.id}`}
-                  checked={buttonStatus[business.id] === true} // Checks current status
-                  onChange={() => handleFavoriteClick(business.id)}
-                  aria-label={`Favorite ${business.name}`}
-                />
-                <label htmlFor={`favorite-${business.id}`}>
-                  <img
-                    src={
-                      buttonStatus[business.id] === true
-                        ? "/images/user-bookmark-2.png"
-                        : "/images/user-bookmark.png"
-                    }
-                    alt="Bookmark"
-                    width={25}
-                    height={23}
+        {renderList.map((business, index) => {
+          console.log(business, "businessbusinessbusiness");
+          return (
+            <div key={business.id + index} className="event-brand-box">
+              <div className="brand-logo">
+                <div className="brand-heart">
+                  <input
+                    type="checkbox"
+                    id={`favorite-${business.business_id}`}
+                    checked={buttonStatus[business.business_id] === true}
+                    onChange={() => handleFavoriteClick(business?.business_id)}
+                    aria-label={`Favorite ${business.name}`}
                   />
-                </label>
+                  <label htmlFor={`favorite-${business.business_id}`}>
+                    <img
+                      src={
+                        buttonStatus[business.business_id] === true
+                          ? "/images/user-bookmark-2.png"
+                          : "/images/user-bookmark.png"
+                      }
+                      alt="Bookmark"
+                      width={25}
+                      height={23}
+                    />
+                  </label>
+                </div>
+
+                <Image
+                  width={285}
+                  height={223}
+                  src={
+                    business.business_favourite?.profile_image
+                      ? BASE_URL + business.business_favourite?.profile_image
+                      : "/images/near-event3.png"
+                  }
+                  alt={business.name}
+                />
               </div>
 
-              <Image
-                width={285}
-                height={223}
-                src={
-                  business.profile_image
-                    ? BASE_URL + business.profile_image
-                    : "/images/near-event3.png"
-                }
-                alt={business.name}
-              />
-            </div>
-
-            <div className="event-pad">
-              <h6>{business?.name}</h6>
-              <p>{truncateDescriptionByWords(business?.description, 10)}</p>
-              <div className="point-icon">
-                <span>
-                  {" "}
-                  <Image
-                    width={20}
-                    height={20}
-                    src="/images/location-dot.png"
-                    alt=""
-                  />{" "}
-                  {business?.distance || 0} miles away{" "}
-                </span>
-                <span>
-                  <Image
-                    width={20}
-                    height={20}
-                    src="/images/calendar.png"
-                    alt=""
-                  />
-                  {/* {" "}
-                  {DateTime.fromFormat(
-                    business.events_date,
-                    "yyyy-MM-dd"
-                  ).toFormat("MMMM dd, yyyy")}{" "} */}
-                </span>
-                {business?.location && (
+              <div className="event-pad">
+                <h6>{business.business_favourite?.name}</h6>
+                <p>
+                  {truncateDescriptionByWords(
+                    business?.business_favourite?.business_favourite,
+                    10
+                  )}
+                </p>
+                <div className="point-icon">
+                  <span>
+                    {" "}
+                    <Image
+                      width={20}
+                      height={20}
+                      src="/images/location-dot.png"
+                      alt=""
+                    />{" "}
+                    {business?.distance || 0} miles away{" "}
+                  </span>
                   <span>
                     <Image
                       width={20}
                       height={20}
-                      src="/images/loc-mark.svg"
+                      src="/images/calendar.png"
                       alt=""
-                    />{" "}
-                    {business?.location}{" "}
+                    />
+                    {/* {" "}
+                {DateTime.fromFormat(
+                  business.events_date,
+                  "yyyy-MM-dd"
+                ).toFormat("MMMM dd, yyyy")}{" "} */}
                   </span>
-                )}
+                  {business?.business_favourite?.location && (
+                    <span>
+                      <Image
+                        width={20}
+                        height={20}
+                        src="/images/loc-mark.svg"
+                        alt=""
+                      />{" "}
+                      {business?.business_favourite?.location}{" "}
+                    </span>
+                  )}
+                </div>
+                <Link
+                  className="btn btn-viewmore-border "
+                  // href={`/businesses/${item?.id}`}
+                  href={`/businesses/${business?.business_id}?business_id=${business?.business_id}`}
+                  role="button"
+                >
+                  View More
+                </Link>
               </div>
-              <Link
-                className="btn btn-viewmore-border "
-                // href={`/businesses/${item?.id}`}
-                href={`/businesses/${business?.id}?business_id=${business?.id}`}
-                role="button"
-              >
-                View More
-              </Link>
             </div>
-          </div>
-        ))}
+          );
+        })}
         <CustomPagination
           dataArray={data.favoriteList}
           pageNo={pageNo}

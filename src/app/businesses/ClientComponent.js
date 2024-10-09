@@ -125,8 +125,8 @@ const ClientComponent = ({ categoryList, businessList }) => {
 
     // Prepare FormData
     const formData = new FormData();
-    formData.append("user_id", userDetails.user_id);
-    formData.append("business_id", item.toString());
+    formData.append("user_id", userDetails?.user_id);
+    formData.append("business_id", item);
     formData.append("like_status", "1");
 
     //
@@ -148,7 +148,7 @@ const ClientComponent = ({ categoryList, businessList }) => {
         [item]: true, // Disable the button that is pressed
       }));
 
-      console.log(response.data, "response of like data"); // Log the response for debugging
+      console.log(response.data, "response of like data from business"); // Log the response for debugging
     } catch (error) {
       console.error("Error updating like status:", error);
     }

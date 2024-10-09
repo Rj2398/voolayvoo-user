@@ -1,3 +1,9 @@
 {
-  "/page": "app/page.js"
+  "/page": "app/page.js",
+  "/businesses/page": "app/businesses/page.js",
+  "/businesses/[detail]/page": "app/businesses/[detail]/page.js",
+  "/events/page": "app/events/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/(page)/auth-users/page": "app/(page)/auth-users/page.js",
+  "/(user)/my/voopons/page": "app/(user)/my/voopons/page.js"
 }

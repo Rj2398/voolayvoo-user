@@ -59,8 +59,6 @@ const BrandToExplore = ({ staticItems, title, title1, brand }) => {
 
   // //
   const handleFavoriteClick = async (item) => {
-    console.log(item, "comes from this");
-
     // Toggle like status based on the current state
     const isLiked = buttonStatus[item]; // Check current like status
 
@@ -69,6 +67,13 @@ const BrandToExplore = ({ staticItems, title, title1, brand }) => {
     formData.append("user_id", userDetails.user_id);
     formData.append("business_id", item.toString());
     formData.append("like_status", isLiked ? "0" : "1"); // Toggle between 'like' (1) and 'unlike' (0)
+
+    console.log(
+      item,
+      userDetails.user_id,
+      isLiked,
+      "params comes form home screen"
+    );
 
     try {
       const response = await axios.post(
@@ -88,7 +93,7 @@ const BrandToExplore = ({ staticItems, title, title1, brand }) => {
         [item]: !isLiked, // Toggle the status of the button
       }));
 
-      console.log(response.data, "response of like data"); // Log the response for debugging
+      console.log(response.data, "response comes form home screen"); // Log the response for debugging
     } catch (error) {
       console.error("Error updating like status:", error);
     }

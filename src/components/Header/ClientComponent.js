@@ -164,8 +164,8 @@ const ClientComponent = ({ notificationData }) => {
               <h1>Notifications</h1>
               <ul>
                 {notificationData?.responseNotification?.length > 0 ? (
-                  notificationData.responseNotification.map((item) => (
-                    <li key={item.id}>
+                  notificationData.responseNotification.map((item, index) => (
+                    <li key={`${item.id}-${index}`}>
                       {item.notification_text || "No message available."}
                     </li>
                   ))
