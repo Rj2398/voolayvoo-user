@@ -31,7 +31,7 @@ async function getData(id) {
 
   const resultFavorite = await resFavorite.json();
 
-  if (!resFavorite.ok) {
+  if (!resFavorite) {
     throw new Error("Failed to fetch data");
   }
 
@@ -53,7 +53,7 @@ const Favorites = () => {
   const [likeStatus, setLikeStatus] = useState(true);
 
   const [buttonStatus, setButtonStatus] = useState({});
-  console.log(buttonStatus, "fasdfsdfg");
+  console.log(data?.favoriteList, "fasdfsdfg");
 
   useEffect(() => {
     const initialButtonStatus = renderList.reduce((acc, item) => {
