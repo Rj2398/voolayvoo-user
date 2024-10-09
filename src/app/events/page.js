@@ -7,6 +7,7 @@ import { countCategory, filterEvent } from "@/utils/eventFunction";
 import { useAuth } from "@/app/UserProvider";
 import Loader from "@/components/custom/Loader";
 import { useRouter } from "next/navigation";
+import useLocalStorage from "@/constant/useLocalStorage";
 
 async function getData(id) {
   const resCategory = await fetch(`${BASE_URL}/api/user_category_list`, {
@@ -42,12 +43,16 @@ const Events = () => {
   const [data, setData] = useState({ categoryList: [], eventList: [] });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const [localStorage, setLocalStorage] = useLocalStorage("loginUser", null);
   const router = useRouter();
   useLayoutEffect(() => {
     const fetchData = async () => {
-      if (!userDetails || !userDetails.user_id) {
+      if (!localStorage) {
         router.push("auth-users");
+        setLoading(false);
+        return;
+      }
+      if (!userDetails || !userDetails.user_id) {
         setLoading(false);
         return;
       }
@@ -63,7 +68,7 @@ const Events = () => {
     };
 
     fetchData();
-  }, [userDetails]);
+  }, [userDetails, router]);
 
   if (loading)
     return (
