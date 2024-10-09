@@ -9,6 +9,7 @@ import Loader from "@/components/custom/Loader";
 import { useLayoutEffect, useState } from "react";
 import { useAuth } from "../UserProvider";
 import { useRouter } from "next/navigation";
+import useLocalStorage from "@/constant/useLocalStorage";
 
 // async function getData() {
 //   const resBusinessesList = await fetch(`${BASE_URL}/api/user_business_list_categories`, {
@@ -81,10 +82,22 @@ const Businesses = () => {
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const [localStorage, setLocalStorage] = useLocalStorage("loginUser", null);
   useLayoutEffect(() => {
     const fetchData = async () => {
-      if (!userDetails || !userDetails.user_id) {
+      // if (!userDetails || !userDetails.user_id) {
+      //   router.push("auth-users");
+      //   setLoading(false);
+      //   return;
+      // }
+
+      if (!localStorage) {
         router.push("auth-users");
+        setLoading(false);
+        return;
+      }
+      if (!userDetails || !userDetails.user_id) {
         setLoading(false);
         return;
       }

@@ -9,6 +9,7 @@ import Loader from "@/components/custom/Loader";
 import { useLayoutEffect, useState } from "react";
 import { useAuth } from "../UserProvider";
 import { useRouter } from "next/navigation";
+import useLocalStorage from "@/constant/useLocalStorage";
 
 async function getData(id) {
   const resCategory = await fetch(`${BASE_URL}/api/user_category_list`, {
@@ -64,14 +65,25 @@ const Promoters = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [localStorage, setLocalStorage] = useLocalStorage("loginUser", null);
+
   useLayoutEffect(() => {
     const fetchData = async () => {
-      if (!userDetails || !userDetails.user_id) {
+      // if (!userDetails || !userDetails.user_id) {
+      //   router.push("auth-users");
+      //   setLoading(false);
+      //   return;
+      // }
+
+      if (!localStorage) {
         router.push("auth-users");
         setLoading(false);
         return;
       }
-
+      if (!userDetails || !userDetails.user_id) {
+        setLoading(false);
+        return;
+      }
       try {
         const result = await getData(userDetails.user_id);
         setData(result);
