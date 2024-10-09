@@ -125,60 +125,62 @@ const NewlyVoopons = ({ staticItems, title, title1, brand }) => {
                 className="owl-carousel owl-loaded owl-drag "
                 style={itemContainerStyles}
               >
-                {/* //   .slice(currentIndex, currentIndex + itemsPerPage) */}
-                {staticItems?.map((item, index) => {
-                  console.log(item, "hello item data comes form this");
-                  return (
-                    <div className="brand-box" style={itemStyles} key={index}>
-                      <div className="brand-logo" style={boxStyles}>
-                        <div className="brand-heart">
-                          <form>
-                            <input
-                              type="checkbox"
-                              name="favorite"
-                              id="favorite"
-                            />
-                          </form>
+                {staticItems?.length == 0 ? (
+                  <p>No Data Exist</p>
+                ) : (
+                  staticItems?.map((item, index) => {
+                    console.log(item, "hello item data comes form this");
+                    return (
+                      <div className="brand-box" style={itemStyles} key={index}>
+                        <div className="brand-logo" style={boxStyles}>
+                          <div className="brand-heart">
+                            <form>
+                              <input
+                                type="checkbox"
+                                name="favorite"
+                                id="favorite"
+                              />
+                            </form>
+                          </div>
+                          <img
+                            src={`${BASE_URL}/${
+                              item.vooponimage?.image_name ||
+                              item?.profile_image
+                            }`}
+                            alt={item.title}
+                            style={imgStyles}
+                          />
                         </div>
-                        <img
-                          src={`${BASE_URL}/${
-                            item.vooponimage?.image_name || item?.profile_image
-                          }`}
-                          alt={item.title}
-                          style={imgStyles}
-                        />
-                      </div>
-                      <div style={{ height: "30%" }}>
-                        <div className="voopon-heading">
-                          {item.voopons_name || item.name
-                            ? truncateDescriptionTitle(
-                                item.voopons_name || item.name,
-                                3
-                              )
-                            : "No Title Available"}
-                        </div>
-                        <h6>
-                          {item?.voopons_description
-                            ? truncateDescription(
-                                item.voopons_description,
-                                MAX_WORDS
-                              )
-                            : "No Description Available"}
-                        </h6>
+                        <div style={{ height: "30%" }}>
+                          <div className="voopon-heading">
+                            {item.voopons_name || item.name
+                              ? truncateDescriptionTitle(
+                                  item.voopons_name || item.name,
+                                  3
+                                )
+                              : "No Title Available"}
+                          </div>
+                          <h6>
+                            {item?.voopons_description
+                              ? truncateDescription(
+                                  item.voopons_description,
+                                  MAX_WORDS
+                                )
+                              : "No Description Available"}
+                          </h6>
 
-                        <p>
-                          {" "}
-                          Valid thru:{" "}
-                          {new Date(item.voopons_valid_thru).toLocaleDateString(
-                            "en-US",
-                            {
+                          <p>
+                            {" "}
+                            Valid thru:{" "}
+                            {new Date(
+                              item.voopons_valid_thru
+                            ).toLocaleDateString("en-US", {
                               year: "numeric",
                               month: "short",
                               day: "numeric",
-                            }
-                          )}
-                        </p>
-                        {/* <p>
+                            })}
+                          </p>
+                          {/* <p>
                         {item &&
                           item.hasOwnProperty("voopons_description") &&
                           truncateDescription(
@@ -186,18 +188,19 @@ const NewlyVoopons = ({ staticItems, title, title1, brand }) => {
                             MAX_WORDS
                           )}
                       </p> */}
+                        </div>
+                        <Link
+                          className="btn btn-viewmore"
+                          href={`/voopons/${item.category_id}`} // Use curly braces for JavaScript expressions
+                          role="button"
+                          // style={{ marginBottom: "5px" }}
+                        >
+                          View
+                        </Link>
                       </div>
-                      <Link
-                        className="btn btn-viewmore"
-                        href={`/voopons/${item.category_id}`} // Use curly braces for JavaScript expressions
-                        role="button"
-                        // style={{ marginBottom: "5px" }}
-                      >
-                        View
-                      </Link>
-                    </div>
-                  );
-                })}
+                    );
+                  })
+                )}
               </div>
 
               <button style={nextButtonStyles} onClick={handleNext}>

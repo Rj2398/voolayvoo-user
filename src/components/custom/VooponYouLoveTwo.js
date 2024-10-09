@@ -6,6 +6,7 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 
 // VooponCard component to display individual Voopon details
 const VooponCard = ({ voopon }) => {
+  console.log(voopon, "vooponse comes form thsi");
   return (
     <div style={styles.card}>
       <div
@@ -67,11 +68,27 @@ const VooponYouLoveTwo = ({ staticItems }) => {
 
   return (
     <section style={styles.container}>
-      <h2 style={styles.header}>Voopons You Will Love</h2>
+      <div className="heading">
+        Voopons You <span style={{ color: "red" }}>Will Love</span>
+      </div>
       <div style={styles.cardContainer}>
-        {displayedItems.map((voopon) => (
-          <VooponCard key={voopon.category_id} voopon={voopon} />
-        ))}
+        {displayedItems.length === 0 ? (
+          <p
+            style={{
+              alignSelf: "center",
+              justifyContent: "center",
+              display: "flex",
+              alignItems: "center",
+              fontSize: "24px",
+            }}
+          >
+            No voopons available
+          </p>
+        ) : (
+          displayedItems.map((voopon) => (
+            <VooponCard key={voopon.category_id} voopon={voopon} />
+          ))
+        )}
       </div>
       <div style={styles.overlay}>
         <button
@@ -101,14 +118,16 @@ const styles = {
     margin: "0 auto",
   },
   header: {
-    textAlign: "center",
-    fontSize: "24px",
+    fontSize: "36px",
     fontWeight: "bold",
     marginBottom: "20px",
   },
   cardContainer: {
     display: "flex",
     justifyContent: "space-between",
+
+    justifyContent: "center",
+    alignItems: "center",
   },
   card: {
     flex: "1 0 30%", // Adjusts to 3 cards per row

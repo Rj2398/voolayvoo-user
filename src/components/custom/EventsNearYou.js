@@ -167,43 +167,46 @@ const EventsNearYou = ({ staticItems, title, title1, brand }) => {
                 style={itemContainerStyles}
               >
                 {/* //   .slice(currentIndex, currentIndex + itemsPerPage) */}
-                {combinedArray?.map((item, index) => {
-                  console.log(
-                    item,
-                    "hello item data comes form thisgggggggggghg"
-                  );
-                  return (
-                    <div
-                      className="event-brand-box"
-                      style={itemStyles}
-                      key={index}
-                    >
-                      <div className="brand-logo" style={boxStyles}>
-                        <span>
-                          {item.events_price == 0
-                            ? "GRAB DEAL"
-                            : `$${item.events_price}`}
-                        </span>
-                        <img
-                          src={`${BASE_URL}/${item.eventimage?.image_name}`}
-                          alt={item.title}
-                          style={imgStyles}
-                        />
-                      </div>
-                      <div className="event-pad" style={{ height: "42%" }}>
-                        <h6>
-                          {item.events_name
-                            ? truncateDescriptionTitle(item.events_name, 5)
-                            : "No Title Available"}
-                        </h6>
-                        <p>
-                          {" "}
-                          {item?.description
-                            ? truncateDescription(item.description, MAX_WORDS)
-                            : "No Description Available"}
-                        </p>
-                        <div className="point-icon">
-                          {/* <span>
+                {combinedArray?.length == 0 ? (
+                  <p>No Data Exist</p>
+                ) : (
+                  combinedArray?.map((item, index) => {
+                    console.log(
+                      item,
+                      "hello item data comes form thisgggggggggghg"
+                    );
+                    return (
+                      <div
+                        className="event-brand-box"
+                        style={itemStyles}
+                        key={index}
+                      >
+                        <div className="brand-logo" style={boxStyles}>
+                          <span>
+                            {item.events_price == 0
+                              ? "GRAB DEAL"
+                              : `$${item.events_price}`}
+                          </span>
+                          <img
+                            src={`${BASE_URL}/${item.eventimage?.image_name}`}
+                            alt={item.title}
+                            style={imgStyles}
+                          />
+                        </div>
+                        <div className="event-pad" style={{ height: "42%" }}>
+                          <h6>
+                            {item.events_name
+                              ? truncateDescriptionTitle(item.events_name, 5)
+                              : "No Title Available"}
+                          </h6>
+                          <p>
+                            {" "}
+                            {item?.description
+                              ? truncateDescription(item.description, MAX_WORDS)
+                              : "No Description Available"}
+                          </p>
+                          <div className="point-icon">
+                            {/* <span>
                             <img src="images/location-dot.png" />
                             {item.distance.toFixed(2)} miles away
                           </span>
@@ -222,62 +225,63 @@ const EventsNearYou = ({ staticItems, title, title1, brand }) => {
                             )} to {convertTo12HourFormat(item.events_end_time)}{" "}
                           </span> */}
 
-                          <div className="point-icon">
-                            <div
-                              style={{
-                                width: "90%",
+                            <div className="point-icon">
+                              <div
+                                style={{
+                                  width: "90%",
 
-                                textAlign: "left",
-                              }}
-                            >
-                              <img
-                                src="images/location-dot.png"
-                                alt="Location Icon"
-                              />
-                              {item.distance.toFixed(2)} miles away
-                            </div>
-                            <div
-                              style={{
-                                width: "90%",
+                                  textAlign: "left",
+                                }}
+                              >
+                                <img
+                                  src="images/location-dot.png"
+                                  alt="Location Icon"
+                                />
+                                {item.distance.toFixed(2)} miles away
+                              </div>
+                              <div
+                                style={{
+                                  width: "90%",
 
-                                textAlign: "left",
-                              }}
-                            >
-                              <img
-                                src="images/calendar.png"
-                                alt="Calendar Icon"
-                              />
-                              {DateTime.fromFormat(
-                                item.events_date,
-                                "yyyy-MM-dd"
-                              ).toFormat("MMMM dd, yyyy")}
-                            </div>
-                            <div
-                              style={{
-                                width: "90%",
-                                textAlign: "left",
-                              }}
-                            >
-                              <img src="images/watch.png" alt="Watch Icon" />
-                              {convertTo12HourFormat(
-                                item.events_start_time
-                              )} to{" "}
-                              {convertTo12HourFormat(item.events_end_time)}
+                                  textAlign: "left",
+                                }}
+                              >
+                                <img
+                                  src="images/calendar.png"
+                                  alt="Calendar Icon"
+                                />
+                                {DateTime.fromFormat(
+                                  item.events_date,
+                                  "yyyy-MM-dd"
+                                ).toFormat("MMMM dd, yyyy")}
+                              </div>
+                              <div
+                                style={{
+                                  width: "90%",
+                                  textAlign: "left",
+                                }}
+                              >
+                                <img src="images/watch.png" alt="Watch Icon" />
+                                {convertTo12HourFormat(
+                                  item.events_start_time
+                                )}{" "}
+                                to {convertTo12HourFormat(item.events_end_time)}
+                              </div>
                             </div>
                           </div>
                         </div>
+                        <Link
+                          className="btn btn-viewmore-border btn-align"
+                          // href={`/events/${item.id}?promoter_id=${item.promoter_id}`}
+                          href={`/events/${item.checked_id}?promoter_id=${item.promoter_id}`}
+                          role="button"
+                        >
+                          View More
+                        </Link>
                       </div>
-                      <Link
-                        className="btn btn-viewmore-border btn-align"
-                        // href={`/events/${item.id}?promoter_id=${item.promoter_id}`}
-                        href={`/events/${item.checked_id}?promoter_id=${item.promoter_id}`}
-                        role="button"
-                      >
-                        View More
-                      </Link>
-                    </div>
-                  );
-                })}
+                    );
+                  })
+                )}
               </div>
 
               <button style={nextButtonStyles} onClick={handleNext}>

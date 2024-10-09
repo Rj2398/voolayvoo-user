@@ -218,66 +218,70 @@ const BrandToExplore = ({ staticItems, title, title1, brand }) => {
                 style={itemContainerStyles}
               >
                 {/* //   .slice(currentIndex, currentIndex + itemsPerPage) */}
-                {staticItems?.map((item, index) => {
-                  console.log(item.id, "@##@#@#@#@#@##@##@####");
-                  return (
-                    <div className="brand-box" style={itemStyles} key={index}>
-                      <div className="brand-logo" style={boxStyles}>
-                        <div
-                          className="brand-heart"
-                          style={{ opacity: !isAuthenticated ? 0.5 : 1 }}
-                        >
-                          <input
-                            type="checkbox"
-                            id={`favorite-${item.id}`}
-                            checked={buttonStatus?.[item.id] === true}
-                            onChange={() => handleFavoriteClick(item.id)}
-                            aria-label={`Favorite ${item.name}`}
-                            disabled={isAuthenticated == false}
-                          />
-                          {isAuthenticated == true && (
-                            <label htmlFor={`favorite-${item.id}`}>
-                              <img
-                                src={
-                                  buttonStatus?.[item.id] === true
-                                    ? "/images/user-bookmark-2.png"
-                                    : "/images/user-bookmark.png"
-                                }
-                                alt="Bookmark"
-                                width={25}
-                                height={23}
-                              />
-                            </label>
-                          )}
-                        </div>
-                        <img
-                          src={`${BASE_URL}/${
-                            item.vooponimage?.image_name || item?.profile_image
-                          }`}
-                          alt={item.title}
-                          style={imgStyles}
-                        />
-                      </div>
-
-                      <div style={{ height: "30%" }}>
-                        <div className="brand-heading">
-                          {item.voopons_name || item.name
-                            ? truncateDescriptionTitle(
-                                item.voopons_name || item.name,
-                                3
-                              )
-                            : "No Title Available"}
-                        </div>
-                        {/* <h5>{item.voopons_name}</h5> */}
-                        <p>
-                          {item &&
-                            item.hasOwnProperty("voopons_description") &&
-                            truncateDescription(
-                              item.voopons_description,
-                              MAX_WORDS
+                {staticItems?.length == 0 ? (
+                  <p>No Data Exist </p>
+                ) : (
+                  staticItems?.map((item, index) => {
+                    console.log(item.id, "@##@#@#@#@#@##@##@####");
+                    return (
+                      <div className="brand-box" style={itemStyles} key={index}>
+                        <div className="brand-logo" style={boxStyles}>
+                          <div
+                            className="brand-heart"
+                            style={{ opacity: !isAuthenticated ? 0.5 : 1 }}
+                          >
+                            <input
+                              type="checkbox"
+                              id={`favorite-${item.id}`}
+                              checked={buttonStatus?.[item.id] === true}
+                              onChange={() => handleFavoriteClick(item.id)}
+                              aria-label={`Favorite ${item.name}`}
+                              disabled={isAuthenticated == false}
+                            />
+                            {isAuthenticated == true && (
+                              <label htmlFor={`favorite-${item.id}`}>
+                                <img
+                                  src={
+                                    buttonStatus?.[item.id] === true
+                                      ? "/images/user-bookmark-2.png"
+                                      : "/images/user-bookmark.png"
+                                  }
+                                  alt="Bookmark"
+                                  width={25}
+                                  height={23}
+                                />
+                              </label>
                             )}
-                        </p>
-                        {/* <Link
+                          </div>
+                          <img
+                            src={`${BASE_URL}/${
+                              item.vooponimage?.image_name ||
+                              item?.profile_image
+                            }`}
+                            alt={item.title}
+                            style={imgStyles}
+                          />
+                        </div>
+
+                        <div style={{ height: "30%" }}>
+                          <div className="brand-heading">
+                            {item.voopons_name || item.name
+                              ? truncateDescriptionTitle(
+                                  item.voopons_name || item.name,
+                                  3
+                                )
+                              : "No Title Available"}
+                          </div>
+                          {/* <h5>{item.voopons_name}</h5> */}
+                          <p>
+                            {item &&
+                              item.hasOwnProperty("voopons_description") &&
+                              truncateDescription(
+                                item.voopons_description,
+                                MAX_WORDS
+                              )}
+                          </p>
+                          {/* <Link
                         className="btn btn-viewmore"
                         // href={`/voopons/${item.id}?promoter_id=${item.promoter_id}`}
                         href={
@@ -289,17 +293,18 @@ const BrandToExplore = ({ staticItems, title, title1, brand }) => {
                       >
                         View More  
                       </Link> */}
+                        </div>
+                        <button
+                          style={buttonStyle}
+                          onClick={() => handleClick(item)}
+                          role="button"
+                        >
+                          View More
+                        </button>
                       </div>
-                      <button
-                        style={buttonStyle}
-                        onClick={() => handleClick(item)}
-                        role="button"
-                      >
-                        View More
-                      </button>
-                    </div>
-                  );
-                })}
+                    );
+                  })
+                )}
               </div>
 
               <button style={nextButtonStyles} onClick={handleNext}>
