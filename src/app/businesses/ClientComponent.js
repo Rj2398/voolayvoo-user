@@ -850,9 +850,19 @@ const ClientComponent = ({ categoryList, businessList }) => {
                                 className="brand-follow-check"
                                 src="/images/promoter/follow-plus.svg"
                                 alt="Follow"
+                                style={{
+                                  backgroundColor: "red",
+                                  padding: "5px",
+                                  borderRadius: "50%",
+                                }}
                               />
                               <img
-                                className="brand-follow-check-fill"
+                                className="brand-follow-check-fill "
+                                style={{
+                                  backgroundColor: "#FF474D",
+                                  padding: "5px",
+                                  borderRadius: "30%",
+                                }}
                                 src="/images/promoter/follow-check.svg"
                                 alt="Following"
                               />

@@ -1,5 +1,6 @@
 {
-  "/promoters/page": "app/promoters/page.js",
   "/page": "app/page.js",
-  "/businesses/page": "app/businesses/page.js"
+  "/promoters/page": "app/promoters/page.js",
+  "/voopons/[detail]/page": "app/voopons/[detail]/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js"
 }
