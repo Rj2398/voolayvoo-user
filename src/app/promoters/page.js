@@ -85,8 +85,12 @@ const Promoters = () => {
         return;
       }
       try {
+        setLoading(true);
         const result = await getData(userDetails.user_id);
-        setData(result);
+        if (result) {
+          setData(result);
+          setLoading(false);
+        }
       } catch (err) {
         setError(err);
       } finally {

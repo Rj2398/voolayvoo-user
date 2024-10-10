@@ -21,20 +21,10 @@
       "static/chunks/main-app.js",
       "static/chunks/app/promoters/page.js"
     ],
-    "/(page)/about/page": [
+    "/promoters/[detail]/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(page)/about/page.js"
-    ],
-    "/_not-found/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/_not-found/page.js"
-    ],
-    "/voopons/[detail]/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/voopons/[detail]/page.js"
+      "static/chunks/app/promoters/[detail]/page.js"
     ]
   }
 }
