@@ -13,6 +13,7 @@ import Link from "next/link";
 import CustomPagination from "@/components/CustomPagination";
 import LocationDropdown from "@/components/LocationDropdown";
 import Slider from "@/components/Slider";
+import AddBoxIcon from "@mui/icons-material/AddBox";
 
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import {
@@ -432,7 +433,53 @@ const ClientComponent = ({ categoryList, promoterList }) => {
     }
   };
 
+  // toggle handling
+
+  const [likesState, setLikesState] = useState({});
+
+  useEffect(() => {
+    const initialButtonStatus = renderList.reduce((acc, item) => {
+      acc[item.promoter_id] = item?.follow_status;
+      return acc;
+    }, {});
+    setLikesState(initialButtonStatus);
+  }, [renderList]);
+  console.log(likesState, "likes status data comes formthis");
   //
+
+  const handleCheckboxClick = async (event, promoter_id) => {
+    const newStatus = likesState[promoter_id] == 0 ? 1 : 0;
+
+    console.log(promoter_id, "hello promoter iddd data comes form this");
+
+    const formData = new FormData();
+    formData.append("user_id", userDetails.user_id);
+
+    formData.append("promoter_id", promoter_id);
+    formData.append("follow_status", newStatus);
+
+    try {
+      const response = await axios.post(
+        `${BASE_URL}/api/auth/user_follower_promoter_business`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${userDetails?.token}`,
+          },
+        }
+      );
+      console.log("Response: promoter", response.data);
+      if (response.data) {
+        setLikesState((prevStatus) => ({
+          ...prevStatus,
+          [promoter_id]: newStatus,
+        }));
+      }
+    } catch (error) {
+      // console.error('Error:', error.response ? error.response.data : error.message);
+    }
+  };
 
   //
 
@@ -621,7 +668,10 @@ const ClientComponent = ({ categoryList, promoterList }) => {
                           alt=""
                         />
                       </div>
-                      <div
+
+                      {/* 
+            
+                 <div
                         style={{
                           position: "absolute",
                           right: "10px",
@@ -654,6 +704,53 @@ const ClientComponent = ({ categoryList, promoterList }) => {
                             alt="Flow Plus Icon" // Provide descriptive alt text
                           />
                         )}
+                      </div>
+            
+            
+            */}
+
+                      {/* rajan code */}
+                      <div
+                        style={{
+                          position: "absolute",
+                          right: "10px",
+                          bottom: "30px",
+                          cursor: "pointer",
+                          backgroundColor: "#F10027",
+                          borderRadius: "50%",
+                          padding: "10px", // Optional: Adds some space inside the circle
+                        }}
+                      >
+                        <form>
+                          <div key={item.promoter_id}>
+                            <input
+                              type="checkbox"
+                              name="favorite"
+                              id={`follow-${item.promoter_id}`}
+                              checked={likesState[item.promoter_id] === 1}
+                              onChange={(e) =>
+                                handleCheckboxClick(e, item.promoter_id)
+                              }
+                              style={{ display: "none" }}
+                            />
+                            <label htmlFor={`follow-${item.promoter_id}`}>
+                              {likesState[item.promoter_id] === 1 ? (
+                                <CheckCircleIcon
+                                  style={{ color: "white", fontSize: 24 }}
+                                  alt="Following"
+                                />
+                              ) : (
+                                <Image
+                                  style={{ color: "white", fontSize: 24 }}
+                                  width={20}
+                                  height={20}
+                                  src="/images/promoter/flow-plus.png"
+                                  alt="Follow"
+                                />
+                              )}
+                            </label>
+                          </div>
+                        </form>
                       </div>
                     </div>
                     <div className="Pro-text">

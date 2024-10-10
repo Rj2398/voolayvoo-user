@@ -16,15 +16,10 @@
       "static/chunks/main-app.js",
       "static/chunks/app/not-found.js"
     ],
-    "/(page)/auth-users/page": [
+    "/promoters/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(page)/auth-users/page.js"
-    ],
-    "/(onboard)/login/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(onboard)/login/page.js"
+      "static/chunks/app/promoters/page.js"
     ],
     "/businesses/page": [
       "static/chunks/webpack.js",
