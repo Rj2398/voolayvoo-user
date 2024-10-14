@@ -16,15 +16,30 @@
       "static/chunks/main-app.js",
       "static/chunks/app/not-found.js"
     ],
+    "/(page)/map/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(page)/map/page.js"
+    ],
+    "/voopons/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/voopons/page.js"
+    ],
+    "/events/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/events/page.js"
+    ],
     "/promoters/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/promoters/page.js"
     ],
-    "/promoters/[detail]/page": [
+    "/_not-found/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/promoters/[detail]/page.js"
+      "static/chunks/app/_not-found/page.js"
     ]
   }
 }

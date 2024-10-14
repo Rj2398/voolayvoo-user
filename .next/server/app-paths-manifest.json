@@ -1,5 +1,7 @@
 {
   "/page": "app/page.js",
-  "/promoters/page": "app/promoters/page.js",
-  "/promoters/[detail]/page": "app/promoters/[detail]/page.js"
+  "/(page)/map/page": "app/(page)/map/page.js",
+  "/voopons/page": "app/voopons/page.js",
+  "/events/page": "app/events/page.js",
+  "/promoters/page": "app/promoters/page.js"
 }

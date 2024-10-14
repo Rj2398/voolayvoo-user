@@ -81,6 +81,7 @@ async function getData(detail, userID) {
 }
 const Detail = async ({ params: { detail } }) => {
   const { promoter_detail, tabs, rating_details } = await getData(detail);
+  console.log(rating_details, "rajan malakar");
   // const followStatus = check_follow_status?.data[2]?.follow_status;
   // console.log(check_follow_status, "shdfjkhasjkdfhshdfsdjk");
 

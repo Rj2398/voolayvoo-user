@@ -26,6 +26,7 @@ const ClientComponent = ({ categoryList, voopanList }) => {
   console.log(categoryList, "categary list data ");
 
   const [location, setLocation] = useState(false);
+  console.log(location, "location filter data");
   const [tempVoopanList, setTempVoopanList] = useState([]);
   const [pageNo, setPageNo] = useState(1);
   const [selectCategory, setSelectCategory] = useState({
@@ -308,7 +309,10 @@ const ClientComponent = ({ categoryList, voopanList }) => {
               <div className="col-lg-12 mb-3">
                 <div className="show-cal-loc-range">
                   <div className="calendar">
-                    <div className="broker-date">
+                    <div
+                      className="broker-date"
+                      onClick={() => setLocation(false)}
+                    >
                       <CustomDatePicker
                         date={dateFilter}
                         onChange={handleDateFilter}
@@ -344,6 +348,7 @@ const ClientComponent = ({ categoryList, voopanList }) => {
                       id="date-range-drop"
                       data-bs-toggle="dropdown"
                       aria-expanded="false"
+                      onClick={() => setLocation(false)}
                     >
                       Select your Mile Radius{" "}
                     </a>
