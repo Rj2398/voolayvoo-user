@@ -205,6 +205,8 @@ const VerificationCode = () => {
   const searchParams = useSearchParams();
   const lastPath = searchParams.get("lastPath");
 
+  const [isDisable, setIsDisable] = useState(false);
+
   const {
     control,
     handleSubmit,
@@ -291,6 +293,7 @@ const VerificationCode = () => {
 
   const requestResend = async () => {
     try {
+      setIsDisable(true);
       const formdata = {
         email: localStorage.email,
       };
@@ -302,11 +305,13 @@ const VerificationCode = () => {
         toast.success(`OTP sent successfully`);
         setTimer(60); // Start 60-second timer
         setIsResendDisabled(true);
+        setIsDisable(false);
       } else {
         throw response || "Please sign up first.";
       }
     } catch (error) {
       toast.error(`${error}`);
+      setIsDisable(false);
     }
   };
 
@@ -373,23 +378,36 @@ const VerificationCode = () => {
                     </button> */}
 
                     <a
-                      style={{ opacity: allFilled ? 1 : 0.7 }}
+                      style={{ opacity: allFilled ? 1 : 0.5 }}
                       onClick={() => formElement.current?.requestSubmit()}
                       className="btn btn-learnmore"
                     >
                       NEXT{" "}
                     </a>
                   </form>
-                  <div className="resend">
-                    {/* <a onClick={() => requestResend()}>Resend</a>
-                    
-                    */}
-
+                  {/* <div className="resend">
                     <a onClick={requestResend}>
                       {" "}
                       {!isResendDisabled ? "Resend" : `${timer} seconds`}
                     </a>
-                  </div>
+                  </div> */}
+                  <button
+                    onClick={() => {
+                      if (!isResendDisabled) {
+                        requestResend();
+                      }
+                    }}
+                    disabled={isDisable}
+                    style={{
+                      cursor: isResendDisabled ? "not-allowed" : "pointer",
+                      opacity: isDisable ? 0.7 : 1,
+                      border: "none",
+
+                      marginTop: "20px",
+                    }}
+                  >
+                    {!isResendDisabled ? "Resend" : `${timer} seconds`}
+                  </button>
                 </div>
               </div>
             </div>

@@ -17,25 +17,30 @@
       "static/chunks/main-app.js",
       "static/chunks/app/not-found.js"
     ],
-    "/(user)/my/profile/page": [
+    "/(onboard)/login/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(user)/my/profile/page.js"
+      "static/chunks/app/(onboard)/login/page.js"
     ],
-    "/(user)/layout": [
+    "/(onboard)/forgot-password/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(user)/layout.js"
+      "static/chunks/app/(onboard)/forgot-password/page.js"
     ],
-    "/(user)/my/voopons/page": [
+    "/(onboard)/verificaton-code/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(user)/my/voopons/page.js"
+      "static/chunks/app/(onboard)/verificaton-code/page.js"
     ],
-    "/(user)/my/voopons/[detail]/page": [
+    "/(onboard)/signup/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(user)/my/voopons/[detail]/page.js"
+      "static/chunks/app/(onboard)/signup/page.js"
+    ],
+    "/(onboard)/account-verificaton/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(onboard)/account-verificaton/page.js"
     ]
   }
 }
