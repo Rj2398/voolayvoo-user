@@ -14,7 +14,7 @@ const Profile = () => {
   const [edit, setEdit] = useState(true);
   const [reload, setReload] = useState(false);
   const [userImage, setuserImage] = useState("");
-  console.log(userImage, "askdfjjkasfhjkshfsg");
+  console.log(edit, "askdfjjkasfhjkshfsg");
 
   const { isAuthenticated, userDetails, login } = useAuth();
   const [image, setImage] = useState("");
@@ -297,12 +297,19 @@ const Profile = () => {
               <input type="hidden" id="longitude" {...register("longitude")} />
             </div>
             <div className="user-label-btn">
-              <input
-                onClick={() => setEdit(false)}
-                type="button"
-                value="Edit"
-              />
-              <input type="submit" value="Save" />
+              {edit == false ? (
+                <input
+                  type="button"
+                  value="Save"
+                  onClick={handleSubmit(onSubmit)}
+                />
+              ) : (
+                <input
+                  onClick={() => setEdit(false)}
+                  type="button"
+                  value="Edit"
+                />
+              )}
             </div>
           </form>
         </div>

@@ -434,7 +434,7 @@ const truncateDescription = (description, wordLimit) => {
   return description; // If under the limit, return the full description
 };
 const CardItem = ({ item }) => {
-  console.log(item.voopons_date, "item data comes from this****");
+  console.log(item, "item data comes from this****");
   const currentDate = new Date();
   const vooponsValidThruDate = DateTime.fromFormat(
     item?.voopons_valid_thru,
@@ -529,8 +529,8 @@ const CardItem = ({ item }) => {
             alt=""
             style={{ objectFit: "cover" }}
             src={
-              item?.vooponimage?.image_name
-                ? `${BASE_URL}/${item?.vooponimage?.image_name}`
+              item?.business_voopon_image?.image_name
+                ? `${BASE_URL}/${item?.business_voopon_image?.image_name}`
                 : "/images/near-event1.png"
             }
             onError={(e) => {

@@ -541,6 +541,7 @@ const ClientComponent = ({ categoryMainList = [] }) => {
 export default ClientComponent;
 
 const CardItem = ({ item }) => {
+  console.log(item?.eventsimage[0]?.image_name, "hello world");
   const router = useRouter();
   const handleMore = useCallback(
     (e) => {
@@ -571,8 +572,8 @@ const CardItem = ({ item }) => {
             alt=""
             style={{ objectFit: "cover" }}
             src={
-              item?.eventsimage?.image_name
-                ? `${BASE_URL}/${item?.eventsimage?.image_name}`
+              item?.eventsimage[0]?.image_name
+                ? `${BASE_URL}/${item?.eventsimage[0]?.image_name}`
                 : "/images/near-event1.png"
             }
             onError={(e) => {

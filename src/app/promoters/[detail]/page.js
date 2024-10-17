@@ -194,7 +194,26 @@ const Detail = async ({ params: { detail } }) => {
                         src="/images/world.svg"
                         alt=""
                       />{" "}
-                      <a href="#">www.Lobsterdogesfoodtruck.com</a>
+                      {/* <a
+                        href={
+                          promoter_detail?.DetailsData?.businessdetails?.website
+                            ? `https://${data?.DetailsData?.businessdetails?.website}`
+                            : "#"
+                        }
+                        target={
+                          data?.DetailsData?.businessdetails?.website
+                            ? "_blank"
+                            : ""
+                        }
+                        rel={
+                          data?.DetailsData?.businessdetails?.website
+                            ? "noopener noreferrer"
+                            : ""
+                        }
+                      >
+                        {data?.DetailsData?.businessdetails?.website ||
+                          "Website link not available"}
+                      </a> */}
                     </div>
                   </div>
                   <div className="col-lg-5 col-md-6">

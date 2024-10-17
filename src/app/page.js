@@ -413,8 +413,7 @@ export default function Home() {
                       </div>
                       <div className="testi-text">
                         <div className="testi-name-date">
-                          <span>{item?.name}</span>
-                          <span>{item?.time}</span>
+                          <span>{item?.name} </span> <span>{item?.time}</span>
                         </div>
                         <div className="testi-text-box">
                           <h5>{item?.name}</h5>

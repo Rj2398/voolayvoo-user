@@ -505,7 +505,7 @@ const ClientComponent = ({ eventDetail, relatedVoopon = [] }) => {
                       className="btn btn-learnmore"
                       role="button"
                     >
-                      Book Now
+                      {eventPrice === 0 ? "Grab Deal" : "Book Now"}
                     </a>
                   </div>
                   <div className="col-lg-4 col-md-6">

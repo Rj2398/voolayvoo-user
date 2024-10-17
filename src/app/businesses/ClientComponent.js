@@ -122,12 +122,12 @@ const ClientComponent = ({ categoryList, businessList }) => {
   }, [renderList]);
   const handleFavoriteClick = async (item) => {
     console.log(item, "comes form thishjfhsdjfhsjdfhjshfjshfshfsh");
-
+    const isLiked = buttonStatus[item];
     // Prepare FormData
     const formData = new FormData();
     formData.append("user_id", userDetails?.user_id);
     formData.append("business_id", item);
-    formData.append("like_status", "1");
+    formData.append("like_status", isLiked ? "0" : "1");
 
     //
 
@@ -145,7 +145,7 @@ const ClientComponent = ({ categoryList, businessList }) => {
 
       setButtonStatus((prevStatus) => ({
         ...prevStatus,
-        [item]: true, // Disable the button that is pressed
+        [item]: !isLiked, // Disable the button that is pressed
       }));
 
       console.log(response.data, "response of like data from business"); // Log the response for debugging

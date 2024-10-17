@@ -153,3 +153,47 @@ code written by rajan
   justify-content: flex-end;
   font-size: 25px;
 }
+
+/* 
+ */
+
+.mySwiper {
+  width: 90%; /* Set slider width to 90% of the container */
+  margin: 0 auto; /* Center the slider horizontally */
+}
+
+.item {
+  text-align: center;
+}
+
+.brand-box {
+  padding: 10px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+}
+
+.brand-logo img {
+  object-fit: cover;
+}
+
+.btn-viewmore {
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.btn-viewmore:hover {
+  background-color: #0056b3;
+}
+
+.mySwiper1 {
+  margin-bottom: 30px; /* Add margin below the Swiper */
+  width: 90%;
+}
+
+.item1 {
+  margin-bottom: 20px; /* Space between items */
+}

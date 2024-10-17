@@ -95,7 +95,7 @@ export default function Subscribe() {
               id="modal-modal-title"
               variant="h6"
               component="h2"
-              sx={{ position: "absolute" }}
+              sx={{ position: "absolute", mr: 2 }}
             >
               Subscribe to get update
             </Typography>

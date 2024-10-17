@@ -1,5 +1,5 @@
 "use client";
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useRef } from "react";
 import Image from "next/image";
 import { useForm, useFieldArray, Controller } from "react-hook-form";
@@ -26,6 +26,7 @@ const AccountVerificaton = () => {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm({
     defaultValues: {
       otp: [{ code: "" }, { code: "" }, { code: "" }, { code: "" }],
@@ -97,6 +98,25 @@ const AccountVerificaton = () => {
       }
     }
   };
+
+  const [timer, setTimer] = useState(0); // Timer state
+  const [isResendDisabled, setIsResendDisabled] = useState(false); // Resend button state
+
+  // Timer effect
+  useEffect(() => {
+    let interval;
+    if (isResendDisabled && timer > 0) {
+      interval = setInterval(() => {
+        setTimer((prev) => prev - 1);
+      }, 1000);
+    } else if (timer === 0) {
+      setIsResendDisabled(false);
+      clearInterval(interval);
+    }
+
+    return () => clearInterval(interval); // Cleanup interval
+  }, [timer, isResendDisabled]);
+
   const requestResend = async () => {
     try {
       const formdata = {
@@ -110,6 +130,8 @@ const AccountVerificaton = () => {
       });
       if (response.token && response.email) {
         toast.success(`OTP send successfully`);
+        setTimer(60); // Start 60-second timer
+        setIsResendDisabled(true);
       } else {
         throw response;
       }
@@ -117,6 +139,11 @@ const AccountVerificaton = () => {
       toast.error(`${error}`);
     }
   };
+
+  //
+
+  const otpValues = watch("otp");
+  const allFilled = otpValues.every((item) => item.code !== "");
   return (
     <>
       <section className="login-signup-sec">
@@ -184,12 +211,16 @@ const AccountVerificaton = () => {
                           <a
                             onClick={() => formElement.current?.requestSubmit()}
                             className="btn btn-learnmore"
+                            style={{ opacity: allFilled ? 1 : 0.7 }}
                           >
                             NEXT{" "}
                           </a>
                         </form>
                         <div className="resend">
-                          <a onClick={() => requestResend()}>Resend</a>
+                          <a onClick={() => requestResend()}>
+                            {" "}
+                            {!isResendDisabled ? "Resend" : `${timer} seconds`}
+                          </a>
                         </div>
                       </div>
                     </div>

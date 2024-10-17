@@ -190,7 +190,7 @@
 
 "use client";
 
-import { Suspense, useRef } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useForm, useFieldArray, Controller } from "react-hook-form";
@@ -209,6 +209,8 @@ const VerificationCode = () => {
     control,
     handleSubmit,
     formState: { errors },
+    setError,
+    watch,
   } = useForm({
     defaultValues: {
       otp: [{ code: "" }, { code: "" }, { code: "" }, { code: "" }],
@@ -219,6 +221,7 @@ const VerificationCode = () => {
     control,
     name: "otp",
   });
+  const otpValues = watch("otp");
 
   const inputRefs = useRef([]); // Ref for OTP inputs
 
@@ -236,6 +239,7 @@ const VerificationCode = () => {
 
   const onSubmit = async (data) => {
     const tempOTP = data.otp.map((obj) => obj.code).join("");
+
     if (tempOTP !== "") {
       try {
         const formdata = {
@@ -260,6 +264,30 @@ const VerificationCode = () => {
       }
     }
   };
+  //
+
+  const [timer, setTimer] = useState(0); // Timer state
+  const [isResendDisabled, setIsResendDisabled] = useState(false); // Resend button state
+
+  // Timer effect
+  useEffect(() => {
+    let interval;
+    if (isResendDisabled && timer > 0) {
+      interval = setInterval(() => {
+        setTimer((prev) => prev - 1);
+      }, 1000);
+    } else if (timer === 0) {
+      setIsResendDisabled(false);
+      clearInterval(interval);
+    }
+
+    return () => clearInterval(interval); // Cleanup interval
+  }, [timer, isResendDisabled]);
+
+  ////
+  const allFilled = otpValues.every((item) => item.code !== "");
+
+  //
 
   const requestResend = async () => {
     try {
@@ -272,6 +300,8 @@ const VerificationCode = () => {
       });
       if (response?.user_signup_status === "1") {
         toast.success(`OTP sent successfully`);
+        setTimer(60); // Start 60-second timer
+        setIsResendDisabled(true);
       } else {
         throw response || "Please sign up first.";
       }
@@ -343,6 +373,7 @@ const VerificationCode = () => {
                     </button> */}
 
                     <a
+                      style={{ opacity: allFilled ? 1 : 0.7 }}
                       onClick={() => formElement.current?.requestSubmit()}
                       className="btn btn-learnmore"
                     >
@@ -350,7 +381,14 @@ const VerificationCode = () => {
                     </a>
                   </form>
                   <div className="resend">
-                    <a onClick={() => requestResend()}>Resend</a>
+                    {/* <a onClick={() => requestResend()}>Resend</a>
+                    
+                    */}
+
+                    <a onClick={requestResend}>
+                      {" "}
+                      {!isResendDisabled ? "Resend" : `${timer} seconds`}
+                    </a>
                   </div>
                 </div>
               </div>

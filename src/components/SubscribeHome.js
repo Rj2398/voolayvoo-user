@@ -9,6 +9,7 @@ const SubscribeHome = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
   const onSubmit = async (data) => {
     if (!data.user_email) {
@@ -23,6 +24,8 @@ const SubscribeHome = () => {
       });
       if (response.user_email) {
         toast.success(`You have Subscribe to our news letter`);
+
+        reset();
       } else {
         throw response;
       }

@@ -337,7 +337,7 @@ const ClientComponent = ({ voopon_detail }) => {
                 // href="#"
                 role="button"
               >
-                Buy Now
+                {Number(voopansPrice) == 0 ? "Grab Deal" : "Buy Now"}
               </a>
             </div>
             <div className="col-lg-4 col-md-6">
