@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
 const Collaborator = ({ open, setOpen, data }) => {
+  console.log(data, "hello data collaborator");
   const router = useRouter();
   const goToCollaborator = (id) => {
     if (id) {
@@ -45,15 +46,23 @@ const Collaborator = ({ open, setOpen, data }) => {
                         <div
                           className="collab-iner-box"
                           key={item.id}
-                          onClick={() => goToCollaborator(item?.promoter_id)}
+                          onClick={() =>
+                            goToCollaborator(
+                              item?.promoter_data?.id || item?.business_data?.id
+                            )
+                          }
                         >
                           <div className="colb-img">
                             <Image
                               width={78}
                               height={78}
                               src={
-                                item?.promoter_data?.profile_image
-                                  ? `${BASE_URL}/${item?.promoter_data?.profile_image}`
+                                item?.promoter_data?.profile_image ||
+                                item?.business_data?.profile_image
+                                  ? `${BASE_URL}/${
+                                      item?.promoter_data?.profile_image ||
+                                      item?.business_data?.profile_image
+                                    }`
                                   : "/images/amf.png"
                               }
                               alt=""
@@ -61,7 +70,8 @@ const Collaborator = ({ open, setOpen, data }) => {
                           </div>
                           <div className="colb-text">
                             <h1 style={{ textTransform: "uppercase" }}>
-                              {item?.promoter_data?.name}
+                              {item?.business_data?.name ||
+                                item?.promoter_data?.name}
                             </h1>
                             <h6 className="location-add">
                               <span>
@@ -72,7 +82,10 @@ const Collaborator = ({ open, setOpen, data }) => {
                                   alt=""
                                 />
                               </span>
-                              <span>{item?.promoter_data?.location}</span>
+                              <span>
+                                {item?.business_data?.location ||
+                                  item?.promoter_data?.location}
+                              </span>
                             </h6>
                           </div>
                         </div>

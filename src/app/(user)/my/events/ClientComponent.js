@@ -541,7 +541,7 @@ const ClientComponent = ({ categoryMainList = [] }) => {
 export default ClientComponent;
 
 const CardItem = ({ item }) => {
-  console.log(item?.eventsimage[0]?.image_name, "hello world");
+  console.log(item, "hello world");
   const router = useRouter();
   const handleMore = useCallback(
     (e) => {
@@ -582,10 +582,8 @@ const CardItem = ({ item }) => {
           />
         </div>
         <div className="event-pad">
-          <h6> {item?.promoter_event?.events_name}</h6>
-          <p className="truncate-text">
-            {item?.promoter_event?.events_description}
-          </p>
+          <h6> {item?.events_name}</h6>
+          <p className="truncate-text">{item?.events_description}</p>
           <div className="point-icon" style={{ height: "40%" }}>
             <div style={{ width: "80%" }}>
               <Image

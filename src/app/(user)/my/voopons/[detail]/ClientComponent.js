@@ -14,6 +14,9 @@ const ClientComponent = ({ vooponDetail, qrCode }) => {
   const [open, setOpen] = useState(false);
   const [openQrCode, setOpenQrCode] = useState(false);
 
+  console.log(vooponDetail, "vooponDetailvooponDetailvooponDetail");
+
+  console.log(qrCode, "hello worlid");
   let pathName = usePathname();
 
   const searchParams = useSearchParams();
@@ -51,10 +54,17 @@ const ClientComponent = ({ vooponDetail, qrCode }) => {
     <>
       <div className="col-lg-6">
         <div className="details-text-box">
-          <h2 className="title-capitilize"> {vooponDetail?.voopons_name} </h2>
-          <p>{vooponDetail?.voopons_description}</p>
+          <h2 className="title-capitilize">
+            {" "}
+            {vooponDetail?.voopon_two?.voopons_name ||
+              vooponDetail?.voopon_one?.voopons_name}{" "}
+          </h2>
+          <p>
+            {vooponDetail?.voopon_two?.voopons_description ||
+              vooponDetail?.voopon_one?.voopons_description}
+          </p>
 
-          {vooponDetail?.collaborator_data?.length > 0 && (
+          {vooponDetail?.voopon_two?.collaborator_data?.length > 0 && (
             <div className="collaborators">
               <span>
                 <Image
@@ -69,30 +79,33 @@ const ClientComponent = ({ vooponDetail, qrCode }) => {
                 Collaborator(s):
               </span>
               <span>
-                {vooponDetail?.collaborator_data?.length > 0 &&
-                  vooponDetail?.collaborator_data.map((collaborator, idx) => {
-                    if (idx < 3) {
-                      return (
-                        <Image
-                          key={collaborator?.id}
-                          width={31}
-                          height={31}
-                          src={
-                            collaborator?.promoter_data?.profile_image
-                              ? `${BASE_URL}/${collaborator?.promoter_data?.profile_image}`
-                              : "/images/colebr-1.png"
-                          }
-                          alt="images"
-                          className="collabeIcon"
-                        />
-                      );
+                {vooponDetail?.voopon_two?.collaborator_data?.length > 0 &&
+                  vooponDetail?.voopon_two?.collaborator_data.map(
+                    (collaborator, idx) => {
+                      if (idx < 3) {
+                        return (
+                          <Image
+                            key={collaborator?.id}
+                            width={31}
+                            height={31}
+                            src={
+                              collaborator?.promoter_data?.profile_image
+                                ? `${BASE_URL}/${collaborator?.business_data?.profile_image}`
+                                : "/images/colebr-1.png"
+                            }
+                            alt="images"
+                            className="collabeIcon"
+                          />
+                        );
+                      }
                     }
-                  })}
+                  )}
 
-                {vooponDetail?.collaborator_data?.length > 3 && (
+                {vooponDetail?.voopon_two?.collaborator_data?.length > 3 && (
                   <div className="more">
                     {" "}
-                    +{vooponDetail?.collaborator_data?.length - 3}{" "}
+                    +{vooponDetail?.voopon_two?.collaborator_data?.length -
+                      3}{" "}
                   </div>
                 )}
               </span>
@@ -102,20 +115,26 @@ const ClientComponent = ({ vooponDetail, qrCode }) => {
           <Collaborator
             open={open}
             setOpen={setOpen}
-            data={vooponDetail?.voopon_one?.collaborator_data}
+            data={vooponDetail?.voopon_two?.collaborator_data}
           />
           <ShowQrCode
             open={openQrCode}
             setOpen={setOpenQrCode}
             codeData={qrCode}
-            label={vooponDetail?.voopons_name?.toUpperCase() || "Voopan"}
+            label={
+              vooponDetail?.voopon_two?.voopons_name.toUpperCase() || "Voopan"
+            }
           />
 
           <div className="row mt-3">
             <div className="col-lg-8 col-md-8">
               <div className="location-box">
                 <h4> Location </h4>
-                <span> {vooponDetail?.voopon_one?.location} </span>
+                <span>
+                  {" "}
+                  {vooponDetail?.voopon_one?.location ||
+                    vooponDetail?.voopon_two?.location}{" "}
+                </span>
               </div>
             </div>
             <div className="col-lg-4 col-md-4">
@@ -123,11 +142,17 @@ const ClientComponent = ({ vooponDetail, qrCode }) => {
                 <h4> Valid Thru </h4>
                 <span>
                   {" "}
-                  {vooponDetail?.voopon_one?.voopons_valid_thru &&
-                    DateTime.fromFormat(
-                      vooponDetail?.voopon_one?.voopons_valid_thru,
-                      "yyyy-MM-dd"
-                    ).toFormat("MMM dd, yyyy")}
+                  {vooponDetail?.voopon_one?.voopons_valid_thru
+                    ? DateTime.fromFormat(
+                        vooponDetail?.voopon_one?.voopons_valid_thru,
+                        "yyyy-MM-dd"
+                      ).toFormat("MMM dd, yyyy")
+                    : vooponDetail?.voopon_two?.voopons_valid_thru
+                    ? DateTime.fromFormat(
+                        vooponDetail?.voopon_two?.voopons_valid_thru,
+                        "yyyy-MM-dd"
+                      ).toFormat("MMM dd, yyyy")
+                    : null}
                 </span>
               </div>
             </div>
@@ -140,9 +165,12 @@ const ClientComponent = ({ vooponDetail, qrCode }) => {
                   Price:{" "}
                   <span>
                     {" "}
-                    {vooponDetail?.voopon_one?.voopons_price === "0"
+                    {vooponDetail?.voopon_one?.voopons_price === "0" ||
+                    vooponDetail?.voopon_two?.voopons_price === "0"
                       ? "Free"
-                      : "$" + vooponDetail?.voopon_one?.voopons_price}{" "}
+                      : "$" +
+                        (vooponDetail?.voopon_one?.voopons_price ||
+                          vooponDetail?.voopon_two?.voopons_price)}{" "}
                   </span>
                 </h4>
               </div>
@@ -151,7 +179,12 @@ const ClientComponent = ({ vooponDetail, qrCode }) => {
               <div className="quantityStatic">
                 <h4>
                   {" "}
-                  Quantity: <span> {vooponDetail?.voopon_one?.voopon_quantity} </span>
+                  Quantity:{" "}
+                  <span>
+                    {" "}
+                    {vooponDetail?.voopon_two?.voopons_total_count ||
+                      vooponDetail?.voopon_one?.voopons_total_count}{" "}
+                  </span>
                 </h4>
               </div>
             </div>

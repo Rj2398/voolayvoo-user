@@ -10,6 +10,7 @@ import { BASE_URL } from "@/constant/constant";
 const VooponDetail = () => {
   const { isAuthenticated, userDetails } = useAuth();
   const [vooponDetail, setVooponDetail] = useState(null); // Holds event details
+  console.log(vooponDetail, "******************");
   const params = useParams();
   const searchParams = useSearchParams();
   const match_number = searchParams.get("match_number");
@@ -34,8 +35,6 @@ const VooponDetail = () => {
       formData.append("match_number", match_number);
 
       // Bearer token (make sure to handle this securely in production)
-      const bearerToken =
-        "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3Zvb2xleXZvby50Z2FzdGFnaW5nLmNvbS9hcGkvbG9naW4iLCJpYXQiOjE3MjE4MTkwNTEsImV4cCI6MTc1MzM3NjY1MSwibmJmIjoxNzIxODE5MDUxLCJqdGkiOiJrS2xDeTMxdDdSNGgzZTVxIiwic3ViIjoiMzY4IiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.BZrPBg5l-oAL_wriB8XUNei3wq7f52xfgshLS5ovIk4"; // truncated for brevity
 
       // Send the POST request with FormData and Bearer token
       const response = await fetch(
@@ -43,7 +42,7 @@ const VooponDetail = () => {
         {
           method: "POST",
           headers: {
-            Authorization: `Bearer ${bearerToken}`, // No need for nested template literals
+            Authorization: `Bearer ${userDetails?.token}`, // No need for nested template literals
           },
           body: formData,
         }
@@ -73,8 +72,11 @@ const VooponDetail = () => {
                   width={596}
                   height={375}
                   src={
-                    vooponDetail?.voopon_one?.vooponsimage[0]?.image_name
-                      ? vooponDetail?.voopon_one?.vooponsimage[0]?.image_name
+                    vooponDetail?.voopon_one?.vooponsimage?.[0]?.image_name
+                      ? `${BASE_URL}/${vooponDetail.voopon_one.vooponsimage[0].image_name}`
+                      : vooponDetail?.voopon_two?.business_voopon_image
+                          ?.image_name
+                      ? `${BASE_URL}/${vooponDetail.voopon_two.business_voopon_image.image_name}`
                       : "/images/amf-details.png"
                   }
                   // src={
@@ -91,7 +93,10 @@ const VooponDetail = () => {
             </div>
             <ClientComponent
               vooponDetail={vooponDetail}
-              qrCode={vooponDetail?.qr_code_image_one}
+              qrCode={
+                vooponDetail?.qr_code_image_one ||
+                vooponDetail?.qr_code_image_two
+              }
             />
           </div>
         </div>
@@ -102,9 +107,15 @@ const VooponDetail = () => {
           <div className="row">
             <div className="col-lg-12">
               <div className="heading-sec">
-                {vooponDetail?.voopon_one?.voopons_name || "About this Voopons"}
+                {" "}
+                {vooponDetail?.voopon_one?.voopons_name ||
+                  vooponDetail?.voopon_two?.voopons_name ||
+                  "About this Voopons"}
               </div>
-              <p>{vooponDetail?.voopon_one?.voopons_description}</p>
+              <p>
+                {vooponDetail?.voopon_one?.voopons_description ||
+                  vooponDetail?.voopon_two?.voopons_description}
+              </p>
             </div>
           </div>
         </div>

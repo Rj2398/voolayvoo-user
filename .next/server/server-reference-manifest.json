@@ -8,6 +8,14 @@
         "app/(user)/my/voopons/page": "rsc"
       }
     },
+    "f5691e25bddaf73ca75c344f9b916ad612b7fc66": {
+      "workers": {
+        "app/(user)/my/events/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Frajanmalakar%2FDownloads%2FRajanWorking%2FwebFolder%2F7-10-24%20voolayvoo%2Fvoolayvoo-user%2Fsrc%2Fapp%2F(user)%2Fmy%2Fevents%2Fpage.js%22%2C%5B%22default%22%5D%5D%5D&__client_imported__=!"
+      },
+      "layer": {
+        "app/(user)/my/events/page": "rsc"
+      }
+    },
     "4ddd812ebd15579fe4d06ae64650257e2f188043": {
       "workers": {
         "app/promoters/[detail]/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Frajanmalakar%2FDownloads%2FRajanWorking%2FwebFolder%2F7-10-24%20voolayvoo%2Fvoolayvoo-user%2Fsrc%2Fapp%2Fpromoters%2F%5Bdetail%5D%2Fpage.js%22%2C%5B%22default%22%5D%5D%5D&__client_imported__=!"
@@ -24,15 +32,15 @@
         "app/events/[detail]/page": "rsc"
       }
     },
-    "f5691e25bddaf73ca75c344f9b916ad612b7fc66": {
+    "9af3464fb228f00c5f7082bba64516b5790449d3": {
       "workers": {
-        "app/(user)/my/events/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Frajanmalakar%2FDownloads%2FRajanWorking%2FwebFolder%2F7-10-24%20voolayvoo%2Fvoolayvoo-user%2Fsrc%2Fapp%2F(user)%2Fmy%2Fevents%2Fpage.js%22%2C%5B%22default%22%5D%5D%5D&__client_imported__=!"
+        "app/voopons/[detail]/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Frajanmalakar%2FDownloads%2FRajanWorking%2FwebFolder%2F7-10-24%20voolayvoo%2Fvoolayvoo-user%2Fsrc%2Fapp%2Fvoopons%2F%5Bdetail%5D%2Fpage.js%22%2C%5B%22default%22%5D%5D%5D&__client_imported__=!"
       },
       "layer": {
-        "app/(user)/my/events/page": "rsc"
+        "app/voopons/[detail]/page": "rsc"
       }
     }
   },
   "edge": {},
-  "encryptionKey": "nhaNGLW29/+MKnSP9kkoy0hdWFd9wb5CYiD26VJa4uA="
+  "encryptionKey": "EJqDCU+JJo26g3t02DMzYpVLkO8q712xpcwx9RFUcfE="
 }
