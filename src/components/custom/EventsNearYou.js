@@ -378,88 +378,97 @@ const EventsNearYou = ({ staticItems }) => {
           1280: { slidesPerView: 4 },
         }}
       >
-        {combinedArray?.map((item, index) => (
-          <SwiperSlide key={index}>
-            <div className="item">
-              <div className="event-brand-box">
-                <div className="brand-logo">
-                  <span>
-                    {item.events_price == 0
-                      ? "GRAB DEAL"
-                      : `$${item.events_price}`}
-                  </span>
-                  <img
-                    src={
-                      item.eventimage?.image_name
-                        ? `${BASE_URL}/${item.eventimage?.image_name}`
-                        : "./images/near-event1.png"
-                    }
-                    alt={item.events_name || "Event"}
-                    style={{ width: "100%", height: "200px" }}
-                  />
-                </div>
-                <div className="event-pad">
-                  <h6>
-                    {item.events_name
-                      ? truncateDescriptionTitle(item.events_name, MAX_WORDS)
-                      : "No Title Available"}
-                  </h6>
-                  <p>
-                    {item.description
-                      ? truncateDescription(item.description, MAX_WORDS)
-                      : "No Description Available"}
-                  </p>
-                  <div className="point-icon">
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        marginBottom: "8px",
-                      }}
-                    >
-                      <img src="./images/location-dot.png" alt="Location" />
-                      <span style={{ marginLeft: "5px" }}>
-                        {item.distance.toFixed(2)} miles away
-                      </span>
-                    </div>
-
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        marginBottom: "8px",
-                      }}
-                    >
-                      <img src="./images/calendar.png" alt="Calendar" />
-                      <span style={{ marginLeft: "5px" }}>
-                        {DateTime.fromFormat(
-                          item.events_date,
-                          "yyyy-MM-dd"
-                        ).toFormat("MMMM dd, yyyy")}
-                      </span>
-                    </div>
-
-                    <div style={{ display: "flex", alignItems: "center" }}>
-                      <img src="./images/watch.png" alt="Time" />
-                      <span style={{ marginLeft: "5px" }}>
-                        {convertTo12HourFormat(item.events_start_time)} to{" "}
-                        {convertTo12HourFormat(item.events_end_time)}
-                      </span>
-                    </div>
+        {combinedArray && combinedArray.length > 0 ? (
+          combinedArray.map((item, index) => (
+            <SwiperSlide key={index}>
+              <div className="item">
+                <div className="event-brand-box">
+                  <div className="brand-logo">
+                    <span>
+                      {item.events_price == 0
+                        ? "GRAB DEAL"
+                        : `$${item.events_price}`}
+                    </span>
+                    <img
+                      src={
+                        item.eventimage?.image_name
+                          ? `${BASE_URL}/${item.eventimage?.image_name}`
+                          : "./images/near-event1.png"
+                      }
+                      alt={item.events_name || "Event"}
+                      style={{ width: "100%", height: "200px" }}
+                    />
                   </div>
+                  <div className="event-pad">
+                    <h6>
+                      {item.events_name
+                        ? truncateDescriptionTitle(item.events_name, 4)
+                        : "No Title Available"}
+                    </h6>
+                    <p>
+                      {item.description
+                        ? truncateDescription(item.description, MAX_WORDS)
+                        : "No Description Available"}
+                    </p>
+                    <div className="point-icon">
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          marginBottom: "8px",
+                        }}
+                      >
+                        <img src="./images/location-dot.png" alt="Location" />
+                        <span style={{ marginLeft: "5px" }}>
+                          {item.distance.toFixed(2)} miles away
+                        </span>
+                      </div>
 
-                  <a
-                    className="btn btn-viewmore-border"
-                    href={`/events/${item.checked_id}?promoter_id=${item.promoter_id}`}
-                    role="button"
-                  >
-                    View More
-                  </a>
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          marginBottom: "8px",
+                        }}
+                      >
+                        <img src="./images/calendar.png" alt="Calendar" />
+                        <span style={{ marginLeft: "5px" }}>
+                          {DateTime.fromFormat(
+                            item.events_date,
+                            "yyyy-MM-dd"
+                          ).toFormat("MMMM dd, yyyy")}
+                        </span>
+                      </div>
+
+                      <div style={{ display: "flex", alignItems: "center" }}>
+                        <img src="./images/watch.png" alt="Time" />
+                        <span style={{ marginLeft: "5px" }}>
+                          {convertTo12HourFormat(item.events_start_time)} to{" "}
+                          {convertTo12HourFormat(item.events_end_time)}
+                        </span>
+                      </div>
+                    </div>
+
+                    <a
+                      className="btn btn-viewmore-border"
+                      href={`/events/${item.checked_id}?promoter_id=${item.promoter_id}`}
+                      role="button"
+                    >
+                      View More
+                    </a>
+                  </div>
                 </div>
               </div>
-            </div>
-          </SwiperSlide>
-        ))}
+            </SwiperSlide>
+          ))
+        ) : (
+          <div
+            className="no-data-message"
+            style={{ textAlign: "center", color: "gray" }}
+          >
+            <h3>No Events Available</h3>
+          </div>
+        )}
       </Swiper>
     </>
   );

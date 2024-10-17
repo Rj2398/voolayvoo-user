@@ -296,60 +296,70 @@ const NewlyAddedVoop = ({ staticItems, brand }) => {
           },
         }}
       >
-        {staticItems?.map((item, index) => (
-          <SwiperSlide key={index}>
-            <div className="item ">
-              <div className="voopan-box">
-                <div className="voopon-logo">
-                  <img
-                    src={
-                      item.vooponimage?.image_name || item?.profile_image
-                        ? `${BASE_URL}/${
-                            item.vooponimage?.image_name || item?.profile_image
-                          }`
-                        : "./images/voopons-logo-1.png"
-                    }
-                    style={{ width: "100%", height: "200px" }}
-                    alt="brand"
-                  />
-                </div>
-                <div className="voopon-heading">
-                  {item.voopons_name || item.name
-                    ? truncateDescriptionTitle(
-                        item.voopons_name || item.name,
-                        2
-                      )
-                    : "No Title Available"}
-                </div>
+        {staticItems && staticItems.length > 0 ? (
+          staticItems.map((item, index) => (
+            <SwiperSlide key={index}>
+              <div className="item ">
+                <div className="voopan-box">
+                  <div className="voopon-logo">
+                    <img
+                      src={
+                        item.vooponimage?.image_name || item?.profile_image
+                          ? `${BASE_URL}/${
+                              item.vooponimage?.image_name ||
+                              item?.profile_image
+                            }`
+                          : "./images/voopons-logo-1.png"
+                      }
+                      style={{ width: "100%", height: "200px" }}
+                      alt="brand"
+                    />
+                  </div>
+                  <div className="voopon-heading">
+                    {item.voopons_name || item.name
+                      ? truncateDescriptionTitle(
+                          item.voopons_name || item.name,
+                          2
+                        )
+                      : "No Title Available"}
+                  </div>
 
-                <h6>
-                  {item?.voopons_description
-                    ? truncateDescription(item.voopons_description, MAX_WORDS)
-                    : "No Description Available"}
-                </h6>
+                  <h6>
+                    {item?.voopons_description
+                      ? truncateDescription(item.voopons_description, MAX_WORDS)
+                      : "No Description Available"}
+                  </h6>
 
-                <p>
-                  Valid Thru:{" "}
-                  {new Date(item.voopons_valid_thru).toLocaleDateString(
-                    "en-US",
-                    {
-                      year: "numeric",
-                      month: "short",
-                      day: "numeric",
-                    }
-                  )}
-                </p>
-                <a
-                  className="btn btn-viewmore"
-                  role="button"
-                  href={`/voopons/${item.category_id}`}
-                >
-                  View More
-                </a>
+                  <p>
+                    Valid Thru:{" "}
+                    {new Date(item.voopons_valid_thru).toLocaleDateString(
+                      "en-US",
+                      {
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric",
+                      }
+                    )}
+                  </p>
+                  <a
+                    className="btn btn-viewmore"
+                    role="button"
+                    href={`/voopons/${item.category_id}`}
+                  >
+                    View More
+                  </a>
+                </div>
               </div>
-            </div>
-          </SwiperSlide>
-        ))}
+            </SwiperSlide>
+          ))
+        ) : (
+          <div
+            className="no-data-message"
+            style={{ textAlign: "center", color: "gray" }}
+          >
+            <h3>No Voopons Available</h3>
+          </div>
+        )}
       </Swiper>
     </>
   );

@@ -446,63 +446,71 @@ const BrandExplore = ({ staticItems, brand }) => {
           },
         }}
       >
-        {staticItems?.map((item, index) => (
-          <SwiperSlide key={index}>
-            <div className="item ">
-              <div className="brand-box">
-                <div className="brand-logo">
-                  <div className="brand-heart">
-                    <input
-                      type="checkbox"
-                      id={`favorite-${item.id}`}
-                      checked={buttonStatus?.[item.id] === true}
-                      onChange={() => handleFavoriteClick(item.id)}
-                      aria-label={`Favorite ${item.name}`}
-                      disabled={isAuthenticated == false}
+        {staticItems && staticItems.length > 0 ? (
+          staticItems.map((item, index) => (
+            <SwiperSlide key={index}>
+              <div className="item ">
+                <div className="brand-box">
+                  <div className="brand-logo">
+                    <div className="brand-heart">
+                      <input
+                        type="checkbox"
+                        id={`favorite-${item.id}`}
+                        checked={buttonStatus?.[item.id] === true}
+                        onChange={() => handleFavoriteClick(item.id)}
+                        aria-label={`Favorite ${item.name}`}
+                        disabled={isAuthenticated === false}
+                      />
+                      {isAuthenticated === true && (
+                        <label htmlFor={`favorite-${item.id}`}>
+                          <img
+                            src={
+                              buttonStatus?.[item.id] === true
+                                ? "/images/user-bookmark-2.png"
+                                : "/images/user-bookmark.png"
+                            }
+                            alt="Bookmark"
+                            width={25}
+                            height={23}
+                          />
+                        </label>
+                      )}
+                    </div>
+                    <img
+                      src={`${BASE_URL}/${
+                        item.vooponimage?.image_name || item?.profile_image
+                      }`}
+                      style={{ width: "100%", height: "200px" }} // Corrected '200Px' to '200px'
+                      alt="brand"
                     />
-                    {isAuthenticated == true && (
-                      <label htmlFor={`favorite-${item.id}`}>
-                        <img
-                          src={
-                            buttonStatus?.[item.id] === true
-                              ? "/images/user-bookmark-2.png"
-                              : "/images/user-bookmark.png"
-                          }
-                          alt="Bookmark"
-                          width={25}
-                          height={23}
-                        />
-                      </label>
-                    )}
                   </div>
-                  <img
-                    src={`${BASE_URL}/${
-                      item.vooponimage?.image_name || item?.profile_image
-                    }`}
-                    style={{ width: "100%", height: "200px" }} // Corrected '200Px' to '200px'
-                    alt="brand"
-                  />
+                  <div className="brand-heading">
+                    {item.voopons_name || item.name
+                      ? truncateDescriptionTitle(
+                          item.voopons_name || item.name,
+                          2
+                        )
+                      : "No Title Available"}
+                  </div>
+                  <a
+                    className="btn btn-viewmore"
+                    role="button"
+                    onClick={() => handleClick(item)}
+                  >
+                    View More
+                  </a>
                 </div>
-                <div className="brand-heading">
-                  {" "}
-                  {item.voopons_name || item.name
-                    ? truncateDescriptionTitle(
-                        item.voopons_name || item.name,
-                        2
-                      )
-                    : "No Title Available"}
-                </div>
-                <a
-                  className="btn btn-viewmore"
-                  role="button"
-                  onClick={() => handleClick(item)}
-                >
-                  View More
-                </a>
               </div>
-            </div>
-          </SwiperSlide>
-        ))}
+            </SwiperSlide>
+          ))
+        ) : (
+          <div
+            className="no-data-message"
+            style={{ textAlign: "center", color: "gray" }}
+          >
+            <h3>No Brands Available</h3>
+          </div>
+        )}
       </Swiper>
     </>
   );

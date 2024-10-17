@@ -17,30 +17,20 @@
       "static/chunks/main-app.js",
       "static/chunks/app/not-found.js"
     ],
+    "/(page)/auth-users/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(page)/auth-users/page.js"
+    ],
     "/(onboard)/login/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/(onboard)/login/page.js"
     ],
-    "/(onboard)/forgot-password/page": [
+    "/_not-found/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(onboard)/forgot-password/page.js"
-    ],
-    "/(onboard)/verificaton-code/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(onboard)/verificaton-code/page.js"
-    ],
-    "/(onboard)/signup/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(onboard)/signup/page.js"
-    ],
-    "/(onboard)/account-verificaton/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(onboard)/account-verificaton/page.js"
+      "static/chunks/app/_not-found/page.js"
     ]
   }
 }

@@ -420,7 +420,7 @@ const VooponYouLoveTwo = ({ staticItems, brand }) => {
     <>
       <div className="col-lg-12 mySwiper">
         <div className="heading mb-3">
-          Brands <span>To Explore</span>
+          Voopons <span>You Will Love</span>
         </div>
       </div>
       <Swiper
@@ -452,48 +452,54 @@ const VooponYouLoveTwo = ({ staticItems, brand }) => {
           },
         }}
       >
-        {vooponseYouLove?.map((item, index) => (
-          <SwiperSlide key={index}>
-            <div className="item">
-              <div
-                className="love-box"
-                style={{
-                  backgroundImage: `url(${
-                    BASE_URL + item.vooponimage.image_name
-                  })`,
-                }}
-              >
-                <div className="love-left">
-                  <img
-                    src="./images/lov-volimg.png"
-                    className="img-fluid"
-                    alt=""
-                  />
-                </div>
-                <div className="love-right">
-                  <div style={{ height: "70%" }}>
-                    <h5 style={{ color: "white" }}>
-                      {item.voopons_name || "No Title Available"}
-                    </h5>
-                    <h2 style={{ color: "white" }}>Fashion Store</h2>
-                    <h5 style={{ color: "white" }}>Flat 20% Off</h5>
+        {vooponseYouLove && vooponseYouLove.length > 0 ? (
+          vooponseYouLove.map((item, index) => (
+            <SwiperSlide key={index}>
+              <div className="item">
+                <div
+                  className="love-box"
+                  style={{
+                    backgroundImage: `url(${
+                      BASE_URL + item.vooponimage.image_name
+                    })`,
+                  }}
+                >
+                  <div className="love-left">
+                    <img
+                      src="./images/lov-volimg.png"
+                      className="img-fluid"
+                      alt=""
+                    />
                   </div>
-                  <div style={{ height: "30%" }}>
-                    <a
-                      className="btn btn-explore"
-                      style={{}}
-                      role="button"
-                      href={`/voopons/${item.category_id}`}
-                    >
-                      {" "}
-                      Explore More
-                    </a>
+                  <div className="love-right">
+                    <div style={{ height: "70%" }}>
+                      <h5 style={{ color: "white" }}>
+                        {item.voopons_name || "No Title Available"}
+                      </h5>
+                      <h2 style={{ color: "white" }}>Fashion Store</h2>
+                      <h5 style={{ color: "white" }}>Flat 20% Off</h5>
+                    </div>
+                    <div style={{ height: "30%" }}>
+                      <a
+                        className="btn btn-explore"
+                        href={`/voopons/${item.category_id}`}
+                      >
+                        Explore More
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </SwiperSlide>
-        ))}
+            </SwiperSlide>
+          ))
+        ) : (
+          <div
+            className="no-data-message"
+            style={{ textAlign: "center", color: "gray" }}
+          >
+            <h3>No Voopons Available</h3>
+          </div>
+        )}
       </Swiper>
     </>
   );
