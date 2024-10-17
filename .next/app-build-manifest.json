@@ -48,51 +48,25 @@
       "static/css/app/(user)/my/events/[detail]/page.css",
       "static/chunks/app/(user)/my/events/[detail]/page.js"
     ],
-    "/_not-found/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/_not-found/page.js"
-    ],
-    "/businesses/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/businesses/page.js"
-    ],
     "/promoters/[detail]/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/promoters/[detail]/page.js"
     ],
-    "/promoters/page": [
+    "/(user)/payment-method/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/promoters/page.js"
+      "static/chunks/app/(user)/payment-method/page.js"
     ],
-    "/events/page": [
+    "/(user)/my/favorites/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/events/page.js"
+      "static/chunks/app/(user)/my/favorites/page.js"
     ],
-    "/events/[detail]/page": [
+    "/businesses/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/events/[detail]/page.css",
-      "static/chunks/app/events/[detail]/page.js"
-    ],
-    "/businesses/[detail]/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/businesses/[detail]/page.js"
-    ],
-    "/voopons/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/voopons/page.js"
-    ],
-    "/voopons/[detail]/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/voopons/[detail]/page.js"
+      "static/chunks/app/businesses/page.js"
     ]
   }
 }

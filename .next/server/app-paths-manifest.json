@@ -1,11 +1,12 @@
 {
-  "/promoters/page": "app/promoters/page.js",
-  "/businesses/page": "app/businesses/page.js",
-  "/voopons/[detail]/page": "app/voopons/[detail]/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/page": "app/page.js",
   "/promoters/[detail]/page": "app/promoters/[detail]/page.js",
-  "/(user)/my/profile/page": "app/(user)/my/profile/page.js",
+  "/businesses/page": "app/businesses/page.js",
   "/(user)/my/voopons/page": "app/(user)/my/voopons/page.js",
+  "/(user)/my/voopons/[detail]/page": "app/(user)/my/voopons/[detail]/page.js",
+  "/(user)/my/profile/page": "app/(user)/my/profile/page.js",
   "/(user)/my/events/page": "app/(user)/my/events/page.js",
-  "/(user)/my/events/[detail]/page": "app/(user)/my/events/[detail]/page.js"
+  "/(user)/my/events/[detail]/page": "app/(user)/my/events/[detail]/page.js",
+  "/(user)/payment-method/page": "app/(user)/payment-method/page.js",
+  "/(user)/my/favorites/page": "app/(user)/my/favorites/page.js"
 }

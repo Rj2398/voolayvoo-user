@@ -23,24 +23,8 @@
       "layer": {
         "app/promoters/[detail]/page": "rsc"
       }
-    },
-    "3a233406ae4924927190c3e275fab37d18b5bc1a": {
-      "workers": {
-        "app/events/[detail]/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Frajanmalakar%2FDownloads%2FRajanWorking%2FwebFolder%2F7-10-24%20voolayvoo%2Fvoolayvoo-user%2Fsrc%2Fapp%2Fevents%2F%5Bdetail%5D%2Fpage.js%22%2C%5B%22default%22%5D%5D%5D&__client_imported__=!"
-      },
-      "layer": {
-        "app/events/[detail]/page": "rsc"
-      }
-    },
-    "9af3464fb228f00c5f7082bba64516b5790449d3": {
-      "workers": {
-        "app/voopons/[detail]/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Frajanmalakar%2FDownloads%2FRajanWorking%2FwebFolder%2F7-10-24%20voolayvoo%2Fvoolayvoo-user%2Fsrc%2Fapp%2Fvoopons%2F%5Bdetail%5D%2Fpage.js%22%2C%5B%22default%22%5D%5D%5D&__client_imported__=!"
-      },
-      "layer": {
-        "app/voopons/[detail]/page": "rsc"
-      }
     }
   },
   "edge": {},
-  "encryptionKey": "EJqDCU+JJo26g3t02DMzYpVLkO8q712xpcwx9RFUcfE="
+  "encryptionKey": "9FsyjIg2iv5I/qM3ORLWpERoHbJP+JtJyhC3cclrj3I="
 }

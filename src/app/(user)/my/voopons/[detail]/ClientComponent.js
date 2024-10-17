@@ -64,7 +64,8 @@ const ClientComponent = ({ vooponDetail, qrCode }) => {
               vooponDetail?.voopon_one?.voopons_description}
           </p>
 
-          {vooponDetail?.voopon_two?.collaborator_data?.length > 0 && (
+          {(vooponDetail?.voopon_one?.collaborator_data?.length > 0 ||
+            vooponDetail?.voopon_two?.collaborator_data?.length > 0) && (
             <div className="collaborators">
               <span>
                 <Image
@@ -79,6 +80,28 @@ const ClientComponent = ({ vooponDetail, qrCode }) => {
                 Collaborator(s):
               </span>
               <span>
+                {vooponDetail?.voopon_one?.collaborator_data?.length > 0 &&
+                  vooponDetail?.voopon_one?.collaborator_data.map(
+                    (collaborator, idx) => {
+                      if (idx < 3) {
+                        return (
+                          <Image
+                            key={collaborator?.id}
+                            width={31}
+                            height={31}
+                            src={
+                              collaborator?.promoter_data?.profile_image
+                                ? `${BASE_URL}/${collaborator?.promoter_data?.profile_image}`
+                                : "/images/colebr-1.png"
+                            }
+                            alt="images"
+                            className="collabeIcon"
+                          />
+                        );
+                      }
+                    }
+                  )}
+
                 {vooponDetail?.voopon_two?.collaborator_data?.length > 0 &&
                   vooponDetail?.voopon_two?.collaborator_data.map(
                     (collaborator, idx) => {
@@ -90,7 +113,7 @@ const ClientComponent = ({ vooponDetail, qrCode }) => {
                             height={31}
                             src={
                               collaborator?.promoter_data?.profile_image
-                                ? `${BASE_URL}/${collaborator?.business_data?.profile_image}`
+                                ? `${BASE_URL}/${collaborator?.promoter_data?.profile_image}`
                                 : "/images/colebr-1.png"
                             }
                             alt="images"
@@ -101,11 +124,14 @@ const ClientComponent = ({ vooponDetail, qrCode }) => {
                     }
                   )}
 
-                {vooponDetail?.voopon_two?.collaborator_data?.length > 3 && (
+                {(vooponDetail?.voopon_one?.collaborator_data?.length > 3 ||
+                  vooponDetail?.voopon_two?.collaborator_data?.length > 3) && (
                   <div className="more">
-                    {" "}
-                    +{vooponDetail?.voopon_two?.collaborator_data?.length -
-                      3}{" "}
+                    +
+                    {Math.max(
+                      vooponDetail?.voopon_one?.collaborator_data?.length || 0,
+                      vooponDetail?.voopon_two?.collaborator_data?.length || 0
+                    ) - 3}
                   </div>
                 )}
               </span>
@@ -115,14 +141,19 @@ const ClientComponent = ({ vooponDetail, qrCode }) => {
           <Collaborator
             open={open}
             setOpen={setOpen}
-            data={vooponDetail?.voopon_two?.collaborator_data}
+            data={
+              vooponDetail?.voopon_two?.collaborator_data ||
+              vooponDetail?.voopon_one?.collaborator_data
+            }
           />
           <ShowQrCode
             open={openQrCode}
             setOpen={setOpenQrCode}
             codeData={qrCode}
             label={
-              vooponDetail?.voopon_two?.voopons_name.toUpperCase() || "Voopan"
+              vooponDetail?.voopon_two?.voopons_name.toUpperCase() ||
+              "Voopan" ||
+              vooponDetail?.voopon_one?.voopons_name.toUpperCase()
             }
           />
 
