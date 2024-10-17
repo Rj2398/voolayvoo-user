@@ -36,37 +36,6 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/(user)/my/voopons/[detail]/page.js"
-    ],
-    "/(user)/my/events/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(user)/my/events/page.js"
-    ],
-    "/(user)/my/events/[detail]/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/(user)/my/events/[detail]/page.css",
-      "static/chunks/app/(user)/my/events/[detail]/page.js"
-    ],
-    "/promoters/[detail]/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/promoters/[detail]/page.js"
-    ],
-    "/(user)/payment-method/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(user)/payment-method/page.js"
-    ],
-    "/(user)/my/favorites/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(user)/my/favorites/page.js"
-    ],
-    "/businesses/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/businesses/page.js"
     ]
   }
 }
