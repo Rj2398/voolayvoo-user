@@ -1,6 +1,7 @@
 {
-  "/page": "app/page.js",
-  "/(onboard)/login/page": "app/(onboard)/login/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/_not-found/page": "app/_not-found/page.js"
+  "/promoters/[detail]/page": "app/promoters/[detail]/page.js",
+  "/promoters/page": "app/promoters/page.js",
+  "/events/page": "app/events/page.js",
+  "/businesses/page": "app/businesses/page.js",
+  "/events/[detail]/page": "app/events/[detail]/page.js"
 }

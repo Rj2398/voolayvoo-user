@@ -1,5 +1,22 @@
 {
-  "node": {},
+  "node": {
+    "df69c97e67d3ab3ac5aa6520e889208e162c1f70": {
+      "workers": {
+        "app/promoters/[detail]/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Frajanmalakar%2FDownloads%2FRajanWorking%2FwebFolder%2F13-01-25%2Fvoolayvoo-user%2Fsrc%2Fapp%2Fpromoters%2F%5Bdetail%5D%2Fpage.js%22%2C%5B%22default%22%5D%5D%5D&__client_imported__=!"
+      },
+      "layer": {
+        "app/promoters/[detail]/page": "rsc"
+      }
+    },
+    "617b65aea9978ddc5b4fe87d828687aae9e8f951": {
+      "workers": {
+        "app/events/[detail]/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Frajanmalakar%2FDownloads%2FRajanWorking%2FwebFolder%2F13-01-25%2Fvoolayvoo-user%2Fsrc%2Fapp%2Fevents%2F%5Bdetail%5D%2Fpage.js%22%2C%5B%22default%22%5D%5D%5D&__client_imported__=!"
+      },
+      "layer": {
+        "app/events/[detail]/page": "rsc"
+      }
+    }
+  },
   "edge": {},
-  "encryptionKey": "JZbPSHgYszUYfS8PPIbgsFzeCD/BK5JalYJwn2YMlnM="
+  "encryptionKey": "VULjhWVA8MFCy/0JnhZglr+ai9Ca6LHby9fw4OJjDC0="
 }
