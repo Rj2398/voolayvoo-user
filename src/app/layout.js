@@ -1,6 +1,6 @@
 // import type { Metadata } from "next";
 import Script from "next/script";
-import "@/styles/owl.carousel.min.css";
+// import "@/styles/owl.carousel.min.css";
 import "@/styles/bootstrap.min.css";
 import "@/styles/all.css";
 import "@/styles/custom.css";
@@ -33,10 +33,10 @@ export default function RootLayout({ children }) {
       <Script src="../js/jquery.min.js" />
       <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" />
       <Script src="../js/bootstrap.min.js" />
-      <Script
+      {/* <Script
         src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
         strategy="afterInteractive"
-      />
+      /> */}
       <Script src="../js/counter.js" />
       <Script src="../js/wow.min.js" />
       <Script src="../js/index.js" />

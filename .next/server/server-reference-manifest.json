@@ -1,5 +1,14 @@
 {
-  "node": {},
+  "node": {
+    "3ef4a3885cae7f66c715cf9b8ccec4e0d7757d4d": {
+      "workers": {
+        "app/voopons/[detail]/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Frajanmalakar%2FDownloads%2FRajanWorking%2FwebFolder%2F13-01-25%2Fvoolayvoo-user%2Fsrc%2Fapp%2Fvoopons%2F%5Bdetail%5D%2Fpage.js%22%2C%5B%22default%22%5D%5D%5D&__client_imported__=!"
+      },
+      "layer": {
+        "app/voopons/[detail]/page": "rsc"
+      }
+    }
+  },
   "edge": {},
-  "encryptionKey": "5FdrDkvy5bxf2yqy/fDJm9ui+4hc/8p002DQtJ1L5oM="
+  "encryptionKey": "eFphwR7Pw4md9mZx/tQcn+q7akNN+jYzNhah2mgfnCc="
 }
