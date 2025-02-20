@@ -299,8 +299,7 @@ const ClientComponent = ({ eventDetail, qrCode }) => {
                   </div>
                   <div className="col-lg-5 col-md-6">
                     <div className="location-box">
-                      <h4> Location
-                      </h4>
+                      <h4> Location</h4>
                       <span>
                         {" "}
                         {eventDetail?.event_one?.location ||

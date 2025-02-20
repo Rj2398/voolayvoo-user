@@ -527,7 +527,7 @@ const ClientComponent = ({ categoryMainList = [] }) => {
             </div>
           )} */}
 
-          {Array.isArray(renderList) && renderList.length === 0 ? (
+          {Array.isArray(renderList) && renderList?.length === 0 ? (
             <div className="row">
               <p className="noDataText">No Events</p>
             </div>
@@ -578,8 +578,8 @@ const CardItem = ({ item }) => {
             alt=""
             style={{ objectFit: "cover" }}
             src={
-              item?.eventsimage[0]?.image_name
-                ? `${BASE_URL}/${item?.eventsimage[0]?.image_name}`
+              item?.eventsimage?.[0]?.image_name
+                ? `${BASE_URL}/${item?.eventsimage?.[0]?.image_name}`
                 : "/images/near-event1.png"
             }
             onError={(e) => {
