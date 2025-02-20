@@ -117,8 +117,7 @@ const PaymentMethod = () => {
           </div>
           <h1>You have no saved cards.</h1>
           <p>
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-            commod o ligula eget dolor.
+            Add Debit or Credit Card and then follow the onscreen instructions.
           </p>
 
           <a href="#" onClick={() => setOpen(true)}>

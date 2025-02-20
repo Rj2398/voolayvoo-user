@@ -82,7 +82,7 @@ const ClientComponent = ({ categoryMainList = [] }) => {
       let combinedTemplist = [];
 
       if (Array.isArray(resultEvent?.data?.event_one)) {
-        const templistOne = resultEvent.data.event_one.map((item) => ({
+        const templistOne = resultEvent?.data?.event_one?.map((item) => ({
           ...item,
           category_id: item?.category_id,
           subcategory_id: item?.subcategory_id,
@@ -91,7 +91,7 @@ const ClientComponent = ({ categoryMainList = [] }) => {
       }
 
       if (Array.isArray(resultEvent?.data?.event_two)) {
-        const templistTwo = resultEvent.data.event_two.map((item) => ({
+        const templistTwo = resultEvent?.data?.event_two?.map((item) => ({
           ...item,
           category_id: item?.category_id,
           subcategory_id: item?.subcategory_id,
@@ -521,11 +521,17 @@ const ClientComponent = ({ categoryMainList = [] }) => {
             renderList.map((item, index) => {
               return <CardItem key={`${item?.id + index}`} item={item} />;
             })}
-          {Array.isArray(renderList) && renderList.length === 0 && (
+          {/* {Array.isArray(renderList) && renderList?.length === 0 && (
             <div className="row">
               <p className="noDataText">No Events</p>
             </div>
-          )}
+          )} */}
+
+          {Array.isArray(renderList) && renderList.length === 0 ? (
+            <div className="row">
+              <p className="noDataText">No Events</p>
+            </div>
+          ) : null}
           <CustomPagination
             dataArray={tempEventList} // Array with all the filtered events
             pageNo={pageNo} // Current page number
@@ -606,14 +612,17 @@ const CardItem = ({ item }) => {
               {convertTo12HourFormat(item?.events_end_time)}
             </span>
           </div>
-          <Link
-            className="btn btn-viewmore-border"
-            role="button"
-            href={"#"}
-            onClick={handleMore}
-          >
-            View More
-          </Link>
+
+          {Number(item?.events_price) !== 0 && (
+            <Link
+              className="btn btn-viewmore-border"
+              role="button"
+              href={"#"}
+              onClick={handleMore}
+            >
+              View More
+            </Link>
+          )}
         </div>
       </div>
     </div>

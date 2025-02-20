@@ -203,7 +203,11 @@ const Footer = () => {
         </div>
       </section>
       <CustomToastContainer />
-      <div className="copyright">Copyright ©2023. All Rights Reserved.</div>
+      {/* <div className="copyright">Copyright ©2023. All Rights Reserved.</div> */}
+      <div className="copyright">
+        Copyright © 2025 Sam And Ella Enterprises, LLC. All Rights Reserved.
+        DMCA Agent • DMCA@Samandellaenterprises.com
+      </div>
     </>
   );
 };

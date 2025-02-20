@@ -1,14 +1,30 @@
 {
   "node": {
-    "3ef4a3885cae7f66c715cf9b8ccec4e0d7757d4d": {
+    "2d052aa6eb109238f6919533cc96f28787727a69": {
       "workers": {
-        "app/voopons/[detail]/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Frajanmalakar%2FDownloads%2FRajanWorking%2FwebFolder%2F13-01-25%2Fvoolayvoo-user%2Fsrc%2Fapp%2Fvoopons%2F%5Bdetail%5D%2Fpage.js%22%2C%5B%22default%22%5D%5D%5D&__client_imported__=!"
+        "app/(user)/my/events/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Frajanmalakar%2FDownloads%2FRajanWorking%2FwebFolder%2F13-01-25%2Fvoolayvoo-user%2Fsrc%2Fapp%2F(user)%2Fmy%2Fevents%2Fpage.js%22%2C%5B%22default%22%5D%5D%5D&__client_imported__=!"
       },
       "layer": {
-        "app/voopons/[detail]/page": "rsc"
+        "app/(user)/my/events/page": "rsc"
+      }
+    },
+    "0b877cdf171631bbb35cec506b0a0b2daddee972": {
+      "workers": {
+        "app/(user)/my/voopons/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Frajanmalakar%2FDownloads%2FRajanWorking%2FwebFolder%2F13-01-25%2Fvoolayvoo-user%2Fsrc%2Fapp%2F(user)%2Fmy%2Fvoopons%2Fpage.js%22%2C%5B%22default%22%5D%5D%5D&__client_imported__=!"
+      },
+      "layer": {
+        "app/(user)/my/voopons/page": "rsc"
+      }
+    },
+    "617b65aea9978ddc5b4fe87d828687aae9e8f951": {
+      "workers": {
+        "app/events/[detail]/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Frajanmalakar%2FDownloads%2FRajanWorking%2FwebFolder%2F13-01-25%2Fvoolayvoo-user%2Fsrc%2Fapp%2Fevents%2F%5Bdetail%5D%2Fpage.js%22%2C%5B%22default%22%5D%5D%5D&__client_imported__=!"
+      },
+      "layer": {
+        "app/events/[detail]/page": "rsc"
       }
     }
   },
   "edge": {},
-  "encryptionKey": "eFphwR7Pw4md9mZx/tQcn+q7akNN+jYzNhah2mgfnCc="
+  "encryptionKey": "5p8aONd8oazGrL3/Q3P1w1sRcvjZOh0wOiyj6BB+kf8="
 }

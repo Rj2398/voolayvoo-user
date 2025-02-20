@@ -1,6 +1,8 @@
 {
   "/page": "app/page.js",
-  "/voopons/[detail]/page": "app/voopons/[detail]/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/businesses/[detail]/page": "app/businesses/[detail]/page.js"
+  "/events/[detail]/page": "app/events/[detail]/page.js",
+  "/(user)/my/events/[detail]/page": "app/(user)/my/events/[detail]/page.js",
+  "/(user)/my/profile/page": "app/(user)/my/profile/page.js",
+  "/(user)/payment-method/page": "app/(user)/payment-method/page.js",
+  "/(user)/my/events/page": "app/(user)/my/events/page.js"
 }
