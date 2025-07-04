@@ -4,7 +4,6 @@ import { useCallback } from "react";
 import { toast } from "react-toastify";
 
 const ShowQrCode = ({ open, setOpen, codeData, label }) => {
-  console.log(codeData, "hello code dtatatsjfshjkdshj");
 
   const handleCopy = useCallback(
     (e) => {
@@ -15,7 +14,7 @@ const ShowQrCode = ({ open, setOpen, codeData, label }) => {
     [codeData]
   );
   return (
-    <Modal open={open}>
+    <Modal open={open} className="password-popup">
       <Box>
         <div
           className="modal fade show"

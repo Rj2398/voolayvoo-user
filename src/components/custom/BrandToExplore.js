@@ -26,7 +26,6 @@
 //   //
 
 //   const [buttonStatus, setButtonStatus] = useState({});
-//   console.log(buttonStatus, "fasdfsdfg");
 //   //
 //   useEffect(() => {
 //     const initialButtonStatus = staticItems?.reduce((acc, item) => {
@@ -68,7 +67,6 @@
 //     formData.append("business_id", item.toString());
 //     formData.append("like_status", isLiked ? "0" : "1"); // Toggle between 'like' (1) and 'unlike' (0)
 
-//     console.log(
 //       item,
 //       userDetails.user_id,
 //       isLiked,
@@ -93,7 +91,6 @@
 //         [item]: !isLiked, // Toggle the status of the button
 //       }));
 
-//       console.log(response.data, "response comes form home screen"); // Log the response for debugging
 //     } catch (error) {
 //       console.error("Error updating like status:", error);
 //     }
@@ -222,7 +219,6 @@
 //                   <p>No Data Exist </p>
 //                 ) : (
 //                   staticItems?.map((item, index) => {
-//                     console.log(item.id, "@##@#@#@#@#@##@##@####");
 //                     return (
 //                       <div className="brand-box" style={itemStyles} key={index}>
 //                         <div className="brand-logo" style={boxStyles}>
@@ -324,6 +320,205 @@
 
 // code responsive code 16-10-2024
 
+
+
+
+// import React, { useEffect, useState } from "react";
+// import { Swiper, SwiperSlide } from "swiper/react";
+// import "swiper/css";
+// import "swiper/css/pagination";
+// import "swiper/css/navigation";
+// import { Autoplay, Pagination, Navigation } from "swiper/modules";
+// import { BASE_URL } from "@/constant/constant";
+// import { useRouter } from "next/navigation";
+// import { useAuth } from "@/app/UserProvider";
+// import axios from "axios";
+// import { LightModeOutlined } from "@mui/icons-material";
+
+// const BrandExplore = ({ staticItems, brand }) => {
+//   const { userDetails, isAuthenticated } = useAuth();
+//   const [buttonStatus, setButtonStatus] = useState({});
+//   const router = useRouter();
+//   //
+
+//   // word Limitation
+
+//   const truncateDescriptionTitle = (description, wordLimit1) => {
+//     const words = description.split(" ");
+//     if (words.length > wordLimit1) {
+//       return words.slice(0, wordLimit1).join(" ") + "..."; // Truncate and add ellipsis
+//     }
+//     return description; // If under the limit, return the full description
+//   };
+//   //
+//   //
+
+//   useEffect(() => {
+//     const initialButtonStatus = staticItems?.reduce((acc, item) => {
+//       acc[item.id] = false;
+//       return acc;
+//     }, {});
+//     setButtonStatus(initialButtonStatus);
+//   }, [staticItems]);
+//   // handle favorite
+
+//   const handleFavoriteClick = async (item) => {
+//     const isLiked = buttonStatus[item];
+
+//     // Prepare FormData
+//     const formData = new FormData();
+//     formData.append("user_id", userDetails.user_id);
+//     formData.append("business_id", item.toString());
+//     formData.append("like_status", isLiked ? "0" : "1"); // Toggle between 'like' (1) and 'unlike' (0)
+
+//     try {
+//       const response = await axios.post(
+//         `${BASE_URL}/api/auth/user_favorite_business`,
+//         formData,
+//         {
+//           headers: {
+//             "Content-Type": "multipart/form-data",
+//             Authorization: `Bearer ${userDetails.token}`,
+//           },
+//         }
+//       );
+//       setButtonStatus((prevStatus) => ({
+//         ...prevStatus,
+//         [item]: !isLiked,
+//       }));
+//     } catch (error) {
+//       console.error("Error updating like status:", error);
+//     }
+//   };
+
+//   /// handle click to navigate
+
+//   const handleClick = (item) => {
+//     if (!isAuthenticated) {
+//       router.push("/auth-users");
+//     } else {
+//       router.push(
+//         brand == true
+//           ? `/voopons/${item.category_id}`
+//           : `/businesses/${item?.id}?business_id=${item?.id}`
+//       );
+//     }
+//   };
+//   return (
+//     <>
+//       <div className="col-lg-12 mySwiper">
+//         <div className="heading mb-3">
+//           Brands <span>To Explore</span>
+//         </div>
+//       </div>
+//       <Swiper
+//         style={{
+//           "--swiper-navigation-color": "#e60023",
+//           "--swiper-pagination-color": "#e60023",
+//         }}
+//         spaceBetween={20}
+//         autoplay={{ delay: 3000, disableOnInteraction: false }}
+//         keyboard={{ enabled: true }}
+//         pagination={{ clickable: false }}
+//         navigation={true}
+//         modules={[Autoplay, Navigation]}
+//         className="mySwiper"
+//         breakpoints={{
+//           320: {
+//             slidesPerView: 1, // Show 1 slide on mobile
+//           },
+//           640: {
+//             slidesPerView: 2, // Show 2 slides on small screens
+//           },
+//           1024: {
+//             slidesPerView: 3, // Show 3 slides on larger screens
+//           },
+//           1280: {
+//             slidesPerView: 4, // Show 4 slides on desktop screens
+//           },
+//         }}
+//       >
+//         {staticItems && staticItems.length > 0 ? (
+//           staticItems.map((item, index) => (
+//             <SwiperSlide key={index}>
+//               <div className="item ">
+//                 <div className="brand-box">
+//                   <div className="brand-logo">
+//                     <div className="brand-heart">
+//                       <input
+//                         type="checkbox"
+//                         id={`favorite-${item.id}`}
+//                         checked={buttonStatus?.[item.id] === true}
+//                         onChange={() => handleFavoriteClick(item.id)}
+//                         aria-label={`Favorite ${item.name}`}
+//                         disabled={isAuthenticated === false}
+//                       />
+//                       {isAuthenticated === true && (
+//                         <label htmlFor={`favorite-${item.id}`}>
+//                           <img
+//                             src={
+//                               buttonStatus?.[item.id] === true
+//                                 ? "/images/user-bookmark-2.png"
+//                                 : "/images/user-bookmark.png"
+//                             }
+//                             alt="Bookmark"
+//                             width={25}
+//                             height={23}
+//                           />
+//                         </label>
+//                       )}
+//                     </div>
+//                     <img
+//                       src={`${BASE_URL}/${
+//                         item.vooponimage?.image_name || item?.profile_image
+//                       }`}
+//                       style={{ width: "100%", height: "200px" }} // Corrected '200Px' to '200px'
+//                       alt="brand"
+//                     />
+//                   </div>
+//                   <div className="brand-heading">
+//                     {item.voopons_name || item.name
+//                       ? truncateDescriptionTitle(
+//                           item.voopons_name || item.name,
+//                           2
+//                         )
+//                       : "No Title Available"}
+//                   </div>
+//                   <a
+//                     className="btn btn-viewmore"
+//                     role="button"
+//                     onClick={() => handleClick(item)}
+//                   >
+//                     View More
+//                   </a>
+//                 </div>
+//               </div>
+//             </SwiperSlide>
+//           ))
+//         ) : (
+//           <div
+//             className="no-data-message"
+//             style={{ textAlign: "center", color: "gray" }}
+//           >
+//             <h3>No Brands Available</h3>
+//           </div>
+//         )}
+//       </Swiper>
+//     </>
+//   );
+// };
+
+// export default BrandExplore;
+
+
+
+
+
+
+
+// new change for sweeper outside the section acc to bug sheet
+
+
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -334,25 +529,21 @@ import { BASE_URL } from "@/constant/constant";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/app/UserProvider";
 import axios from "axios";
-import { LightModeOutlined } from "@mui/icons-material";
 
 const BrandExplore = ({ staticItems, brand }) => {
   const { userDetails, isAuthenticated } = useAuth();
   const [buttonStatus, setButtonStatus] = useState({});
+  const [swiperInstance, setSwiperInstance] = useState(null);
   const router = useRouter();
-  //
 
   // word Limitation
-
   const truncateDescriptionTitle = (description, wordLimit1) => {
     const words = description.split(" ");
     if (words.length > wordLimit1) {
-      return words.slice(0, wordLimit1).join(" ") + "..."; // Truncate and add ellipsis
+      return words.slice(0, wordLimit1).join(" ") + "...";
     }
-    return description; // If under the limit, return the full description
+    return description;
   };
-  //
-  //
 
   useEffect(() => {
     const initialButtonStatus = staticItems?.reduce((acc, item) => {
@@ -361,23 +552,15 @@ const BrandExplore = ({ staticItems, brand }) => {
     }, {});
     setButtonStatus(initialButtonStatus);
   }, [staticItems]);
-  // handle favorite
 
+  // handle favorite
   const handleFavoriteClick = async (item) => {
     const isLiked = buttonStatus[item];
 
-    // Prepare FormData
     const formData = new FormData();
     formData.append("user_id", userDetails.user_id);
     formData.append("business_id", item.toString());
-    formData.append("like_status", isLiked ? "0" : "1"); // Toggle between 'like' (1) and 'unlike' (0)
-
-    console.log(
-      item,
-      userDetails.user_id,
-      isLiked,
-      "params comes form home screen"
-    );
+    formData.append("like_status", isLiked ? "0" : "1");
 
     try {
       const response = await axios.post(
@@ -400,7 +583,6 @@ const BrandExplore = ({ staticItems, brand }) => {
   };
 
   /// handle click to navigate
-
   const handleClick = (item) => {
     if (!isAuthenticated) {
       router.push("/auth-users");
@@ -412,6 +594,7 @@ const BrandExplore = ({ staticItems, brand }) => {
       );
     }
   };
+
   return (
     <>
       <div className="col-lg-12 mySwiper">
@@ -419,99 +602,145 @@ const BrandExplore = ({ staticItems, brand }) => {
           Brands <span>To Explore</span>
         </div>
       </div>
-      <Swiper
-        style={{
-          "--swiper-navigation-color": "#e60023",
-          "--swiper-pagination-color": "#e60023",
-        }}
-        spaceBetween={20}
-        autoplay={{ delay: 3000, disableOnInteraction: false }}
-        keyboard={{ enabled: true }}
-        pagination={{ clickable: false }}
-        navigation={true}
-        modules={[Autoplay, Navigation]}
-        className="mySwiper"
-        breakpoints={{
-          320: {
-            slidesPerView: 1, // Show 1 slide on mobile
-          },
-          640: {
-            slidesPerView: 2, // Show 2 slides on small screens
-          },
-          1024: {
-            slidesPerView: 3, // Show 3 slides on larger screens
-          },
-          1280: {
-            slidesPerView: 4, // Show 4 slides on desktop screens
-          },
-        }}
-      >
-        {staticItems && staticItems.length > 0 ? (
-          staticItems.map((item, index) => (
-            <SwiperSlide key={index}>
-              <div className="item ">
-                <div className="brand-box">
-                  <div className="brand-logo">
-                    <div className="brand-heart">
-                      <input
-                        type="checkbox"
-                        id={`favorite-${item.id}`}
-                        checked={buttonStatus?.[item.id] === true}
-                        onChange={() => handleFavoriteClick(item.id)}
-                        aria-label={`Favorite ${item.name}`}
-                        disabled={isAuthenticated === false}
+      <div className="brand-explore-container" style={{ position: 'relative', padding: '0 0px', border: "1px solid white" }}>
+        <Swiper
+          onSwiper={setSwiperInstance}
+          style={{
+            "--swiper-navigation-color": "#e60023",
+            "--swiper-pagination-color": "#e60023",
+            "--swiper-navigation-size": "30px",
+          }}
+          spaceBetween={20}
+          slidesPerView={4}
+          autoplay={{ delay: 3000, disableOnInteraction: false }}
+          keyboard={{ enabled: true }}
+          pagination={{ clickable: false }}
+          navigation={{
+            nextEl: '.swiper-button-next-unique',
+            prevEl: '.swiper-button-prev-unique',
+          }}
+          modules={[Autoplay, Navigation]}
+          className="mySwiper"
+          breakpoints={{
+            320: {
+              slidesPerView: 1,
+              spaceBetween: 10,
+            },
+            640: {
+              slidesPerView: 2,
+              spaceBetween: 15,
+            },
+            1024: {
+              slidesPerView: 3,
+              spaceBetween: 20,
+            },
+            1280: {
+              slidesPerView: 4,
+              spaceBetween: 20,
+            },
+          }}
+        >
+          {staticItems && staticItems.length > 0 ? (
+            staticItems.map((item, index) => (
+              <SwiperSlide key={index}>
+                <div className="item">
+                  <div className="brand-box">
+                    <div className="brand-logo">
+                      <div className="brand-heart">
+                        <input
+                          type="checkbox"
+                          id={`favorite-${item.id}`}
+                          checked={buttonStatus?.[item.id] === true}
+                          onChange={() => handleFavoriteClick(item.id)}
+                          aria-label={`Favorite ${item.name}`}
+                          disabled={isAuthenticated === false}
+                        />
+                        {isAuthenticated === true && (
+                          <label htmlFor={`favorite-${item.id}`}>
+                            <img
+                              src={
+                                buttonStatus?.[item.id] === true
+                                  ? "/images/user-bookmark-2.png"
+                                  : "/images/user-bookmark.png"
+                              }
+                              alt="Bookmark"
+                              width={25}
+                              height={23}
+                            />
+                          </label>
+                        )}
+                      </div>
+                      <img
+                        src={`${BASE_URL}/${
+                          item.vooponimage?.image_name || item?.profile_image
+                        }`}
+                        style={{ width: "100%", height: "220px",}}
+                        alt="brand"
                       />
-                      {isAuthenticated === true && (
-                        <label htmlFor={`favorite-${item.id}`}>
-                          <img
-                            src={
-                              buttonStatus?.[item.id] === true
-                                ? "/images/user-bookmark-2.png"
-                                : "/images/user-bookmark.png"
-                            }
-                            alt="Bookmark"
-                            width={25}
-                            height={23}
-                          />
-                        </label>
-                      )}
                     </div>
-                    <img
-                      src={`${BASE_URL}/${
-                        item.vooponimage?.image_name || item?.profile_image
-                      }`}
-                      style={{ width: "100%", height: "200px" }} // Corrected '200Px' to '200px'
-                      alt="brand"
-                    />
+                    <div className="brand-heading">
+                      {item.voopons_name || item.name
+                        ? truncateDescriptionTitle(
+                            item.voopons_name || item.name,
+                            2
+                          )
+                        : "No Title Available"}
+                    </div>
+                    <a
+                      className="btn btn-viewmore"
+                      role="button"
+                      onClick={() => handleClick(item)}
+                    >
+                      View More
+                    </a>
                   </div>
-                  <div className="brand-heading">
-                    {item.voopons_name || item.name
-                      ? truncateDescriptionTitle(
-                          item.voopons_name || item.name,
-                          2
-                        )
-                      : "No Title Available"}
-                  </div>
-                  <a
-                    className="btn btn-viewmore"
-                    role="button"
-                    onClick={() => handleClick(item)}
-                  >
-                    View More
-                  </a>
                 </div>
-              </div>
-            </SwiperSlide>
-          ))
-        ) : (
-          <div
-            className="no-data-message"
-            style={{ textAlign: "center", color: "gray" }}
-          >
-            <h3>No Brands Available</h3>
-          </div>
-        )}
-      </Swiper>
+              </SwiperSlide>
+            ))
+          ) : (
+            <div
+              className="no-data-message"
+              style={{ textAlign: "center", color: "gray" }}
+            >
+              <h3>No Brands Available</h3>
+            </div>
+          )}
+        </Swiper>
+
+        <div 
+          className="swiper-button-prev-unique"
+          style={{ 
+            left: '10px',
+            top: '50%',
+            transform: 'translateY(-50%)',
+            position: 'absolute',
+            zIndex: 10,
+            cursor: 'pointer',
+          
+          }}
+          onClick={() => swiperInstance?.slidePrev()}
+        >
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="#e60023">
+            <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/>
+          </svg>
+        </div>
+        <div 
+          className="swiper-button-next-unique"
+          style={{ 
+            right: '10px',
+            top: '50%',
+            transform: 'translateY(-50%)',
+            position: 'absolute',
+            zIndex: 10,
+            cursor: 'pointer'
+          }}
+          onClick={() => swiperInstance?.slideNext()}
+        >
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="#e60023">
+            <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+          </svg>
+        </div>
+      </div>
     </>
   );
 };

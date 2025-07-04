@@ -2,7 +2,6 @@ import { BASE_URL } from "@/constant/constant";
 import Image from "next/image";
 
 const Photos = ({ dataList }) => {
-  console.log(dataList, "image from this hjshfjshfj");
 
   return (
     <>

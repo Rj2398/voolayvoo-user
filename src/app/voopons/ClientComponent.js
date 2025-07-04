@@ -23,10 +23,8 @@ import {
 import CustomDatePicker from "@/components/CustomDatePicker";
 
 const ClientComponent = ({ categoryList, voopanList }) => {
-  console.log(categoryList, "categary list data ");
 
   const [location, setLocation] = useState(false);
-  console.log(location, "location filter data");
   const [tempVoopanList, setTempVoopanList] = useState([]);
   const [pageNo, setPageNo] = useState(1);
   const [selectCategory, setSelectCategory] = useState({
@@ -41,7 +39,6 @@ const ClientComponent = ({ categoryList, voopanList }) => {
     isPaginationApply: false,
   });
   const [renderList, setRenderList] = useState([]);
-  console.log(renderList, "hello render list of voopans");
 
   const [dateFilter, setDateFilter] = useState([]);
   const [searchValue, setSearchValue] = useState("");
@@ -50,7 +47,6 @@ const ClientComponent = ({ categoryList, voopanList }) => {
 
   const targetDivRef = useRef(null);
 
-  // console.log(categoryList, "hello usersss");
 
   const handleSelectLocation = (e) => {
     setLocationFilter(e);

@@ -14,14 +14,12 @@ const Profile = () => {
   const [edit, setEdit] = useState(true);
   const [reload, setReload] = useState(false);
   const [userImage, setuserImage] = useState("");
-  console.log(edit, "askdfjjkasfhjkshfsg");
 
   const { isAuthenticated, userDetails, login } = useAuth();
   const [image, setImage] = useState("");
   const { userInfo } = useSelector((state) => state.user);
   const [localStorage, setLocalStorage] = useLocalStorage("loginUser", null);
 
-  console.log(userDetails, "user authrization check");
 
   const {
     register,
@@ -39,7 +37,6 @@ const Profile = () => {
           authToken: localStorage.token,
         });
         const formatedData = response?.data;
-        console.log(formatedData, "profile get api");
         // login({
         //   email: formatedData.email,
         //   user_id: formatedData.id,
@@ -105,7 +102,6 @@ const Profile = () => {
         formdata["profile_image"] = "";
       }
 
-      console.log(formdata, "formData is thissss");
 
       const response = await postFetchDataWithAuth({
         data: formdata,
@@ -114,7 +110,6 @@ const Profile = () => {
       });
       // const data = response?.data[0];
       const formatedData = response?.data[0];
-      console.log(formatedData, "profile update response");
 
       if (response) {
         setReload(!reload);
@@ -176,15 +171,15 @@ const Profile = () => {
                 <Image
                   width={96}
                   height={96}
-                  style={{ borderRadius: 999 }}
+                  style={{ borderRadius: "50%" }}
                   src={
                     !image
                       ? userImage
                         ? `${BASE_URL}${userImage}`
-                        : "/images/user-dashboard/my-profile/profile.png"
+                        : "/images/default.svg"
                       : image
                   }
-                  alt=""
+                  alt="my-profile"
                 />
               </div>
               {!edit && (

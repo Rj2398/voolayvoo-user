@@ -10,6 +10,8 @@ import Loader from "@/components/custom/Loader";
 import axios from "axios";
 import { Button } from "@mui/material";
 import path from "path";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
 async function getData(id, user_id) {
   const formData = new FormData();
@@ -53,7 +55,6 @@ async function getData(id, user_id) {
   );
 
   const resBusinessRating = await resRating.json();
-  console.log(resBusinessRating, "res respond draashfjkhsdk");
 
   const resultEvent = await resEvent.json();
   const reslutVoopons = await resVoopons.json();
@@ -115,16 +116,11 @@ const Detail = () => {
   const { userDetails, isAuthenticated } = useAuth();
   const router = useRouter();
 
-  //
-
   const searchParams = useSearchParams();
   let pathName = usePathname();
 
   const tempPathName =
     pathName + `?business_id=${searchParams.get("business_id")}`;
-  console.log(tempPathName, "pathe nameeeeeeeeeeeee");
-  //
-
   const business_id = searchParams.get("business_id");
 
   const [data, setData] = useState({
@@ -134,10 +130,6 @@ const Detail = () => {
     DetailsData: null,
     BusinessRatingResponse: null,
   });
-  // console.log(data?.AllPhotosList.length, "AllPhotosList");
-  // console.log(data?.VooponsList.length, "VooponsList");
-
-  console.log(data?.BusinessRatingResponse, "ratingData)()()()()(");
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -163,7 +155,7 @@ const Detail = () => {
           },
         }
       );
-      console.log("Response:11121212121", response.data);
+      fetchData();
       setCheckedFollow((pre) => !pre);
       // setCheckStatus(response?.data?.data);
     } catch (error) {
@@ -171,26 +163,23 @@ const Detail = () => {
     }
   };
 
+  const fetchData = async () => {
+    if (!userDetails || !userDetails.user_id) {
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const result = await getData(business_id, userDetails.user_id);
+      setData(result);
+    } catch (err) {
+      setError(err);
+    } finally {
+      setLoading(false);
+    }
+  };
   //code for follow
   useLayoutEffect(() => {
-    const fetchData = async () => {
-      if (!userDetails || !userDetails.user_id) {
-        setLoading(false);
-        return;
-      }
-
-      try {
-        const result = await getData(business_id, userDetails.user_id);
-        console.log(result, "&&&&&&&&&&&&&&&");
-
-        setData(result);
-      } catch (err) {
-        setError(err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchData();
   }, [userDetails, business_id, checkFollow]);
 
@@ -257,12 +246,45 @@ const Detail = () => {
                   className="w-100"
                   src={
                     data?.DetailsData?.businessdetails !== null
-                      ? `${BASE_URL}/${data.DetailsData?.businessdetails?.profile_image}`
+                      ? `${BASE_URL}/${data?.DetailsData?.businessdetails?.business_image?.[0]?.image}`
                       : "/images/banners/slide1.png"
                   }
-                  alt=""
+                  alt="business_image"
                   id="product-main-image"
                 />
+                <Carousel
+                  responsive={{
+                    desktop: { breakpoint: { max: 1920, min: 1024 }, items: 4 },
+                    tablet: { breakpoint: { max: 1024, min: 464 }, items: 3 },
+                    mobile: { breakpoint: { max: 464, min: 0 }, items: 2 },
+                  }}
+                  autoPlay={true}
+                  autoPlaySpeed={3000}
+                  infinite={true}
+                  style={{ width: "100%" }}
+                >
+                  {(Array.isArray(
+                    data?.DetailsData?.businessdetails?.business_image
+                  )
+                    ? data.DetailsData.businessdetails.business_image
+                    : []
+                  ).map((image, index) => (
+                    <div key={index} style={{ padding: "10px 5px" }}>
+                      <Image
+                        width={142}
+                        height={100}
+                        className="w-100"
+                        src={
+                          image?.image
+                            ? `${BASE_URL}/${image.image}`
+                            : "/images/banners/slide1.png"
+                        }
+                        alt={`business_image_${index}`}
+                      />
+                    </div>
+                  ))}
+                </Carousel>
+
                 {/* <div
                   id="pro-slider"
                   className="product-image-slider owl-carousel"
@@ -307,8 +329,14 @@ const Detail = () => {
                     <Image
                       width={58}
                       height={56}
-                      src="/images/business-logo.png"
+                      // src="/images/business-logo.png"
+                      src={
+                        data?.DetailsData?.businessdetails !== null
+                          ? `${BASE_URL}/${data.DetailsData?.businessdetails?.profile_image}`
+                          : "/images/banners/slide1.png"
+                      }
                       alt=""
+                      style={{ borderRadius: "50%" }}
                     />
                   </span>
                   <h1>{data?.DetailsData?.businessdetails?.name} </h1>
@@ -334,6 +362,7 @@ const Detail = () => {
                             // href="#"
                             // className="followers-btn"
                             className="followers-btn"
+                            style={{ cursor: "pointer" }}
                             onClick={() => {
                               if (!isAuthenticated) {
                                 // router.push("/login");
@@ -352,6 +381,7 @@ const Detail = () => {
                             // href="#"
                             // className="followers-btn"
                             className="followers-btn"
+                            style={{ cursor: "pointer" }}
                             onClick={() => {
                               if (!isAuthenticated) {
                                 // router.push("/login");
@@ -370,7 +400,7 @@ const Detail = () => {
                   <div className="col-lg-5 col-md-6">
                     <div className="rating-box">
                       {" "}
-                      {data?.DetailsData?.rating_data?.total_rating}
+                      {data?.DetailsData?.rating_data?.total_rating?.toFixed(2)}
                       {filledStars}
                       {blankStars}
                       {/* <span>
@@ -413,7 +443,7 @@ const Detail = () => {
                           alt=""
                         />
                       </span> */}
-                      {data?.DetailsData?.rating_data?.business_count}
+                      ({data?.DetailsData?.rating_data?.business_count})
                     </div>
                   </div>
                 </div>
@@ -459,7 +489,11 @@ const Detail = () => {
                         src="/images/direction.png"
                         alt=""
                       />{" "}
-                      <a href="#">Direction</a>{" "}
+                      <a
+                        href={`https://www.google.com/maps/dir/?api=1&destination=${data?.DetailsData?.businessdetails?.latitude},${data?.DetailsData?.businessdetails?.longitude}`}
+                      >
+                        Direction
+                      </a>
                       <p> {data?.DetailsData?.businessdetails?.location}</p>
                     </div>
                   </div>

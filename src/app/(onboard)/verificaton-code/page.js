@@ -52,7 +52,6 @@
 //   };
 
 //   const onSubmit = async (data: any) => {
-//     console.log(data, "comes in verification code");
 
 //     const tempOTP = data.otp.map((obj) => obj.code).join("");
 //     if (tempOTP !== "") {

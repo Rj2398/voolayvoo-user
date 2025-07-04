@@ -14,9 +14,6 @@ const ClientComponent = ({ vooponDetail, qrCode }) => {
   const [open, setOpen] = useState(false);
   const [openQrCode, setOpenQrCode] = useState(false);
 
-  console.log(vooponDetail, "vooponDetailvooponDetailvooponDetail");
-
-  console.log(qrCode, "hello worlid");
   let pathName = usePathname();
 
   const searchParams = useSearchParams();

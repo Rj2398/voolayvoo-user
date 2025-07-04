@@ -13,7 +13,6 @@ import { useDispatch } from "react-redux";
 const ClientComponent = ({ notificationData }) => {
   const { isAuthenticated, logout, userDetails } = useAuth();
   const router = useRouter();
-  console.log(userDetails, "user details of first time signup");
 
   const dispatch = useDispatch();
 
@@ -28,7 +27,6 @@ const ClientComponent = ({ notificationData }) => {
         },
       });
 
-      console.log(res.data, "log out api hitted");
     } catch (error) {
       console.error("Error during logout:", error);
     }
@@ -117,12 +115,12 @@ const ClientComponent = ({ notificationData }) => {
               <span>
                 <Image
                   width={28}
-                  height={28}
-                  alt={""}
+                  height={28} style={{borderRadius:"50%"}}
+                  alt={"profile_image"}
                   src={
                     userDetails?.profile_image
                       ? `${BASE_URL}${userDetails?.profile_image}`
-                      : "/images/user.png"
+                      : "/images/default.svg"
                   }
                 />
               </span>

@@ -10,7 +10,6 @@ import { BASE_URL } from "@/constant/constant";
 const VooponDetail = () => {
   const { isAuthenticated, userDetails } = useAuth();
   const [vooponDetail, setVooponDetail] = useState(null); // Holds event details
-  console.log(vooponDetail, "******************");
   const params = useParams();
   const searchParams = useSearchParams();
   const match_number = searchParams.get("match_number");
@@ -38,7 +37,7 @@ const VooponDetail = () => {
 
       // Send the POST request with FormData and Bearer token
       const response = await fetch(
-        "https://vooleyvoo.tgastaging.com/api/auth/user_my_voopon_detail_list",
+        (`${BASE_URL}/api/auth/user_my_voopon_detail_list`),
         {
           method: "POST",
           headers: {
@@ -53,7 +52,6 @@ const VooponDetail = () => {
       }
 
       const resVoopon = await response.json();
-      console.log(resVoopon, "response data");
       setVooponDetail(resVoopon.data);
     } catch (error) {
       console.error("Error fetching event details:", error);

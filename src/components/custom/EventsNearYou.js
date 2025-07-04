@@ -13,7 +13,6 @@
 //   // here is to merge data into array
 
 //   const [combinedArray, setCombinedArray] = useState([]);
-//   console.log(combinedArray, "combinedArray length");
 //   useEffect(() => {
 //     // Only proceed if staticItems and its properties exist
 //     if (staticItems?.business_events && staticItems?.promoter_data) {
@@ -171,10 +170,7 @@
 //                   <p>No Data Exist</p>
 //                 ) : (
 //                   combinedArray?.map((item, index) => {
-//                     console.log(
-//                       item,
-//                       "hello item data comes form thisgggggggggghg"
-//                     );
+//                   
 //                     return (
 //                       <div
 //                         className="event-brand-box"

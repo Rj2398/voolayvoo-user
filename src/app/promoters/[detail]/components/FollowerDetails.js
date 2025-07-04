@@ -11,10 +11,8 @@ import { toast } from "react-toastify";
 export default function FollowerDetails({ promoter_id }) {
   const { isAuthenticated, userDetails } = useAuth();
   const [followerData, setFollowerData] = useState({});
-  console.log(followerData, "hello folloer data comes from this");
 
   const [reload, setReload] = useState(false);
-  console.log(promoter_id, "promoter _id data comes from this jsjsfjsfsds");
   const [checkedFollow, setCheckedFollow] = useState(null);
 
   const router = useRouter();
@@ -26,8 +24,6 @@ export default function FollowerDetails({ promoter_id }) {
   }, [reload]);
 
   const getFollowStatus = async () => {
-    console.log(promoter_id, "hello idddd jhjshh");
-
     const formData = new FormData();
     formData.append("user_id", userDetails.user_id);
 
@@ -45,9 +41,7 @@ export default function FollowerDetails({ promoter_id }) {
         }
       );
 
-      if (response?.data?.code == "200")
-        console.log("get follow data", response.data);
-      setCheckedFollow(response?.data?.data?.follow_status);
+      if (response?.data) setCheckedFollow(response?.data?.data?.follow_status);
       setReload((prev) => !prev);
       // setCheckStatus(response?.data?.data);
     } catch (error) {
@@ -148,8 +142,6 @@ export default function FollowerDetails({ promoter_id }) {
   // };
 
   const followByUsers = async (id) => {
-    console.log(id, promoter_id, "hello idddd jhjshh");
-
     const formData = new FormData();
     formData.append("user_id", userDetails.user_id);
 
@@ -167,7 +159,6 @@ export default function FollowerDetails({ promoter_id }) {
           },
         }
       );
-      console.log("response of this promoter api", response.data);
       // setCheckedFollow((pre) => !pre);
       setReload((prev) => !prev);
       // setCheckStatus(response?.data?.data);
@@ -180,7 +171,7 @@ export default function FollowerDetails({ promoter_id }) {
     <div className="flowers">
       <span>
         <Image width={33} height={20} src="/images/followers-icon.png" alt="" />{" "}
-        Followers
+        {}Followers
       </span>
 
       <span>

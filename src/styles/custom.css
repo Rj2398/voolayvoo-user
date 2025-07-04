@@ -132,6 +132,14 @@ code written by rajan
   padding: 15px;
 }
 
+.password-popup .modal {
+  background: none !important;
+  height: 100%;
+  width: 100%;
+  border-radius: 15px;
+  padding: 15px;
+}
+
 .modal-overlay {
   position: absolute;
   top: 0;

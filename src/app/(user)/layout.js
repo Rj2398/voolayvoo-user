@@ -12,13 +12,11 @@ export default function RootLayout({ children }) {
   const { isAuthenticated } = useAuth();
   const [isMounted, setIsMounted] = useState(false);
 
-  console.log(isAuthenticated, "heloo authenticated data h");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (isMounted) {
       if (!isAuthenticated) {
-        console.log("Redirecting to /");
         router.push("/");
       } else {
         setLoading(false);
@@ -31,7 +29,6 @@ export default function RootLayout({ children }) {
   // useEffect(() => {
   //   setIsMounted(true); // Ensures client-side rendering is handled correctly
   //   if (!isAuthenticated) {
-  //     console.log("not runned");
   //     router.push("/voopons");
   //   }
   // }, [isAuthenticated, router]);

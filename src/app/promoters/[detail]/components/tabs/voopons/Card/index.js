@@ -3,8 +3,6 @@ import { checkExpirationStatus } from "@/utils/voopanFunction";
 import { DateTime } from "luxon";
 import Image from "next/image";
 const Card = ({ data }) => {
-  console.log(data, "hello voopons comes form vooponse");
-
   return (
     <div className="col-lg-3 col-md-6">
       <div className="voopan-box">
@@ -16,12 +14,11 @@ const Card = ({ data }) => {
             width={125}
             height={125}
             src={
-              data?.vooponimage?.image_name
-                ? `${BASE_URL}${data?.vooponimage?.image_name}`
+              data?.vooponimage?.image_name ? `${BASE_URL}${data?.vooponimage?.image_name}` : data?.business_voopon_image?.image_name ? `${BASE_URL}${data?.business_voopon_image?.image_name}` 
                 : "/images/voopons-logo-1.png"
             }
             style={{ objectFit: "cover" }}
-            alt=""
+            alt="voopons"
           />
         </div>
 

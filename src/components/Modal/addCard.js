@@ -51,7 +51,7 @@ const stripePromise = loadStripe(STRIPE_PUB_KEY);
 
 const AddCard = ({ open, setOpen, callBack }) => {
   return (
-    <Modal open={open}>
+    <Modal open={open} className="password-popup">
       <Box>
         <Elements stripe={stripePromise}>
           <CheckoutForm setOpen={setOpen} callBack={callBack} />

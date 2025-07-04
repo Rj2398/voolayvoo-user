@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
 const Collaborator = ({ open, setOpen, data }) => {
-  console.log(data, "hello data collaborator");
   const router = useRouter();
   const goToCollaborator = (id) => {
     if (id) {
@@ -16,7 +15,7 @@ const Collaborator = ({ open, setOpen, data }) => {
   };
   return (
     <>
-      <Modal open={open}>
+      <Modal open={open} className="password-popup">
         <Box>
           <div
             className="modal fade show"

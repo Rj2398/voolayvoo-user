@@ -29,7 +29,6 @@ async function getData() {
 const About = async () => {
   const { aboutData } = await getData();
   const separatedContent = separateContentWithoutParser(aboutData);
-  console.log("******", separatedContent, "h111111111");
 
   return (
     <>

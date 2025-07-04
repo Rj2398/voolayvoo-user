@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import Modal from "react-modal";
 
 const AuthModal = ({ isOpen, onClose }) => {
-  console.log(isOpen, "is open");
 
   // Custom styles for the modal, including transition for the animation
   const customStyles = {

@@ -28,7 +28,6 @@ const ClientComponent = ({ voopon_detail }) => {
   const [quantity, setQuantity] = useState(1);
   const { isAuthenticated, userDetails } = useAuth();
   const [reload, setReload] = useState(false);
-  console.log(userDetails, "detailss detaisss");
   const router = useRouter();
   let pathName = usePathname();
   const params = useParams();
@@ -71,13 +70,11 @@ const ClientComponent = ({ voopon_detail }) => {
         voopon_quantity: `${quantity}`,
         event_quantity: null,
       };
-      console.log(requestData, "hello freee paramss");
       const response = await postFetchDataWithAuth({
         data: requestData,
         endpoint: "user_free_buy_now",
         authToken: userDetails.token,
       });
-      console.log(response, "hello freee userrseere");
 
       if (response.success) {
         setReload(!reload);
@@ -87,7 +84,6 @@ const ClientComponent = ({ voopon_detail }) => {
         throw response;
       }
     } catch (error) {
-      console.log(error, "log error");
     }
   };
 
@@ -115,7 +111,6 @@ const ClientComponent = ({ voopon_detail }) => {
       };
     }
 
-    console.log(requestData, "params during vooponss");
 
     try {
       const response = await postFetchDataWithAuth({
@@ -173,7 +168,6 @@ const ClientComponent = ({ voopon_detail }) => {
                 {voopon_detail?.voopon_one?.collaborator_data?.length > 0 &&
                   voopon_detail?.voopon_one?.collaborator_data.map(
                     (collaborator, idx) => {
-                      console.log(collaborator, "collaboratorrrrrr");
 
                       if (idx < 3) {
                         return (

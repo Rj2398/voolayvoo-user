@@ -1,4 +1,5 @@
-"use server";
+// "use server";
+"use client";
 import Image from "next/image";
 import Tabs from "./components/tabs";
 import { BASE_URL } from "@/constant/constant";
@@ -39,7 +40,6 @@ async function getData(detail, userID) {
     });
 
     const resPromo_RatingRes = await resPromo_Rating.json();
-    console.log(resPromo_RatingRes, "res data of promoter data");
 
     const promoterDetails = await resPromoter.json();
     const promoterTabEvents = await resEvents.json();
@@ -81,11 +81,8 @@ async function getData(detail, userID) {
 }
 const Detail = async ({ params: { detail } }) => {
   const { promoter_detail, tabs, rating_details } = await getData(detail);
-  console.log(rating_details, "rajan malakar");
   // const followStatus = check_follow_status?.data[2]?.follow_status;
-  // console.log(check_follow_status, "shdfjkhasjkdfhshdfsdjk");
-
-  // console.log(followStatus, "rajan malakar");
+  console.log(promoter_detail, "promoter_detail");
 
   return (
     <>

@@ -12,8 +12,6 @@ const Reviews = ({ promoterId, ratingData }) => {
   const { handleSubmit, register, setValue, getValues, reset } = useForm();
   const { userDetails } = useAuth();
 
-  console.log(ratingData, "rating data comes form this*******");
-
   // const searchParams = useSearchParams();
   const onSubmit = (e) => {
     postFeeback();
@@ -53,6 +51,8 @@ const Reviews = ({ promoterId, ratingData }) => {
     }
   };
 
+const roundToNearestHalf = (num) => Math.round(num * 2) / 2;
+
   return (
     <>
       <div
@@ -65,7 +65,7 @@ const Reviews = ({ promoterId, ratingData }) => {
           <div className="rating-points">
             <div className="rating-number">
               {" "}
-              {ratingData?.average_total_count_star}
+              {ratingData?.average_total_count_star?.toFixed(2)}
             </div>
             <div className="rating-star">
               {/* <span>
@@ -84,7 +84,7 @@ const Reviews = ({ promoterId, ratingData }) => {
                 <img src="../images/star-big-blank.png" alt="" />
               </span> */}
               <Rating
-                value={ratingData?.average_total_count_star}
+                value={roundToNearestHalf(ratingData?.average_total_count_star)}
                 onChange={(event, newValue) => {}}
                 precision={0.5}
                 disabled={true}

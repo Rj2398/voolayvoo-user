@@ -1577,18 +1577,25 @@ li.prom-tab-designs,
   width: 51px;
   height: 53px;
   position: absolute;
+  /* top: 0;
+  left: 0; */
   top: 0;
-  left: 0;
+  left: 10px;
 }
 
 .referal-icon:after {
   content: "";
-  background: url(/images/Refreal-icon.png);
-  width: 51px;
-  height: 100%;
+  background: url(/images/Refreal-icon.png) no-repeat center;
+  background-size: cover;
+  width: 53px;
+  height: 53px;
   position: absolute;
+  /* top: 0;
+  left: 0; */
   top: 0;
-  left: 0;
+  left: 11px;
+  /* height: 100%; */
+  /* border: 1px solid black; */
 }
 
 .email-icon:after {
@@ -1597,8 +1604,10 @@ li.prom-tab-designs,
   width: 51px;
   height: 53px;
   position: absolute;
+  /* top: 0;
+  left: 0; */
   top: 0;
-  left: 0;
+  left: 10px;
 }
 
 .password-icon:after {
@@ -1607,8 +1616,10 @@ li.prom-tab-designs,
   width: 51px;
   height: 53px;
   position: absolute;
-  top: 0;
-  left: 0;
+     /* top: 0;
+  left: 0; */
+  top: 1px;
+  left: 10px;
 }
 
 .same-inner-tab > h1 {
@@ -6122,3 +6133,31 @@ label.textarea-fields-inner-list-label {
   border-radius: 30px;
   align-items: center;
 }
+
+
+.css-1qqgbpl-MuiRating-root.Mui-disabled{
+  opacity: 1 !important;
+}
+
+.howit-txt li{
+  list-style: none !important;
+}
+
+.react-multiple-carousel__arrow--left {
+  left: calc(-1%) !important;
+}
+.react-multiple-carousel__arrow--right {
+  right: calc(-1%) !important;
+}
+.react-multiple-carousel__arrow::before{
+  color:#E60023 !important;
+}
+.react-multiple-carousel__arrow{
+  background-color: transparent !important;
+  border: none !important;
+  outline: none !important;
+  width: 30px !important;
+  height: 30px !important;
+}
+
+

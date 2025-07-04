@@ -13,7 +13,7 @@ export default function CustomDatePicker({ date, onChange }) {
       setSelectDate([]);
       onChange([]);
     } else {
-      onChange(selectDate);
+            onChange(selectDate);
     }
   };
 

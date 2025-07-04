@@ -40,7 +40,6 @@ async function getData(id) {
       promoter_data_show: null,
       outerId: item.id,
     }));
-  console.log(filteredData, "filtereddatattatataaatadd ");
 
   if (resultCat.code != 200 || resPromoterData.code != 200) {
     throw new Error("Failed to fetch data");
@@ -61,7 +60,6 @@ const Promoters = () => {
     resPromoteresList: [],
   });
 
-  // console.log(data?.resPromoteresList, "hello user form promoter");
   const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -87,6 +85,7 @@ const Promoters = () => {
       try {
         setLoading(true);
         const result = await getData(userDetails.user_id);
+        // {console.log(result, "result111111111");}
         if (result) {
           setData(result);
           setLoading(false);
@@ -121,7 +120,6 @@ const Promoters = () => {
 
   //   return <div>Error: {errorMessage}</div>;
   // }
-  // console.log(data, "business data categoryfhsjkhfjkashff");
   return (
     <>
       <div

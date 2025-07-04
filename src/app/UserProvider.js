@@ -26,7 +26,6 @@ export default function UserProvider({ children }) {
   }, []);
 
   const login = (data) => {
-    console.log(data, "comes from dispatch");
     setIsAuthenticated(true);
     const newStoreData = {
       token: data.token,

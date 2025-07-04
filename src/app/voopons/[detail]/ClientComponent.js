@@ -21,14 +21,13 @@ const ClientComponent = ({ voopon_detail }) => {
   const [openCard, setOpenCard] = useState(false);
   const [voopansPrice, setVoopansPrice] = useState(
     voopon_detail?.voopon_one?.voopons_price ||
-      voopon_detail?.voopon_two?.voopons_price ||
-      0
+    voopon_detail?.voopon_two?.voopons_price ||
+    0
   );
 
   const [quantity, setQuantity] = useState(1);
   const { isAuthenticated, userDetails } = useAuth();
   const [reload, setReload] = useState(false);
-  console.log(userDetails, "detailss detaisss");
   const router = useRouter();
   let pathName = usePathname();
   const params = useParams();
@@ -56,9 +55,9 @@ const ClientComponent = ({ voopon_detail }) => {
     setQuantity(qty);
     setVoopansPrice(
       qty *
-        (voopon_detail?.voopon_one?.voopons_price ||
-          voopon_detail?.voopon_two?.voopons_price ||
-          0)
+      (voopon_detail?.voopon_one?.voopons_price ||
+        voopon_detail?.voopon_two?.voopons_price ||
+        0)
     );
   };
 
@@ -72,13 +71,11 @@ const ClientComponent = ({ voopon_detail }) => {
         voopon_quantity: `${quantity}`,
         event_quantity: null,
       };
-      console.log(requestData, "hello freee paramss");
       const response = await postFetchDataWithAuth({
         data: requestData,
         endpoint: "user_free_buy_now",
         authToken: userDetails.token,
       });
-      console.log(response, "hello freee userrseere");
 
       if (response.success) {
         setReload(!reload);
@@ -88,7 +85,6 @@ const ClientComponent = ({ voopon_detail }) => {
         throw response;
       }
     } catch (error) {
-      console.log(error, "log error");
     }
   };
 
@@ -116,7 +112,6 @@ const ClientComponent = ({ voopon_detail }) => {
       };
     }
 
-    console.log(requestData, "params during vooponss");
 
     try {
       const response = await postFetchDataWithAuth({
@@ -136,8 +131,8 @@ const ClientComponent = ({ voopon_detail }) => {
         typeof error === "string"
           ? `${error}`
           : error?.message
-          ? error?.message
-          : `${error}`;
+            ? error?.message
+            : `${error}`;
       toast.error(errorMessage);
     }
   };
@@ -174,7 +169,6 @@ const ClientComponent = ({ voopon_detail }) => {
                 {voopon_detail?.voopon_one?.collaborator_data?.length > 0 &&
                   voopon_detail?.voopon_one?.collaborator_data.map(
                     (collaborator, idx) => {
-                      console.log(collaborator, "collaboratorrrrrr");
 
                       if (idx < 3) {
                         return (
@@ -208,55 +202,55 @@ const ClientComponent = ({ voopon_detail }) => {
 
           {(voopon_detail?.voopon_one?.collaborator_data?.length > 0 ||
             voopon_detail?.voopon_two?.collaborator_data?.length > 0) && (
-            <div className="collaborators">
-              <span>
-                <Image
-                  width={31}
-                  height={31}
-                  src="/images/collabo-icon.png"
-                  alt="images"
-                  className="img-fluid"
-                />
-              </span>
-              <span className="col-font" onClick={() => setOpen(true)}>
-                Collaborator(s):
-              </span>
-              <span>
-                {[
-                  ...(voopon_detail?.voopon_one?.collaborator_data || []),
-                  ...(voopon_detail?.voopon_two?.collaborator_data || []),
-                ]
-                  .slice(0, 3)
-                  .map((collaborator, idx) => (
-                    <Image
-                      key={collaborator?.id}
-                      width={31}
-                      height={31}
-                      src={
-                        collaborator?.promoter_data?.profile_image
-                          ? `${BASE_URL}/${collaborator?.promoter_data?.profile_image}`
-                          : "/images/colebr-1.png"
-                      }
-                      alt="images"
-                      className="collabeIcon"
-                    />
-                  ))}
+              <div className="collaborators">
+                <span>
+                  <Image
+                    width={31}
+                    height={31}
+                    src="/images/collabo-icon.png"
+                    alt="images"
+                    className="img-fluid"
+                  />
+                </span>
+                <span className="col-font" onClick={() => setOpen(true)}>
+                  Collaborator(s):
+                </span>
+                <span>
+                  {[
+                    ...(voopon_detail?.voopon_one?.collaborator_data || []),
+                    ...(voopon_detail?.voopon_two?.collaborator_data || []),
+                  ]
+                    .slice(0, 3)
+                    .map((collaborator, idx) => (
+                      <Image
+                        key={collaborator?.id}
+                        width={31}
+                        height={31}
+                        src={
+                          collaborator?.promoter_data?.profile_image
+                            ? `${BASE_URL}/${collaborator?.promoter_data?.profile_image}`
+                            : "/images/colebr-1.png"
+                        }
+                        alt="images"
+                        className="collabeIcon"
+                      />
+                    ))}
 
-                {[
-                  ...(voopon_detail?.voopon_one?.collaborator_data || []),
-                  ...(voopon_detail?.voopon_two?.collaborator_data || []),
-                ].length > 3 && (
-                  <div className="more">
-                    +
-                    {[
-                      ...(voopon_detail?.voopon_one?.collaborator_data || []),
-                      ...(voopon_detail?.voopon_two?.collaborator_data || []),
-                    ].length - 3}
-                  </div>
-                )}
-              </span>
-            </div>
-          )}
+                  {[
+                    ...(voopon_detail?.voopon_one?.collaborator_data || []),
+                    ...(voopon_detail?.voopon_two?.collaborator_data || []),
+                  ].length > 3 && (
+                      <div className="more">
+                        +
+                        {[
+                          ...(voopon_detail?.voopon_one?.collaborator_data || []),
+                          ...(voopon_detail?.voopon_two?.collaborator_data || []),
+                        ].length - 3}
+                      </div>
+                    )}
+                </span>
+              </div>
+            )}
 
           <Collaborator
             open={open}
@@ -293,7 +287,7 @@ const ClientComponent = ({ voopon_detail }) => {
                     (voopon_detail?.voopon_two?.voopons_valid_thru &&
                       DateTime.fromFormat(
                         voopon_detail?.voopon_one?.voopons_valid_thru ||
-                          voopon_detail?.voopon_two?.voopons_valid_thru,
+                        voopon_detail?.voopon_two?.voopons_valid_thru,
                         "yyyy-MM-dd"
                       ).toFormat("MMM dd, yyyy"))}
                 </span>
@@ -354,52 +348,64 @@ const ClientComponent = ({ voopon_detail }) => {
                 </span>
                 <div className="show-social">
                   <span>
-                    <Image
-                      width={24}
-                      height={24}
-                      src="/images/social-icon-1.svg"
-                      alt="images"
-                    />
+                    <a href="https://www.x.com" target="_blank">
+                      <Image
+                        width={24}
+                        height={24}
+                        src="/images/social-icon-1.svg"
+                        alt="images"
+                      />
+                    </a>
                   </span>
                   <span>
-                    <Image
-                      width={24}
-                      height={24}
-                      src="/images/social-icon-2.svg"
-                      alt="images"
-                    />
+                    <a href="https://www.whatsapp.com/" target="_blank">
+                      <Image
+                        width={24}
+                        height={24}
+                        src="/images/social-icon-2.svg"
+                        alt="images"
+                      />
+                    </a>
                   </span>
                   <span>
-                    <Image
-                      width={24}
-                      height={24}
-                      src="/images/social-icon-3.svg"
-                      alt="images"
-                    />
+                    <a href="https://www.instagram.com" target="_blank">
+                      <Image
+                        width={24}
+                        height={24}
+                        src="/images/social-icon-3.svg"
+                        alt="images"
+                      />
+                    </a>
                   </span>
                   <span>
-                    <Image
-                      width={24}
-                      height={24}
-                      src="/images/social-icon-4.svg"
-                      alt="images"
-                    />
+                    <a href="https://www.facebook.com" target="_blank">
+                      <Image
+                        width={24}
+                        height={24}
+                        src="/images/social-icon-4.svg"
+                        alt="images"
+                      />
+                    </a>
                   </span>
                   <span>
-                    <Image
-                      width={24}
-                      height={24}
-                      src="/images/social-icon-5.svg"
-                      alt="images"
-                    />
+                    <a href="https://www.snapchat.com/" target="_blank">
+                      <Image
+                        width={24}
+                        height={24}
+                        src="/images/social-icon-5.svg"
+                        alt="images"
+                      />
+                    </a>
                   </span>
                   <span>
-                    <Image
-                      width={24}
-                      height={24}
-                      src="/images/social-icon-6.svg"
-                      alt="images"
-                    />
+                    <a href="https://www.linkedin.com/" target="_blank">
+                      <Image
+                        width={24}
+                        height={24}
+                        src="/images/social-icon-6.svg"
+                        alt="images"
+                      />
+                    </a>
                   </span>
                 </div>
               </div>

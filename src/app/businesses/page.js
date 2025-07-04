@@ -49,7 +49,6 @@ async function getData(id) {
 
   const resultCat = await resCategory.json();
   const resBusinessData = await resBusiness.json();
-  // console.log(resBusinessData?.data, "hello usejhfjshdj");
   const filteredData = resBusinessData?.data
     ?.filter((item) => item.business_data_show)
     .map((item) => ({
@@ -58,7 +57,6 @@ async function getData(id) {
       business_data_show: null,
       outerId: item.id,
     }));
-  console.log(filteredData, "filtereddatattatataaatadd ");
 
   if (resultCat.code != 200 || resBusinessData.code != 200) {
     throw new Error("Failed to fetch data");
@@ -135,7 +133,6 @@ const Businesses = () => {
 
   //   return <div>Error: {errorMessage}</div>;
   // }
-  // console.log(data, "business data categoryfhsjkhfjkashff");
   return (
     <>
       <div

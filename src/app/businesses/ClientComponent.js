@@ -23,20 +23,11 @@ import {
 import axios from "axios";
 import { useSelector } from "react-redux";
 
-//
-
 const ClientComponent = ({ categoryList, businessList }) => {
-  console.log(categoryList, "hello categoryList  data*********");
-  console.log(businessList, "hello business list data");
+  console.log(businessList, "business list ***");
   const { categoryId } = useSelector((state) => state.user);
-  console.log(categoryId, "hello data comes from this");
-
   const [tempBusinessList, setTempBusinessList] = useState([]);
-  console.log(tempBusinessList, "hello tempbusineeesesesesess");
-  const [likeStatus, setLikeStatus] = useState(0);
-  //
 
-  //
   const [mainList, setMainList] = useState([]);
   const [pageNo, setPageNo] = useState(1);
   const [selectCategory, setSelectCategory] = useState({
@@ -58,12 +49,10 @@ const ClientComponent = ({ categoryList, businessList }) => {
   const [locationFilter, setLocationFilter] = useState([]);
   const { isAuthenticated, userDetails } = useAuth();
   const [silderValue, setSliderValue] = useState({ from: 0, to: 100 });
+  const [sortOption, setSortOption] = useState("default");
 
   let pathName = usePathname();
-
   const router = useRouter();
-
-  console.log(router, "log data from this");
 
   useEffect(() => {
     const fetchLocation = async () => {
@@ -104,14 +93,7 @@ const ClientComponent = ({ categoryList, businessList }) => {
     }
   }, [categoryList, businessList]);
 
-  // for likes code
-
-  // favorite code
-
-  // favorite code
-
   const [buttonStatus, setButtonStatus] = useState({});
-  console.log(buttonStatus, "fasdfsdfg");
 
   useEffect(() => {
     const initialButtonStatus = renderList.reduce((acc, item) => {
@@ -120,16 +102,15 @@ const ClientComponent = ({ categoryList, businessList }) => {
     }, {});
     setButtonStatus(initialButtonStatus);
   }, [renderList]);
+
+  console.log(buttonStatus, "fslkjdfsjfjsfjsjf");
   const handleFavoriteClick = async (item) => {
-    console.log(item, "comes form thishjfhsdjfhsjdfhjshfjshfshfsh");
     const isLiked = buttonStatus[item];
     // Prepare FormData
     const formData = new FormData();
     formData.append("user_id", userDetails?.user_id);
     formData.append("business_id", item);
     formData.append("like_status", isLiked ? "0" : "1");
-
-    //
 
     try {
       const response = await axios.post(
@@ -147,8 +128,6 @@ const ClientComponent = ({ categoryList, businessList }) => {
         ...prevStatus,
         [item]: !isLiked, // Disable the button that is pressed
       }));
-
-      console.log(response.data, "response of like data from business"); // Log the response for debugging
     } catch (error) {
       console.error("Error updating like status:", error);
     }
@@ -205,18 +184,12 @@ const ClientComponent = ({ categoryList, businessList }) => {
   // }
   // eslint-disable-next-line
   // }, [isAuthenticated, reload]);
+
   useEffect(() => {
     let tempList = mainList;
 
     if (appliedFilter.isCategoryApply) {
       let newPrmoter = tempList.filter((listItem) => {
-        console.log(listItem, "helolololo list item");
-
-        console.log(
-          typeof listItem.category_id, // Logs the type of listItem.category_id
-          "map type cate", // Logs the string "map type cate"
-          typeof Number(selectCategory.category_id) // Logs the type of selectCategory.category_id
-        );
         // listItem.category_id.includes(selectCategory.category_id)
         return (
           Number(listItem.category_id) === Number(selectCategory.category_id)
@@ -280,7 +253,9 @@ const ClientComponent = ({ categoryList, businessList }) => {
       tempList = tempList;
     }
     setPageNo(1);
-    setRenderList(tempList);
+    if (sortOption == "default") {
+      setRenderList(tempList);
+    }
     // eslint-disable-next-line
   }, [appliedFilter, locationFilter]);
 
@@ -325,7 +300,7 @@ const ClientComponent = ({ categoryList, businessList }) => {
     // }
   };
   // Sorting Code 09-09-2024
-  const [sortOption, setSortOption] = useState("default");
+
   const handleSortOption = (option) => {
     setSortOption(option);
     setAppliedFilter((pre) => ({ ...pre, isSortApply: true }));
@@ -339,10 +314,19 @@ const ClientComponent = ({ categoryList, businessList }) => {
           (a, b) => a.event_away_distance - b.event_away_distance
         );
         break;
+
       case "upcomingEvents":
-        tempList = tempList.sort(
-          (a, b) => new Date(a.events_date) - new Date(b.events_date)
-        );
+        const today = new Date();
+        today.setHours(0, 0, 0, 0); // Strip time for accurate comparison
+
+        tempList = tempList
+          .filter((item) => {
+            if (!item.events_date) return false;
+            const eventDate = new Date(item.events_date);
+            eventDate.setHours(0, 0, 0, 0);
+            return eventDate >= today;
+          })
+          .sort((a, b) => new Date(a.events_date) - new Date(b.events_date));
         break;
       case "lowToHigh":
         tempList = tempList.sort((a, b) => a.rating - b.rating);
@@ -354,6 +338,41 @@ const ClientComponent = ({ categoryList, businessList }) => {
     }
     setRenderList(tempList);
   };
+
+  // const handleSortOption = (option) => {
+  //   setSortOption(option);
+  //   setAppliedFilter((pre) => ({ ...pre, isSortApply: true }));
+  //   let tempList = mainList;
+
+  //   switch (option) {
+  //     case "topRating":
+  //       tempList = tempList.sort((a, b) => b.rating - a.rating);
+  //       break;
+  //     case "nearBy":
+  //       tempList = tempList.sort(
+  //         (a, b) => a.event_away_distance - b.event_away_distance
+  //       );
+  //       break;
+  //     case "upcomingEvents":
+  //       const currentDate = DateTime.now().startOf('day');
+  //       tempList = tempList
+  //         .filter(item => {
+  //           const eventDate = DateTime.fromFormat(item.events_date, "yyyy-MM-dd").startOf('day');
+  //           return eventDate >= currentDate;
+  //         })
+  //         .sort((a, b) => new Date(a.events_date) - new Date(b.events_date));
+  //       break;
+  //     case "lowToHigh":
+  //       tempList = tempList.sort((a, b) => a.rating - b.rating);
+  //       break;
+  //     case "highToLow":
+  //       tempList = tempList.sort((a, b) => b.rating - a.rating);
+  //       break;
+  //     default:
+  //       tempList = mainList;
+  //   }
+  //   setRenderList(tempList);
+  // };
 
   const [sortedCategoryList, setSortedCategoryList] = useState([]);
 
@@ -420,7 +439,6 @@ const ClientComponent = ({ categoryList, businessList }) => {
   // favorite code
 
   const [buttonStatus, setButtonStatus] = useState({});
-  console.log(buttonStatus, "fasdfsdfg");
 
   useEffect(() => {
     const initialButtonStatus = renderList.reduce((acc, item) => {
@@ -430,7 +448,6 @@ const ClientComponent = ({ categoryList, businessList }) => {
     setButtonStatus(initialButtonStatus);
   }, [renderList]);
   const handleFavoriteClick = async (item) => {
-    console.log(item, "comes form thishjfhsdjfhsjdfhjshfjshfshfsh");
 
     // Prepare FormData
     const formData = new FormData();
@@ -457,7 +474,6 @@ const ClientComponent = ({ categoryList, businessList }) => {
         [item]: true, // Disable the button that is pressed
       }));
 
-      console.log(response.data, "response of like data from business"); // Log the response for debugging
     } catch (error) {
       console.error("Error updating like status:", error);
     }
@@ -474,8 +490,6 @@ const ClientComponent = ({ categoryList, businessList }) => {
     }, {});
     setLikesState(initialButtonStatus);
   }, [renderList]);
-  console.log(likesState, "likes status data comes formthis");
-  //
 
   const handleCheckboxClick = async (event, business_id) => {
     const newStatus = likesState[business_id] == 0 ? 1 : 0;
@@ -501,7 +515,6 @@ const ClientComponent = ({ categoryList, businessList }) => {
         ...prevStatus,
         [business_id]: newStatus,
       }));
-      console.log("Response: promoter", response.data);
     } catch (error) {
       // console.error('Error:', error.response ? error.response.data : error.message);
     }
@@ -550,11 +563,6 @@ const ClientComponent = ({ categoryList, businessList }) => {
     }
   }, [categoryId]);
   const handleCategorySelect = (category) => {
-    console.log(
-      category?.category_id,
-      "hello category list data from thissss api"
-    );
-
     const isCategoryEqual =
       category.category_id.toString() === selectCategory.category_id;
     if (!isCategoryEqual) {
@@ -607,7 +615,6 @@ const ClientComponent = ({ categoryList, businessList }) => {
           },
         }
       );
-      console.log("Response: promoter", response.data);
     } catch (error) {
       // console.error('Error:', error.response ? error.response.data : error.message);
     }
@@ -630,7 +637,10 @@ const ClientComponent = ({ categoryList, businessList }) => {
                         ? "#F10027"
                         : "black",
                   }}
-                  onClick={() => handleCategorySelect(item)}
+                  onClick={() => {
+                    handleCategorySelect(item);
+                    setSortOption("default");
+                  }}
                   id={item.category_id}
                 >
                   {item.category_name} <span>({item.count})</span>
@@ -769,54 +779,79 @@ const ClientComponent = ({ categoryList, businessList }) => {
 
           {Array.isArray(renderList) &&
             renderList.length > 0 &&
-            renderList.map((item, index) => {
-              console.log(item, "comes form businness data field");
-              return (
-                <div
-                  key={`${item.name}-${index}`}
-                  className="col-lg-4 col-md-6"
-                >
-                  <div className="event-brand-box">
-                    <div className="brand-logo">
-                      <div className="brand-heart">
-                        <form>
-                          <input
-                            type="checkbox"
-                            id={`favorite-${item.category_id}`}
-                            checked={buttonStatus[item.category_id] === true} // Checks current status
-                            onChange={() =>
-                              handleFavoriteClick(item.category_id)
-                            }
-                            aria-label={`Favorite ${item.name}`}
-                          />
-                          <label htmlFor={`favorite-${item.category_id}`}>
-                            <img
-                              src={
-                                buttonStatus[item.category_id] === true
-                                  ? "/images/user-bookmark-2.png"
-                                  : "/images/user-bookmark.png"
+            renderList
+              .filter(
+                (item, index, self) =>
+                  index ===
+                  self.findIndex((i) => i.business_id === item.business_id)
+              )
+              .map((item, index) => {
+                return (
+                  <div
+                    key={`${item.name}-${index}`}
+                    className="col-lg-4 col-md-6"
+                    style={{ marginBottom: "20px" }}
+                  >
+                    <div
+                      className="event-brand-box"
+                      style={{
+                        height: "100%",
+                        display: "flex",
+                        flexDirection: "column",
+                      }}
+                    >
+                      <div
+                        className="brand-logo"
+                        style={{
+                          height: "254px",
+                          position: "relative",
+                          overflow: "hidden",
+                        }}
+                      >
+                        <div className="brand-heart">
+                          <form>
+                            <input
+                              type="checkbox"
+                              id={`favorite-${item.business_id}`}
+                              checked={buttonStatus[item.business_id] === true} // Checks current status
+                              onChange={() =>
+                                handleFavoriteClick(item.business_id)
                               }
-                              alt="Bookmark"
-                              width={25}
-                              height={23}
+                              aria-label={`Favorite ${item.name}`}
                             />
-                          </label>
-                        </form>
-                      </div>
-                      <Image
-                        width={254}
-                        height={254}
-                        src={
-                          item?.profile_image
-                            ? `${BASE_URL}/${item?.profile_image}`
-                            : "/images/near-event1.png"
-                        }
-                        alt=""
-                      />
-                      <div className="brand-follow">
-                        {/* for follow */}
+                            <label htmlFor={`favorite-${item.business_id}`}>
+                              <img
+                                src={
+                                  buttonStatus[item.business_id] === true
+                                    ? "/images/user-bookmark-2.png"
+                                    : "/images/user-bookmark.png"
+                                }
+                                alt="Bookmark"
+                                width={25}
+                                height={23}
+                              />
+                            </label>
+                          </form>
+                        </div>
+                        <Image
+                          width={254}
+                          height={254}
+                          src={
+                            item?.profile_image
+                              ? `${BASE_URL}/${item?.profile_image}`
+                              : "/images/near-event1.png"
+                          }
+                          alt=""
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "cover",
+                          }}
+                        />
+                        <div className="brand-follow">
+                          {/* for follow */}
 
-                        {/* <form>
+                          {/* <form>
                           <input type="checkbox" name="favorite" id="follow" />
                           <label htmlFor="follow">
                             <img
@@ -832,46 +867,46 @@ const ClientComponent = ({ categoryList, businessList }) => {
                           </label>
                         </form> */}
 
-                        {/* testing code */}
+                          {/* testing code */}
 
-                        <form>
-                          <div key={item.business_id}>
-                            <input
-                              type="checkbox"
-                              name="favorite"
-                              id={`follow-${item.business_id}`} // Unique ID for each checkbox
-                              checked={likesState[item.business_id] == 1} // Check if liked
-                              onChange={(e) =>
-                                handleCheckboxClick(e, item.business_id)
-                              } // Pass business_id
-                            />
-                            <label htmlFor={`follow-${item.business_id}`}>
-                              <img
-                                className="brand-follow-check"
-                                src="/images/promoter/follow-plus.svg"
-                                alt="Follow"
-                                style={{
-                                  backgroundColor: "red",
-                                  padding: "5px",
-                                  borderRadius: "50%",
-                                }}
+                          <form>
+                            <div key={item.business_id}>
+                              <input
+                                type="checkbox"
+                                name="favorite"
+                                id={`follow-${item.business_id}`} // Unique ID for each checkbox
+                                checked={likesState[item.business_id] == 1} // Check if liked
+                                onChange={(e) =>
+                                  handleCheckboxClick(e, item.business_id)
+                                } // Pass business_id
                               />
-                              <img
-                                className="brand-follow-check-fill "
-                                style={{
-                                  backgroundColor: "#FF474D",
-                                  padding: "5px",
-                                  borderRadius: "30%",
-                                }}
-                                src="/images/promoter/follow-check.svg"
-                                alt="Following"
-                              />
-                            </label>
-                          </div>
-                        </form>
-                        {/* code written by rajan */}
+                              <label htmlFor={`follow-${item.business_id}`}>
+                                <img
+                                  className="brand-follow-check"
+                                  src="/images/promoter/follow-plus.svg"
+                                  alt="Follow"
+                                  style={{
+                                    backgroundColor: "red",
+                                    padding: "5px",
+                                    borderRadius: "50%",
+                                  }}
+                                />
+                                <img
+                                  className="brand-follow-check-fill "
+                                  style={{
+                                    backgroundColor: "#FF474D",
+                                    padding: "5px",
+                                    borderRadius: "30%",
+                                  }}
+                                  src="/images/promoter/follow-check.svg"
+                                  alt="Following"
+                                />
+                              </label>
+                            </div>
+                          </form>
+                          {/* code written by rajan */}
 
-                        {/* <form>
+                          {/* <form>
                           <input type="checkbox" name="favorite" id="follow" />
                           <label htmlFor="follow">
                             <img
@@ -887,8 +922,8 @@ const ClientComponent = ({ categoryList, businessList }) => {
                             />
                           </label>
                         </form> */}
-                        {/*  date 09-oct-2024 */}
-                        {/* <form>
+                          {/*  date 09-oct-2024 */}
+                          {/* <form>
                           <button
                             type="button"
                             id="follow"
@@ -918,69 +953,85 @@ const ClientComponent = ({ categoryList, businessList }) => {
                             )}
                           </button>
                         </form> */}
+                        </div>
                       </div>
-                    </div>
-                    <div className="event-pad">
-                      <h6>{item?.name}</h6>
+                      <div
+                        className="event-pad"
+                        style={{
+                          flex: 1,
+                          display: "flex",
+                          flexDirection: "column",
+                        }}
+                      >
+                        <h6>{item?.name}</h6>
 
-                      <Rating
-                        value={item?.rating}
-                        onChange={(event, newValue) => {}}
-                        precision={0.5}
-                        disabled={true}
-                      />
-                      <p>
-                        {truncateDescriptionByWords(item?.description, 10) ||
-                          "description"}
-                      </p>
-                      <div className="point-icon">
-                        <span>
-                          {" "}
-                          <Image
-                            width={20}
-                            height={20}
-                            src="/images/location-dot.png"
-                            alt=""
-                          />{" "}
-                          {item?.event_away_distance || 0} miles away{" "}
-                        </span>
-                        <span>
-                          <Image
-                            width={20}
-                            height={20}
-                            src="/images/calendar.png"
-                            alt=""
-                          />{" "}
-                          {DateTime.fromFormat(
-                            item.events_date,
-                            "yyyy-MM-dd"
-                          ).toFormat("MMMM dd, yyyy")}{" "}
-                        </span>
-                        {item?.location && (
+                        <Rating
+                          value={item?.rating}
+                          onChange={(event, newValue) => {}}
+                          precision={0.5}
+                          disabled={true}
+                        />
+                        <p
+                          style={{
+                            flex: 1,
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+                            display: "-webkit-box",
+                            WebkitLineClamp: 3,
+                            WebkitBoxOrient: "vertical",
+                          }}
+                        >
+                          {truncateDescriptionByWords(item?.description, 10) ||
+                            "description"}
+                        </p>
+                        <div className="point-icon">
+                          <span>
+                            {" "}
+                            <Image
+                              width={20}
+                              height={20}
+                              src="/images/location-dot.png"
+                              alt=""
+                            />{" "}
+                            {item?.event_away_distance || 0} miles away{" "}
+                          </span>
                           <span>
                             <Image
                               width={20}
                               height={20}
-                              src="/images/loc-mark.svg"
+                              src="/images/calendar.png"
                               alt=""
                             />{" "}
-                            {item?.location}{" "}
+                            {DateTime.fromFormat(
+                              item.events_date,
+                              "yyyy-MM-dd"
+                            ).toFormat("MMMM dd, yyyy")}{" "}
                           </span>
-                        )}
+                          {item?.location && (
+                            <span>
+                              <Image
+                                width={20}
+                                height={20}
+                                src="/images/loc-mark.svg"
+                                alt=""
+                              />{" "}
+                              {item?.location}{" "}
+                            </span>
+                          )}
+                        </div>
+                        <Link
+                          className="btn btn-viewmore-border "
+                          // href={`/businesses/${item?.id}`}
+                          href={`/businesses/${item?.id}?business_id=${item?.business_id}`}
+                          role="button"
+                        >
+                          View More
+                        </Link>
                       </div>
-                      <Link
-                        className="btn btn-viewmore-border "
-                        // href={`/businesses/${item?.id}`}
-                        href={`/businesses/${item?.id}?business_id=${item?.business_id}`}
-                        role="button"
-                      >
-                        View More
-                      </Link>
                     </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
           {Array.isArray(renderList) && renderList.length === 0 && (
             <div className="row">
               <p className="noDataText">No Businesss </p>
@@ -1009,13 +1060,9 @@ export default ClientComponent;
 //
 
 // const ClientComponent = ({ categoryList, businessList }) => {
-//   console.log(categoryList, "hello categoryList  data*********");
-//   console.log(businessList, "hello business list data");
 //   const { categoryId } = useSelector((state) => state.user);
-//   console.log(categoryId, "hello data comes from this");
 
 //   const [tempBusinessList, setTempBusinessList] = useState([]);
-//   console.log(tempBusinessList, "hello tempbusineeesesesesess");
 //   const [likeStatus, setLikeStatus] = useState(0);
 //   //
 
@@ -1043,10 +1090,7 @@ export default ClientComponent;
 //   const [silderValue, setSliderValue] = useState({ from: 0, to: 100 });
 
 //   let pathName = usePathname();
-
 //   const router = useRouter();
-
-//   console.log(router, "log data from this");
 
 //   useEffect(() => {
 //     const fetchLocation = async () => {
@@ -1094,7 +1138,6 @@ export default ClientComponent;
 //   // favorite code
 
 //   const [buttonStatus, setButtonStatus] = useState({});
-//   console.log(buttonStatus, "fasdfsdfg");
 
 //   useEffect(() => {
 //     const initialButtonStatus = renderList.reduce((acc, item) => {
@@ -1104,7 +1147,6 @@ export default ClientComponent;
 //     setButtonStatus(initialButtonStatus);
 //   }, [renderList]);
 //   const handleFavoriteClick = async (item) => {
-//     console.log(item, "comes form thishjfhsdjfhsjdfhjshfjshfshfsh");
 
 //     // Prepare FormData
 //     const formData = new FormData();
@@ -1131,7 +1173,6 @@ export default ClientComponent;
 //         [item]: true, // Disable the button that is pressed
 //       }));
 
-//       console.log(response.data, "response of like data"); // Log the response for debugging
 //     } catch (error) {
 //       console.error("Error updating like status:", error);
 //     }
@@ -1193,13 +1234,7 @@ export default ClientComponent;
 
 //     if (appliedFilter.isCategoryApply) {
 //       let newPrmoter = tempList.filter((listItem) => {
-//         console.log(listItem, "helolololo list item");
 
-//         console.log(
-//           typeof listItem.category_id, // Logs the type of listItem.category_id
-//           "map type cate", // Logs the string "map type cate"
-//           typeof Number(selectCategory.category_id) // Logs the type of selectCategory.category_id
-//         );
 //         // listItem.category_id.includes(selectCategory.category_id)
 //         return (
 //           Number(listItem.category_id) === Number(selectCategory.category_id)
@@ -1423,7 +1458,6 @@ export default ClientComponent;
 //     }
 //   }, [categoryId]);
 //   const handleCategorySelect = (category) => {
-//     console.log(category, "hello category list data from thissss api");
 
 //     const isCategoryEqual =
 //       category.category_id.toString() === selectCategory.category_id;
@@ -1477,7 +1511,6 @@ export default ClientComponent;
 //           },
 //         }
 //       );
-//       console.log("Response: promoter", response.data);
 //     } catch (error) {
 //       // console.error('Error:', error.response ? error.response.data : error.message);
 //     }

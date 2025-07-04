@@ -14,12 +14,10 @@ const InterestsList = ({ list = [], fullwidth = false }) => {
   useEffect(() => {
     setTempList(list);
   }, [list]);
-  console.log(tempList, "*****************");
 
   const [selectionList, setSelectionList] = useState([]);
   const { userDetails } = useAuth();
   const router = useRouter();
-  console.log(list, "hello list data comes from");
 
   const handleSearchChange = useCallback(
     (event) => {
@@ -248,8 +246,6 @@ const SubCategoryTab = ({ subCat, removeTab }) => {
 
 const CategoryList = ({ item, setSelectionList, selectionList }) => {
   // console for debug
-  console.log(selectionList, "set selection list data");
-  console.log(item, "item data from category list");
 
   const [open, setOpen] = useState(true);
   const handleOpen = useCallback(() => {

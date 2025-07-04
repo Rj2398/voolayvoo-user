@@ -10,35 +10,35 @@ import {
 const Events = ({ dataList = [] }) => {
   const [tempEventList, setTempEventList] = useState([]);
   const [renderList, setRenderList] = useState([]);
-  console.log(renderList, "hello render list data");
 
   const [pageNo, setPageNo] = useState(1);
-  useEffect(() => {
-    const fetchLocation = async () => {
-      try {
-        const position = await getCurrentLocation();
 
-        if (dataList && position) {
-          for (let indxEvent in dataList) {
-            const targetLocation = {
-              latitude: dataList[indxEvent]["latitude"],
-              longitude: dataList[indxEvent]["longitude"],
-            };
-            dataList[indxEvent]["event_away_distance"] =
-              calculateDistanceInMiles(position, targetLocation);
-          }
+  const fetchLocation = async () => {
+    try {
+      const position = await getCurrentLocation();
 
-          let tempEvtList = dataList;
-
-          setTempEventList(tempEvtList);
-          tempEvtList = tempEvtList.filter((item, indx) => indx < 9);
-          setRenderList(tempEvtList);
+      if (dataList && position) {
+        for (let indxEvent in dataList) {
+          const targetLocation = {
+            latitude: dataList[indxEvent]["latitude"],
+            longitude: dataList[indxEvent]["longitude"],
+          };
+          dataList[indxEvent]["event_away_distance"] =
+            calculateDistanceInMiles(position, targetLocation);
         }
-      } catch (error) {
-        console.error("Error getting current location:", error);
-      }
-    };
 
+        let tempEvtList = dataList;
+
+        setTempEventList(tempEvtList);
+        tempEvtList = tempEvtList.filter((item, indx) => indx < 9);
+        setRenderList(tempEvtList);
+      }
+    } catch (error) {
+      console.error("Error getting current location:", error);
+    }
+  };
+
+  useEffect(() => {
     fetchLocation();
   }, [dataList]);
 

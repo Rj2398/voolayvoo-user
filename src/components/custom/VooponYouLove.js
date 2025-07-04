@@ -95,8 +95,6 @@ const VooponYouLove = ({ staticItems, title, title1, brand }) => {
               <div className="owl-stage-outer">
                 <div className="owl-stage">
                   {VooponseYouLove?.map((item, index) => {
-                    console.log(item, "###########");
-
                     return (
                       <div
                         className="owl-item m-3"

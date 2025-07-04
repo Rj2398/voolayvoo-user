@@ -49,7 +49,6 @@ const ClientComponent = ({ eventDetail, qrCode }) => {
     setOpenQrCode(true);
   };
 
-  console.log(eventDetail, "hello event detailsss from detailsss data");
 
   return (
     <>

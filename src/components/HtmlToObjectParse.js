@@ -123,12 +123,12 @@ export function separateContentWithoutParser(htmlString) {
   // Extract content between specific HTML tags
   const aboutContent = extractContent(
     htmlString,
-    "<h3>VoolayVoo</h3>",
-    "<h3>Voopons you will love</h3>"
+    "<h1>VoolayVoo</h1>",
+    "<\/p>\r\n\r\n<p><img"
   );
   const vooponsContent = extractContent(
     htmlString,
-    "<h3>Voopons you will love</h3>",
+    "<h1>Voopons you will love",
     "<h1>Our Mission"
   );
 

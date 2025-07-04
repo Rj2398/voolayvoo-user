@@ -11,7 +11,6 @@ async function getData() {
   if (!resCategory.ok) {
     throw new Error("Failed to fetch data");
   }
-  console.log("resCategory", resultCat.data);
   return {
     categoryList: resultCat.data,
   };

@@ -8,37 +8,35 @@ const containerStyle = {
   height: "713px",
 };
 
-function GoogleMapComp({ markerList }) {
+function GoogleMapComp({ markerList, location }) {
   const [mapLoaded, setMapLoaded] = useState(false);
   const mapRef = useRef(null);
   const markersRef = useRef([]); // Store markers in a ref
   const [map, setMap] = useState(null);
 
-  const [location, setLocation] = useState({ latitude: null, longitude: null });
-  console.log(location, "hello location data");
-  const [error, setError] = useState(null);
+  // const [location, setLocation] = useState({ latitude: "28.3901952", longitude: "79.4066944" });
 
-  useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setLocation({
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude,
-          });
-        },
-        (err) => {
-          setError(err.message);
-        }
-      );
-    } else {
-      setError("Geolocation is not supported by this browser.");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition(
+  //       (position) => {
+  //         setLocation({
+  //           latitude: position.coords.latitude,
+  //           longitude: position.coords.longitude,
+  //         });
+  //       },
+  //       (err) => {
+  //         console.error(err.message);
+  //       }
+  //     );
+  //   } else {
+  //     console.error("Geolocation is not supported by this browser.");
+  //   }
+  // }, []);
 
   const center = {
-    lat: location.latitude || 0, // Provide a default value to prevent null error
-    lng: location.longitude || 0,
+    lat: Number(location.latitude), // Provide a default value to prevent null error
+    lng: Number(location.longitude),
   };
 
   // const center = {
@@ -47,7 +45,6 @@ function GoogleMapComp({ markerList }) {
   // };
 
   // const buildMapInfoCardContent = (info: any): string => {
-  //   console.log(info, "hello world");
 
   //   return `
   //     <div class="map-inner-tooltip">
@@ -71,7 +68,6 @@ function GoogleMapComp({ markerList }) {
   // };
 
   const buildMapInfoCardContent = (info) => {
-    console.log(info, "hello world");
 
     return `
       <div class="map-inner-tooltip">
@@ -157,7 +153,7 @@ function GoogleMapComp({ markerList }) {
 
       const mapOptions = {
         center,
-        zoom: 10,
+        zoom: 6,
         mapId: "MY_NEXTJS_MAPID",
         fullscreenControl: false,
         mapTypeControl: false,

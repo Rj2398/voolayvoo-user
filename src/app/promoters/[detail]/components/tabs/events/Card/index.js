@@ -2,29 +2,32 @@ import { BASE_URL } from "@/constant/constant";
 import { convertTo12HourFormat } from "@/utils/eventFunction";
 import { Widgets } from "@mui/icons-material";
 import { DateTime } from "luxon";
-
+// /images/near-event1.png
 const Card = ({ cardData }) => {
-  console.log(cardData, "hello card data");
-  console.log(cardData?.checked_id, "checked iddddd data ");
-
   const checkedId =
     cardData?.events_data?.checked_id ||
     cardData?.events_data_business?.checked_id ||
     cardData?.checked_id;
+
+    const imageSrc = cardData?.events_data?.eventimage?.image_name ? `${BASE_URL}/${cardData?.events_data?.eventimage?.image_name}` : cardData?.business_event_image?.image_name ? `${BASE_URL}/${cardData?.business_event_image?.image_name}` : "/images/near-event1.png";
+
+  // Optional: Prevent rendering until image data is ready
+  if (!cardData) return null;
   return (
     <>
-      <div className="col-lg-3 col-md-6">
-        <div className="event-brand-box">
+      <div className="col-lg-3 col-md-6" style={{display:"flex", flexDirection:"column"}}>
+        <div className="event-brand-box" style={{
+          height:"100%",
+          display:"flex",
+          flexDirection: "column",
+          justifyContent: "space-between"
+        }}>
           <div className="brand-logo">
             <img
               height={223}
               style={{ objectFit: "cover" }}
-              src={
-                cardData?.eventimage?.image_name
-                  ? `${BASE_URL}/${cardData?.eventimage?.image_name}`
-                  : "/images/near-event1.png"
-              }
-              alt=""
+              src={imageSrc} 
+              alt="event"
             />
             <div className="event-price">
               {" "}

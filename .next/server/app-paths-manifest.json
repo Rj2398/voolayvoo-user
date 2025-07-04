@@ -1,9 +1,5 @@
 {
-  "/events/page": "app/events/page.js",
-  "/(onboard)/login/page": "app/(onboard)/login/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
   "/page": "app/page.js",
-  "/voopons/page": "app/voopons/page.js",
-  "/(user)/my/profile/page": "app/(user)/my/profile/page.js",
-  "/(user)/my/events/page": "app/(user)/my/events/page.js"
+  "/_not-found/page": "app/_not-found/page.js",
+  "/businesses/page": "app/businesses/page.js"
 }

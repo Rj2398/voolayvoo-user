@@ -2,7 +2,7 @@
 import Link from "next/link";
 import GoogleMapComp from "./Component/GoogleMap";
 import MapFilter from "./Component/MapFilter";
-import { BASE_URL } from "@/constant/constant";
+import { BASE_URL, GOOGLE_KEY } from "@/constant/constant";
 import { useAuth } from "@/app/UserProvider";
 import { useEffect, useState } from "react";
 
@@ -22,9 +22,7 @@ const Map = () => {
   const [eventList, setEventList] = useState([]); // Full event list
 
   const [filteredEvents, setFilteredEvents] = useState([]); // Filtered event list
-  console.log(filteredEvents, "filterd ecent lists dataatat");
 
-  console.log(filteredEvents, "hello event list data comes form ");
   const [appliedFilter, setAppliedFilter] = useState({
     // State for filters
     locationFilter: [],
@@ -32,6 +30,7 @@ const Map = () => {
     isMilesAppy: false,
   });
 
+  
   useEffect(() => {
     if (userDetails?.user_id) {
       const fetchData = async () => {
@@ -46,7 +45,6 @@ const Map = () => {
   // Function to apply filters on the event list
   const applyFilters = () => {
     let filtered = eventList;
-    console.log(filtered, "hello filtered data comes");
 
     // Filter by location
     if (appliedFilter.locationFilter.length > 0) {
@@ -66,7 +64,6 @@ const Map = () => {
         );
       });
     }
-    console.log(filtered, "hello fappluyehjakshdjkh");
 
     setFilteredEvents(filtered);
   };
@@ -76,14 +73,44 @@ const Map = () => {
     applyFilters();
   }, [appliedFilter, eventList]);
 
-  return (
-    <>
-      {/* Pass the filter state setter to MapFilter */}
-      <MapFilter setAppliedFilter={setAppliedFilter} />
+  // const [location, setLocation] = useState({ latitude: null, longitude: null });
+  const [location, setLocation] = useState({ latitude: "28.3901952", longitude: "79.4066944" });
 
-      {/* Pass the filtered events to GoogleMapComp */}
-      <GoogleMapComp markerList={filteredEvents} />
-    </>
+  useEffect(() => {
+    if (window.navigator.geolocation) {
+      window.navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setLocation({
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+          });
+        },
+        (err) => {
+          console.error(err.message);
+        }
+      );
+    } else {
+      console.error("Geolocation is not supported by this browser.");
+    }
+  }, []);
+
+  return (
+    // <>
+    //   {/* Pass the filter state setter to MapFilter */}
+    //   <MapFilter setAppliedFilter={setAppliedFilter} />
+
+    //   {/* Pass the filtered events to GoogleMapComp */}
+    //   <GoogleMapComp markerList={filteredEvents} />
+    // </>
+    <div style={{ position: "relative" }}>
+
+    <div style={{ position: "absolute", bottom: "20px", left: "10%", transform: "translateX(-50%)", zIndex: 10,
+      background: "#fff", padding: "10px", borderRadius: "8px", boxShadow: "0 2px 8px rgba(0,0,0,0.15)" }}>
+      <MapFilter setAppliedFilter={setAppliedFilter} />
+    </div>
+      <GoogleMapComp markerList={filteredEvents} location={location} />
+  </div>
+
   );
 };
 

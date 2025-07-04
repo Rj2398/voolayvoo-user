@@ -331,11 +331,15 @@ const ClientComponent = ({ categoryList, eventList }) => {
               {Array.isArray(renderList) &&
                 renderList.length > 0 &&
                 renderList.map((item, index) => {
-                  console.log(item, "datassssssssss");
-
+                  { console.log(renderList, 'rr') }
                   return (
-                    <div key={index} className="col-lg-4">
-                      <div className="event-brand-box">
+                    <div key={index} className="col-lg-4" style={{ display: "flex", flexDirection: "column" }}>
+                      <div className="event-brand-box" style={{
+                        height: "100%",
+                        display: "flex",
+                        flexDirection: "column"
+
+                      }}>
                         <div className="brand-logo">
                           <Image
                             width={285}
@@ -381,7 +385,8 @@ const ClientComponent = ({ categoryList, eventList }) => {
                                 src="/images/location-dot.png"
                                 alt=""
                               />{" "}
-                              {item.event_away_distance} miles away{" "}
+                              {/* {item.event_away_distance} miles away */}
+                              {!isNaN(item.event_away_distance) && item.event_away_distance !== null ? `${item.event_away_distance} miles away` : 'No location available'}
                             </span>
                             <span>
                               <Image

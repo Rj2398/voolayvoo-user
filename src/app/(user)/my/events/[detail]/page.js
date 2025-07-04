@@ -87,14 +87,6 @@ import { BASE_URL } from "@/constant/constant";
 import { useAuth } from "@/app/UserProvider";
 import Loader from "@/components/custom/Loader";
 async function getData(user_id, token, check_id, match_number) {
-  console.log(
-    user_id,
-    token,
-    check_id,
-    match_number,
-    "this isi the loop calling"
-  );
-
   const formData = new FormData();
 
   formData.append("user_id", user_id);

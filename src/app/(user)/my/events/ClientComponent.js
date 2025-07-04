@@ -77,7 +77,6 @@ const ClientComponent = ({ categoryMainList = [] }) => {
         authToken: userDetails.token,
       });
 
-      console.log(resultEvent, "result event data");
 
       let combinedTemplist = [];
 
@@ -144,8 +143,6 @@ const ClientComponent = ({ categoryMainList = [] }) => {
             eventList[indxEvent]["event_away_distance"] =
               calculateDistanceInMiles(position, targetLocation);
           }
-
-          // console.log(categoryList);
 
           const tempEvtList = filterEvent(eventList, categoryList);
           setTempEventList(tempEvtList);
@@ -547,7 +544,6 @@ const ClientComponent = ({ categoryMainList = [] }) => {
 export default ClientComponent;
 
 const CardItem = ({ item }) => {
-  console.log(item, "hello world");
   const router = useRouter();
   const handleMore = useCallback(
     (e) => {
@@ -571,7 +567,7 @@ const CardItem = ({ item }) => {
               ? "Free"
               : "$" + Number(item?.events_price)}
           </span>
-          <span>{item?.eventsimage?.image_name}</span>
+          {/* <span>{item?.eventsimage?.image_name}</span> */}
           <Image
             width={290}
             height={226}
@@ -613,7 +609,7 @@ const CardItem = ({ item }) => {
             </span>
           </div>
 
-          {Number(item?.events_price) !== 0 && (
+      
             <Link
               className="btn btn-viewmore-border"
               role="button"
@@ -622,7 +618,7 @@ const CardItem = ({ item }) => {
             >
               View More
             </Link>
-          )}
+    
         </div>
       </div>
     </div>

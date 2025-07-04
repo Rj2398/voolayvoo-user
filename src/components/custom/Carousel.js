@@ -7,11 +7,11 @@ import { setCategory } from "@/store/slices/userSlice";
 import { useAuth } from "@/app/UserProvider";
 
 const CarouselHeader = ({ categories }) => {
-  console.log(categories.length, "hello category lenth");
   const { isAuthenticated } = useAuth();
   const router = useRouter();
   const dispatch = useDispatch();
-  const itemsPerPage = 13;
+  // const itemsPerPage = 13;        //old line before bug sheet resolve
+  const itemsPerPage = 9;
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -50,6 +50,8 @@ const CarouselHeader = ({ categories }) => {
     width: "90%",
     margin: "auto",
     overflow: "hidden",
+    border: "1px solid transparent",
+    // padding: "0 12px"
   };
 
   const contentStyles = {

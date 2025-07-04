@@ -13,11 +13,6 @@ const CheckPayment = ({ open, setOpen, callBack, reloadList }) => {
   const { isAuthenticated, userDetails } = useAuth();
   const [cardList, setCardList] = useState([]);
   const [loading, setLoading] = useState(true);
-  // console.log(
-  //   userDetails.user_id,
-  //   userDetails.token,
-  //   "user idddddd of the card Add api"
-  // );
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -25,7 +20,6 @@ const CheckPayment = ({ open, setOpen, callBack, reloadList }) => {
     }
   }, [reloadList, isAuthenticated]);
   const fetchCardList = async () => {
-    // console.log("api is working  user_AllCard");
 
     setLoading(true);
     try {
@@ -61,7 +55,7 @@ const CheckPayment = ({ open, setOpen, callBack, reloadList }) => {
   };
   if (cardList.length > 0) {
     return (
-      <Modal open={open}>
+      <Modal open={open} className="password-popup">
         <Box>
           <div
             className="modal fade show"

@@ -5,39 +5,28 @@ import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 import { postFetchDataWithAuth } from "@/fetchData/fetchApi";
 import { toast } from "react-toastify";
-import AutoCompleteGoogle from "@/components/AutoCompleteGoogle";
 import Image from "next/image";
 import { BASE_URL } from "@/constant/constant";
 import { Rating } from "@mui/material";
 import Link from "next/link";
 import CustomPagination from "@/components/CustomPagination";
 import LocationDropdown from "@/components/LocationDropdown";
+import AutoCompleteGoogle from "@/components/AutoCompleteGoogle";
 import Slider from "@/components/Slider";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import {
-  calculateDistanceInMiles,
-  filterByEventDistance,
-  getCurrentLocation,
-  truncateDescriptionByWords,
-} from "@/utils/eventFunction";
+import { calculateDistanceInMiles, filterByEventDistance, getCurrentLocation, truncateDescriptionByWords, } from "@/utils/eventFunction";
 import axios from "axios";
 
 const ClientComponent = ({ categoryList, promoterList }) => {
-  console.log(categoryList, "hello categoryList  data*********");
-  console.log(promoterList, "hello Promoter list data");
-
   const [tempBusinessList, setTempPromoterList] = useState([]);
-  console.log(tempBusinessList, "hello tempPromoters");
 
   const [mainList, setMainList] = useState([]);
   const [pageNo, setPageNo] = useState(1);
   const [selectCategory, setSelectCategory] = useState({
     category_id: "All",
   });
-
-  console.log(selectCategory, "hello selecteddd sdfkjashfghj");
 
   const [reload, setReload] = useState(false);
   const [appliedFilter, setAppliedFilter] = useState({
@@ -60,8 +49,6 @@ const ClientComponent = ({ categoryList, promoterList }) => {
   const router = useRouter();
 
   const handleFollowBtn = async (promoter_id, status) => {
-    console.log(promoter_id, "hello promoter iddd data comes form this");
-
     const formData = new FormData();
     formData.append("user_id", userDetails.user_id);
 
@@ -79,7 +66,6 @@ const ClientComponent = ({ categoryList, promoterList }) => {
           },
         }
       );
-      console.log("Response: promoter", response.data);
       if (response.data) {
         setFollowChecked(true);
       }
@@ -87,6 +73,7 @@ const ClientComponent = ({ categoryList, promoterList }) => {
       // console.error('Error:', error.response ? error.response.data : error.message);
     }
   };
+  
   useEffect(() => {
     const fetchLocation = async () => {
       try {
@@ -181,13 +168,6 @@ const ClientComponent = ({ categoryList, promoterList }) => {
 
     if (appliedFilter.isCategoryApply) {
       let newPrmoter = tempList.filter((listItem) => {
-        console.log(listItem, "helolololo list item");
-
-        console.log(
-          typeof listItem.category_id, // Logs the type of listItem.category_id
-          "map type cate", // Logs the string "map type cate"
-          typeof Number(selectCategory.category_id) // Logs the type of selectCategory.category_id
-        );
         // listItem.category_id.includes(selectCategory.category_id)
         return (
           Number(listItem.category_id) === Number(selectCategory.category_id)
@@ -272,6 +252,7 @@ const ClientComponent = ({ categoryList, promoterList }) => {
     setPageNo(pageNo);
     setRenderList(newPrmoterList);
   };
+
   const handleSearchValue = (e) => {
     if (e.target.value) {
       setSearchValue(e.target.value);
@@ -280,6 +261,7 @@ const ClientComponent = ({ categoryList, promoterList }) => {
       setAppliedFilter((pre) => ({ ...pre, isSearchApply: false }));
     }
   };
+
   const handlePromoterSearch = (e) => {
     e.preventDefault();
 
@@ -295,15 +277,15 @@ const ClientComponent = ({ categoryList, promoterList }) => {
     //   });
     // }
   };
+
   const [sortedCategoryList, setSortedCategoryList] = useState([]);
 
   useEffect(() => {
     setSortedCategoryList(
-      categoryList.sort((a, b) =>
-        a.category_name.localeCompare(b.category_name)
-      )
+      categoryList.sort((a, b) => a.category_name.localeCompare(b.category_name) )
     );
   }, [categoryList]);
+
   const handleFollow = async (id) => {
     if (!isAuthenticated) {
       router.push(`/login?lastPath=${pathName}`);
@@ -337,6 +319,7 @@ const ClientComponent = ({ categoryList, promoterList }) => {
       }
     }
   };
+
   const handleUnFollow = async (id) => {
     if (!isAuthenticated) {
       router.push(`/login?lastPath=${pathName}`);
@@ -370,7 +353,9 @@ const ClientComponent = ({ categoryList, promoterList }) => {
       }
     }
   };
+
   const [sortOption, setSortOption] = useState("default");
+
   const handleSortOption = (option) => {
     setSortOption(option);
     setAppliedFilter((pre) => ({ ...pre, isSortApply: true }));
@@ -379,30 +364,35 @@ const ClientComponent = ({ categoryList, promoterList }) => {
       case "topRating":
         tempList = tempList.sort((a, b) => b.rating - a.rating);
         break;
+
       case "nearBy":
-        tempList = tempList.sort(
-          (a, b) => a.event_away_distance - b.event_away_distance
-        );
+        tempList.sort((a, b) => {
+          const aDist = (typeof a.event_away_distance === 'number' && !isNaN(a.event_away_distance))
+            ? a.event_away_distance : Number.MAX_VALUE;
+
+          const bDist = (typeof b.event_away_distance === 'number' && !isNaN(b.event_away_distance))
+            ? b.event_away_distance : Number.MAX_VALUE;
+          return aDist - bDist;
+        });
         break;
+
       case "upcomingEvents":
-        tempList = tempList.sort(
-          (a, b) => new Date(a.events_date) - new Date(b.events_date)
-        );
+        tempList = tempList.sort((a, b) => new Date(a.events_date) - new Date(b.events_date));
         break;
-      case "lowToHigh":
-        tempList = tempList.sort((a, b) => a.rating - b.rating);
+
+      case "lowToHigh": tempList = tempList.sort((a, b) => a.rating - b.rating);
         break;
-      case "highToLow":
-        tempList = tempList.sort((a, b) => b.rating - a.rating);
-      default:
-        tempList = mainList;
+
+      case "highToLow": tempList = tempList.sort((a, b) => b.rating - a.rating);
+       break;
+
+      default: tempList = mainList;
     }
     setTempPromoterList(tempList);
     setRenderList(tempList);
   };
+    
   const handleCategorySelect = (category) => {
-    console.log(category, "hello category list data from thissss api");
-
     const isCategoryEqual =
       category.category_id.toString() === selectCategory.category_id;
     if (!isCategoryEqual) {
@@ -444,13 +434,11 @@ const ClientComponent = ({ categoryList, promoterList }) => {
     }, {});
     setLikesState(initialButtonStatus);
   }, [renderList]);
-  console.log(likesState, "likes status data comes formthis");
   //
 
   const handleCheckboxClick = async (event, promoter_id) => {
     const newStatus = likesState[promoter_id] == 0 ? 1 : 0;
 
-    console.log(promoter_id, "hello promoter iddd data comes form this");
 
     const formData = new FormData();
     formData.append("user_id", userDetails.user_id);
@@ -469,7 +457,6 @@ const ClientComponent = ({ categoryList, promoterList }) => {
           },
         }
       );
-      console.log("Response: promoter", response.data);
       if (response.data) {
         setLikesState((prevStatus) => ({
           ...prevStatus,
@@ -581,30 +568,18 @@ const ClientComponent = ({ categoryList, promoterList }) => {
                 </a>
                 <ul className="dropdown-menu w-100" aria-labelledby="sort-drop">
                   <li>
-                    <a
-                      className="dropdown-item"
-                      onClick={() => handleSortOption("topRating")}
-                    >
-                      {" "}
-                      Top Rating{" "}
+                    <a className="dropdown-item" onClick={() => handleSortOption("topRating")} style={{cursor: "pointer"}}>
+                      Top Rating
                     </a>
                   </li>
                   <li>
-                    <a
-                      className="dropdown-item"
-                      onClick={() => handleSortOption("nearBy")}
-                    >
-                      {" "}
-                      Near By{" "}
+                    <a className="dropdown-item" onClick={() => handleSortOption("nearBy")} style={{cursor: "pointer"}}>
+                      Near By
                     </a>
                   </li>
                   <li>
-                    <a
-                      className="dropdown-item"
-                      onClick={() => handleSortOption("upcomingEvents")}
-                    >
-                      {" "}
-                      Upcoming Events{" "}
+                    <a className="dropdown-item" onClick={() => handleSortOption("upcomingEvents")} style={{cursor: "pointer"}}>
+                      Upcoming Events
                     </a>
                   </li>
                 </ul>
@@ -648,9 +623,8 @@ const ClientComponent = ({ categoryList, promoterList }) => {
           </div>
 
           {Array.isArray(renderList) &&
-            renderList.length > 0 &&
-            renderList.map((item, index) => {
-              console.log(item, "hello world !!!");
+            renderList.length > 0 && renderList.filter((item, index, self) =>
+              index === self.findIndex(i => i.promoter_id === item.promoter_id)).map((item, index) => {
 
               return (
                 <div key={index} className="col-lg-3 col-md-6">

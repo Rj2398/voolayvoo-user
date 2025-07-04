@@ -110,7 +110,6 @@ const ClientComponent = ({ eventDetail, relatedVoopon = [] }) => {
   };
 
   const callBack = async (card) => {
-    console.log(card, "token of card callback fun");
 
     let requestData;
     if (card?.token) {
@@ -172,7 +171,6 @@ const ClientComponent = ({ eventDetail, relatedVoopon = [] }) => {
         endpoint: "user_free_buy_now",
         authToken: userDetails.token,
       });
-      console.log(response, "hello freee userrseere");
 
       if (response.success) {
         setReload(!reload);
@@ -182,7 +180,6 @@ const ClientComponent = ({ eventDetail, relatedVoopon = [] }) => {
         throw response;
       }
     } catch (error) {
-      console.log(error, "log error");
     }
   };
 

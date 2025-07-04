@@ -35,8 +35,6 @@ const SignUp = () => {
         endpoint: "user_signup",
       });
 
-      console.log(response, "signup apiii");
-
       if (response?.token && response?.email) {
         setLocalStorage({
           ...response,

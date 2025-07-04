@@ -6,7 +6,6 @@
 
 // // VooponCard component to display individual Voopon details
 // const VooponCard = ({ voopon }) => {
-//   console.log(voopon, "vooponse comes form thsi");
 //   return (
 //     <div style={styles.card}>
 //       <div

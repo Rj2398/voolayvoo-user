@@ -49,14 +49,12 @@ const Favorites = () => {
   const [error, setError] = useState(null);
   const [pageNo, setPageNo] = useState(1);
   const [renderList, setRenderList] = useState([]);
-  // console.log(renderList, "render list aayy");
   const targetDivRef = useRef(null);
 
   // code for like
   const [likeStatus, setLikeStatus] = useState(true);
 
   const [buttonStatus, setButtonStatus] = useState({});
-  // console.log(buttonStatus, "fasdfsdfg");
 
   useEffect(() => {
     const initialButtonStatus = renderList.reduce((acc, item) => {
@@ -69,7 +67,6 @@ const Favorites = () => {
   // favorite code
 
   const handleFavoriteClick = async (businessId) => {
-    // console.log(businessId, "comes form this ");
     // Prepare FormData
     const formData = new FormData();
     formData.append("user_id", userDetails.user_id);
@@ -95,7 +92,6 @@ const Favorites = () => {
         [businessId]: false,
       }));
       setLikeStatus((prev) => !prev);
-      // console.log(response.data, "response of like data");
     } catch (error) {
       console.error("Error updating like status:", error);
     }
@@ -113,7 +109,6 @@ const Favorites = () => {
       try {
         const result = await getData(userDetails.user_id, userDetails?.token);
         setData(result);
-        // console.log(result?.favoriteList, "favorite list data comes form");
         setRenderList(result.favoriteList.slice(0, itemsPerPage));
         // if (result.favoriteList == "undefined") {
         //   setRenderList([]);
@@ -199,7 +194,6 @@ const Favorites = () => {
       </div>
       <div className="user-my-favorites-inner">
         {renderList.map((business, index) => {
-          console.log(business, "businessbusinessbusiness");
           return (
             <div key={business.id + index} className="event-brand-box">
               <div className="brand-logo">
@@ -254,21 +248,21 @@ const Favorites = () => {
                       src="/images/location-dot.png"
                       alt=""
                     />{" "}
-                    {business?.distance || 0} miles away{" "}
+                    {parseFloat(business?.distance).toFixed(2) || 0} miles away{" "}
                   </span>
-                  <span>
+                  {/* <span>
                     <Image
                       width={20}
                       height={20}
                       src="/images/calendar.png"
                       alt=""
-                    />
-                    {/* {" "}
+                    /> */}
+                  {/* {" "}
                 {DateTime.fromFormat(
                   business.events_date,
                   "yyyy-MM-dd"
                 ).toFormat("MMMM dd, yyyy")}{" "} */}
-                  </span>
+                  {/* </span> */}
                   {business?.business_favourite?.location && (
                     <span>
                       <Image

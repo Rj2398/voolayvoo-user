@@ -57,23 +57,17 @@ const AccountVerificaton = () => {
   const onSubmit = async (data) => {
     const tempOTP = data.otp.map((obj) => obj.code).join("");
 
-    console.log(data, "onsubmit data for otp");
-
     if (tempOTP !== "") {
       try {
         const formdata = {
           email: localStorage.email,
           otp: tempOTP,
         };
-        console.log(formdata, "hello form data ");
-
         const response = await postDataWithAuth({
           data: formdata,
           endpoint: "auth/user_otp_verify",
           authToken: localStorage.token,
         });
-        console.log(response, "hello responseeee data otp verify ");
-
         if (response.user_id) {
           // await removeStorage("signupUser");
           setLocalStorage({

@@ -4,7 +4,6 @@ import { useState } from "react";
 
 const ShareReferral = ({ open, setOpen, code }) => {
   const [selectedIcon, setSelectedIcon] = useState(null);
-  console.log(selectedIcon, "select icon");
 
   const handleShare = (e) => {
     e.preventDefault();
@@ -54,7 +53,7 @@ const ShareReferral = ({ open, setOpen, code }) => {
   };
   return (
     <>
-      <Modal open={open}>
+      <Modal open={open} className="password-popup">
         <Box>
           <div
             className="modal fade show"

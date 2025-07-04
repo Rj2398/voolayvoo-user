@@ -67,6 +67,31 @@ const PaymentMethod = () => {
       toast.error(errorMessage);
     }
   };
+  // const userCardDelete = async (cardId) => {
+  //   try {
+  //     const response = await postFetchDataWithAuth({
+  //       data: { user_id: userDetails?.user_id, card_id: cardId },
+  //       endpoint: "user_CardDelete",
+  //       authToken: userDetails?.token,
+  //     });
+  //     if (response.hasOwnProperty("data")) {
+  //       toast.success(response?.message);
+  //       setReload(!reload);
+  //     } else {
+  //       throw response;
+  //     }
+  //   } catch (error) {
+  //     const errorMessage =
+  //       typeof error === "string"
+  //         ? `${error}`
+  //         : error?.message
+  //         ? error?.message
+  //         : `${error}`;
+  //     toast.error(errorMessage);
+  //   }
+  // };
+
+// new userCardDelete for deleting card at the first time.
   const userCardDelete = async (cardId) => {
     try {
       const response = await postFetchDataWithAuth({
@@ -76,6 +101,9 @@ const PaymentMethod = () => {
       });
       if (response.hasOwnProperty("data")) {
         toast.success(response?.message);
+        // Immediately filter out the deleted card from local state
+        setCardList(prev => prev.filter(card => card.card_id !== cardId));
+        // Still keep the reload to ensure sync with server
         setReload(!reload);
       } else {
         throw response;
@@ -90,6 +118,7 @@ const PaymentMethod = () => {
       toast.error(errorMessage);
     }
   };
+
   return (
     <div className="user-dashboard-data">
       {loading && (

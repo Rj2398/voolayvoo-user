@@ -44,7 +44,6 @@ const ClientComponent = ({ categoryMainList = [] }) => {
 
   const [categoryList, setCategoryList] = useState([]);
 
-  console.log(vooponList, "voopon list data");
 
   const [tempEventList, setTempVooponList] = useState([]);
   const [pageNo, setPageNo] = useState(1);
@@ -64,9 +63,7 @@ const ClientComponent = ({ categoryMainList = [] }) => {
   const [dateFilter, setDateFilter] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [locationFilter, setLocationFilter] = useState([]);
-  console.log("location filter entererd data ", locationFilter);
 
-  console.log(renderList, "hello renderlist data");
   const [silderValue, setSliderValue] = useState({ from: 0, to: 100 });
   const [loading, setLoading] = useState(false);
 
@@ -83,7 +80,6 @@ const ClientComponent = ({ categoryMainList = [] }) => {
         authToken: userDetails.token,
       });
 
-      console.log(resultVoopon, "result Voopon data");
       const combinedTemplist = [
         ...resultVoopon?.data?.voopon_one,
         ...resultVoopon?.data?.voopon_two,
@@ -241,7 +237,6 @@ const ClientComponent = ({ categoryMainList = [] }) => {
               latitude: voopon.latitude,
               longitude: voopon.longitude,
             };
-            console.log(targetLocation, "targate location ");
 
             return {
               ...voopon,
@@ -434,7 +429,6 @@ const truncateDescription = (description, wordLimit) => {
   return description; // If under the limit, return the full description
 };
 const CardItem = ({ item }) => {
-  console.log(item, "item data comes from this****");
   const currentDate = new Date();
   const vooponsValidThruDate = DateTime.fromFormat(
     item?.voopons_valid_thru,
