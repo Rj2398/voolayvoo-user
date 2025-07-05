@@ -418,7 +418,7 @@ const Header = () => {
                 {isAuthenticated ? (
                   <a
                     className="nav-link joinbtn-inner"
-                    href="https://voolayvooapp.com/admin/signin-promoter"
+                    // href="https://voolayvooapp.com/admin/signin-promoter"
                   >
                     Join as Business/Promoter
                   </a>
