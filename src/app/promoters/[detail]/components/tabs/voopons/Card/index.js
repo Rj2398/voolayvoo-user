@@ -25,7 +25,7 @@ const Card = ({ data }) => {
         <div className="voopon-heading">{data?.voopons_name} </div>
         <h5>{data?.voopons_description}</h5>
         <p>
-          Valid Thru:{" "}
+          Valid Thru : {data?.voopons_valid_thru}
           {/* {DateTime.fromFormat(data?.voopons_valid_thru, "yyyy-MM-dd").toFormat(
             "MMMM dd, yyyy"
           )} */}
@@ -33,7 +33,7 @@ const Card = ({ data }) => {
 
         <a
           className="btn btn-viewmore"
-          href={`/voopons/${data.id}`}
+          href={`/voopons/${data.category_id}`}
           role="button"
         >
           View More

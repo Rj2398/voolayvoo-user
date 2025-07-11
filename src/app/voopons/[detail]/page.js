@@ -1,4 +1,5 @@
 "use server";
+// "use client";
 import Image from "next/image";
 import Events from "./components/events";
 // import ClientComponent from "./ClientComponent";
@@ -36,6 +37,7 @@ async function getData(detail) {
 const Detail = async ({
   params: { detail },
   searchParams: { promoter_id },
+  // searchParams: { category_id },
 }) => {
   const { voopon_detail } = await getData(detail);
 
@@ -72,9 +74,9 @@ const Detail = async ({
           <div className="row">
             <div className="col-lg-12">
               <div className="heading-sec">About this Voopons</div>
-              <p>{voopon_detail?.voopon_one?.voopons_description}</p>
+              <p>{voopon_detail?.voopon_one?.voopons_description || voopon_detail?.voopon_two?.voopons_description}</p>
 
-              <div className="heading-sec">Terms & Conditions</div>
+              {/* <div className="heading-sec">Terms & Conditions</div>
               <ul>
                 <li>
                   Voopons are not redeemable for cash unless required by law{" "}
@@ -106,7 +108,7 @@ const Detail = async ({
                   Pricing for certain products may change at any time without
                   notice
                 </li>
-              </ul>
+              </ul> */}
             </div>
           </div>
         </div>

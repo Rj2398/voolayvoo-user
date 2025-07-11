@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";    // Ensures server renders fresh content. extra addition line
 import Link from "next/link";
 import Image from "next/image";
 import { BASE_URL } from "@/constant/constant";
@@ -5,9 +6,15 @@ import { BASE_URL } from "@/constant/constant";
 import { separateContentWithoutParser } from "@/components/HtmlToObjectParse";
 import Subscribe from "./Component/Subscribe";
 
+// async function getData() {
+//   const resAbout = await fetch(`${BASE_URL}/api/user_about`, {
+//     method: "GET",
+//   });
+
 async function getData() {
   const resAbout = await fetch(`${BASE_URL}/api/user_about`, {
     method: "GET",
+    cache: "no-store", // This is the key to get fresh data on every load. extra code. above cmmented code is original.
   });
 
   const about_data = await resAbout.json();
@@ -67,6 +74,7 @@ const About = async () => {
                 <div className="heading">
                   What is <span>VoolayVoo</span>
                 </div>
+
                 <div
                   dangerouslySetInnerHTML={{ __html: separatedContent.abouts }}
                 />
@@ -145,6 +153,8 @@ const About = async () => {
                   />{" "}
                 </div>
                 <div className="heading">Our Mission</div>
+
+                {console.log("Mission Content from Backend:", separatedContent.mission)}
                 <div
                   dangerouslySetInnerHTML={{ __html: separatedContent.mission }}
                 />

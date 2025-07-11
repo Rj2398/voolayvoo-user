@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";    // Ensures server renders fresh content. extra addition line
 import Link from "next/link";
 import Image from "next/image";
 import { BASE_URL } from "@/constant/constant";
@@ -6,6 +7,7 @@ import HtmlRenderer from "@/components/HtmlRenderer";
 async function getData() {
   const resHowItWork = await fetch(`${BASE_URL}/api/user_how_its_works`, {
     method: "GET",
+    cache: "no-store", // This is the key to get fresh data on every load. extra code. above cmmented code is original.
   });
   const howItWork_data = await resHowItWork.json();
   if (howItWork_data?.data?.hasOwnProperty("id")) {
@@ -29,7 +31,7 @@ const HowItWorks = async () => {
           backgroundSize: "cover",
         }}
       >
-        <h1> How it Works </h1>
+        <h1> How it Works</h1>
       </div>
       <section className="how-it-work-sec">
         <div className="container">

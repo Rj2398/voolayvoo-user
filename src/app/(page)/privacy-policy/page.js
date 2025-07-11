@@ -1,8 +1,11 @@
+export const dynamic = "force-dynamic"; // Ensures server renders fresh content. extra addition line
+
 import { BASE_URL } from "@/constant/constant";
 
 async function getData() {
   const resPrivacy = await fetch(`${BASE_URL}/api/user_privacy_policy`, {
     method: "GET",
+    cache: "no-cache"
   });
 
   const privacy_data = await resPrivacy.json();

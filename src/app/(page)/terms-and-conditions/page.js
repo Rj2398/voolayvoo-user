@@ -1,8 +1,11 @@
+export const dynamic = "force-dynamic";
+
 import { BASE_URL } from "@/constant/constant";
 
 async function getData() {
   const resTerms = await fetch(`${BASE_URL}/api/user_terms_conditions`, {
     method: "GET",
+    cache:"no-cache"
   });
 
   const terms_data = await resTerms.json();
