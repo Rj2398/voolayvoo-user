@@ -1,5 +1,22 @@
 {
-  "node": {},
+  "node": {
+    "62cd519d943ad4eb7e2ae20c67d21ceae01e19d1": {
+      "workers": {
+        "app/voopons/[detail]/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Frajanmalakar%2FDownloads%2Fvoolayvoo-user%2Funtitled%20folder%2Fvoolayvoo-user%2Fsrc%2Fapp%2Fvoopons%2F%5Bdetail%5D%2Fpage.js%22%2C%5B%22default%22%5D%5D%5D&__client_imported__=!"
+      },
+      "layer": {
+        "app/voopons/[detail]/page": "rsc"
+      }
+    },
+    "9f59909df32f3bcdf550df6f395829073b31b9a4": {
+      "workers": {
+        "app/events/[detail]/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Frajanmalakar%2FDownloads%2Fvoolayvoo-user%2Funtitled%20folder%2Fvoolayvoo-user%2Fsrc%2Fapp%2Fevents%2F%5Bdetail%5D%2Fpage.js%22%2C%5B%22default%22%5D%5D%5D&__client_imported__=!"
+      },
+      "layer": {
+        "app/events/[detail]/page": "rsc"
+      }
+    }
+  },
   "edge": {},
-  "encryptionKey": "wFnMWIF00t6xUFnOMdvh/GgO/GB6khqHGJ3QzhiLvrA="
+  "encryptionKey": "zbEhBlaDpFpjPiW0RU5jJSQm81rjMpz7ldyY56taPiI="
 }

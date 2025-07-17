@@ -1169,8 +1169,8 @@ const ClientComponent = ({ categoryList, promoterList }) => {
       } else {
         toast.success(
           newStatus === 1
-            ? "Successfully followed promoter!"
-            : "Successfully unfollowed promoter!"
+            ? "Successfully followed promoter"
+            : "Successfully unfollowed promoter"
         );
       }
     } catch (error) {

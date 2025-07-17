@@ -21,8 +21,8 @@ const ClientComponent = ({ voopon_detail }) => {
   const [openCard, setOpenCard] = useState(false);
   const [voopansPrice, setVoopansPrice] = useState(
     voopon_detail?.voopon_one?.voopons_price ||
-    voopon_detail?.voopon_two?.voopons_price ||
-    0
+      voopon_detail?.voopon_two?.voopons_price ||
+      0
   );
 
   const [quantity, setQuantity] = useState(1);
@@ -55,9 +55,9 @@ const ClientComponent = ({ voopon_detail }) => {
     setQuantity(qty);
     setVoopansPrice(
       qty *
-      (voopon_detail?.voopon_one?.voopons_price ||
-        voopon_detail?.voopon_two?.voopons_price ||
-        0)
+        (voopon_detail?.voopon_one?.voopons_price ||
+          voopon_detail?.voopon_two?.voopons_price ||
+          0)
     );
   };
 
@@ -79,13 +79,12 @@ const ClientComponent = ({ voopon_detail }) => {
 
       if (response.success) {
         setReload(!reload);
-        toast.success(`Payment successful`);
+        toast.success(`Grab deal successful`);
         setOpenCard(false);
       } else {
         throw response;
       }
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   const callBack = async (card) => {
@@ -112,7 +111,6 @@ const ClientComponent = ({ voopon_detail }) => {
       };
     }
 
-
     try {
       const response = await postFetchDataWithAuth({
         data: requestData,
@@ -131,8 +129,8 @@ const ClientComponent = ({ voopon_detail }) => {
         typeof error === "string"
           ? `${error}`
           : error?.message
-            ? error?.message
-            : `${error}`;
+          ? error?.message
+          : `${error}`;
       toast.error(errorMessage);
     }
   };
@@ -202,55 +200,55 @@ const ClientComponent = ({ voopon_detail }) => {
 
           {(voopon_detail?.voopon_one?.collaborator_data?.length > 0 ||
             voopon_detail?.voopon_two?.collaborator_data?.length > 0) && (
-              <div className="collaborators">
-                <span>
-                  <Image
-                    width={31}
-                    height={31}
-                    src="/images/collabo-icon.png"
-                    alt="images"
-                    className="img-fluid"
-                  />
-                </span>
-                <span className="col-font" onClick={() => setOpen(true)}>
-                  Collaborator(s):
-                </span>
-                <span>
-                  {[
-                    ...(voopon_detail?.voopon_one?.collaborator_data || []),
-                    ...(voopon_detail?.voopon_two?.collaborator_data || []),
-                  ]
-                    .slice(0, 3)
-                    .map((collaborator, idx) => (
-                      <Image
-                        key={collaborator?.id}
-                        width={31}
-                        height={31}
-                        src={
-                          collaborator?.promoter_data?.profile_image
-                            ? `${BASE_URL}/${collaborator?.promoter_data?.profile_image}`
-                            : "/images/colebr-1.png"
-                        }
-                        alt="images"
-                        className="collabeIcon"
-                      />
-                    ))}
+            <div className="collaborators">
+              <span>
+                <Image
+                  width={31}
+                  height={31}
+                  src="/images/collabo-icon.png"
+                  alt="images"
+                  className="img-fluid"
+                />
+              </span>
+              <span className="col-font" onClick={() => setOpen(true)}>
+                Collaborator(s):
+              </span>
+              <span>
+                {[
+                  ...(voopon_detail?.voopon_one?.collaborator_data || []),
+                  ...(voopon_detail?.voopon_two?.collaborator_data || []),
+                ]
+                  .slice(0, 3)
+                  .map((collaborator, idx) => (
+                    <Image
+                      key={collaborator?.id}
+                      width={31}
+                      height={31}
+                      src={
+                        collaborator?.promoter_data?.profile_image
+                          ? `${BASE_URL}/${collaborator?.promoter_data?.profile_image}`
+                          : "/images/colebr-1.png"
+                      }
+                      alt="images"
+                      className="collabeIcon"
+                    />
+                  ))}
 
-                  {[
-                    ...(voopon_detail?.voopon_one?.collaborator_data || []),
-                    ...(voopon_detail?.voopon_two?.collaborator_data || []),
-                  ].length > 3 && (
-                      <div className="more">
-                        +
-                        {[
-                          ...(voopon_detail?.voopon_one?.collaborator_data || []),
-                          ...(voopon_detail?.voopon_two?.collaborator_data || []),
-                        ].length - 3}
-                      </div>
-                    )}
-                </span>
-              </div>
-            )}
+                {[
+                  ...(voopon_detail?.voopon_one?.collaborator_data || []),
+                  ...(voopon_detail?.voopon_two?.collaborator_data || []),
+                ].length > 3 && (
+                  <div className="more">
+                    +
+                    {[
+                      ...(voopon_detail?.voopon_one?.collaborator_data || []),
+                      ...(voopon_detail?.voopon_two?.collaborator_data || []),
+                    ].length - 3}
+                  </div>
+                )}
+              </span>
+            </div>
+          )}
 
           <Collaborator
             open={open}
@@ -287,7 +285,7 @@ const ClientComponent = ({ voopon_detail }) => {
                     (voopon_detail?.voopon_two?.voopons_valid_thru &&
                       DateTime.fromFormat(
                         voopon_detail?.voopon_one?.voopons_valid_thru ||
-                        voopon_detail?.voopon_two?.voopons_valid_thru,
+                          voopon_detail?.voopon_two?.voopons_valid_thru,
                         "yyyy-MM-dd"
                       ).toFormat("MMM dd, yyyy"))}
                 </span>

@@ -110,7 +110,6 @@ const ClientComponent = ({ eventDetail, relatedVoopon = [] }) => {
   };
 
   const callBack = async (card) => {
-
     let requestData;
     if (card?.token) {
       requestData = {
@@ -174,13 +173,12 @@ const ClientComponent = ({ eventDetail, relatedVoopon = [] }) => {
 
       if (response.success) {
         setReload(!reload);
-        toast.success(`Payment successful`);
+        toast.success(`Grab deal successful`);
         setOpenCard(false);
       } else {
         throw response;
       }
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   return (
