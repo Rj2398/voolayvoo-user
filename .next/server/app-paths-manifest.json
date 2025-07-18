@@ -1,8 +1,9 @@
 {
+  "/_not-found/page": "app/_not-found/page.js",
   "/businesses/page": "app/businesses/page.js",
-  "/promoters/page": "app/promoters/page.js",
   "/page": "app/page.js",
-  "/businesses/[detail]/page": "app/businesses/[detail]/page.js",
-  "/events/[detail]/page": "app/events/[detail]/page.js",
-  "/events/page": "app/events/page.js"
+  "/promoters/page": "app/promoters/page.js",
+  "/events/page": "app/events/page.js",
+  "/(user)/my/profile/page": "app/(user)/my/profile/page.js",
+  "/(user)/my/favorites/page": "app/(user)/my/favorites/page.js"
 }
