@@ -1174,7 +1174,7 @@ const ClientComponent = ({ categoryList, businessList }) => {
         toast.success(
           `You are now ${
             newFollowStatus === 1 ? "following" : "unfollowing"
-          } this business!`
+          } this business`
         );
       }
     } catch (error) {
