@@ -1,20 +1,51 @@
+// export const countCategory = (
+//   list = [],
+//   ItemList = [] // Assume category_id in ItemList is a string
+// ) => {
+//   let returnList = [];
+
+//   // First create a map of unique businesses by business_id
+//   // const uniqueBusinessMap = {};
+//   // ItemList.forEach(item => {
+//   //   if (!uniqueBusinessMap[item.business_id]) {
+//   //     uniqueBusinessMap[item.business_id] = item;
+//   //   }
+//   // });
+//   // const uniqueBusinesses = Object.values(uniqueBusinessMap);
+
+//   for (let el of list) {
+//     let count = 0;
+
+//     for (let itemEl of ItemList) {
+//       if (Number(itemEl.category_id) === Number(el.category_id)) {
+//         count += 1;
+//       }
+//     }
+
+//     returnList.push({ ...el, count: count });
+//   }
+
+//   return returnList.filter((item) => item.count !== 0);
+// };
+
+// new countCategory function only show no. in bracket whose donot have same data
 export const countCategory = (
   list = [],
-  ItemList = [] // Assume category_id in ItemList is a string
+  ItemList = []
 ) => {
   let returnList = [];
 
   for (let el of list) {
-    let count = 0;
+    // Create a Set to track unique business_ids for this category
+    const uniqueBusinessIds = new Set();
 
     for (let itemEl of ItemList) {
       if (Number(itemEl.category_id) === Number(el.category_id)) {
-        // Convert el.category_id to string for comparison
-        count += 1;
+        uniqueBusinessIds.add(itemEl.business_id || itemEl.id); // Use business_id or id as fallback
       }
     }
 
-    returnList.push({ ...el, count: count });
+    returnList.push({ ...el, count: uniqueBusinessIds.size });
   }
 
   return returnList.filter((item) => item.count !== 0);
@@ -22,6 +53,14 @@ export const countCategory = (
 
 export const filterEvent = (eventList = [], categoryList = []) => {
   let returnList = [];
+
+  // const uniqueBusinessMap = {};
+  // eventList.forEach(item => {
+  //   if (!uniqueBusinessMap[item.business_id]) {
+  //     uniqueBusinessMap[item.business_id] = item;
+  //   }
+  // });
+  // const uniqueBusinesses = Object.values(uniqueBusinessMap);
 
   for (let elEvent of eventList) {
     for (let elCategory of categoryList) {
@@ -90,9 +129,9 @@ export function calculateDistanceInMiles(coord1, coord2) {
   const a =
     Math.sin(deltaLat / 2) * Math.sin(deltaLat / 2) +
     Math.cos(lat1) *
-      Math.cos(lat2) *
-      Math.sin(deltaLng / 2) *
-      Math.sin(deltaLng / 2);
+    Math.cos(lat2) *
+    Math.sin(deltaLng / 2) *
+    Math.sin(deltaLng / 2);
 
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 

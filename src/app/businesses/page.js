@@ -28,6 +28,7 @@ import useLocalStorage from "@/constant/useLocalStorage";
 //   };
 // }
 
+
 async function getData(id) {
   const resCategory = await fetch(`${BASE_URL}/api/user_category_list`, {
     method: "POST",
@@ -67,6 +68,46 @@ async function getData(id) {
     resBusinessesList: filterEvent(filteredData, resultCat.data),
   };
 }
+
+
+// const getData = async () => {
+//   try {
+//     const [resultCat, resultBusinessList] = await Promise.all([
+//       axios.post('https://admin.grovyo.com/user_business_list_categories', {
+//         category_id: 20,
+//       }),
+//       axios.post('https://admin.grovyo.com/user_business_list', {
+//         category_id: 20,
+//       }),
+//     ]);
+
+//     // ✅ Remove duplicate businesses by business_id
+//     const deduplicatedBusinesses = resultBusinessList.data.filter(
+//       (item, index, self) =>
+//         index === self.findIndex((i) => i.business_id === item.business_id)
+//     );
+
+//     // const deduplicatedBusinesses = resultBusinessList.data.filter(
+//     //   (item, index, self) =>
+//     //     index === self.findIndex((i) =>
+//     //       i.business?.business_id === item.business?.business_id
+//     //     )
+//     // );
+    
+
+//     return {
+//       categoryList: countCategory(resultCat.data, deduplicatedBusinesses),
+//       resBusinessesList: filterEvent(deduplicatedBusinesses, resultCat.data),
+//     };
+//   } catch (error) {
+//     console.error("Error fetching data:", error);
+//     return {
+//       categoryList: [],
+//       resBusinessesList: [],
+//     };
+//   }
+// };
+
 
 const Businesses = () => {
   // const { categoryList, bussinessesList } = await getData();

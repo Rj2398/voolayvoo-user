@@ -112,6 +112,7 @@ const Promoters = () => {
         <Loader loading={loading} />
       </div>
     );
+    
   // if (error) {
   //   const errorMessage =
   //     typeof error === "object"
@@ -120,6 +121,7 @@ const Promoters = () => {
 
   //   return <div>Error: {errorMessage}</div>;
   // }
+
   return (
     <>
       <div

@@ -121,3 +121,104 @@ export const postFetchWithAuth = async ({ data, endpoint, authToken }) => {
     return error;
   }
 };
+
+
+// new API call to show mssg to user if he tries to buy voopons more than their limit
+
+
+// export const checkVooponPurchaseLimit = async ({ 
+//   user_id, 
+//   voopon_unique_number, 
+//   authToken 
+// }) => {
+//   try {
+//     const response = await fetch(`${BASE_URL}/api/auth/user_buy_now_voopon_quantity`, {
+//       method: "POST",
+//       headers: {
+//         Authorization: `Bearer ${authToken}`,
+//       },
+//       body: getFormData({ 
+//         user_id,
+//         voopon_unique_number 
+//       }),
+//     });
+//     const result = await response.json();
+//     return result;
+//   } catch (error) {
+//     return { 
+//       success: false, 
+//       message: error.message || "Failed to check voopon purchase limit" 
+//     };
+//   }
+// };
+
+
+// export const checkVooponPurchaseLimit = async ({ 
+//   user_id, 
+//   voopon_unique_number, 
+//   authToken 
+// }) => {
+//   try {
+//     const formData = new FormData();
+//     formData.append('user_id', user_id);
+//     formData.append('unique_number', voopon_unique_number);  // Changed to match API expectation
+    
+//     const response = await fetch(`${BASE_URL}/api/auth/user_buy_now_voopon_quantity`, {
+//       method: "POST",
+//       headers: {
+//         Authorization: `Bearer ${authToken}`,
+//       },
+//       body: formData,
+//     });
+    
+//     const result = await response.json();
+//     return result;
+//   } catch (error) {
+//     return { 
+//       success: false, 
+//       message: error.message || "Failed to check voopon purchase limit" 
+//     };
+//   }
+// };
+
+
+
+export const checkVooponPurchaseLimit = async ({ 
+  user_id, 
+  voopon_unique_number, 
+  authToken 
+}) => {
+  try {
+    const formData = new FormData();
+    formData.append('user_id', user_id);
+    formData.append('unique_number', voopon_unique_number);
+    
+    const response = await fetch(`${BASE_URL}/api/auth/user_buy_now_voopon_quantity`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+      },
+      body: formData,
+    });
+    
+    const result = await response.json();
+    
+    // Ensure the response has the expected structure
+    if (result.success) {
+      return {
+        success: true,
+        data: {
+          max_limit: result.data?.max_allow_on_this_voopon || result.max_allow_on_this_voopon,
+          current_usage: result.data?.total_voopon_buyed || result.total_voopon_buyed,
+          message: result.data?.message || result.message || "Purchase limit reached"
+        }
+      };
+    }
+    return result;
+  } catch (error) {
+    return { 
+      success: false, 
+      message: error.message || "Failed to check voopon purchase limit" 
+    };
+  }
+};

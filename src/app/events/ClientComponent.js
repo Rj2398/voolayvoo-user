@@ -242,9 +242,21 @@ const ClientComponent = ({ categoryList, eventList }) => {
           backgroundImage: "url(/images/about-bnr.png)",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
+
         }}
       >
-        <h1> Explore Events </h1>
+        <div className="back-btn" style={{ cursor: "pointer",width:"100%" }}>
+          <a
+            to="#"
+            onClick={(e) => {
+              e.preventDefault();
+              window.history.back();
+            }}
+          >
+            <img src="./images/left-arrow.svg" alt="Back" />
+          </a>
+        </div>
+        <h1> Explore Events</h1>
         <p>Find Your A-ha!</p>
       </div>
       <div className="container">

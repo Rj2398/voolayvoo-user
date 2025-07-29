@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Events from "./components/events";
 // import ClientComponent from "./ClientComponent";
+import BackBotton from "../../BackButton";
 
 import { BASE_URL } from "@/constant/constant";
 import { getFormData } from "@/fetchData/fetchApi";
@@ -44,6 +45,18 @@ const Detail = async ({
   return (
     <>
       <section className="details-page">
+      <BackBotton />
+        {/* <div className="back-btn" style={{ cursor: "pointer", width: "100%", border: "3px solid black", color: "black" }}>
+          <a
+            to="#"
+            onClick={(e) => {
+              e.preventDefault();
+              window.history.back();
+            }}
+          >
+            <img src="./images/left-arrow.svg" alt="Back" />
+          </a>
+        </div> */}
         <div className="container">
           <div className="row">
             <div className="col-lg-6">
@@ -55,9 +68,9 @@ const Detail = async ({
                     voopon_detail?.voopon_one?.vooponsimage[0]?.image_name
                       ? `${BASE_URL}/${voopon_detail?.voopon_one?.vooponsimage[0]?.image_name}`
                       : voopon_detail?.voopon_two?.business_voopon_image
-                          ?.image_name
-                      ? `${BASE_URL}/${voopon_detail?.voopon_two?.business_voopon_image?.image_name}`
-                      : "/images/amf-details.png"
+                        ?.image_name
+                        ? `${BASE_URL}/${voopon_detail?.voopon_two?.business_voopon_image?.image_name}`
+                        : "/images/amf-details.png"
                   }
                   alt="images"
                   className="img-voopon"

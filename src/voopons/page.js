@@ -97,7 +97,7 @@ const Voopons = () => {
           backgroundSize: "cover",
         }}
       >
-        <h1> Explore Voopons </h1>
+        <h1> Explore Voopons</h1>
         <p>Find Your A-ha!</p>
       </div>
       <ClientComponent

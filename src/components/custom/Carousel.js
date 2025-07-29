@@ -52,18 +52,21 @@ const CarouselHeader = ({ categories }) => {
     overflow: "hidden",
     border: "1px solid transparent",
     // padding: "0 12px"
+    // border:"1px solid red"
   };
 
   const contentStyles = {
     display: "flex",
     transition: "transform 0.5s ease",
     transform: `translateX(-${currentIndex * (100 / itemsPerPage)}%)`,
+    
     width: `${(categories.length + itemsPerPage) * (100 / itemsPerPage)}%`, // Extra width for smooth transition
   };
 
   const itemContainerStyles = {
     display: "flex",
     width: "100%",
+    // border:"1px solid red"
   };
 
   const cardStyles = {};
@@ -71,9 +74,12 @@ const CarouselHeader = ({ categories }) => {
   const imgStyles = {
     borderRadius: "10px",
     border: "1px solid #E7E7E7",
-    padding: "10px",
-    maxWidth: "56px",
-    height: "57px",
+    padding: "4px",
+    // maxWidth: "56px",
+    maxWidth: "85px",
+    // height: "57px",
+    height: "75px",
+    // border:"1px solid red",
   };
 
   const buttonStyles = {
@@ -134,7 +140,7 @@ const CarouselHeader = ({ categories }) => {
                     />
                   </div>
 
-                  <p>{category.category_name}</p>
+                  <p style={{paddingTop:"10px"}}>{category.category_name}</p>
                 </div>
               </div>
             </div>

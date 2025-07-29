@@ -9,6 +9,7 @@ import { BASE_URL } from "@/constant/constant";
 import Quantity from "@/components/Quantity";
 import Carousel from "@/components/Carousel";
 import { useAuth } from "@/app/UserProvider";
+// import BackButton from "../../BackButton"
 import {
   useParams,
   usePathname,
@@ -36,8 +37,8 @@ const ClientComponent = ({ eventDetail, relatedVoopon = [] }) => {
     eventDetail?.event_one?.hasOwnProperty("events_price")
       ? Number(eventDetail?.event_one?.events_price)
       : eventDetail?.event_two?.hasOwnProperty("events_price")
-      ? Number(eventDetail?.event_two?.events_price)
-      : 0
+        ? Number(eventDetail?.event_two?.events_price)
+        : 0
   );
 
   const [quantity, setQuantity] = useState(1);
@@ -91,8 +92,8 @@ const ClientComponent = ({ eventDetail, relatedVoopon = [] }) => {
     const price = eventDetail?.event_one?.hasOwnProperty("events_price")
       ? Number(eventDetail?.event_one?.events_price)
       : eventDetail?.event_two?.hasOwnProperty("events_price")
-      ? Number(eventDetail?.event_two?.events_price)
-      : 0;
+        ? Number(eventDetail?.event_two?.events_price)
+        : 0;
     setEventPrice(price * qty);
   };
 
@@ -149,8 +150,8 @@ const ClientComponent = ({ eventDetail, relatedVoopon = [] }) => {
         typeof error === "string"
           ? `${error}`
           : error?.message
-          ? error?.message
-          : `${error}`;
+            ? error?.message
+            : `${error}`;
       toast.error(errorMessage);
     }
   };
@@ -178,12 +179,25 @@ const ClientComponent = ({ eventDetail, relatedVoopon = [] }) => {
       } else {
         throw response;
       }
-    } catch (error) {}
+    } catch (error) { }
   };
 
   return (
     <>
       <section className="details-page">
+        {/* <BackButton /> */}
+        <div className="back-btn" style={{ cursor: "pointer", width: "100%", color:"black", padding:"10px 25px" }}>
+          <a
+            to="#"
+            onClick={(e) => {
+              e.preventDefault();
+              window.history.back();
+            }}
+          >
+            <img src="/images/left-arrow.svg" alt="Back" 
+            style={{filter: "brightness(0) saturate(100%)"}} />
+          </a>
+        </div>
         <div className="container">
           <div className="row">
             <div className="col-lg-6">
@@ -203,12 +217,11 @@ const ClientComponent = ({ eventDetail, relatedVoopon = [] }) => {
                   className="w-100"
                   src={
                     eventDetail?.event_one?.eventsimage[0]?.image_name ||
-                    eventDetail?.event_two?.business_events_image[0]?.image_name
-                      ? `${BASE_URL}/${
-                          eventDetail?.event_one?.eventsimage[0]?.image_name ||
-                          eventDetail?.event_two?.business_events_image[0]
-                            ?.image_name
-                        }`
+                      eventDetail?.event_two?.business_events_image[0]?.image_name
+                      ? `${BASE_URL}/${eventDetail?.event_one?.eventsimage[0]?.image_name ||
+                      eventDetail?.event_two?.business_events_image[0]
+                        ?.image_name
+                      }`
                       : "/images/banners/slide1.png"
                   }
                   alt=""
@@ -315,97 +328,97 @@ const ClientComponent = ({ eventDetail, relatedVoopon = [] }) => {
                   {/* For event_one */}
                   {(eventDetail?.event_one?.collaborator_data?.length !== 0 ||
                     eventDetail?.event_two?.collaborator_data?.length !==
-                      0) && (
-                    <div className="collaborators">
-                      <span>
-                        <Image
-                          width={31}
-                          height={31}
-                          src="/images/collabo-icon.png"
-                          alt="images"
-                          className="img-fluid"
-                        />
-                      </span>
-                      <span className="col-font" onClick={() => setOpen(true)}>
-                        Collaborator(s):{" "}
-                      </span>
-                      <span>
-                        {/* For event_one collaborators */}
-                        {eventDetail?.event_one?.collaborator_data?.length >
-                          0 &&
-                          eventDetail?.event_one?.collaborator_data.map(
-                            (collaborator, idx) => {
-                              if (idx < 3) {
-                                return (
-                                  <Image
-                                    key={collaborator?.id}
-                                    width={31}
-                                    height={31}
-                                    src={
-                                      collaborator?.promoter_data?.profile_image
-                                        ? `${BASE_URL}/${collaborator?.promoter_data?.profile_image}`
-                                        : "/images/colebr-1.png"
-                                    }
-                                    alt="images"
-                                    className="collabeIcon"
-                                  />
-                                );
+                    0) && (
+                      <div className="collaborators">
+                        <span>
+                          <Image
+                            width={31}
+                            height={31}
+                            src="/images/collabo-icon.png"
+                            alt="images"
+                            className="img-fluid"
+                          />
+                        </span>
+                        <span className="col-font" onClick={() => setOpen(true)}>
+                          Collaborator(s):{" "}
+                        </span>
+                        <span>
+                          {/* For event_one collaborators */}
+                          {eventDetail?.event_one?.collaborator_data?.length >
+                            0 &&
+                            eventDetail?.event_one?.collaborator_data.map(
+                              (collaborator, idx) => {
+                                if (idx < 3) {
+                                  return (
+                                    <Image
+                                      key={collaborator?.id}
+                                      width={31}
+                                      height={31}
+                                      src={
+                                        collaborator?.promoter_data?.profile_image
+                                          ? `${BASE_URL}/${collaborator?.promoter_data?.profile_image}`
+                                          : "/images/colebr-1.png"
+                                      }
+                                      alt="images"
+                                      className="collabeIcon"
+                                    />
+                                  );
+                                }
                               }
-                            }
-                          )}
-                        {/* For event_two collaborators */}
-                        {eventDetail?.event_two?.collaborator_data?.length >
-                          0 &&
-                          eventDetail?.event_two?.collaborator_data.map(
-                            (collaborator, idx) => {
-                              if (idx < 3) {
-                                return (
-                                  <Image
-                                    key={collaborator?.id}
-                                    width={31}
-                                    height={31}
-                                    src={
-                                      collaborator?.promoter_data?.profile_image
-                                        ? `${BASE_URL}/${collaborator?.promoter_data?.profile_image}`
-                                        : "/images/colebr-1.png"
-                                    }
-                                    alt="images"
-                                    className="collabeIcon"
-                                  />
-                                );
+                            )}
+                          {/* For event_two collaborators */}
+                          {eventDetail?.event_two?.collaborator_data?.length >
+                            0 &&
+                            eventDetail?.event_two?.collaborator_data.map(
+                              (collaborator, idx) => {
+                                if (idx < 3) {
+                                  return (
+                                    <Image
+                                      key={collaborator?.id}
+                                      width={31}
+                                      height={31}
+                                      src={
+                                        collaborator?.promoter_data?.profile_image
+                                          ? `${BASE_URL}/${collaborator?.promoter_data?.profile_image}`
+                                          : "/images/colebr-1.png"
+                                      }
+                                      alt="images"
+                                      className="collabeIcon"
+                                    />
+                                  );
+                                }
                               }
-                            }
-                          )}
+                            )}
 
-                        {/* Show additional collaborators */}
-                        {(eventDetail?.event_one?.collaborator_data?.length >
-                          3 ||
-                          eventDetail?.event_two?.collaborator_data?.length >
+                          {/* Show additional collaborators */}
+                          {(eventDetail?.event_one?.collaborator_data?.length >
+                            3 ||
+                            eventDetail?.event_two?.collaborator_data?.length >
                             3) && (
-                          <div className="more">
-                            {" "}
-                            +
-                            {Math.max(
-                              eventDetail?.event_one?.collaborator_data
-                                ?.length || 0,
-                              eventDetail?.event_two?.collaborator_data
-                                ?.length || 0
-                            ) - 3}{" "}
-                          </div>
-                        )}
-                      </span>
-                    </div>
-                  )}
+                              <div className="more">
+                                {" "}
+                                +
+                                {Math.max(
+                                  eventDetail?.event_one?.collaborator_data
+                                    ?.length || 0,
+                                  eventDetail?.event_two?.collaborator_data
+                                    ?.length || 0
+                                ) - 3}{" "}
+                              </div>
+                            )}
+                        </span>
+                      </div>
+                    )}
 
                   {/* For rating */}
                   {(Array.isArray(eventDetail?.event_one?.rating_data) &&
                     eventDetail?.event_one?.rating_data?.[0] !== 0 &&
                     eventDetail?.event_one?.rating_data?.[1] !== 0 &&
                     eventDetail?.event_one?.rating_data?.length > 1) ||
-                  (Array.isArray(eventDetail?.event_two?.rating_data) &&
-                    eventDetail?.event_two?.rating_data?.[0] !== 0 &&
-                    eventDetail?.event_two?.rating_data?.[1] !== 0 &&
-                    eventDetail?.event_two?.rating_data?.length > 1) ? (
+                    (Array.isArray(eventDetail?.event_two?.rating_data) &&
+                      eventDetail?.event_two?.rating_data?.[0] !== 0 &&
+                      eventDetail?.event_two?.rating_data?.[1] !== 0 &&
+                      eventDetail?.event_two?.rating_data?.length > 1) ? (
                     <div className="rating-box">
                       {" "}
                       {eventDetail?.event_one?.rating_data?.[0]?.toFixed(1) ||
@@ -476,7 +489,7 @@ const ClientComponent = ({ eventDetail, relatedVoopon = [] }) => {
                           (eventDetail?.event_two?.events_date &&
                             DateTime.fromFormat(
                               eventDetail?.event_one?.events_date ||
-                                eventDetail?.event_two?.events_date,
+                              eventDetail?.event_two?.events_date,
                               "yyyy-MM-dd"
                             ).toFormat("MMM dd, yyyy"))}{" "}
                       </span>

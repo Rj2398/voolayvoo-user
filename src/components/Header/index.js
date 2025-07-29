@@ -414,7 +414,7 @@ const Header = () => {
                 </Link>
               </li>
 
-              <li className="nav-item joinbox">
+              {/* <li className="nav-item joinbox">
                 {isAuthenticated ? (
                   <a
                     className="nav-link joinbtn-inner"
@@ -425,6 +425,17 @@ const Header = () => {
                 ) : (
                   <a className="nav-link joinbtn-inner" href="/login">
                     Join
+                  </a>
+                )}
+              </li> */}
+
+              <li className="nav-item joinbox">
+                {!isAuthenticated && (
+                  <a
+                    className="nav-link joinbtn-inner"
+                    href="https://voolayvooapp.com/admin/signin-promoter"
+                  >
+                    Join as Business/Promoter
                   </a>
                 )}
               </li>

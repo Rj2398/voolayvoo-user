@@ -6,6 +6,7 @@ import { BASE_URL } from "@/constant/constant";
 import { countCategory, filterEvent } from "@/utils/eventFunction";
 import Loader from "@/components/custom/Loader";
 import { useAuth } from "../UserProvider";
+// import {Link} from "react-router-dom";
 
 async function getData() {
   const resCategory = await fetch(`${BASE_URL}/api/user_category_list`, {
@@ -97,7 +98,18 @@ const Voopons = () => {
           backgroundSize: "cover",
         }}
       >
-        <h1> Explore Voopons </h1>
+        <div className="back-btn"  style={{ cursor: "pointer",width:"100%" }}>
+          <a
+            to="#"
+            onClick={(e) => {
+              e.preventDefault();
+              window.history.back();
+            }}
+          >
+            <img src="./images/left-arrow.svg" alt="Back" />
+          </a>
+        </div>
+        <h1> Explore Voopons</h1>
         <p>Find Your A-ha!</p>
       </div>
       <ClientComponent

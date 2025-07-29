@@ -241,6 +241,16 @@ export default function Home() {
         </div>
       </section>
 
+
+      {isAuthenticated == true && (
+        <EventsNearYou
+          staticItems={loginUserData?.events_near_you}
+          title="Events"
+          title1="Near You"
+          brand={false}
+        />
+      )}
+
       <div>
         <NewlyVoopons
           staticItems={
@@ -331,7 +341,7 @@ export default function Home() {
               <div className="about-txt">
                 <h5 style={{ color: "#E60023", fontWeight: "600" }}>About</h5>
                 <div className="heading mb-3">
-                  What is <span> VoolayVoo? </span>
+                  What is <span> VoolayVoo?</span>
                 </div>
                 
                 {separatedContent ? (
@@ -456,14 +466,14 @@ export default function Home() {
         brand={false}
       />
 
-      {isAuthenticated == true && (
+      {/* {isAuthenticated == true && (
         <EventsNearYou
           staticItems={loginUserData?.events_near_you}
           title="Events"
           title1="Near You"
           brand={false}
         />
-      )}
+      )} */}
 
       <section className="subscribe-sec">
         <SubscribeHome />
