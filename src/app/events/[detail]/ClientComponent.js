@@ -367,8 +367,11 @@ const ClientComponent = ({ eventDetail, relatedVoopon = [] }) => {
                                     width={31}
                                     height={31}
                                     src={
-                                      collaborator?.promoter_data?.profile_image
-                                        ? `${BASE_URL}/${collaborator?.promoter_data?.profile_image}`
+                                      collaborator?.promoter_data
+                                        ? `${BASE_URL}/${collaborator.promoter_data.profile_image}`
+                                        : collaborator?.business_data
+                                            ?.profile_image
+                                        ? `${BASE_URL}/${collaborator.business_data.profile_image}`
                                         : "/images/colebr-1.png"
                                     }
                                     alt="images"
@@ -390,7 +393,7 @@ const ClientComponent = ({ eventDetail, relatedVoopon = [] }) => {
                                     width={31}
                                     height={31}
                                     src={
-                                      collaborator?.promoter_data?.profile_image
+                                      collaborator?.promoter_data
                                         ? `${BASE_URL}/${collaborator.promoter_data.profile_image}`
                                         : collaborator?.business_data
                                             ?.profile_image

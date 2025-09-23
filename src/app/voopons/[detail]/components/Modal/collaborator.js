@@ -62,7 +62,7 @@ const Collaborator = ({ open, setOpen, data }) => {
                                       item?.promoter_data?.profile_image ||
                                       item?.business_data?.profile_image
                                     }`
-                                  : "/images/amf.png"
+                                  : "/images/colebr-1.png"
                               }
                               alt=""
                             />
