@@ -37,7 +37,6 @@ const ClientComponent = ({ voopon_detail }) => {
   const tempPathName =
     pathName + `?promoter_id=${searchParams.get("promoter_id")}`;
 
-
   // const handleBookNow = () => {
   //   if (!isAuthenticated) {
   //     // router.push(`/login?lastPath=${tempPathName}`);
@@ -53,8 +52,6 @@ const ClientComponent = ({ voopon_detail }) => {
   //     }
   //   }
   // };
-  
-
 
   // new API call to show mssg to user if he tries to buy voopons more than their limit
 
@@ -62,12 +59,12 @@ const ClientComponent = ({ voopon_detail }) => {
   //   console.log(userDetails?.user_id, "userId@@@@@@@@@");
   //   console.log(params.detail, "unique_no@@@@@@@@@@@@@");
   //   console.log(userDetails?.token, "unique_no@@@@@@@@@@@@@");
-    
+
   //   if (!isAuthenticated) {
   //     router.push(`/auth-users`);
   //     return;
   //   }
-  
+
   //   try {
   //     // Check voopon purchase limit
   //     const limitResponse = await checkVooponPurchaseLimit({
@@ -77,20 +74,20 @@ const ClientComponent = ({ voopon_detail }) => {
   //     });
 
   //     console.log('API Response555555555555555555555:', limitResponse);
-  
+
   //     if (!limitResponse.success) {
   //       toast.error(limitResponse.message || "Failed to check purchase limits");
   //       return;
   //     }
-  
+
   //     const { max_limit, current_usage, message } = limitResponse.data;
-  
+
   //     // Check if user can purchase the requested quantity
   //     if (current_usage + quantity > max_limit) {
   //       toast.error(message || `You can only purchase ${max_limit - current_usage} more of this voopon`);
   //       return;
   //     }
-  
+
   //     // Proceed with purchase based on price
   //     if (voopansPrice === 0) {
   //       setOpenCard(false);
@@ -104,34 +101,33 @@ const ClientComponent = ({ voopon_detail }) => {
   //   }
   // };
 
-
   const handleBookNow = async () => {
     if (!isAuthenticated) {
       router.push(`/auth-users`);
       return;
     }
-  
+
     try {
       const limitResponse = await checkVooponPurchaseLimit({
         user_id: userDetails?.user_id,
         voopon_unique_number: params.detail,
         authToken: userDetails.token,
       });
-  
-      console.log('Limit Response:', limitResponse); // Debug log
-  
+
+      // console.log('Limit Response:', limitResponse); // Debug log
+
       if (!limitResponse.success) {
         toast.error(limitResponse.message || "Failed to check purchase limits");
         return;
       }
-  
+
       // Safely destructure with default values
-      const { 
-        max_limit = 0, 
-        current_usage = 0, 
-        message = "Purchase limit reached" 
+      const {
+        max_limit = 0,
+        current_usage = 0,
+        message = "Purchase limit reached",
       } = limitResponse.data || {};
-  
+
       // Check if user can purchase the requested quantity
       // if (current_usage + quantity > max_limit) {
       //   toast.error(message || `You can only purchase ${max_limit - current_usage} more of this voopon`);
@@ -139,13 +135,17 @@ const ClientComponent = ({ voopon_detail }) => {
       // }
 
       if (current_usage < max_limit) {
-        toast.error(`You can only purchase ${max_limit - current_usage} more of this voopon`);
+        toast.error(
+          `You can only purchase ${
+            max_limit - current_usage
+          } more of this voopon`
+        );
         return;
       } else if (current_usage == max_limit) {
         toast.error(message);
         return;
       }
-  
+
       // Proceed with purchase based on price
       if (voopansPrice === 0) {
         setOpenCard(false);
@@ -158,7 +158,6 @@ const ClientComponent = ({ voopon_detail }) => {
       toast.error("Error checking purchase limits");
     }
   };
-  
 
   const handleQuantity = (qty) => {
     setQuantity(qty);
@@ -196,7 +195,6 @@ const ClientComponent = ({ voopon_detail }) => {
   //   } catch (error) {}
   // };
 
-
   // new API call to show mssg to user if he tries to buy voopons more than their limit
 
   const freeBuyNow = async () => {
@@ -207,34 +205,40 @@ const ClientComponent = ({ voopon_detail }) => {
         voopon_unique_number: params.detail,
         authToken: userDetails.token,
       });
-  
+
       if (!limitResponse.success) {
-        toast.error(limitResponse.message || "Failed to verify purchase limits");
+        toast.error(
+          limitResponse.message || "Failed to verify purchase limits"
+        );
         return;
       }
-  
+
       const { max_limit, current_usage } = limitResponse.data;
 
-          // Safely destructure with default values
-    // const { 
-    //   max_limit = 0, 
-    //   current_usage = 0, 
-    //   message = "Purchase limit reached" 
-    // } = limitResponse.data || {};
-  
+      // Safely destructure with default values
+      // const {
+      //   max_limit = 0,
+      //   current_usage = 0,
+      //   message = "Purchase limit reached"
+      // } = limitResponse.data || {};
+
       // if (current_usage + quantity > max_limit) {
       //   toast.error(`You can only purchase ${max_limit - current_usage} more of this voopon`);
       //   return;
       // }
 
       if (current_usage < max_limit) {
-        toast.error(`You can only purchase ${max_limit - current_usage} more of this voopon`);
+        toast.error(
+          `You can only purchase ${
+            max_limit - current_usage
+          } more of this voopon`
+        );
         return;
       } else if (current_usage == max_limit) {
         toast.error(message);
         return;
       }
-  
+
       const requestData = {
         user_id: `${userDetails?.user_id}`,
         email: userDetails?.email,
@@ -243,13 +247,13 @@ const ClientComponent = ({ voopon_detail }) => {
         voopon_quantity: `${quantity}`,
         event_quantity: null,
       };
-      
+
       const response = await postFetchDataWithAuth({
         data: requestData,
         endpoint: "user_free_buy_now",
         authToken: userDetails.token,
       });
-  
+
       if (response.success) {
         setReload(!reload);
         toast.success(`Grab deal successful`);
@@ -311,7 +315,6 @@ const ClientComponent = ({ voopon_detail }) => {
   //   }
   // };
 
-
   // new API call to show mssg to user if he tries to buy voopons more than their limit
   const callBack = async (card) => {
     try {
@@ -321,27 +324,33 @@ const ClientComponent = ({ voopon_detail }) => {
         voopon_unique_number: params.detail,
         authToken: userDetails.token,
       });
-  
+
       if (!limitResponse.success) {
-        toast.error(limitResponse.message || "Failed to verify purchase limits");
+        toast.error(
+          limitResponse.message || "Failed to verify purchase limits"
+        );
         return;
       }
-  
+
       const { max_limit, current_usage } = limitResponse.data;
-  
+
       // if (current_usage + quantity > max_limit) {
       //   toast.error(`You can only purchase ${max_limit - current_usage} more of this voopon`);
       //   return;
       // }
 
       if (current_usage < max_limit) {
-        toast.error(`You can only purchase ${max_limit - current_usage} more of this voopon`);
+        toast.error(
+          `You can only purchase ${
+            max_limit - current_usage
+          } more of this voopon`
+        );
         return;
       } else if (current_usage == max_limit) {
         toast.error(message);
         return;
       }
-  
+
       let requestData;
       if (card?.token) {
         requestData = {
@@ -364,13 +373,13 @@ const ClientComponent = ({ voopon_detail }) => {
           unique_number: params.detail,
         };
       }
-  
+
       const response = await postFetchDataWithAuth({
         data: requestData,
         endpoint: "user_buy_now",
         authToken: userDetails.token,
       });
-      
+
       if (response.success) {
         setReload(!reload);
         toast.success(`Payment successful`);
@@ -388,7 +397,6 @@ const ClientComponent = ({ voopon_detail }) => {
       toast.error(errorMessage);
     }
   };
-
 
   return (
     <>
@@ -482,7 +490,9 @@ const ClientComponent = ({ voopon_detail }) => {
                       height={31}
                       src={
                         collaborator?.promoter_data?.profile_image
-                          ? `${BASE_URL}/${collaborator?.promoter_data?.profile_image}`
+                          ? `${BASE_URL}/${collaborator.promoter_data.profile_image}`
+                          : collaborator?.business_data?.profile_image
+                          ? `${BASE_URL}/${collaborator.business_data.profile_image}`
                           : "/images/colebr-1.png"
                       }
                       alt="images"

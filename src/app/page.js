@@ -1,5 +1,5 @@
 "use client";
-export const dynamic = "force-dynamic";  // Ensures server renders fresh content. extra addition line
+export const dynamic = "force-dynamic"; // Ensures server renders fresh content. extra addition line
 import Link from "next/link";
 import Image from "next/image";
 import SubscribeHome from "@/components/SubscribeHome";
@@ -15,21 +15,14 @@ import VooponYouLove from "@/components/custom/VooponYouLove";
 import VooponYouLoveTwo from "@/components/custom/VooponYouLoveTwo";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
-import { htmlToText } from 'html-to-text';
+import { htmlToText } from "html-to-text";
 
 import { separateContentWithoutParser } from "@/components/HtmlToObjectParse";
 
-
-
-
 export default function Home() {
-    const [separatedContent, setSeparatedContent] = useState(null);
-
-    
-  
+  const [separatedContent, setSeparatedContent] = useState(null);
 
   const { isAuthenticated, userDetails } = useAuth();
-
 
   const storeState = useSelector((state) => state.user.userState);
 
@@ -44,41 +37,38 @@ export default function Home() {
 
   const [loginUserData, setLoginUserData] = useState([]);
 
+  // Fetch about data
+  useEffect(() => {
+    const fetchAboutData = async () => {
+      try {
+        // const resAbout = await fetch(`${BASE_URL}/api/user_about`, {
+        const resAbout = await fetch(`${BASE_URL}/api/manage_content_home`, {
+          method: "GET",
+          cache: "no-store",
+        });
+        // {console.log(resAbout,"resAbout@@@@@@11")}
+        const about_data = await resAbout.json();
 
-
-
-    // Fetch about data
-    useEffect(() => {
-      const fetchAboutData = async () => {
-        try {
-          // const resAbout = await fetch(`${BASE_URL}/api/user_about`, {
-            const resAbout = await fetch(`${BASE_URL}/api/manage_content_home`, {
-            method: "GET",
-            cache: "no-store",
+        if (about_data.data.contentText) {
+          // {console.log(about_data,"resAbout@@@@@@22")}
+          const parsedHTML = about_data.data.contentText;
+          const plainText = htmlToText(parsedHTML, {
+            wordwrap: 130,
+            selectors: [
+              { selector: "img", format: "skip" }, // ignore images
+            ],
           });
-          // {console.log(resAbout,"resAbout@@@@@@11")}
-          const about_data = await resAbout.json();
-       
-          if (about_data.data.contentText) {
-            {console.log(about_data,"resAbout@@@@@@22")}
-            const parsedHTML = about_data.data.contentText;
-            const plainText = htmlToText(parsedHTML, {
-              wordwrap: 130,
-              selectors: [
-                { selector: 'img', format: 'skip' }, // ignore images
-              ],
-            });
-            
-            // const separated = separateContentWithoutParser(parsedHTML);
-            setSeparatedContent(plainText);
-            {console.log("resAbout@@@@@@33",plainText,"resAbout@@@@@@33")}
-          }
-        } catch (error) {
-          console.error("Error fetching about data:", error);
+
+          // const separated = separateContentWithoutParser(parsedHTML);
+          setSeparatedContent(plainText);
+          // {console.log("resAbout@@@@@@33",plainText,"resAbout@@@@@@33")}
         }
-      };
-      fetchAboutData();
-    }, []);
+      } catch (error) {
+        console.error("Error fetching about data:", error);
+      }
+    };
+    fetchAboutData();
+  }, []);
 
   // for category api user singin or logout both case run
 
@@ -89,8 +79,10 @@ export default function Home() {
           "Content-Type": "application/json",
         },
       });
-      
-      {console.log(response, "fetchUserCategoryList@@@@@@@@@@@@@@@@@")}
+
+      {
+        // console.log(response, "fetchUserCategoryList@@@@@@@@@@@@@@@@@");
+      }
 
       setCategories(response.data.data);
     } catch (error) {
@@ -127,7 +119,6 @@ export default function Home() {
           },
         }
       );
-      {console.log(response, "getUserData@@@@@@@@@@@@@@@@@")}
 
       setGuestData(response.data.data);
     } catch (error) {
@@ -145,7 +136,6 @@ export default function Home() {
           },
         }
       );
-      {console.log(response, "testimonialData@@@@@@@@@@@@@@@@@")}
 
       //
       setTestimonialData(response.data.data);
@@ -168,7 +158,7 @@ export default function Home() {
           },
         }
       );
-      {console.log(response, "response@@@@@@@@@@@@@@@@@")}
+
       //
       //
       setLoginUserData(response.data.data);
@@ -176,7 +166,6 @@ export default function Home() {
       console.error(error); // For debugging
     }
   };
-
 
   // handle refer
 
@@ -240,7 +229,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
 
       {isAuthenticated == true && (
         <EventsNearYou
@@ -323,7 +311,7 @@ export default function Home() {
         </div>
       </section> */}
 
-<section className="about-section">
+      <section className="about-section">
         <div className="container">
           <div className="row">
             <div className="col-lg-6">
@@ -343,14 +331,18 @@ export default function Home() {
                 <div className="heading mb-3">
                   What is <span> VoolayVoo?</span>
                 </div>
-                
+
                 {separatedContent ? (
                   <div dangerouslySetInnerHTML={{ __html: separatedContent }} />
                 ) : (
                   <p>Loading about content...</p>
                 )}
 
-                <Link className="btn btn-learnmore" href={"/about"} role="button">
+                <Link
+                  className="btn btn-learnmore"
+                  href={"/about"}
+                  role="button"
+                >
                   Learn More
                 </Link>
               </div>
@@ -365,13 +357,14 @@ export default function Home() {
 
       {isMounted == true && isAuthenticated == true && (
         <VooponYouLoveTwo staticItems={loginUserData.voopon_you_will_love} />
-        
       )}
       <section className="how-it-section">
         <div className="container">
           <div className="row">
             <div className="col-lg-12 mb-5 pb-4">
-              <div className="heading text-white text-center pb-2">How it Works</div>
+              <div className="heading text-white text-center pb-2">
+                How it Works
+              </div>
               <p className="text-center text-white">
                 VOOLAY-VOO “(what) do you want (to do)?” A Collaborative,
                 Social, Marketplace in the palm of your hand that creates an
@@ -592,7 +585,6 @@ export default function Home() {
 
 //   const { isAuthenticated, userDetails } = useAuth();
 
-
 //   const storeState = useSelector((state) => state.user.userState);
 
 //   const [categories, setCategories] = useState([]);
@@ -605,7 +597,6 @@ export default function Home() {
 //   const [testimonialData, setTestimonialData] = useState([]);
 
 //   const [loginUserData, setLoginUserData] = useState([]);
-
 
 //   //
 

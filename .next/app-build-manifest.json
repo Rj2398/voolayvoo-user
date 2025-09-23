@@ -17,15 +17,27 @@
       "static/chunks/main-app.js",
       "static/chunks/app/not-found.js"
     ],
-    "/voopons/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/voopons/page.js"
-    ],
     "/businesses/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/businesses/page.js"
+    ],
+    "/businesses/[detail]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/businesses/[detail]/page.css",
+      "static/chunks/app/businesses/[detail]/page.js"
+    ],
+    "/events/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/events/page.js"
+    ],
+    "/events/[detail]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/events/[detail]/page.css",
+      "static/chunks/app/events/[detail]/page.js"
     ],
     "/promoters/page": [
       "static/chunks/webpack.js",
@@ -37,30 +49,30 @@
       "static/chunks/main-app.js",
       "static/chunks/app/promoters/[detail]/page.js"
     ],
-    "/events/page": [
+    "/voopons/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/events/page.js"
+      "static/chunks/app/voopons/page.js"
     ],
-    "/(user)/my/profile/page": [
+    "/voopons/[detail]/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(user)/my/profile/page.js"
+      "static/chunks/app/voopons/[detail]/page.js"
     ],
-    "/(user)/layout": [
+    "/(page)/map/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(user)/layout.js"
+      "static/chunks/app/(page)/map/page.js"
+    ],
+    "/(page)/about/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(page)/about/page.js"
     ],
     "/_not-found/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/_not-found/page.js"
-    ],
-    "/(user)/my/events/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(user)/my/events/page.js"
     ]
   }
 }

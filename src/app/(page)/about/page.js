@@ -1,4 +1,4 @@
-export const dynamic = "force-dynamic";    // Ensures server renders fresh content. extra addition line
+export const dynamic = "force-dynamic"; // Ensures server renders fresh content. extra addition line
 import Link from "next/link";
 import Image from "next/image";
 import { BASE_URL } from "@/constant/constant";
@@ -154,7 +154,6 @@ const About = async () => {
                 </div>
                 <div className="heading">Our Mission</div>
 
-                {console.log("Mission Content from Backend:", separatedContent.mission)}
                 <div
                   dangerouslySetInnerHTML={{ __html: separatedContent.mission }}
                 />

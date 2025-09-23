@@ -727,8 +727,8 @@ const ClientComponent = ({ categoryList, promoterList }) => {
   // State for the list currently being rendered (after pagination)
   const [renderList, setRenderList] = useState([]);
 
-  console.log("tempBusinessList: ", tempBusinessList);
-  console.log("renderList: ", renderList);
+  // console.log("tempBusinessList: ", tempBusinessList);
+  // console.log("renderList: ", renderList);
 
   const [pageNo, setPageNo] = useState(1);
   const [selectCategory, setSelectCategory] = useState({

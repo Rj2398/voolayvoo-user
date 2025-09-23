@@ -1,11 +1,9 @@
 {
-  "/businesses/page": "app/businesses/page.js",
   "/voopons/page": "app/voopons/page.js",
+  "/businesses/[detail]/page": "app/businesses/[detail]/page.js",
+  "/events/[detail]/page": "app/events/[detail]/page.js",
   "/page": "app/page.js",
-  "/promoters/page": "app/promoters/page.js",
-  "/promoters/[detail]/page": "app/promoters/[detail]/page.js",
-  "/events/page": "app/events/page.js",
-  "/_not-found/page": "app/_not-found/page.js",
-  "/(user)/my/profile/page": "app/(user)/my/profile/page.js",
-  "/(user)/my/events/page": "app/(user)/my/events/page.js"
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/(page)/map/page": "app/(page)/map/page.js",
+  "/voopons/[detail]/page": "app/voopons/[detail]/page.js"
 }

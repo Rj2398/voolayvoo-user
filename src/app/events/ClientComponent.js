@@ -242,10 +242,9 @@ const ClientComponent = ({ categoryList, eventList }) => {
           backgroundImage: "url(/images/about-bnr.png)",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
-
         }}
       >
-        <div className="back-btn" style={{ cursor: "pointer",width:"100%" }}>
+        <div className="back-btn" style={{ cursor: "pointer", width: "100%" }}>
           <a
             to="#"
             onClick={(e) => {
@@ -343,15 +342,21 @@ const ClientComponent = ({ categoryList, eventList }) => {
               {Array.isArray(renderList) &&
                 renderList.length > 0 &&
                 renderList.map((item, index) => {
-                  { console.log(renderList, 'rr') }
+                  // { console.log(renderList, 'rr') }
                   return (
-                    <div key={index} className="col-lg-4" style={{ display: "flex", flexDirection: "column" }}>
-                      <div className="event-brand-box" style={{
-                        height: "100%",
-                        display: "flex",
-                        flexDirection: "column"
-
-                      }}>
+                    <div
+                      key={index}
+                      className="col-lg-4"
+                      style={{ display: "flex", flexDirection: "column" }}
+                    >
+                      <div
+                        className="event-brand-box"
+                        style={{
+                          height: "100%",
+                          display: "flex",
+                          flexDirection: "column",
+                        }}
+                      >
                         <div className="brand-logo">
                           <Image
                             width={285}
@@ -398,7 +403,10 @@ const ClientComponent = ({ categoryList, eventList }) => {
                                 alt=""
                               />{" "}
                               {/* {item.event_away_distance} miles away */}
-                              {!isNaN(item.event_away_distance) && item.event_away_distance !== null ? `${item.event_away_distance} miles away` : 'No location available'}
+                              {!isNaN(item.event_away_distance) &&
+                              item.event_away_distance !== null
+                                ? `${item.event_away_distance} miles away`
+                                : "No location available"}
                             </span>
                             <span>
                               <Image

@@ -11,7 +11,7 @@
 // function GoogleMapComp({ markerList, location }) {
 
 //   console.log(markerList,"markker list and location",location);
-  
+
 //   const [mapLoaded, setMapLoaded] = useState(false);
 //   const mapRef = useRef(null);
 //   const markersRef = useRef([]); // Store markers in a ref
@@ -21,7 +21,6 @@
 //     lat: Number(location.latitude), // Provide a default value to prevent null error
 //     lng: Number(location.longitude),
 //   };
-
 
 //   const buildMapInfoCardContent = (info) => {
 
@@ -154,7 +153,7 @@ const containerStyle = {
 };
 
 function GoogleMapComp({ markerList, location }) {
-  console.log(markerList, "marker list and location", location);
+  // console.log(markerList, "marker list and location", location);
 
   const [mapLoaded, setMapLoaded] = useState(false);
   const mapRef = useRef(null);
@@ -180,7 +179,9 @@ function GoogleMapComp({ markerList, location }) {
               : "./images/map/brand-logo.svg"
           }" alt="" />
           <h1>${info?.events_name}rajan</h1>
-          <a href="/businesses/${info?.id}">View Details <ArrowForwardIosIcon/></a>
+          <a href="/businesses/${
+            info?.id
+          }">View Details <ArrowForwardIosIcon/></a>
         </div>
       </div>
     `;

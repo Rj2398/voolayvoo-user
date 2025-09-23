@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import Modal from "react-modal";
 
 const AuthModal = ({ isOpen, onClose }) => {
-
   // Custom styles for the modal, including transition for the animation
   const customStyles = {
     content: {
@@ -47,10 +46,7 @@ const AuthModal = ({ isOpen, onClose }) => {
                 <h1>Logout</h1>
                 <p>Are you sure you want to logout?</p>
                 <div className="delete-account-btns">
-                  <button
-                    type="button"
-                    onClick={() => console.log("Logging out")}
-                  >
+                  <button type="button" onClick={() => {}}>
                     Yes
                   </button>
                   <button type="button" onClick={() => onClose(false)}>

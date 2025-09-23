@@ -1,4 +1,4 @@
-// File: /Users/rajanmalakar/Downloads/voolayvoo-user/untitled folder/voolayvoo-user/src/app/voopons/page.js
+// File: /Users/rajanmalakar/Downloads/voolayvoo-user/voolayvoo-user/src/app/voopons/page.js
 import * as entry from '../../../../src/app/voopons/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
