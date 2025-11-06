@@ -178,10 +178,10 @@ function GoogleMapComp({ markerList, location }) {
               ? BASE_URL + "/" + info?.eventimage?.image_name
               : "./images/map/brand-logo.svg"
           }" alt="" />
-          <h1>${info?.events_name}rajan</h1>
-          <a href="/businesses/${
-            info?.id
-          }">View Details <ArrowForwardIosIcon/></a>
+          <h1>${info?.events_name}</h1>
+          <a href="/businesses/${info?.id}?business_id=${
+      info?.business_id
+    }">View Details <ArrowForwardIosIcon/></a>
         </div>
       </div>
     `;
