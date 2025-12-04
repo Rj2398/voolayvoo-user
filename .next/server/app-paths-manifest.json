@@ -1,9 +1,1 @@
-{
-  "/businesses/[detail]/page": "app/businesses/[detail]/page.js",
-  "/events/[detail]/page": "app/events/[detail]/page.js",
-  "/voopons/page": "app/voopons/page.js",
-  "/voopons/[detail]/page": "app/voopons/[detail]/page.js",
-  "/events/page": "app/events/page.js",
-  "/page": "app/page.js",
-  "/businesses/page": "app/businesses/page.js"
-}
+{}
