@@ -9,12 +9,12 @@ import "react-toastify/dist/ReactToastify.css";
 const CustomToastContainer = () => {
   return (
     <OriginalToastContainer
-      position="bottom-left"
+      position="top-right"
       autoClose={5000}
       hideProgressBar
       newestOnTop
       closeOnClick
-      rtl
+      ltr
       pauseOnFocusLoss={false}
       draggable
       pauseOnHover

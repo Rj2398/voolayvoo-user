@@ -28,12 +28,12 @@ const Footer = () => {
                   src="/images/logo-footer.png"
                   alt=""
                 />
-                <p>
+                {/* <p>
                   Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
                   Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet,
                   consectetuer adipiscing elit. Aenean commodo ligula eget
                   dolor.
-                </p>
+                </p> */}
               </div>
             </div>
             <div className="col-lg-3 col-md-4">

@@ -11,7 +11,7 @@ import Subscribe from "./Component/Subscribe";
 //     method: "GET",
 //   });
 
-async function getData() {
+async function getData () {
   const resAbout = await fetch(`${BASE_URL}/api/user_about`, {
     method: "GET",
     cache: "no-store", // This is the key to get fresh data on every load. extra code. above cmmented code is original.

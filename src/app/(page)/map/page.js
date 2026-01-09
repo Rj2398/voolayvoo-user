@@ -20,6 +20,7 @@ async function fetchEventList(id) {
 const Map = () => {
   const { userDetails } = useAuth();
   const [eventList, setEventList] = useState([]); // Full event list
+  const [location, setLocation] = useState({ latitude: "", longitude: ""});
 
   const [filteredEvents, setFilteredEvents] = useState([]); // Filtered event list
 
@@ -73,9 +74,7 @@ const Map = () => {
     applyFilters();
   }, [appliedFilter, eventList]);
 
-  // const [location, setLocation] = useState({ latitude: null, longitude: null });
-  const [location, setLocation] = useState({ latitude: "28.3901952", longitude: "79.4066944" });
-
+            
   useEffect(() => {
     if (window.navigator.geolocation) {
       window.navigator.geolocation.getCurrentPosition(
@@ -83,7 +82,7 @@ const Map = () => {
           setLocation({
             latitude: position.coords.latitude,
             longitude: position.coords.longitude,
-          });
+          }); 
         },
         (err) => {
           console.error(err.message);
@@ -108,6 +107,7 @@ const Map = () => {
       background: "#fff", padding: "10px", borderRadius: "8px", boxShadow: "0 2px 8px rgba(0,0,0,0.15)" }}>
       <MapFilter setAppliedFilter={setAppliedFilter} />
     </div>
+      {/* <GoogleMapComp markerList={filteredEvents}  /> */}
       <GoogleMapComp markerList={filteredEvents} location={location} />
   </div>
 
