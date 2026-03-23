@@ -408,7 +408,7 @@ const ClientComponent = ({ categoryList, eventList }) => {
                                 ? `${item.event_away_distance} miles away`
                                 : "No location available"}
                             </span>
-                            <span>
+                            {/* <span>
                               <Image
                                 width={20}
                                 height={20}
@@ -430,6 +430,32 @@ const ClientComponent = ({ categoryList, eventList }) => {
                               />{" "}
                               {convertTo12HourFormat(item.events_start_time)} to{" "}
                               {convertTo12HourFormat(item.events_end_time)}{" "}
+                            </span> */}
+
+                            <span>
+                              <Image
+                                width={20}
+                                height={20}
+                                src="/images/calendar.png"
+                                alt=""
+                              />{" "}
+                              Start Date:{" "}
+                              {DateTime.fromFormat(
+                                item.events_date,
+                                "yyyy-MM-dd"
+                              ).toFormat("MMMM dd, yyyy")}
+                              <br />
+                              <Image
+                                width={20}
+                                height={20}
+                                src="/images/calendar.png"
+                                alt=""
+                              />{" "}
+                              End Date:{" "}
+                              {DateTime.fromFormat(
+                                item.events_end_date,
+                                "yyyy-MM-dd"
+                              ).toFormat("MMMM dd, yyyy")}
                             </span>
                           </div>
                           <Link

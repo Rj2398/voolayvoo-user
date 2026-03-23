@@ -22,6 +22,9 @@ import CheckPayment from "@/components/Modal/CheckPayment";
 import { Rating } from "@mui/material";
 
 const ClientComponent = ({ eventDetail, relatedVoopon = [] }) => {
+
+  console.log(eventDetail);
+  
   const [open, setOpen] = useState(false);
   const [openCard, setOpenCard] = useState(false);
   // const [eventPrice, setEventPrice] = useState<number>(
@@ -501,18 +504,70 @@ const ClientComponent = ({ eventDetail, relatedVoopon = [] }) => {
                 <div className="row mt-3">
                   <div className="col-lg-7 col-md-6">
                     <div className="valid-thru">
-                      <h4> Date & Time </h4>
+                      <h4> Start Date </h4>
+                     <span>
+                 {eventDetail?.event_one?.events_date
+                ? DateTime.fromISO(eventDetail.event_one.events_date).toFormat("MMMM dd, yyyy")
+                : eventDetail?.event_two?.events_date
+                ? DateTime.fromISO(eventDetail.event_two.events_date).toFormat("MMMM dd, yyyy")
+                : ""}{" "}
+</span>
+                    </div>
+
+                    
+                  </div>
+
+                  
+                  <div className="col-lg-5 col-md-6">
+                   <div className="valid-thru">
+                      <h4> End Date </h4>
                       <span>
-                        {eventDetail?.event_one?.events_date ||
-                          (eventDetail?.event_two?.events_date &&
-                            DateTime.fromFormat(
-                              eventDetail?.event_one?.events_date ||
-                                eventDetail?.event_two?.events_date,
-                              "yyyy-MM-dd"
-                            ).toFormat("MMM dd, yyyy"))}{" "}
+                        {eventDetail?.event_one?.events_date
+                ? DateTime.fromISO(eventDetail.event_one.events_end_date).toFormat("MMMM dd, yyyy")
+                : eventDetail?.event_two?.events_date
+                ? DateTime.fromISO(eventDetail.event_two.events_end_date).toFormat("MMMM dd, yyyy")
+                : ""}{" "}
                       </span>
                     </div>
                   </div>
+                </div>
+
+
+                            <div className="row mt-3">
+                  <div className="col-lg-7 col-md-6">
+                    <div className="valid-thru">
+                      <h4> Start Time </h4>
+                      <span>
+                         {eventDetail?.event_one?.events_start_time
+                ? eventDetail?.event_one?.events_start_time
+                : eventDetail?.event_two?.events_start_time
+                ?eventDetail?.event_two?.events_start_time
+                : ""}{" "}
+                      </span>
+                    </div>
+
+                    
+                  </div>
+
+                  
+                  <div className="col-lg-5 col-md-6">
+                   <div className="valid-thru">
+                      <h4>End Time</h4>
+                      <span>
+                  {eventDetail?.event_one?.events_end_time
+                ? eventDetail?.event_one?.events_end_time
+                : eventDetail?.event_two?.events_end_time
+                ?eventDetail?.event_two?.events_end_time
+                : ""}{" "}
+                      </span>
+
+                  
+                    </div>
+                  </div>
+                </div>
+
+                 <div className="row mt-3">
+                
                   <div className="col-lg-5 col-md-6">
                     <div className="location-box">
                       <h4> Location </h4>

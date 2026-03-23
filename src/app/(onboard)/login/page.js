@@ -127,15 +127,23 @@ const Login = () => {
                               message: "Password is required",
                             },
 
+
                             pattern: {
                               value: passwordPattern,
                               message:
                                 "Password must be at least 8 characters long and contain one number, one alphabet, and one special character",
                             },
+
+                            
                           })}
                           type={show ? "text" : "password"}
                           className="form-control password-in"
                           placeholder="Password"
+                            onKeyDown={(e) => {
+                              if (e.key === "Enter") {
+                                handleSubmit(onSubmit)();
+                              }
+                            }}
                         />
                         <i
                           onClick={() => setShow(show ? false : true)}
