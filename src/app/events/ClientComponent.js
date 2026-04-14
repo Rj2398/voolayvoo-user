@@ -478,7 +478,7 @@ const ClientComponent = ({ categoryList, eventList }) => {
                             >
                               {truncateDescriptionByWords(item.events_name, 20)}
                             </h6>
-                            <VisibilityIcon
+                            {/* <VisibilityIcon
                               onClick={() => {
                                 // Set the data first
 
@@ -491,6 +491,24 @@ const ClientComponent = ({ categoryList, eventList }) => {
                                 borderRadius: "4px",
                                 fontSize: "26px",
                                 padding: "4px",
+                              }}
+                            /> */}
+
+                            <img
+                              src="/images/new-event-eyeicon.png"
+                              alt="view event"
+                              width={24}
+                              height={24}
+                              onClick={() => {
+                                setActiveData(item);
+                                setOpen(true);
+                              }}
+                              style={{
+                                cursor: "pointer",
+                                backgroundColor: "#f8f9fa",
+                                borderRadius: "4px",
+                                padding: "4px",
+                                objectFit: "contain"
                               }}
                             />
 
@@ -537,7 +555,7 @@ const ClientComponent = ({ categoryList, eventList }) => {
                               />{" "}
                               {/* {item.event_away_distance} miles away */}
                               {!isNaN(item.event_away_distance) &&
-                              item.event_away_distance !== null
+                                item.event_away_distance !== null
                                 ? `${item.event_away_distance} miles away`
                                 : "No location available"}
                             </span>
@@ -618,7 +636,8 @@ const ClientComponent = ({ categoryList, eventList }) => {
                                   src={
                                     item?.business_details?.profile_image
                                       ? `${BASE_URL}${item.business_details.profile_image}`
-                                      : "/images/placeholder-user.png"
+                                      : `${BASE_URL}${item?.promoter_details?.profile_image}`
+                                    // : "/images/placeholder-user.png"
                                   }
                                   alt="Promoter"
                                   fill
@@ -641,7 +660,7 @@ const ClientComponent = ({ categoryList, eventList }) => {
                                     lineHeight: "1",
                                   }}
                                 >
-                                  {item?.business_id ? "Business" : "Promoter"}
+                                  {item?.business_details ? "Business" : "Promoter"}
                                 </span>
                                 <span
                                   style={{
@@ -651,7 +670,7 @@ const ClientComponent = ({ categoryList, eventList }) => {
                                     marginTop: "4px",
                                   }}
                                 >
-                                  {item?.business_details?.name}
+                                  {item?.business_details ? item?.business_details?.name : item?.promoter_details?.name}
                                 </span>
                               </div>
                             </div>

@@ -7,7 +7,7 @@ import LanguageIcon from "@mui/icons-material/Language";
 
 const Card = ({ data }) => {
   // LOGIC: Determine if Business or Promoter
-  const isBusiness = !!data?.business_id;
+  const isBusiness = !!data?.business_details;
   const creator = isBusiness ? data?.business_details : data?.promoter_details;
   const userType = isBusiness ? "Business" : "Promoter";
 

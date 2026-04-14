@@ -8,7 +8,7 @@ import {
 } from "@/utils/eventFunction";
 
 const Events = ({ dataList = [] }) => {
-  // console.log(dataList, "******123456*****");
+  console.log(dataList, "******123456*****");
   const [tempEventList, setTempEventList] = useState([]);
   const [renderList, setRenderList] = useState([]);
 

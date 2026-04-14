@@ -131,7 +131,7 @@ const ClientComponent = ({ categoryList, voopanList }) => {
       <div className="row" ref={targetDivRef}>
         {renderList.map((item) => {
           // LOGIC: Determine if Business or Promoter
-          const isBusiness = !!item?.business_id;
+          const isBusiness = !!item?.business_details;
           const creator = isBusiness
             ? item?.business_details
             : item?.promoter_details;

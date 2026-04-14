@@ -15,9 +15,9 @@ const Card = ({ cardData }) => {
   // LOGIC: Determine if Business or Promoter
   // We check the nested events_data or the top level business_id
   const isBusiness = !!(
-    cardData?.business_id ||
-    cardData?.events_data?.business_id ||
-    cardData?.events_data_business?.business_id
+    cardData?.business_details ||
+    cardData?.events_data?.business_details ||
+    cardData?.events_data_business?.business_details
   );
 
   const creator = isBusiness
@@ -34,8 +34,8 @@ const Card = ({ cardData }) => {
   const imageSrc = cardData?.events_data?.eventimage?.image_name
     ? `${BASE_URL}/${cardData?.events_data?.eventimage?.image_name}`
     : cardData?.business_event_image?.image_name
-    ? `${BASE_URL}/${cardData?.business_event_image?.image_name}`
-    : "/images/near-event1.png";
+      ? `${BASE_URL}/${cardData?.business_event_image?.image_name}`
+      : "/images/near-event1.png";
 
   if (!cardData) return null;
 
@@ -66,13 +66,13 @@ const Card = ({ cardData }) => {
             />
             <div className="event-price">
               {cardData?.events_data?.events_price == "0" ||
-              cardData?.events_price == "0" ||
-              cardData?.events_data_business?.events_price == "0"
+                cardData?.events_price == "0" ||
+                cardData?.events_data_business?.events_price == "0"
                 ? "Free"
                 : "$" +
-                  (cardData?.events_data?.events_price ||
-                    cardData?.events_data_business?.events_price ||
-                    cardData?.events_price)}
+                (cardData?.events_data?.events_price ||
+                  cardData?.events_data_business?.events_price ||
+                  cardData?.events_price)}
             </div>
           </div>
 
@@ -103,7 +103,7 @@ const Card = ({ cardData }) => {
                     cardData?.events_name}
                 </h6>
                 <div style={{ display: "flex", gap: "5px" }}>
-                  <VisibilityIcon
+                  {/* <VisibilityIcon
                     onClick={() => {
                       setActiveData(cardData);
                       setOpen(true);
@@ -114,6 +114,24 @@ const Card = ({ cardData }) => {
                       borderRadius: "4px",
                       fontSize: "24px",
                       padding: "4px",
+                    }}
+                  /> */}
+
+                  <img
+                    src="/images/new-event-eyeicon.png"
+                    alt="view event"
+                    width={24}
+                    height={24}
+                    onClick={() => {
+                      setActiveData(cardData);
+                      setOpen(true);
+                    }}
+                    style={{
+                      cursor: "pointer",
+                      backgroundColor: "#f8f9fa",
+                      borderRadius: "4px",
+                      padding: "4px",
+                      objectFit: "contain"
                     }}
                   />
                   <LanguageIcon
