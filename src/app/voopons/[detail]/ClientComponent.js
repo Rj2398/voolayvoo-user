@@ -18,6 +18,7 @@ import { toast } from "react-toastify";
 import CheckPayment from "@/components/Modal/CheckPayment";
 
 const ClientComponent = ({ voopon_detail }) => {
+  console.log(voopon_detail);
   const [open, setOpen] = useState(false);
   const [openCard, setOpenCard] = useState(false);
   const [voopansPrice, setVoopansPrice] = useState(
@@ -411,56 +412,6 @@ const ClientComponent = ({ voopon_detail }) => {
             {voopon_detail?.voopon_one?.voopons_description ||
               voopon_detail?.voopon_two?.voopons_description}
           </p>
-          {/* 
-          {voopon_detail?.voopon_one?.collaborator_data?.length > 0 && (
-            <div className="collaborators">
-              <span>
-                <Image
-                  width={31}
-                  height={31}
-                  src="/images/collabo-icon.png"
-                  alt="images"
-                  className="img-fluid"
-                />
-              </span>
-              <span className="col-font" onClick={() => setOpen(true)}>
-                Collaborator(s):
-              </span>
-              {/*  */}
-          {/* <span>
-                {voopon_detail?.voopon_one?.collaborator_data?.length > 0 &&
-                  voopon_detail?.voopon_one?.collaborator_data.map(
-                    (collaborator, idx) => {
-
-                      if (idx < 3) {
-                        return (
-                          <Image
-                            key={collaborator?.id}
-                            width={31}
-                            height={31}
-                            src={
-                              collaborator?.promoter_data?.profile_image
-                                ? `${BASE_URL}/${collaborator?.promoter_data?.profile_image}`
-                                : "/images/colebr-1.png"
-                            }
-                            alt="images"
-                            className="collabeIcon"
-                          />
-                        );
-                      }
-                    }
-                  )}
-
-                {voopon_detail?.voopon_one?.collaborator_data?.length > 3 && (
-                  <div className="more">
-                    {" "}
-                    +{voopon_detail?.voopon_one?.collaborator_data?.length -
-                      3}{" "}
-                  </div>
-                )}
-              </span> */}
-          {/* </div> */}
-          {/* )} */}
 
           {(voopon_detail?.voopon_one?.collaborator_data?.length > 0 ||
             voopon_detail?.voopon_two?.collaborator_data?.length > 0) && (
@@ -542,19 +493,41 @@ const ClientComponent = ({ voopon_detail }) => {
                 </span>
               </div>
             </div>
-            <div className="col-lg-4 col-md-4">
-              <div className="valid-thru">
-                <h4> Valid Thru </h4>
-                <span>
-                  {" "}
-                  {voopon_detail?.voopon_one?.voopons_valid_thru ||
-                    (voopon_detail?.voopon_two?.voopons_valid_thru &&
-                      DateTime.fromFormat(
-                        voopon_detail?.voopon_one?.voopons_valid_thru ||
-                          voopon_detail?.voopon_two?.voopons_valid_thru,
-                        "yyyy-MM-dd"
-                      ).toFormat("MMM dd, yyyy"))}
-                </span>
+
+            <div className="row mt-2 align-items-center">
+              <div className="col-lg-8 col-md-6">
+                <div className="valid-thru">
+                  <h4> Start Date </h4>
+                  <span>
+                    {voopon_detail?.voopon_one?.voopons_date
+                      ? DateTime.fromISO(
+                          voopon_detail?.voopon_one?.voopons_date
+                        ).toFormat("MMMM dd, yyyy")
+                      : voopon_detail?.voopon_two?.voopons_date
+                      ? DateTime.fromISO(
+                          voopon_detail?.voopon_two?.voopons_date
+                        ).toFormat("MMMM dd, yyyy")
+                      : ""}{" "}
+                  </span>
+                </div>
+              </div>
+
+              <div className="col-lg-4 col-md-6">
+                <div className="valid-thru" style={{ marginLeft: "13px" }}>
+                  {"  "}
+                  <h4> End Date : </h4>
+                  <span>
+                    {voopon_detail?.voopon_one?.voopons_valid_thru
+                      ? DateTime.fromISO(
+                          voopon_detail?.voopon_one?.voopons_valid_thru
+                        ).toFormat("MMMM dd, yyyy")
+                      : voopon_detail?.voopon_two?.voopons_valid_thru
+                      ? DateTime.fromISO(
+                          voopon_detail?.voopon_two?.voopons_valid_thru
+                        ).toFormat("MMMM dd, yyyy")
+                      : ""}{" "}
+                  </span>
+                </div>
               </div>
             </div>
           </div>
@@ -584,6 +557,35 @@ const ClientComponent = ({ voopon_detail }) => {
                   )}
                   updateQuantity={handleQuantity}
                 />
+              </div>
+            </div>
+          </div>
+
+          <div className="row mt-2 align-items-center">
+            <div className="col-lg-8 col-md-6">
+              <div className="copy-content">
+                <h5>Code: </h5>
+                <span>
+                  {" "}
+                  {voopon_detail?.voopon_one?.voopon_code ||
+                    voopon_detail?.voopon_two?.voopon_code ||
+                    " Voopon code not available"}
+                </span>
+              </div>
+              <div
+                className=""
+                style={{
+                  marginLeft: "40px",
+                  fontSize: "14px",
+                  marginBottom: "10px",
+                }}
+              >
+                <h5>Code: </h5>
+                <span>
+                  {voopon_detail?.voopon_one?.voopon_code ||
+                    voopon_detail?.voopon_two?.voopon_code ||
+                    " Voopon code not available"}
+                </span>
               </div>
             </div>
           </div>

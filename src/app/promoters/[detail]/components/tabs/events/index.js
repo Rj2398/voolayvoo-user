@@ -8,6 +8,7 @@ import {
 } from "@/utils/eventFunction";
 
 const Events = ({ dataList = [] }) => {
+  // console.log(dataList, "******123456*****");
   const [tempEventList, setTempEventList] = useState([]);
   const [renderList, setRenderList] = useState([]);
 
@@ -23,8 +24,10 @@ const Events = ({ dataList = [] }) => {
             latitude: dataList[indxEvent]["latitude"],
             longitude: dataList[indxEvent]["longitude"],
           };
-          dataList[indxEvent]["event_away_distance"] =
-            calculateDistanceInMiles(position, targetLocation);
+          dataList[indxEvent]["event_away_distance"] = calculateDistanceInMiles(
+            position,
+            targetLocation
+          );
         }
 
         let tempEvtList = dataList;

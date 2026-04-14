@@ -1023,6 +1023,7 @@ button.btn.btn-bnr:hover {
 
 .location-box > h4,
 .valid-thru > h4,
+.copy-content>h5,
 .quantity > h4,
 .quantityStatic > h4,
 .price-box > h4 {
@@ -1034,6 +1035,7 @@ button.btn.btn-bnr:hover {
 
 .location-box,
 .valid-thru,
+.copy-content,
 .quantity,
 .quantityStatic,
 .price-box {
@@ -1109,6 +1111,18 @@ button.btn.btn-bnr:hover {
 .valid-thru:before {
   content: "";
   background: url(/images/valid.png);
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  top: 0px;
+  left: 0;
+  background-repeat: no-repeat;
+}
+
+
+.copy-content:before {
+  content: "";
+  background: url(/images/copy-link.png);
   width: 35px;
   height: 35px;
   position: absolute;

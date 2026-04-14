@@ -1480,16 +1480,7 @@ const ClientComponent = ({ categoryList, businessList }) => {
                           precision={0.5}
                           disabled={true}
                         />
-                        <p
-                          style={{
-                            flex: 1,
-                            overflow: "hidden",
-                            textOverflow: "ellipsis",
-                            display: "-webkit-box",
-                            WebkitLineClamp: 3,
-                            WebkitBoxOrient: "vertical",
-                          }}
-                        >
+                        <p style={{}}>
                           {truncateDescriptionByWords(item?.description, 10) ||
                             "description"}
                         </p>
@@ -1519,6 +1510,7 @@ const ClientComponent = ({ categoryList, businessList }) => {
                                 ).toFormat("MMMM dd, yyyy")
                               : "N/A"}{" "}
                           </span>
+
                           {item?.location && (
                             <span>
                               <Image

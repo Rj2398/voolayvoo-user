@@ -5,10 +5,13 @@ import Voopons from "./components/voopons";
 import Collaborator from "@/app/voopons/[detail]/components/Modal/collaborator";
 import { DateTime } from "luxon";
 import Link from "next/link";
+import FlagIcon from "@mui/icons-material/Flag";
 import { BASE_URL } from "@/constant/constant";
 import Quantity from "@/components/Quantity";
 import Carousel from "@/components/Carousel";
 import { useAuth } from "@/app/UserProvider";
+
+import { IconButton, Tooltip } from "@mui/material";
 // import BackButton from "../../BackButton"
 import {
   useParams,
@@ -20,13 +23,13 @@ import { toast } from "react-toastify";
 import { postData, postFetchDataWithAuth } from "@/fetchData/fetchApi";
 import CheckPayment from "@/components/Modal/CheckPayment";
 import { Rating } from "@mui/material";
+import ReportModal from "@/components/ReportModal";
 
 const ClientComponent = ({ eventDetail, relatedVoopon = [] }) => {
-
-  console.log(eventDetail);
-  
+  const [isReportOpen, setIsReportOpen] = useState(false);
   const [open, setOpen] = useState(false);
   const [openCard, setOpenCard] = useState(false);
+  const [currentReportData, setCurrentReportData] = useState(null);
   // const [eventPrice, setEventPrice] = useState<number>(
   //   eventDetail?.event_one?.hasOwnProperty("events_price")
   //     ? Number(eventDetail?.event_one?.events_price)
@@ -184,6 +187,11 @@ const ClientComponent = ({ eventDetail, relatedVoopon = [] }) => {
       }
     } catch (error) {}
   };
+  //
+  const handleReportSubmit = (text) => {
+    console.log("Report Submitted:", text);
+    // Call your API here: axios.post(`${BASE_URL}/api/report`, { text, event_id: ... })
+  };
 
   return (
     <>
@@ -215,17 +223,49 @@ const ClientComponent = ({ eventDetail, relatedVoopon = [] }) => {
         <div className="container">
           <div className="row">
             <div className="col-lg-6">
-              <div className="slider-box">
-                {/* <img
-                  className="w-100"
-                  src={
-                    eventDetail?.event_two?.business_events_image[0]?.image_name
-                      ? `${BASE_URL}/${eventDetail?.event_two?.business_events_image[0]?.image_name}`
-                      : "/images/banners/slide1.png"
-                  }
-                  alt=""
-                  id="product-main-image"
-                /> */}
+              <div className="slider-box" style={{ position: "relative" }}>
+                {/* --- Report Icon --- */}
+                <Tooltip title="Report this post">
+                  <IconButton
+                    onClick={() => {
+                      const entity =
+                        eventDetail?.event_one || eventDetail?.event_two;
+
+                      const reportType = entity?.business_id
+                        ? "Business"
+                        : "Promoter";
+
+                      console.log(reportType, "report type**");
+                      setCurrentReportData({
+                        event_id:
+                          eventDetail?.event_one?.id ||
+                          eventDetail?.event_two?.id,
+                        voopon_id: "", // Pass this if reporting from the Voopon Modal
+                        type: reportType,
+                      });
+                      setIsReportOpen(true);
+                      // Add your report logic or open a report modal here
+                      console.log(
+                        "Report button clicked for ID:",
+                        eventDetail?.event_one?.id || eventDetail?.event_two?.id
+                      );
+                    }}
+                    sx={{
+                      position: "absolute",
+                      top: 10,
+                      right: 10,
+                      zIndex: 10,
+                      backgroundColor: "rgba(255, 255, 255, 0.7)", // Semi-transparent white
+                      "&:hover": {
+                        backgroundColor: "rgba(255, 255, 255, 0.9)",
+                        color: "#FF0015", // Red on hover
+                      },
+                      padding: "6px",
+                    }}
+                  >
+                    <FlagIcon sx={{ fontSize: "20px" }} />
+                  </IconButton>
+                </Tooltip>
 
                 <img
                   className="w-100"
@@ -241,6 +281,7 @@ const ClientComponent = ({ eventDetail, relatedVoopon = [] }) => {
                   }
                   alt=""
                   id="product-main-image"
+                  style={{ borderRadius: "8px" }} // Optional: matches your reference style
                 />
 
                 <Carousel
@@ -254,6 +295,7 @@ const ClientComponent = ({ eventDetail, relatedVoopon = [] }) => {
                 />
               </div>
             </div>
+
             <div className="col-lg-6">
               <div className="details-text-box">
                 <h2 className="title-capitilize">
@@ -505,76 +547,100 @@ const ClientComponent = ({ eventDetail, relatedVoopon = [] }) => {
                   <div className="col-lg-7 col-md-6">
                     <div className="valid-thru">
                       <h4> Start Date </h4>
-                     <span>
-                 {eventDetail?.event_one?.events_date
-                ? DateTime.fromISO(eventDetail.event_one.events_date).toFormat("MMMM dd, yyyy")
-                : eventDetail?.event_two?.events_date
-                ? DateTime.fromISO(eventDetail.event_two.events_date).toFormat("MMMM dd, yyyy")
-                : ""}{" "}
-</span>
+                      <span>
+                        {eventDetail?.event_one?.events_date
+                          ? DateTime.fromISO(
+                              eventDetail.event_one.events_date
+                            ).toFormat("MMMM dd, yyyy")
+                          : eventDetail?.event_two?.events_date
+                          ? DateTime.fromISO(
+                              eventDetail.event_two.events_date
+                            ).toFormat("MMMM dd, yyyy")
+                          : ""}{" "}
+                      </span>
                     </div>
-
-                    
                   </div>
 
-                  
                   <div className="col-lg-5 col-md-6">
-                   <div className="valid-thru">
+                    <div className="valid-thru">
                       <h4> End Date </h4>
                       <span>
                         {eventDetail?.event_one?.events_date
-                ? DateTime.fromISO(eventDetail.event_one.events_end_date).toFormat("MMMM dd, yyyy")
-                : eventDetail?.event_two?.events_date
-                ? DateTime.fromISO(eventDetail.event_two.events_end_date).toFormat("MMMM dd, yyyy")
-                : ""}{" "}
+                          ? DateTime.fromISO(
+                              eventDetail.event_one.events_end_date
+                            ).toFormat("MMMM dd, yyyy")
+                          : eventDetail?.event_two?.events_date
+                          ? DateTime.fromISO(
+                              eventDetail.event_two.events_end_date
+                            ).toFormat("MMMM dd, yyyy")
+                          : ""}{" "}
                       </span>
                     </div>
                   </div>
                 </div>
 
-
-                            <div className="row mt-3">
+                <div className="row mt-3">
                   <div className="col-lg-7 col-md-6">
                     <div className="valid-thru">
                       <h4> Start Time </h4>
                       <span>
-                         {eventDetail?.event_one?.events_start_time
-                ? eventDetail?.event_one?.events_start_time
-                : eventDetail?.event_two?.events_start_time
-                ?eventDetail?.event_two?.events_start_time
-                : ""}{" "}
+                        {eventDetail?.event_one?.events_start_time
+                          ? eventDetail?.event_one?.events_start_time
+                          : eventDetail?.event_two?.events_start_time
+                          ? eventDetail?.event_two?.events_start_time
+                          : ""}{" "}
                       </span>
                     </div>
-
-                    
                   </div>
 
-                  
                   <div className="col-lg-5 col-md-6">
-                   <div className="valid-thru">
+                    <div className="valid-thru">
                       <h4>End Time</h4>
                       <span>
-                  {eventDetail?.event_one?.events_end_time
-                ? eventDetail?.event_one?.events_end_time
-                : eventDetail?.event_two?.events_end_time
-                ?eventDetail?.event_two?.events_end_time
-                : ""}{" "}
+                        {eventDetail?.event_one?.events_end_time
+                          ? eventDetail?.event_one?.events_end_time
+                          : eventDetail?.event_two?.events_end_time
+                          ? eventDetail?.event_two?.events_end_time
+                          : ""}{" "}
                       </span>
-
-                  
                     </div>
                   </div>
                 </div>
 
-                 <div className="row mt-3">
-                
+                <div className="row mt-3">
+                  <div className="col-lg-7 col-md-6">
+                    <div className="copy-content">
+                      <span>
+                        <h5>Code : </h5>
+
+                        {eventDetail?.event_one?.event_code ||
+                          eventDetail?.event_two?.event_code ||
+                          "No location available"}
+                      </span>
+                    </div>
+
+                    <div
+                      className=""
+                      style={{ marginLeft: "40px", fontSize: "14px" }}
+                    >
+                      <span>
+                        <h5>Code : </h5>
+
+                        {eventDetail?.event_one?.event_code ||
+                          eventDetail?.event_two?.event_code ||
+                          "No location available"}
+                      </span>
+                    </div>
+                  </div>
+
                   <div className="col-lg-5 col-md-6">
                     <div className="location-box">
                       <h4> Location </h4>
                       <span>
                         {" "}
                         {eventDetail?.event_one?.location ||
-                          eventDetail?.event_two?.location}
+                          eventDetail?.event_two?.location ||
+                          "No location available"}
                       </span>
                     </div>
                   </div>
@@ -750,6 +816,13 @@ const ClientComponent = ({ eventDetail, relatedVoopon = [] }) => {
       {Array.isArray(relatedVoopon) && relatedVoopon.length > 0 && (
         <Voopons listData={relatedVoopon} />
       )}
+
+      <ReportModal
+        open={isReportOpen}
+        handleClose={() => setIsReportOpen(false)}
+        reportData={currentReportData}
+        eventOrVoopon={"Event"}
+      />
     </>
   );
 };

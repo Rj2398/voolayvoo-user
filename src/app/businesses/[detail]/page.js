@@ -13,7 +13,7 @@ import path from "path";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
-async function getData(id, user_id) {
+async function getData(id, user_id, token) {
   const formData = new FormData();
   formData.append("business_id", id);
   formData.append("user_id", user_id);
@@ -22,17 +22,26 @@ async function getData(id, user_id) {
     `${BASE_URL}/api/business_details_profile_web`,
     {
       method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
       body: formData,
     }
   );
 
   const resEvent = await fetch(`${BASE_URL}/api/business_event_get`, {
     method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
     body: formData,
   });
 
   const resVoopons = await fetch(`${BASE_URL}/api/business_voopon_date_get`, {
     method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
     body: formData,
   });
 
@@ -40,6 +49,9 @@ async function getData(id, user_id) {
     `${BASE_URL}/api/business_collaborator_photos_all`,
     {
       method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
       body: formData,
     }
   );
@@ -50,6 +62,9 @@ async function getData(id, user_id) {
     `${BASE_URL}/api/user_business_overall_rating_get`,
     {
       method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
       body: formData,
     }
   );
@@ -170,7 +185,11 @@ const Detail = () => {
     }
 
     try {
-      const result = await getData(business_id, userDetails.user_id);
+      const result = await getData(
+        business_id,
+        userDetails.user_id,
+        userDetails.token
+      );
       setData(result);
     } catch (err) {
       setError(err);

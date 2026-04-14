@@ -2,8 +2,12 @@
 // "use server";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import LinkIcon from "@mui/icons-material/Link";
 import Image from "next/image";
 import DatePicker, { DateObject } from "react-multi-date-picker";
+import LanguageIcon from "@mui/icons-material/Language";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+
 import {
   convertTo12HourFormat,
   filterEvent,
@@ -20,14 +24,89 @@ import CustomPagination from "@/components/CustomPagination";
 import Slider from "@/components/Slider";
 import CustomDatePicker from "@/components/CustomDatePicker";
 import LocationDropdown from "@/components/LocationDropdown";
+import VooponModal from "@/components/VooponModal";
 
+//
+// const dummyVoopons = [
+//   {
+//     id: 1,
+//     voopons_name: "Summer Sale 2026",
+//     voopons_description:
+//       "Get 20% off on all summer collections including footwear and accessories.",
+//     voopon_code: "SUMMER20",
+//     voopons_date: "2026-06-01",
+//     voopons_valid_thru: "2026-08-31",
+//     event_link: "https://example.com/summer",
+//     vooponimage: { image_name: "" }, // Will fallback to your default image
+//   },
+//   {
+//     id: 2,
+//     voopons_name: "Tech Hub Discount",
+//     voopons_description:
+//       "Exclusive deal for developers! $50 off on M3 MacBook stands and ergonomic chairs.",
+//     voopon_code: "DEV50",
+//     voopons_date: "2026-04-10",
+//     voopons_valid_thru: "2026-05-15",
+//     event_link: "https://example.com/tech",
+//     vooponimage: { image_name: "" },
+//   },
+//   {
+//     id: 3,
+//     voopons_name: "Organic Groceries",
+//     voopons_description:
+//       "Fresh farm-to-table vegetables delivered to your door with zero delivery fees.",
+//     voopon_code: "FRESHGREEN",
+//     voopons_date: "2026-04-12",
+//     voopons_valid_thru: "2026-04-30",
+//     event_link: "https://example.com/organic",
+//     vooponimage: { image_name: "" },
+//   },
+//   {
+//     id: 4,
+//     voopons_name: "Fitness First Pass",
+//     voopons_description:
+//       "Join our fitness community with a 7-day free trial and a personal trainer session.",
+//     voopon_code: "FIT7DAY",
+//     voopons_date: "2026-05-01",
+//     voopons_valid_thru: "2026-05-07",
+//     event_link: "https://example.com/fitness",
+//     vooponimage: { image_name: "" },
+//   },
+//   {
+//     id: 5,
+//     voopons_name: "Coffee Lovers Club",
+//     voopons_description:
+//       "Buy one large latte and get a donut free. Valid at all downtown locations.",
+//     voopon_code: "COFFEEBOGO",
+//     voopons_date: "2026-04-01",
+//     voopons_valid_thru: "2026-06-01",
+//     event_link: "https://example.com/coffee",
+//     vooponimage: { image_name: "" },
+//   },
+//   {
+//     id: 6,
+//     voopons_name: "Movie Night Special",
+//     voopons_description:
+//       "50% off on popcorn and drinks with any IMAX ticket purchase this weekend.",
+//     voopon_code: "POPCORN50",
+//     voopons_date: "2026-04-18",
+//     voopons_valid_thru: "2026-04-20",
+//     event_link: "https://example.com/movies",
+//     vooponimage: { image_name: "" },
+//   },
+// ];
+
+//
 const ClientComponent = ({ categoryList, eventList }) => {
   const [location, setLocation] = useState(false);
   const [tempEventList, setTempEventList] = useState([]);
   const [pageNo, setPageNo] = useState(1);
+  const [activeData, setActiveData] = useState(null);
   const [selectCategory, setSelectCategory] = useState({
     category_id: "All",
   });
+  const [open, setOpen] = useState(false);
+
   const [appliedFilter, setAppliedFilter] = useState({
     isCategoryApply: false,
     isSearchApply: false,
@@ -234,6 +313,10 @@ const ClientComponent = ({ categoryList, eventList }) => {
     }
   };
 
+  //
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   return (
     <>
       <div
@@ -382,10 +465,59 @@ const ClientComponent = ({ categoryList, eventList }) => {
                           </div>
                         </div>
                         <div class="event-pad">
-                          <h6>
-                            {" "}
-                            {truncateDescriptionByWords(item.events_name, 20)}
-                          </h6>
+                          <div
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            <h6
+                              className="title-capitilize"
+                              style={{ margin: 0 }}
+                            >
+                              {truncateDescriptionByWords(item.events_name, 20)}
+                            </h6>
+                            <VisibilityIcon
+                              onClick={() => {
+                                // Set the data first
+
+                                setActiveData(item);
+                                setOpen(true);
+                              }}
+                              sx={{
+                                cursor: "pointer",
+                                backgroundColor: "#fff",
+                                borderRadius: "4px",
+                                fontSize: "26px",
+                                padding: "4px",
+                              }}
+                            />
+
+                            <LanguageIcon
+                              onClick={() => {
+                                const url = item?.event_link;
+                                if (url) {
+                                  const validUrl = url.startsWith("http")
+                                    ? url
+                                    : `https://${url}`;
+                                  window.open(
+                                    validUrl,
+                                    "_blank",
+                                    "noopener,noreferrer"
+                                  );
+                                }
+                              }}
+                              sx={{
+                                cursor: "pointer",
+                                backgroundColor: "#fff",
+                                borderRadius: "4px",
+                                fontSize: "24px",
+                                padding: "4px",
+                              }}
+                            />
+                          </div>
+
                           <p style={{}}>
                             {" "}
                             {truncateDescriptionByWords(
@@ -393,6 +525,7 @@ const ClientComponent = ({ categoryList, eventList }) => {
                               50
                             )}
                           </p>
+
                           <div class="point-icon">
                             <span>
                               {" "}
@@ -408,18 +541,7 @@ const ClientComponent = ({ categoryList, eventList }) => {
                                 ? `${item.event_away_distance} miles away`
                                 : "No location available"}
                             </span>
-                            {/* <span>
-                              <Image
-                                width={20}
-                                height={20}
-                                src="/images/calendar.png"
-                                alt=""
-                              />{" "}
-                              {DateTime.fromFormat(
-                                item.events_date,
-                                "yyyy-MM-dd"
-                              ).toFormat("MMMM dd, yyyy")}{" "}
-                            </span>
+
                             <span>
                               {" "}
                               <Image
@@ -430,7 +552,7 @@ const ClientComponent = ({ categoryList, eventList }) => {
                               />{" "}
                               {convertTo12HourFormat(item.events_start_time)} to{" "}
                               {convertTo12HourFormat(item.events_end_time)}{" "}
-                            </span> */}
+                            </span>
 
                             <span>
                               <Image
@@ -444,7 +566,9 @@ const ClientComponent = ({ categoryList, eventList }) => {
                                 item.events_date,
                                 "yyyy-MM-dd"
                               ).toFormat("MMMM dd, yyyy")}
-                              <br />
+                            </span>
+                            <br />
+                            <span>
                               <Image
                                 width={20}
                                 height={20}
@@ -457,6 +581,80 @@ const ClientComponent = ({ categoryList, eventList }) => {
                                 "yyyy-MM-dd"
                               ).toFormat("MMMM dd, yyyy")}
                             </span>
+
+                            <span style={{ marginLeft: "29px" }}>
+                              {/* <Image
+                                width={20}
+                                height={20}
+                                src="/images/calendar.png"
+                                alt=""
+                              />{" "} */}
+                              Code:{" "}
+                              {item?.event_code || "No event code available"}
+                              <br />
+                            </span>
+
+                            <div
+                              style={{
+                                display: "flex",
+                                alignItems: "center", // Vertically centers the text with the image
+                                gap: "15px", // Space between image and text
+                                padding: "10px",
+                              }}
+                            >
+                              {/* 1. Circular Image Container */}
+                              <div
+                                style={{
+                                  width: "60px", // Size of the circle
+                                  height: "60px",
+                                  borderRadius: "50%",
+                                  overflow: "hidden",
+                                  position: "relative",
+                                  border: "1px solid #ddd",
+                                  flexShrink: 0, // Prevents the circle from squeezing
+                                }}
+                              >
+                                <Image
+                                  src={
+                                    item?.business_details?.profile_image
+                                      ? `${BASE_URL}${item.business_details.profile_image}`
+                                      : "/images/placeholder-user.png"
+                                  }
+                                  alt="Promoter"
+                                  fill
+                                  style={{ objectFit: "cover" }}
+                                />
+                              </div>
+
+                              {/* 2. Promoter Text on the Right */}
+                              <div
+                                style={{
+                                  display: "flex",
+                                  flexDirection: "column",
+                                }}
+                              >
+                                <span
+                                  style={{
+                                    fontSize: "14px",
+                                    color: "#888",
+                                    fontWeight: "500",
+                                    lineHeight: "1",
+                                  }}
+                                >
+                                  {item?.business_id ? "Business" : "Promoter"}
+                                </span>
+                                <span
+                                  style={{
+                                    fontSize: "18px",
+                                    fontWeight: "700",
+                                    color: "#000",
+                                    marginTop: "4px",
+                                  }}
+                                >
+                                  {item?.business_details?.name}
+                                </span>
+                              </div>
+                            </div>
                           </div>
                           <Link
                             className="btn btn-viewmore-border btn-align"
@@ -486,6 +684,13 @@ const ClientComponent = ({ categoryList, eventList }) => {
           </div>
         </div>
       </div>
+      <VooponModal
+        open={open}
+        handleClose={() => setOpen(false)}
+        allItems={[]}
+        BASE_URL={BASE_URL}
+        activeData={activeData}
+      />
     </>
   );
 };

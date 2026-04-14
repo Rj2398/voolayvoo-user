@@ -399,7 +399,8 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Autoplay, Navigation } from "swiper/modules";
 import { BASE_URL } from "@/constant/constant";
-
+import LinkIcon from "@mui/icons-material/Link";
+import Link from "next/link";
 const VooponYouLoveTwo = ({ staticItems, brand }) => {
   const [vooponseYouLove, setVooponseYouLove] = useState([]);
 
@@ -455,6 +456,27 @@ const VooponYouLoveTwo = ({ staticItems, brand }) => {
           vooponseYouLove.map((item, index) => (
             <SwiperSlide key={index}>
               <div className="item">
+                {item?.voopon_link && (
+                  <Link
+                    href={item.voopon_link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "5px",
+                      marginLeft: "auto",
+                      textDecoration: "none",
+                    }}
+                  >
+                    <LinkIcon
+                      sx={{
+                        color: "#1976d2", // Using the Action Blue
+                        "&:hover": { color: "#115293" }, // Darker blue on hover
+                      }}
+                    />
+                  </Link>
+                )}
                 <div
                   className="love-box"
                   style={{

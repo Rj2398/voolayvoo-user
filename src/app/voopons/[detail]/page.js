@@ -8,6 +8,7 @@ import BackBotton from "../../BackButton";
 import { BASE_URL } from "@/constant/constant";
 import { getFormData } from "@/fetchData/fetchApi";
 import ClientComponent from "./ClientComponent";
+import VooponImageGallery from "./VooponImageGallery";
 // 43892199"vooopan one
 // 88604396 paid
 // 39768585 for voopan two
@@ -45,22 +46,12 @@ const Detail = async ({
   return (
     <>
       <section className="details-page">
-      <BackBotton />
-        {/* <div className="back-btn" style={{ cursor: "pointer", width: "100%", border: "3px solid black", color: "black" }}>
-          <a
-            to="#"
-            onClick={(e) => {
-              e.preventDefault();
-              window.history.back();
-            }}
-          >
-            <img src="./images/left-arrow.svg" alt="Back" />
-          </a>
-        </div> */}
+        <BackBotton />
+
         <div className="container">
           <div className="row">
             <div className="col-lg-6">
-              <div className="details-img" style={{ width: 596, height: 375 }}>
+              {/* <div className="details-img" style={{ width: 596, height: 375 }}>
                 <Image
                   width={596}
                   height={375}
@@ -68,14 +59,19 @@ const Detail = async ({
                     voopon_detail?.voopon_one?.vooponsimage[0]?.image_name
                       ? `${BASE_URL}/${voopon_detail?.voopon_one?.vooponsimage[0]?.image_name}`
                       : voopon_detail?.voopon_two?.business_voopon_image
-                        ?.image_name
-                        ? `${BASE_URL}/${voopon_detail?.voopon_two?.business_voopon_image?.image_name}`
-                        : "/images/amf-details.png"
+                          ?.image_name
+                      ? `${BASE_URL}/${voopon_detail?.voopon_two?.business_voopon_image?.image_name}`
+                      : "/images/amf-details.png"
                   }
                   alt="images"
                   className="img-voopon"
                 />
-              </div>
+              </div> */}
+
+              <VooponImageGallery
+                voopon_detail={voopon_detail}
+                BASE_URL={BASE_URL}
+              />
             </div>
             <ClientComponent voopon_detail={voopon_detail} />
           </div>
@@ -87,47 +83,14 @@ const Detail = async ({
           <div className="row">
             <div className="col-lg-12">
               <div className="heading-sec">About this Voopons</div>
-              <p>{voopon_detail?.voopon_one?.voopons_description || voopon_detail?.voopon_two?.voopons_description}</p>
-
-              {/* <div className="heading-sec">Terms & Conditions</div>
-              <ul>
-                <li>
-                  Voopons are not redeemable for cash unless required by law{" "}
-                </li>
-                <li>Voopons cannot be returned for cash refunds </li>
-                <li>Voopons cannot be replaced if lost or stolen</li>
-                <li>
-                  Voopons cannot be redeemed at non-participating retail stores
-                  or other websites{" "}
-                </li>
-                <li>Voopons cannot be resold or exchanged for cash </li>
-                <li>
-                  Voopons cannot be used for unauthorized advertising,
-                  marketing, sweepstakes, or other promotional purposes{" "}
-                </li>
-                <li>
-                  Voopons cannot be used with other promotions, gift
-                  certificates, coupons, or discounts
-                </li>
-                <li>
-                  Voopons are the sole liability of the issuing Business or
-                  Promoter
-                </li>
-                <li>
-                  Unauthorized or unlawful reproduction, modification, or trade
-                  of voopons is prohibited{" "}
-                </li>
-                <li>
-                  Pricing for certain products may change at any time without
-                  notice
-                </li>
-              </ul> */}
+              <p>
+                {voopon_detail?.voopon_one?.voopons_description ||
+                  voopon_detail?.voopon_two?.voopons_description}
+              </p>
             </div>
           </div>
         </div>
       </section>
-
-      {/* {related_event && <Events related_event={related_event} />} */}
     </>
   );
 };
