@@ -44,7 +44,6 @@ const ClientComponent = ({ notificationData }) => {
         router.push("/");
         hitLogOutApi();
         dispatch(setUserState());
-        localStorage.clear();
       }
     } catch (error) {}
   };
