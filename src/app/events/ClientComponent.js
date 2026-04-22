@@ -317,6 +317,33 @@ const ClientComponent = ({ categoryList, eventList }) => {
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+
+  let pageUrl = "";
+  let pageTitle;
+  if (typeof window !== "undefined") {
+    pageUrl = window.location.href;
+    pageTitle = document?.title;
+  }
+
+  const facebookShareLink = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+    pageUrl
+  )}`;
+  const twitterShareLink = `https://twitter.com/intent/tweet?url=${encodeURIComponent(
+    pageUrl
+  )}&text=${encodeURIComponent(pageTitle)}`;
+  const instagramShareLink = `https://www.instagram.com/share?url=${encodeURIComponent(
+    pageUrl
+  )}`;
+  const snapchatShareLink = `https://www.snapchat.com/add/your-snapcode`; // Replace with your Snapcode link
+  const linkedinShareLink = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
+    pageUrl
+  )}`;
+  const whatsappShareLink = `https://wa.me/?text=${encodeURIComponent(
+    `${pageTitle} - ${pageUrl}`
+  )}`;
+
+
   return (
     <>
       <div
@@ -464,7 +491,8 @@ const ClientComponent = ({ categoryList, eventList }) => {
                               : "$" + Number(item.events_price)}{" "}
                           </div>
                         </div>
-                        <div class="event-pad">
+                        <div class="event-pad"
+                        >
                           <div
                             style={{
                               display: "flex",
@@ -472,12 +500,15 @@ const ClientComponent = ({ categoryList, eventList }) => {
                               justifyContent: "space-between",
                             }}
                           >
-                            <h6
-                              className="title-capitilize"
-                              style={{ margin: 0 }}
-                            >
-                              {truncateDescriptionByWords(item.events_name, 20)}
-                            </h6>
+
+                            <div>
+                              <h6
+                                className="title-capitilize"
+                                style={{ margin: 0 }}
+                              >
+                                {truncateDescriptionByWords(item.events_name, 20)}
+                              </h6>
+                            </div>
                             {/* <VisibilityIcon
                               onClick={() => {
                                 // Set the data first
@@ -493,47 +524,177 @@ const ClientComponent = ({ categoryList, eventList }) => {
                                 padding: "4px",
                               }}
                             /> */}
+                            <div style={{ display: "flex", gap: "5px", alignItems: "center" }}>
+                              <img
+                                // className="earth-size"
+                                src="/images/new-event-eyeicon.png"
+                                alt="view event"
+                                onClick={() => {
+                                  setActiveData(item);
+                                  setOpen(true);
+                                }}
+                                style={{
+                                  cursor: "pointer",
+                                  backgroundColor: "#f8f9fa",
+                                  borderRadius: "4px",
+                                  padding: "4px",
+                                  objectFit: "contain",
+                                  height: "33px",
+                                  width: "33px"
+                                }}
+                              />
 
-                            <img
-                              src="/images/new-event-eyeicon.png"
-                              alt="view event"
-                              width={24}
-                              height={24}
-                              onClick={() => {
-                                setActiveData(item);
-                                setOpen(true);
-                              }}
-                              style={{
-                                cursor: "pointer",
-                                backgroundColor: "#f8f9fa",
-                                borderRadius: "4px",
-                                padding: "4px",
-                                objectFit: "contain"
-                              }}
-                            />
+                              <img className="earth-size" src="/images/earth.png"
+                                onClick={() => {
+                                  const url = item?.event_link;
+                                  if (url) {
+                                    const validUrl = url.startsWith("http")
+                                      ? url
+                                      : `https://${url}`;
+                                    window.open(
+                                      validUrl,
+                                      "_blank",
+                                      "noopener,noreferrer"
+                                    );
+                                  }
+                                }}
+                              />
 
-                            <LanguageIcon
-                              onClick={() => {
-                                const url = item?.event_link;
-                                if (url) {
-                                  const validUrl = url.startsWith("http")
-                                    ? url
-                                    : `https://${url}`;
-                                  window.open(
-                                    validUrl,
-                                    "_blank",
-                                    "noopener,noreferrer"
-                                  );
-                                }
-                              }}
-                              sx={{
-                                cursor: "pointer",
-                                backgroundColor: "#fff",
-                                borderRadius: "4px",
-                                fontSize: "24px",
-                                padding: "4px",
-                              }}
-                            />
+
+
+                              {/* <LanguageIcon
+                                  onClick={() => {
+                                    const url = item?.event_link;
+                                    if (url) {
+                                      const validUrl = url.startsWith("http")
+                                        ? url
+                                        : `https://${url}`;
+                                      window.open(
+                                        validUrl,
+                                        "_blank",
+                                        "noopener,noreferrer"
+                                      );
+                                    }
+                                  }}
+                                  sx={{
+                                    cursor: "pointer",
+                                    backgroundColor: "#fff",
+                                    borderRadius: "4px",
+                                    fontSize: "24px",
+                                    padding: "4px",
+                                  }}
+                                /> */}
+
+                              {/* share btn */}
+                              <div className="col-lg-4 col-md-6">
+                                <div className="share-media">
+                                  <span>
+                                    {" "}
+                                    <Image
+                                      width={24}
+                                      height={24}
+                                      src="/images/share.svg"
+                                      alt=""
+                                    />{" "}
+                                    {/* Share with friends{" "} */}
+                                  </span>
+                                  <div className="show-social">
+                                    <span>
+                                      <Link
+                                        href={twitterShareLink}
+                                        passHref
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                      >
+                                        <Image
+                                          width={24}
+                                          height={24}
+                                          src="/images/social-icon-1.svg"
+                                          alt="images"
+                                        />
+                                      </Link>
+                                    </span>
+                                    <span>
+                                      <Link
+                                        href={whatsappShareLink}
+                                        passHref
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                      >
+                                        <Image
+                                          width={24}
+                                          height={24}
+                                          src="/images/social-icon-2.svg"
+                                          alt="images"
+                                        />
+                                      </Link>
+                                    </span>
+                                    <span>
+                                      <Link
+                                        href={instagramShareLink}
+                                        passHref
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                      >
+                                        <Image
+                                          width={24}
+                                          height={24}
+                                          src="/images/social-icon-3.svg"
+                                          alt="images"
+                                        />
+                                      </Link>
+                                    </span>
+                                    <span>
+                                      <Link
+                                        href={facebookShareLink}
+                                        passHref
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                      >
+                                        <Image
+                                          width={24}
+                                          height={24}
+                                          src="/images/social-icon-4.svg"
+                                          alt="images"
+                                        />
+                                      </Link>
+                                    </span>
+                                    <span>
+                                      <Link
+                                        href={snapchatShareLink}
+                                        passHref
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                      >
+                                        <Image
+                                          width={24}
+                                          height={24}
+                                          src="/images/social-icon-5.svg"
+                                          alt="images"
+                                        />
+                                      </Link>
+                                    </span>
+                                    <span>
+                                      <Link
+                                        href={linkedinShareLink}
+                                        passHref
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                      >
+                                        <Image
+                                          width={24}
+                                          height={24}
+                                          src="/images/social-icon-6.svg"
+                                          alt="images"
+                                        />
+                                      </Link>
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
+
+                            </div>
+
                           </div>
 
                           <p style={{}}>
@@ -543,6 +704,18 @@ const ClientComponent = ({ categoryList, eventList }) => {
                               50
                             )}
                           </p>
+
+                          <span style={{ marginLeft: "29px" }}>
+                            {/* <Image
+                                width={20}
+                                height={20}
+                                src="/images/calendar.png"
+                                alt=""
+                              />{" "} */}
+                            Code:{" "}
+                            {item?.event_code || "No event code available"}
+                            {/* <br /> */}
+                          </span>
 
                           <div class="point-icon">
                             <span>
@@ -600,17 +773,17 @@ const ClientComponent = ({ categoryList, eventList }) => {
                               ).toFormat("MMMM dd, yyyy")}
                             </span>
 
-                            <span style={{ marginLeft: "29px" }}>
-                              {/* <Image
+                            {/* <Image
                                 width={20}
                                 height={20}
                                 src="/images/calendar.png"
                                 alt=""
                               />{" "} */}
+                            {/* <span style={{ marginLeft: "29px" }}>
                               Code:{" "}
                               {item?.event_code || "No event code available"}
                               <br />
-                            </span>
+                            </span> */}
 
                             <div
                               style={{
@@ -652,7 +825,7 @@ const ClientComponent = ({ categoryList, eventList }) => {
                                   flexDirection: "column",
                                 }}
                               >
-                                <span
+                                {/* <span
                                   style={{
                                     fontSize: "14px",
                                     color: "#888",
@@ -661,7 +834,7 @@ const ClientComponent = ({ categoryList, eventList }) => {
                                   }}
                                 >
                                   {item?.business_details ? "Business" : "Promoter"}
-                                </span>
+                                </span> */}
                                 <span
                                   style={{
                                     fontSize: "18px",

@@ -53,6 +53,7 @@ const Events = ({ dataList = [] }) => {
     setPageNo(pageNo);
     setRenderList(newEventList[pageNo - 1]);
   };
+  
   return (
     <>
       <div

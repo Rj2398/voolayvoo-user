@@ -214,7 +214,23 @@ const ClientComponent = ({ categoryList, voopanList }) => {
                   >
                     {truncateDescription(item?.voopons_description, 4)}
                   </h5>
-                  <LanguageIcon
+                  <img src="/images/earth.png" className="earth-size" 
+                  onClick={() => {
+                    if (item?.event_link)
+                      window.open(
+                        item.event_link.startsWith("http")
+                          ? item.event_link
+                          : `https://${item.event_link}`,
+                        "_blank"
+                      );
+                  }}
+                  style={{
+                    position: "absolute",
+                    right: 0,
+                    top: 0
+                  }}
+                  />
+                  {/* <LanguageIcon
                     onClick={() => {
                       if (item?.event_link)
                         window.open(
@@ -234,8 +250,19 @@ const ClientComponent = ({ categoryList, voopanList }) => {
                       fontSize: "22px",
                       padding: "2px",
                     }}
-                  />
+                  /> */}
                 </div>
+
+                <div
+                    style={{
+                      textAlign: "center",
+                      marginTop: "8px",
+                      // fontWeight: "600",
+                    }}
+                  >
+                   <strong> Code: </strong>
+                    {item?.voopon_code || "Not Available"}
+                  </div>
 
                 {/* 4. Dates & Code */}
                 <div
@@ -291,7 +318,7 @@ const ClientComponent = ({ categoryList, voopanList }) => {
                         : "N/A"}
                     </span>
                   </div>
-                  <div
+                  {/* <div
                     style={{
                       textAlign: "center",
                       marginTop: "8px",
@@ -299,7 +326,7 @@ const ClientComponent = ({ categoryList, voopanList }) => {
                     }}
                   >
                     Code: {item?.voopon_code || "Not Available"}
-                  </div>
+                  </div> */}
                 </div>
 
                 {/* 5. Promoter Circle & Text (Horizontal) */}
@@ -335,7 +362,7 @@ const ClientComponent = ({ categoryList, voopanList }) => {
                     />
                   </div>
                   <div style={{ textAlign: "left" }}>
-                    <div
+                    {/* <div
                       style={{
                         fontSize: "12px",
                         color: "#888",
@@ -343,7 +370,7 @@ const ClientComponent = ({ categoryList, voopanList }) => {
                       }}
                     >
                       {userType}
-                    </div>
+                    </div> */}
                     <div
                       style={{
                         fontSize: "15px",

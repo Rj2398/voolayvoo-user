@@ -611,15 +611,15 @@ const ClientComponent = ({ eventDetail, relatedVoopon = [] }) => {
                   <div className="col-lg-7 col-md-6">
                     <div className="copy-content">
                       <span>
-                        <h5>Code : </h5>
+                        <h5>Code </h5>
 
                         {eventDetail?.event_one?.event_code ||
                           eventDetail?.event_two?.event_code ||
-                          "No location available"}
+                          "No Code available"}
                       </span>
                     </div>
 
-                    <div
+                    {/* <div
                       className=""
                       style={{ marginLeft: "40px", fontSize: "14px" }}
                     >
@@ -630,7 +630,7 @@ const ClientComponent = ({ eventDetail, relatedVoopon = [] }) => {
                           eventDetail?.event_two?.event_code ||
                           "No location available"}
                       </span>
-                    </div>
+                    </div> */}
                   </div>
 
                   <div className="col-lg-5 col-md-6">

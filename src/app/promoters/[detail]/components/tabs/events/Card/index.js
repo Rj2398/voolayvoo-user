@@ -7,6 +7,7 @@ import { DateTime } from "luxon";
 import VooponModal from "@/components/VooponModal";
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const Card = ({ cardData }) => {
   const [open, setOpen] = useState(false);
@@ -38,6 +39,30 @@ const Card = ({ cardData }) => {
       : "/images/near-event1.png";
 
   if (!cardData) return null;
+
+    let pageUrl = "";
+  let pageTitle;
+  if (typeof window !== "undefined") {
+    pageUrl = window.location.href;
+    pageTitle = document?.title;
+  }
+
+  const facebookShareLink = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+    pageUrl
+  )}`;
+  const twitterShareLink = `https://twitter.com/intent/tweet?url=${encodeURIComponent(
+    pageUrl
+  )}&text=${encodeURIComponent(pageTitle)}`;
+  const instagramShareLink = `https://www.instagram.com/share?url=${encodeURIComponent(
+    pageUrl
+  )}`;
+  const snapchatShareLink = `https://www.snapchat.com/add/your-snapcode`; // Replace with your Snapcode link
+  const linkedinShareLink = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
+    pageUrl
+  )}`;
+  const whatsappShareLink = `https://wa.me/?text=${encodeURIComponent(
+    `${pageTitle} - ${pageUrl}`
+  )}`;
 
   return (
     <>
@@ -102,7 +127,7 @@ const Card = ({ cardData }) => {
                     cardData?.events_data_business?.events_name ||
                     cardData?.events_name}
                 </h6>
-                <div style={{ display: "flex", gap: "5px" }}>
+                <div style={{ display: "flex", gap: "5px", alignItems: "center" }}>
                   {/* <VisibilityIcon
                     onClick={() => {
                       setActiveData(cardData);
@@ -131,10 +156,23 @@ const Card = ({ cardData }) => {
                       backgroundColor: "#f8f9fa",
                       borderRadius: "4px",
                       padding: "4px",
-                      objectFit: "contain"
+                      objectFit: "contain",
+                      height: "33px",
+                      width: "33px"
                     }}
                   />
-                  <LanguageIcon
+                  <img className="earth-size" src="/images/earth.png"
+                    onClick={() => {
+                      const url = cardData?.event_link;
+                      if (url) {
+                        const validUrl = url.startsWith("http")
+                          ? url
+                          : `https://${url}`;
+                        window.open(validUrl, "_blank", "noopener,noreferrer");
+                      }
+                    }}
+                  />
+                  {/* <LanguageIcon
                     onClick={() => {
                       const url = cardData?.event_link;
                       if (url) {
@@ -151,7 +189,117 @@ const Card = ({ cardData }) => {
                       fontSize: "24px",
                       padding: "4px",
                     }}
-                  />
+                  /> */}
+
+
+                  {/* share icon */}
+                  <div className="col-lg-4 col-md-6">
+                    <div className="share-media">
+                      <span>
+                        {" "}
+                        <Image
+                          width={24}
+                          height={24}
+                          src="/images/share.svg"
+                          alt=""
+                        />{" "}
+                        {/* Share with friends{" "} */}
+                      </span>
+                      <div className="show-social">
+                        <span>
+                          <Link
+                            href={twitterShareLink}
+                            passHref
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <Image
+                              width={24}
+                              height={24}
+                              src="/images/social-icon-1.svg"
+                              alt="images"
+                            />
+                          </Link>
+                        </span>
+                        <span>
+                          <Link
+                            href={whatsappShareLink}
+                            passHref
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <Image
+                              width={24}
+                              height={24}
+                              src="/images/social-icon-2.svg"
+                              alt="images"
+                            />
+                          </Link>
+                        </span>
+                        <span>
+                          <Link
+                            href={instagramShareLink}
+                            passHref
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <Image
+                              width={24}
+                              height={24}
+                              src="/images/social-icon-3.svg"
+                              alt="images"
+                            />
+                          </Link>
+                        </span>
+                        <span>
+                          <Link
+                            href={facebookShareLink}
+                            passHref
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <Image
+                              width={24}
+                              height={24}
+                              src="/images/social-icon-4.svg"
+                              alt="images"
+                            />
+                          </Link>
+                        </span>
+                        <span>
+                          <Link
+                            href={snapchatShareLink}
+                            passHref
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <Image
+                              width={24}
+                              height={24}
+                              src="/images/social-icon-5.svg"
+                              alt="images"
+                            />
+                          </Link>
+                        </span>
+                        <span>
+                          <Link
+                            href={linkedinShareLink}
+                            passHref
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <Image
+                              width={24}
+                              height={24}
+                              src="/images/social-icon-6.svg"
+                              alt="images"
+                            />
+                          </Link>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
               </div>
 
@@ -163,10 +311,15 @@ const Card = ({ cardData }) => {
                   marginBottom: "15px",
                 }}
               >
+                
                 {cardData?.events_data?.events_description ||
                   cardData?.events_data_business?.events_description ||
                   cardData?.events_description}
               </p>
+
+              <div style={{ marginBottom: "10px" }}>
+                <strong>Code:</strong> {cardData?.event_code || "N/A"}
+              </div>
 
               <div className="point-icon" style={{ fontSize: "13px" }}>
                 <div>
@@ -187,9 +340,9 @@ const Card = ({ cardData }) => {
                     cardData?.events_data?.events_date || cardData?.events_date
                   ).toFormat("MMM dd, yyyy")}
                 </div>
-                <div style={{ marginBottom: "10px" }}>
+                {/* <div style={{ marginBottom: "10px" }}>
                   <strong>Code:</strong> {cardData?.event_code || "N/A"}
-                </div>
+                </div> */}
               </div>
             </div>
 
@@ -233,7 +386,7 @@ const Card = ({ cardData }) => {
                   overflow: "hidden",
                 }}
               >
-                <span
+                {/* <span
                   style={{
                     fontSize: "10px",
                     color: "#FF0015",
@@ -242,7 +395,7 @@ const Card = ({ cardData }) => {
                   }}
                 >
                   {userType}
-                </span>
+                </span> */}
                 <span
                   style={{
                     fontSize: "13px",

@@ -209,7 +209,19 @@ const VooponModal = ({ open, handleClose, activeData }) => {
                           20
                         )}
                       </div>
-                      <LanguageIcon
+                      <img className="earth-size" 
+                      src="/images/earth.png" 
+                      style={{
+                        position: "absolute",
+                          right: 0,
+                          top: "50%",
+                          transform: "translateY(-50%)",
+                      }}
+                      onClick={() => window.open(item.voopon_link, "_blank")}
+                      />
+
+
+                      {/* <LanguageIcon
                         onClick={() => window.open(item.voopon_link, "_blank")}
                         sx={{
                           position: "absolute",
@@ -222,7 +234,7 @@ const VooponModal = ({ open, handleClose, activeData }) => {
                           padding: "2px",
                           cursor: "pointer",
                         }}
-                      />
+                      /> */}
                     </div>
 
                     {/* 4. Dates with Calendar Icon */}

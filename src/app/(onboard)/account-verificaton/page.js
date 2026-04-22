@@ -27,6 +27,7 @@ const AccountVerificaton = () => {
     handleSubmit,
     formState: { errors },
     watch,
+    reset
   } = useForm({
     defaultValues: {
       otp: [{ code: "" }, { code: "" }, { code: "" }, { code: "" }],
@@ -68,23 +69,50 @@ const AccountVerificaton = () => {
           endpoint: "auth/user_otp_verify",
           authToken: localStorage.token,
         });
+        // if (response.user_id) {
+        //   // await removeStorage("signupUser");
+        //   setLocalStorage({
+        //     token: localStorage.token,
+        //     user_id: response.user_id,
+        //   });
+        //   setOpen(true);
+        //   login({
+        //     token: localStorage.token,
+        //     user_id: response?.user_id,
+        //     email: localStorage.email,
+        //     user_details: response || [],
+        //   });
+
+        //   // dispatch(setUserInfo(response));
+        //   // login(response);
+        // }
         if (response.user_id) {
           // await removeStorage("signupUser");
+          
+          // Create proper user_details structure matching what login expects
+          const loginData = {
+            token: localStorage.token,
+            user_id: response.user_id,
+            email: localStorage.email,
+            user_details: [{
+              user_id: response.user_id,
+              email: localStorage.email,
+              name: localStorage.name,  // Get name from localStorage (set during signup)
+              profile_image: response.profile_image || "",  // If API returns this
+              user_signup_status: "1"
+            }]
+          };
+          
           setLocalStorage({
             token: localStorage.token,
             user_id: response.user_id,
           });
+          
           setOpen(true);
-          login({
-            token: localStorage.token,
-            user_id: response?.user_id,
-            email: localStorage.email,
-            user_details: response || [],
-          });
+          login(loginData);  // Pass properly structured data
+        }
 
-          // dispatch(setUserInfo(response));
-          // login(response);
-        } else {
+         else {
           throw response;
         }
       } catch (error) {
@@ -128,6 +156,9 @@ const AccountVerificaton = () => {
         setTimer(60); // Start 60-second timer
         setIsResendDisabled(true);
         setIsDisable(false);
+        reset({
+          otp: [{ code: "" }, { code: "" }, { code: "" }, { code: "" }],
+        });
       } else {
         throw response;
       }
@@ -180,6 +211,11 @@ const AccountVerificaton = () => {
                         <form
                           onSubmit={handleSubmit(onSubmit)}
                           ref={formElement}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              handleSubmit(onSubmit)();
+                            }
+                          }}
                         >
                           <div className="otp-verification-input">
                             {fields.map((item, index) => (

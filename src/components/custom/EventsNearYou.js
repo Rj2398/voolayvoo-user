@@ -112,7 +112,24 @@ const EventsNearYou = ({ staticItems }) => {
                           : "No Title Available"}
                       </h6>
 
-                      <LanguageIcon
+                      <img className="earth-size"
+                        src="/images/earth.png"
+                        onClick={() => {
+                          const url = item?.event_link;
+                          if (url) {
+                            const validUrl = url.startsWith("http")
+                              ? url
+                              : `https://${url}`;
+                            window.open(
+                              validUrl,
+                              "_blank",
+                              "noopener,noreferrer"
+                            );
+                          }
+                        }}
+                      />
+
+                      {/* <LanguageIcon
                         onClick={() => {
                           const url = item?.event_link;
                           if (url) {
@@ -133,7 +150,7 @@ const EventsNearYou = ({ staticItems }) => {
                           fontSize: "24px",
                           padding: "4px",
                         }}
-                      />
+                      /> */}
                     </div>
 
                     <p

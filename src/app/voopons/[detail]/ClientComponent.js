@@ -566,13 +566,13 @@ const ClientComponent = ({ voopon_detail }) => {
               <div className="copy-content">
                 <h5>Code: </h5>
                 <span>
-                  {" "}
+                  {/* {" "} */}
                   {voopon_detail?.voopon_one?.voopon_code ||
                     voopon_detail?.voopon_two?.voopon_code ||
                     " Voopon code not available"}
                 </span>
               </div>
-              <div
+              {/* <div
                 className=""
                 style={{
                   marginLeft: "40px",
@@ -586,7 +586,7 @@ const ClientComponent = ({ voopon_detail }) => {
                     voopon_detail?.voopon_two?.voopon_code ||
                     " Voopon code not available"}
                 </span>
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="row mt-2 align-items-center">

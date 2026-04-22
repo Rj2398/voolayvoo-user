@@ -84,7 +84,14 @@ const SignUp = () => {
                   <div className="formbox loginflow">
                     <h1>User Sign Up</h1>
                     <p>Please fill the details and create account.</p>
-                    <form onSubmit={handleSubmit(onSubmit)} ref={formElement}>
+                    <form onSubmit={handleSubmit(onSubmit)}
+                     ref={formElement}
+                     onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        handleSubmit(onSubmit)();
+                      }
+                     }}
+                     >
                       <div className="name-icon">
                         <input
                           {...register("name", {
@@ -206,6 +213,10 @@ const SignUp = () => {
                       >
                         SIGN UP
                       </a>
+
+                      {/* <button type="submit" className="btn btn-learnmore">
+                        SIGN UP
+                      </button> */}
                     </form>
 
                     <div className="term-condition">

@@ -26,6 +26,7 @@ const ClientComponent = ({ notificationData }) => {
           "Content-Type": "multipart/form-data",
         },
       });
+
     } catch (error) {
       console.error("Error during logout:", error);
     }
@@ -114,8 +115,7 @@ const ClientComponent = ({ notificationData }) => {
               <span>
                 <Image
                   width={28}
-                  height={28}
-                  style={{ borderRadius: "50%" }}
+                  height={28} style={{borderRadius:"50%"}}
                   alt={"profile_image"}
                   src={
                     userDetails?.profile_image

@@ -70,7 +70,22 @@ const Card = ({ data }) => {
           >
             {data?.voopons_name}
           </div>
-          <LanguageIcon
+          <img className="earth-size" src="/images/earth.png"
+            onClick={() => {
+              const url = data?.voopon_link;
+              if (url)
+                window.open(
+                  url.startsWith("http") ? url : `https://${url}`,
+                  "_blank"
+                );
+            }}
+            style={{
+              position: "absolute",
+              right: 0,
+              top: "5px",
+            }}
+          />
+          {/* <LanguageIcon
             onClick={() => {
               const url = data?.voopon_link;
               if (url)
@@ -89,7 +104,7 @@ const Card = ({ data }) => {
               fontSize: "20px",
               padding: "2px",
             }}
-          />
+          /> */}
         </div>
 
         {/* 3. Description */}
@@ -103,6 +118,11 @@ const Card = ({ data }) => {
         >
           {data?.voopons_description}
         </div>
+
+        <div style={{ marginTop: "8px" }}>
+           <strong> Code: </strong>
+            {data?.voopon_code || "N/A"}
+          </div>
 
         {/* 4. Dates and Code */}
         <div style={{ fontSize: "15px", color: "#333", marginBottom: "15px" }}>
@@ -123,9 +143,9 @@ const Card = ({ data }) => {
               ).toFormat("MMM dd, yyyy")}
             </span>
           </div>
-          <div style={{ marginTop: "8px", fontWeight: "900" }}>
+          {/* <div style={{ marginTop: "8px", fontWeight: "900" }}>
             Code: {data?.voopon_code || "N/A"}
-          </div>
+          </div> */}
         </div>
 
         {/* 5. Business/Promoter Section (Matches image_cc1921.png) */}
@@ -163,7 +183,7 @@ const Card = ({ data }) => {
             />
           </div>
           <div>
-            <div
+            {/* <div
               style={{
                 fontSize: "10px",
                 color: "#FF0015",
@@ -172,7 +192,7 @@ const Card = ({ data }) => {
               }}
             >
               {userType}
-            </div>
+            </div> */}
             <div style={{ fontSize: "15px", fontWeight: "700", color: "#333" }}>
               {creator?.name || "User"}
             </div>
