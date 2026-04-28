@@ -320,9 +320,6 @@
 
 // code responsive code 16-10-2024
 
-
-
-
 // import React, { useEffect, useState } from "react";
 // import { Swiper, SwiperSlide } from "swiper/react";
 // import "swiper/css";
@@ -510,14 +507,7 @@
 
 // export default BrandExplore;
 
-
-
-
-
-
-
 // new change for sweeper outside the section acc to bug sheet
-
 
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -597,12 +587,19 @@ const BrandExplore = ({ staticItems, brand }) => {
 
   return (
     <>
-      <div className="col-lg-12 mySwiper">
+      <div className="col-lg-12 mySwiper mobileView">
         <div className="heading mb-3">
           Brands <span>To Explore</span>
         </div>
       </div>
-      <div className="brand-explore-container" style={{ position: 'relative', padding: '0 0px', border: "1px solid white" }}>
+      <div
+        className="brand-explore-container"
+        style={{
+          position: "relative",
+          padding: "0 0px",
+          border: "1px solid white",
+        }}
+      >
         <Swiper
           onSwiper={setSwiperInstance}
           style={{
@@ -616,8 +613,8 @@ const BrandExplore = ({ staticItems, brand }) => {
           keyboard={{ enabled: true }}
           pagination={{ clickable: false }}
           navigation={{
-            nextEl: '.swiper-button-next-unique',
-            prevEl: '.swiper-button-prev-unique',
+            nextEl: ".swiper-button-next-unique",
+            prevEl: ".swiper-button-prev-unique",
           }}
           modules={[Autoplay, Navigation]}
           className="mySwiper"
@@ -674,7 +671,7 @@ const BrandExplore = ({ staticItems, brand }) => {
                         src={`${BASE_URL}/${
                           item.vooponimage?.image_name || item?.profile_image
                         }`}
-                        style={{ width: "100%", height: "220px",}}
+                        style={{ width: "100%", height: "220px" }}
                         alt="brand"
                       />
                     </div>
@@ -707,37 +704,36 @@ const BrandExplore = ({ staticItems, brand }) => {
           )}
         </Swiper>
 
-        <div 
+        <div
           className="swiper-button-prev-unique"
-          style={{ 
-            left: '10px',
-            top: '50%',
-            transform: 'translateY(-50%)',
-            position: 'absolute',
+          style={{
+            left: "10px",
+            top: "50%",
+            transform: "translateY(-50%)",
+            position: "absolute",
             zIndex: 10,
-            cursor: 'pointer',
-          
+            cursor: "pointer",
           }}
           onClick={() => swiperInstance?.slidePrev()}
         >
           <svg width="40" height="40" viewBox="0 0 24 24" fill="#e60023">
-            <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/>
+            <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z" />
           </svg>
         </div>
-        <div 
+        <div
           className="swiper-button-next-unique"
-          style={{ 
-            right: '10px',
-            top: '50%',
-            transform: 'translateY(-50%)',
-            position: 'absolute',
+          style={{
+            right: "10px",
+            top: "50%",
+            transform: "translateY(-50%)",
+            position: "absolute",
             zIndex: 10,
-            cursor: 'pointer'
+            cursor: "pointer",
           }}
           onClick={() => swiperInstance?.slideNext()}
         >
           <svg width="40" height="40" viewBox="0 0 24 24" fill="#e60023">
-            <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+            <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
           </svg>
         </div>
       </div>

@@ -31749,6 +31749,23 @@ code written by rajan
   margin-bottom: 20px; /* Space between items */
 }
 
+.mobile-shift-up {
+  margin-top: -50px;
+}
+@media (min-width: 768px) {
+  .mobile-shift-up {
+    margin-top: 0; /* Removes the negative margin */
+  }
+}
+.mobileView {
+  margin-top: 20px;
+}
+@media (min-width: 768px) {
+  .mobileView {
+    margin-top: 0; /* Removes the negative margin */
+  }
+}
+
 /*!******************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[3]!./src/styles/style.css ***!
   \******************************************************************************************************************************************************************************************************************************************************************/

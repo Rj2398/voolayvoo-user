@@ -205,3 +205,20 @@ code written by rajan
 .item1 {
   margin-bottom: 20px; /* Space between items */
 }
+
+.mobile-shift-up {
+  margin-top: -50px;
+}
+@media (min-width: 768px) {
+  .mobile-shift-up {
+    margin-top: 0; /* Removes the negative margin */
+  }
+}
+.mobileView {
+  margin-top: 20px;
+}
+@media (min-width: 768px) {
+  .mobileView {
+    margin-top: 0; /* Removes the negative margin */
+  }
+}

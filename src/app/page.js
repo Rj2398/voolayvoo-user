@@ -340,6 +340,7 @@ export default function Home() {
 
                 <Link
                   className="btn btn-learnmore"
+                  style={{ marginTop: 15 }}
                   href={"/about"}
                   role="button"
                 >
@@ -375,7 +376,7 @@ export default function Home() {
                 promoters whom they follow.{" "}
               </p>
             </div>
-            <div className="col-lg-3 col-md-6">
+            <div className="col-lg-3 col-md-6 mobile-shift-up">
               <div className="howbox">
                 <div className="how-icon">
                   <Image
