@@ -31765,6 +31765,16 @@ code written by rajan
     margin-top: 0; /* Removes the negative margin */
   }
 }
+@media (max-width: 767px) {
+  html,
+  body {
+    overflow-x: hidden;
+    position: relative;
+    width: 100%;
+    /* This prevents the "bounce" effect on iOS */
+    touch-action: pan-y;
+  }
+}
 
 /*!******************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[3]!./src/styles/style.css ***!

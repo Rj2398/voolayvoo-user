@@ -61,7 +61,7 @@ const SubscribeHome = () => {
                   message: "Enter a valid email address",
                 },
               })}
-              className="suscribe-srch"
+              className="suscribe-srch mb-2"
               type="mail"
               placeholder="Enter your Email"
             />

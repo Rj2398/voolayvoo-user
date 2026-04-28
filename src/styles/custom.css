@@ -222,3 +222,13 @@ code written by rajan
     margin-top: 0; /* Removes the negative margin */
   }
 }
+@media (max-width: 767px) {
+  html,
+  body {
+    overflow-x: hidden;
+    position: relative;
+    width: 100%;
+    /* This prevents the "bounce" effect on iOS */
+    touch-action: pan-y;
+  }
+}

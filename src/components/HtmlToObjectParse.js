@@ -124,7 +124,7 @@ export function separateContentWithoutParser(htmlString) {
   const aboutContent = extractContent(
     htmlString,
     "<h1>VoolayVoo</h1>",
-    "<\/p>\r\n\r\n<p><img"
+    "</p>\r\n\r\n<p><img"
   );
   const vooponsContent = extractContent(
     htmlString,
