@@ -7,13 +7,14 @@ import Image from "next/image";
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 
 const ClientComponent = ({ notificationData }) => {
   const { isAuthenticated, logout, userDetails } = useAuth();
   const router = useRouter();
-
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef(null);
   const dispatch = useDispatch();
 
   const hitLogOutApi = async () => {
@@ -26,7 +27,6 @@ const ClientComponent = ({ notificationData }) => {
           "Content-Type": "multipart/form-data",
         },
       });
-
     } catch (error) {
       console.error("Error during logout:", error);
     }
@@ -47,6 +47,80 @@ const ClientComponent = ({ notificationData }) => {
         dispatch(setUserState());
       }
     } catch (error) {}
+  };
+  //
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+  // --- Inline Styles Objects ---
+  const styles = {
+    wrapper: {
+      position: "relative",
+      display: "inline-block",
+    },
+    notificationAnchor: {
+      cursor: "pointer",
+      display: "flex",
+      alignItems: "center",
+      textDecoration: "none",
+      padding: "5px",
+    },
+    notifiBox: {
+      position: "absolute",
+      top: "45px",
+      right: "0",
+      width: "320px",
+      backgroundColor: "#ffffff",
+      border: "1px solid #e1e4e8",
+      borderRadius: "12px",
+      boxShadow: "0 10px 25px rgba(0,0,0,0.15)",
+      zIndex: 1000,
+      maxHeight: "450px",
+      overflowY: "auto",
+      animation: "fadeIn 0.2s ease-out",
+    },
+    header: {
+      padding: "15px 20px",
+      borderBottom: "1px solid #f0f0f0",
+      margin: 0,
+    },
+    headerText: {
+      fontSize: "18px",
+      fontWeight: "600",
+      color: "#333",
+      margin: 0,
+    },
+    list: {
+      listStyle: "none",
+      padding: 0,
+      margin: 0,
+    },
+    listItem: {
+      padding: "12px 20px",
+      borderBottom: "1px solid #f8f9fa",
+      transition: "background 0.2s",
+      cursor: "pointer",
+    },
+    itemText: {
+      fontSize: "14px",
+      color: "#555",
+      margin: 0,
+      lineHeight: "1.5",
+    },
+    emptyState: {
+      padding: "40px 20px",
+      textAlign: "center",
+      color: "#999",
+      fontSize: "14px",
+    },
   };
 
   return (
@@ -115,7 +189,8 @@ const ClientComponent = ({ notificationData }) => {
               <span>
                 <Image
                   width={28}
-                  height={28} style={{borderRadius:"50%"}}
+                  height={28}
+                  style={{ borderRadius: "50%" }}
                   alt={"profile_image"}
                   src={
                     userDetails?.profile_image
@@ -137,8 +212,73 @@ const ClientComponent = ({ notificationData }) => {
               </a>
             </div>
           </div>
+          <div style={styles.wrapper} ref={dropdownRef}>
+            {/* Notification Icon Trigger */}
+            <a
+              href="#!"
+              style={styles.notificationAnchor}
+              onClick={(e) => {
+                e.preventDefault();
+                setIsOpen(!isOpen);
+              }}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="27"
+                height="27"
+                viewBox="0 0 27 27"
+                fill="none"
+              >
+                <path
+                  d="M21.9312 13.9146V11.7744H20.276V14.2573C20.276 14.4768 20.3633 14.6872 20.5185 14.8424L22.7588 17.0828V18.3954H4.55123V17.0828L6.7916 14.8424C6.94682 14.6872 7.03404 14.4768 7.03409 14.2573V10.9468C7.03178 9.78383 7.33642 8.64084 7.91723 7.63328C8.49804 6.62572 9.33446 5.78928 10.342 5.20843C11.3495 4.62759 12.4925 4.32291 13.6555 4.32518C14.8185 4.32744 15.9602 4.63657 16.9655 5.22134V3.37161C16.1777 3.02279 15.3398 2.80046 14.4827 2.71283V1.01538H12.8274V2.712C10.787 2.91967 8.89603 3.87655 7.52021 5.3976C6.14438 6.91866 5.38142 8.89583 5.37885 10.9468V13.9146L3.13849 16.155C2.98327 16.3102 2.89604 16.5206 2.896 16.7401V19.223C2.896 19.4425 2.98319 19.653 3.1384 19.8082C3.29361 19.9634 3.50412 20.0506 3.72361 20.0506H9.51694V20.8782C9.51694 21.9757 9.95292 23.0283 10.729 23.8043C11.505 24.5803 12.5575 25.0163 13.655 25.0163C14.7525 25.0163 15.8051 24.5803 16.5811 23.8043C17.3572 23.0283 17.7931 21.9757 17.7931 20.8782V20.0506H23.5865C23.806 20.0506 24.0165 19.9634 24.1717 19.8082C24.3269 19.653 24.4141 19.4425 24.4141 19.223V16.7401C24.414 16.5206 24.3268 16.3102 24.1716 16.155L21.9312 13.9146ZM16.1379 20.8782C16.1379 21.5367 15.8763 22.1682 15.4107 22.6339C14.9451 23.0995 14.3135 23.3611 13.655 23.3611C12.9965 23.3611 12.365 23.0995 11.8994 22.6339C11.4338 22.1682 11.1722 21.5367 11.1722 20.8782V20.0506H16.1379V20.8782Z"
+                  fill="white"
+                />
+                <path
+                  d="M21.9311 10.1192C23.7594 10.1192 25.2416 8.63709 25.2416 6.80876C25.2416 4.98044 23.7594 3.49829 21.9311 3.49829C20.1028 3.49829 18.6206 4.98044 18.6206 6.80876C18.6206 8.63709 20.1028 10.1192 21.9311 10.1192Z"
+                  fill="white"
+                />
+              </svg>
 
-          <a
+              {/* Dropdown Box */}
+              {isOpen && (
+                <div style={styles.notifiBox}>
+                  <div style={styles.header}>
+                    <h1 style={styles.headerText}>Notifications</h1>
+                  </div>
+                  <ul style={styles.list}>
+                    {notificationData?.responseNotification?.length > 0 ? (
+                      notificationData.responseNotification.map(
+                        (item, index) => (
+                          <li
+                            key={`${item.id}-${index}`}
+                            style={styles.listItem}
+                            onMouseOver={(e) =>
+                              (e.currentTarget.style.backgroundColor =
+                                "#f8f9fa")
+                            }
+                            onMouseOut={(e) =>
+                              (e.currentTarget.style.backgroundColor =
+                                "transparent")
+                            }
+                          >
+                            <p style={styles.itemText}>
+                              {item.notification_text ||
+                                "No message available."}
+                            </p>
+                          </li>
+                        )
+                      )
+                    ) : (
+                      <li style={styles.emptyState}>
+                        No notifications received yet.
+                      </li>
+                    )}
+                  </ul>
+                </div>
+              )}
+            </a>
+          </div>
+          {/* <a
             className="notification notifications"
             onClick={(e) => e.preventDefault()}
           >
@@ -172,7 +312,7 @@ const ClientComponent = ({ notificationData }) => {
                 )}
               </ul>
             </div>
-          </a>
+          </a> */}
         </div>
       )}
     </>
