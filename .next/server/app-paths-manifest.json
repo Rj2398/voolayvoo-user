@@ -1,7 +1,7 @@
 {
   "/page": "app/page.js",
-  "/voopons/page": "app/voopons/page.js",
   "/voopons/[detail]/page": "app/voopons/[detail]/page.js",
-  "/(user)/my/profile/page": "app/(user)/my/profile/page.js",
-  "/(user)/payment-method/page": "app/(user)/payment-method/page.js"
+  "/voopons/page": "app/voopons/page.js",
+  "/(user)/payment-method/page": "app/(user)/payment-method/page.js",
+  "/(user)/my/profile/page": "app/(user)/my/profile/page.js"
 }

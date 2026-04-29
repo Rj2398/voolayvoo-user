@@ -92,9 +92,68 @@ const ClientComponent = ({ voopon_detail }) => {
     );
   };
 
+  // const freeBuyNow = async () => {
+  //   try {
+  //     // Recheck limit right before purchase (prevent race conditions)
+  //     const limitResponse = await checkVooponPurchaseLimit({
+  //       user_id: userDetails?.user_id,
+  //       voopon_unique_number: params.detail,
+  //       authToken: userDetails.token,
+  //     });
+
+  //     if (!limitResponse.success) {
+  //       toast.error(
+  //         limitResponse.message || "Failed to verify purchase limits"
+  //       );
+  //       return;
+  //     }
+
+  //     const current_usage = limitResponse.data?.current_usage;
+  //     const max_limit = limitResponse.data?.max_limit;
+  //     if (current_usage < max_limit) {
+  //       toast.error(
+  //         `You can only purchase ${
+  //           max_limit - current_usage
+  //         } more of this voopon`
+  //       );
+  //       return;
+  //     } else if (current_usage == max_limit) {
+  //       toast.error(message);
+  //       return;
+  //     }
+
+  //     const requestData = {
+  //       user_id: `${userDetails?.user_id}`,
+  //       email: userDetails?.email,
+  //       price: `${voopansPrice}`,
+  //       unique_number: params.detail,
+  //       voopon_quantity: `${quantity}`,
+  //       event_quantity: null,
+  //     };
+
+  //     const response = await postFetchDataWithAuth({
+  //       data: requestData,
+  //       endpoint: "user_free_buy_now",
+  //       authToken: userDetails.token,
+  //     });
+
+  //     if (response.success) {
+  //       setReload(!reload);
+  //       toast.success(`Grab deal successful`);
+  //       setOpenCard(false);
+  //     } else {
+  //       throw response;
+  //     }
+  //   } catch (error) {
+  //     const errorMessage = error?.message || "Failed to complete purchase";
+  //     toast.error(errorMessage);
+  //   }
+  // };
+
+  // new API call to show mssg to user if he tries to buy voopons more than their limit
   const freeBuyNow = async () => {
     try {
-      // Recheck limit right before purchase (prevent race conditions)
+      // 1. Recheck limit using your helper (which returns data.current_usage)
       const limitResponse = await checkVooponPurchaseLimit({
         user_id: userDetails?.user_id,
         voopon_unique_number: params.detail,
@@ -108,20 +167,18 @@ const ClientComponent = ({ voopon_detail }) => {
         return;
       }
 
-      const current_usage = limitResponse.data?.current_usage;
-      const max_limit = limitResponse.data?.max_limit;
-      if (current_usage < max_limit) {
+      // 2. Extract values from the data object created by your helper
+      const { current_usage, max_limit } = limitResponse.data;
+
+      // 3. CORRECT LOGIC: Only block if they have already reached the limit
+      if (max_limit !== 0 && current_usage >= max_limit) {
         toast.error(
-          `You can only purchase ${
-            max_limit - current_usage
-          } more of this voopon`
+          "You have reached the maximum purchase limit for this voopon"
         );
-        return;
-      } else if (current_usage == max_limit) {
-        toast.error(message);
         return;
       }
 
+      // 4. Prepare request data
       const requestData = {
         user_id: `${userDetails?.user_id}`,
         email: userDetails?.email,
@@ -131,6 +188,7 @@ const ClientComponent = ({ voopon_detail }) => {
         event_quantity: null,
       };
 
+      // 5. Call the Free Buy endpoint
       const response = await postFetchDataWithAuth({
         data: requestData,
         endpoint: "user_free_buy_now",
@@ -142,16 +200,14 @@ const ClientComponent = ({ voopon_detail }) => {
         toast.success(`Grab deal successful`);
         setOpenCard(false);
       } else {
-        throw response;
+        toast.error(response.message || "Failed to complete purchase");
       }
     } catch (error) {
+      console.error("Free Purchase Error:", error);
       const errorMessage = error?.message || "Failed to complete purchase";
       toast.error(errorMessage);
     }
   };
-
-  // new API call to show mssg to user if he tries to buy voopons more than their limit
-
   const callBack = async (card) => {
     try {
       const limitResponse = await checkVooponPurchaseLimit({
