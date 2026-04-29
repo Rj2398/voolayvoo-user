@@ -26,6 +26,7 @@ import { Rating } from "@mui/material";
 import ReportModal from "@/components/ReportModal";
 
 const ClientComponent = ({ eventDetail, relatedVoopon = [] }) => {
+  console.log(eventDetail, "eventDetaileventDetail");
   const [isReportOpen, setIsReportOpen] = useState(false);
   const [open, setOpen] = useState(false);
   const [openCard, setOpenCard] = useState(false);

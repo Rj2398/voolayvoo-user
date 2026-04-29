@@ -102,6 +102,63 @@ const ClientComponent = ({ voopon_detail }) => {
   //   }
   // };
 
+  // const handleBookNow = async () => {
+  //   if (!isAuthenticated) {
+  //     router.push(`/auth-users`);
+  //     return;
+  //   }
+
+  //   try {
+  //     console.log(
+  //       {
+  //         user_id: userDetails?.user_id,
+  //         voopon_unique_number: params.detail,
+  //         authToken: userDetails.token,
+  //       },
+  //       "voopan of this data**"
+  //     );
+  //     const limitResponse = await checkVooponPurchaseLimit({
+  //       user_id: userDetails?.user_id,
+  //       voopon_unique_number: params.detail,
+  //       authToken: userDetails.token,
+  //     });
+  //     if (!limitResponse.success) {
+  //       toast.error(limitResponse.message || "Failed to check purchase limits");
+  //       return;
+  //     }
+
+  //     // Safely destructure with default values
+  //     const {
+  //       max_limit = 0,
+  //       current_usage = 0,
+  //       message = "Purchase limit reached",
+  //     } = limitResponse.data || {};
+
+  //     if (current_usage < max_limit) {
+  //       toast.error(
+  //         `You can only purchase ${
+  //           max_limit - current_usage
+  //         } more of this voopon`
+  //       );
+  //       return;
+  //     } else if (current_usage == max_limit) {
+  //       toast.error(message);
+  //       return;
+  //     }
+
+  //     // Proceed with purchase based on price
+  //     if (voopansPrice === 0) {
+  //       setOpenCard(false);
+  //       freeBuyNow();
+  //     } else {
+  //       setOpenCard(true);
+  //     }
+  //   } catch (error) {
+  //     console.error("Purchase limit check error:", error);
+  //     toast.error("Error checking purchase limits");
+  //   }
+  // };
+  //
   const handleBookNow = async () => {
     if (!isAuthenticated) {
       router.push(`/auth-users`);
@@ -114,40 +171,27 @@ const ClientComponent = ({ voopon_detail }) => {
         voopon_unique_number: params.detail,
         authToken: userDetails.token,
       });
-
-      // console.log('Limit Response:', limitResponse); // Debug log
-
+      // console.log(limitResponse?.data, "limit response **");
       if (!limitResponse.success) {
         toast.error(limitResponse.message || "Failed to check purchase limits");
         return;
       }
 
-      // Safely destructure with default values
-      const {
-        max_limit = 0,
-        current_usage = 0,
-        message = "Purchase limit reached",
-      } = limitResponse.data || {};
-
-      // Check if user can purchase the requested quantity
-      // if (current_usage + quantity > max_limit) {
-      //   toast.error(message || `You can only purchase ${max_limit - current_usage} more of this voopon`);
-      //   return;
-      // }
-
-      if (current_usage < max_limit) {
+      // 1. Correct the keys to match your API response
+      // Based on your JSON: total_voopon_buyed and max_allow_on_this_voopon
+      const current_usage = limitResponse.data?.current_usage ?? 0;
+      const max_limit = limitResponse.data?.max_limit ?? 0;
+      // console.log(current_usage, "Current usages ", max_limit, "max limit");
+      // 2. Fix the Logic: Only error if current_usage is >= max_limit
+      if (current_usage >= max_limit) {
         toast.error(
-          `You can only purchase ${
-            max_limit - current_usage
-          } more of this voopon`
+          limitResponse.message ||
+            "You have reached the maximum purchase limit for this voopon"
         );
-        return;
-      } else if (current_usage == max_limit) {
-        toast.error(message);
         return;
       }
 
-      // Proceed with purchase based on price
+      // If we are here, current_usage < max_limit, so PROCEED
       if (voopansPrice === 0) {
         setOpenCard(false);
         freeBuyNow();

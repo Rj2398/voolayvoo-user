@@ -214,21 +214,23 @@ const ClientComponent = ({ categoryList, voopanList }) => {
                   >
                     {truncateDescription(item?.voopons_description, 4)}
                   </h5>
-                  <img src="/images/earth.png" className="earth-size" 
-                  onClick={() => {
-                    if (item?.event_link)
-                      window.open(
-                        item.event_link.startsWith("http")
-                          ? item.event_link
-                          : `https://${item.event_link}`,
-                        "_blank"
-                      );
-                  }}
-                  style={{
-                    position: "absolute",
-                    right: 0,
-                    top: 0
-                  }}
+                  <img
+                    src="/images/earth.png"
+                    className="earth-size"
+                    onClick={() => {
+                      if (item?.event_link)
+                        window.open(
+                          item.event_link.startsWith("http")
+                            ? item.event_link
+                            : `https://${item.event_link}`,
+                          "_blank"
+                        );
+                    }}
+                    style={{
+                      position: "absolute",
+                      right: 0,
+                      top: 0,
+                    }}
                   />
                   {/* <LanguageIcon
                     onClick={() => {
@@ -254,15 +256,15 @@ const ClientComponent = ({ categoryList, voopanList }) => {
                 </div>
 
                 <div
-                    style={{
-                      textAlign: "center",
-                      marginTop: "8px",
-                      // fontWeight: "600",
-                    }}
-                  >
-                   <strong> Code: </strong>
-                    {item?.voopon_code || "Not Available"}
-                  </div>
+                  style={{
+                    textAlign: "center",
+                    marginTop: "8px",
+                    // fontWeight: "600",
+                  }}
+                >
+                  <strong> Code: </strong>
+                  {item?.voopon_code || "Not Available"}
+                </div>
 
                 {/* 4. Dates & Code */}
                 <div
