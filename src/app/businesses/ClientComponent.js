@@ -1229,9 +1229,7 @@ const ClientComponent = ({ categoryList, businessList }) => {
         </div>
       </div> */}
       <div className="event-cat TopMargin" style={{ padding: "0 15px" }}>
-        <h5 style={{ fontSize: "1.25rem", marginBottom: "15px" }}>
-          Event Categories
-        </h5>
+        <h5 style={{ marginBottom: "15px" }}>Event Categories</h5>
         <ul
           style={{
             listStyle: "none",
