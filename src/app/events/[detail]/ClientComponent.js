@@ -27,6 +27,12 @@ import ReportModal from "@/components/ReportModal";
 
 const ClientComponent = ({ eventDetail, relatedVoopon = [] }) => {
   console.log(eventDetail, "eventDetaileventDetail");
+
+  const reportFlag =
+    eventDetail?.event_one?.report_status ||
+    eventDetail?.event_two?.report_status;
+
+  console.log(reportFlag, "reportFlagreportFlag");
   const [isReportOpen, setIsReportOpen] = useState(false);
   const [open, setOpen] = useState(false);
   const [openCard, setOpenCard] = useState(false);
@@ -226,47 +232,50 @@ const ClientComponent = ({ eventDetail, relatedVoopon = [] }) => {
             <div className="col-lg-6">
               <div className="slider-box" style={{ position: "relative" }}>
                 {/* --- Report Icon --- */}
-                <Tooltip title="Report this post">
-                  <IconButton
-                    onClick={() => {
-                      const entity =
-                        eventDetail?.event_one || eventDetail?.event_two;
+                {!reportFlag && (
+                  <Tooltip title="Report this post">
+                    <IconButton
+                      onClick={() => {
+                        const entity =
+                          eventDetail?.event_one || eventDetail?.event_two;
 
-                      const reportType = entity?.business_id
-                        ? "Business"
-                        : "Promoter";
+                        const reportType = entity?.business_id
+                          ? "Business"
+                          : "Promoter";
 
-                      console.log(reportType, "report type**");
-                      setCurrentReportData({
-                        event_id:
+                        console.log(reportType, "report type**");
+                        setCurrentReportData({
+                          event_id:
+                            eventDetail?.event_one?.id ||
+                            eventDetail?.event_two?.id,
+                          voopon_id: "", // Pass this if reporting from the Voopon Modal
+                          type: reportType,
+                        });
+                        setIsReportOpen(true);
+                        // Add your report logic or open a report modal here
+                        console.log(
+                          "Report button clicked for ID:",
                           eventDetail?.event_one?.id ||
-                          eventDetail?.event_two?.id,
-                        voopon_id: "", // Pass this if reporting from the Voopon Modal
-                        type: reportType,
-                      });
-                      setIsReportOpen(true);
-                      // Add your report logic or open a report modal here
-                      console.log(
-                        "Report button clicked for ID:",
-                        eventDetail?.event_one?.id || eventDetail?.event_two?.id
-                      );
-                    }}
-                    sx={{
-                      position: "absolute",
-                      top: 10,
-                      right: 10,
-                      zIndex: 10,
-                      backgroundColor: "rgba(255, 255, 255, 0.7)", // Semi-transparent white
-                      "&:hover": {
-                        backgroundColor: "rgba(255, 255, 255, 0.9)",
-                        color: "#FF0015", // Red on hover
-                      },
-                      padding: "6px",
-                    }}
-                  >
-                    <FlagIcon sx={{ fontSize: "20px" }} />
-                  </IconButton>
-                </Tooltip>
+                            eventDetail?.event_two?.id
+                        );
+                      }}
+                      sx={{
+                        position: "absolute",
+                        top: 10,
+                        right: 10,
+                        zIndex: 10,
+                        backgroundColor: "rgba(255, 255, 255, 0.7)", // Semi-transparent white
+                        "&:hover": {
+                          backgroundColor: "rgba(255, 255, 255, 0.9)",
+                          color: "#FF0015", // Red on hover
+                        },
+                        padding: "6px",
+                      }}
+                    >
+                      <FlagIcon sx={{ fontSize: "20px" }} />
+                    </IconButton>
+                  </Tooltip>
+                )}
 
                 <img
                   className="w-100"

@@ -5,8 +5,15 @@ import Image from "next/image";
 import FlagIcon from "@mui/icons-material/Flag";
 import { IconButton, Tooltip } from "@mui/material";
 import ReportModal from "@/components/ReportModal"; // Adjust path to your Modal
+import { useSearchParams } from "next/navigation";
 
 const VooponImageGallery = ({ voopon_detail, BASE_URL }) => {
+  // This matches the '?status=' key you sent in the href
+  const searchParams = useSearchParams();
+  const reportFlag =
+    searchParams.get("report_status") || searchParams.get("status") || "false";
+
+  console.log(reportFlag, "report data**");
   const [isReportOpen, setIsReportOpen] = useState(false);
   const [reportData, setReportData] = useState(null);
 
@@ -47,26 +54,27 @@ const VooponImageGallery = ({ voopon_detail, BASE_URL }) => {
         }}
       >
         {/* Report Action */}
-        <Tooltip title="Report this Voopon">
-          <IconButton
-            onClick={handleOpenReport}
-            sx={{
-              position: "absolute",
-              top: 15,
-              right: 15,
-              zIndex: 10,
-              backgroundColor: "rgba(255, 255, 255, 0.8)",
-              backdropFilter: "blur(4px)",
-              "&:hover": {
-                backgroundColor: "#fff",
-                color: "#FF0015",
-              },
-            }}
-          >
-            <FlagIcon sx={{ fontSize: "22px" }} />
-          </IconButton>
-        </Tooltip>
-
+        {reportFlag && (
+          <Tooltip title="Report this Voopon">
+            <IconButton
+              onClick={handleOpenReport}
+              sx={{
+                position: "absolute",
+                top: 15,
+                right: 15,
+                zIndex: 10,
+                backgroundColor: "rgba(255, 255, 255, 0.8)",
+                backdropFilter: "blur(4px)",
+                "&:hover": {
+                  backgroundColor: "#fff",
+                  color: "#FF0015",
+                },
+              }}
+            >
+              <FlagIcon sx={{ fontSize: "22px" }} />
+            </IconButton>
+          </Tooltip>
+        )}
         <Image
           width={596}
           height={375}

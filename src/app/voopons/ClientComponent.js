@@ -387,7 +387,11 @@ const ClientComponent = ({ categoryList, voopanList }) => {
 
                 {/* 6. View More Pill Button */}
                 <Link
-                  href={`/voopons/${item.unique_number}`}
+                  // href={`/voopons/${item.unique_number}`}
+                  href={{
+                    pathname: `/voopons/${item.unique_number}`,
+                    query: { report_status: item.report_status },
+                  }}
                   style={{
                     backgroundColor: "#FF0015",
                     color: "#fff",

@@ -14,8 +14,10 @@ import { Rating } from "@mui/material";
 import { useAuth } from "@/app/UserProvider";
 
 const ClientComponent = ({ eventDetail, qrCode }) => {
+  // console.log(eventDetail, "event details****");
   const [open, setOpen] = useState(false);
   const [openQrCode, setOpenQrCode] = useState(false);
+
   let pathName = usePathname();
 
   const searchParams = useSearchParams();

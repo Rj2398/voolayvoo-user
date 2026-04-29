@@ -12,6 +12,7 @@ const MAX_WORDS = 3;
 
 const NewlyAddedVoop = ({ staticItems }) => {
   const { isAuthenticated } = useAuth();
+  console.log(staticItems, "static item****");
 
   const [swiperInstance, setSwiperInstance] = useState(null);
 
@@ -163,20 +164,22 @@ const NewlyAddedVoop = ({ staticItems }) => {
                               : "No Title Available"}
                           </h6>
 
-                          <img className="earth-size" src="/images/earth.png" 
-                           onClick={() => {
-                            const url = item?.voopon_link;
-                            if (url) {
-                              const validUrl = url.startsWith("http")
-                                ? url
-                                : `https://${url}`;
-                              window.open(
-                                validUrl,
-                                "_blank",
-                                "noopener,noreferrer"
-                              );
-                            }
-                          }}
+                          <img
+                            className="earth-size"
+                            src="/images/earth.png"
+                            onClick={() => {
+                              const url = item?.voopon_link;
+                              if (url) {
+                                const validUrl = url.startsWith("http")
+                                  ? url
+                                  : `https://${url}`;
+                                window.open(
+                                  validUrl,
+                                  "_blank",
+                                  "noopener,noreferrer"
+                                );
+                              }
+                            }}
                           />
 
                           {/* <LanguageIcon
@@ -293,16 +296,12 @@ const NewlyAddedVoop = ({ staticItems }) => {
                       >
                         View More
                       </a> */}
+
+                        {console.log(item.report_status, "report status")}
                         <a
                           className="btn btn-viewmore"
                           role="button"
-                          href={`/voopons/${item.category_id}`}
-                          style={
-                            {
-                              // display:"block",
-                              // marginTop:"10px"
-                            }
-                          }
+                          href={`/voopons/${item.category_id}?status=${item.report_status}`}
                         >
                           View More
                         </a>

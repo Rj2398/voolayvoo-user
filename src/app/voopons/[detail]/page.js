@@ -43,6 +43,7 @@ const Detail = async ({
 }) => {
   const { voopon_detail } = await getData(detail);
   // console.log(voopon_detail, "Voopon_details*****");
+
   return (
     <>
       <section className="details-page">

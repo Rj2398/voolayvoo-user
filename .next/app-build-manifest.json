@@ -17,21 +17,30 @@
       "static/chunks/main-app.js",
       "static/chunks/app/not-found.js"
     ],
-    "/businesses/page": [
+    "/voopons/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/businesses/page.js"
-    ],
-    "/businesses/[detail]/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/businesses/[detail]/page.css",
-      "static/chunks/app/businesses/[detail]/page.js"
+      "static/chunks/app/voopons/page.js"
     ],
     "/_not-found/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/_not-found/page.js"
+    ],
+    "/voopons/[detail]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/voopons/[detail]/page.js"
+    ],
+    "/businesses/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/businesses/page.js"
+    ],
+    "/events/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/events/page.js"
     ],
     "/events/[detail]/page": [
       "static/chunks/webpack.js",
@@ -39,10 +48,10 @@
       "static/css/app/events/[detail]/page.css",
       "static/chunks/app/events/[detail]/page.js"
     ],
-    "/events/page": [
+    "/promoters/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/events/page.js"
+      "static/chunks/app/promoters/page.js"
     ],
     "/(user)/my/profile/page": [
       "static/chunks/webpack.js",
@@ -58,26 +67,6 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/(user)/payment-method/page.js"
-    ],
-    "/voopons/[detail]/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/voopons/[detail]/page.js"
-    ],
-    "/promoters/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/promoters/page.js"
-    ],
-    "/voopons/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/voopons/page.js"
-    ],
-    "/(onboard)/login/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(onboard)/login/page.js"
     ]
   }
 }

@@ -1,13 +1,5 @@
 {
   "node": {
-    "57070a8157092e5f606e83ae9183acbbdbf9697e": {
-      "workers": {
-        "app/events/[detail]/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Frajanmalakar%2FDownloads%2Fgitvool%2Fvoolayvoo-user%2Fsrc%2Fapp%2Fevents%2F%5Bdetail%5D%2Fpage.js%22%2C%5B%22default%22%5D%5D%5D&__client_imported__=!"
-      },
-      "layer": {
-        "app/events/[detail]/page": "rsc"
-      }
-    },
     "3b3c8decab8a9378c7941e24363859a3d54175a9": {
       "workers": {
         "app/voopons/[detail]/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Frajanmalakar%2FDownloads%2Fgitvool%2Fvoolayvoo-user%2Fsrc%2Fapp%2Fvoopons%2F%5Bdetail%5D%2Fpage.js%22%2C%5B%22default%22%5D%5D%5D&__client_imported__=!"
@@ -15,8 +7,16 @@
       "layer": {
         "app/voopons/[detail]/page": "rsc"
       }
+    },
+    "57070a8157092e5f606e83ae9183acbbdbf9697e": {
+      "workers": {
+        "app/events/[detail]/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Frajanmalakar%2FDownloads%2Fgitvool%2Fvoolayvoo-user%2Fsrc%2Fapp%2Fevents%2F%5Bdetail%5D%2Fpage.js%22%2C%5B%22default%22%5D%5D%5D&__client_imported__=!"
+      },
+      "layer": {
+        "app/events/[detail]/page": "rsc"
+      }
     }
   },
   "edge": {},
-  "encryptionKey": "za8rvsH0uiqM1IBxAiUlb9TxCj5nsW88wTAXHnFeKOo="
+  "encryptionKey": "/6ualgDOYu/jVTtGhzrlmyH/2Yl/HxEYZdYpQId82Vc="
 }
