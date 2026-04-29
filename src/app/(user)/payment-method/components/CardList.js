@@ -38,7 +38,7 @@ const CardList = ({
               onClick={() => handleCardSelection(card?.card_id)}
             >
               {!isCardPaymentEnabled && (
-                <button onClick={() => userCardDelete(card?.card_id)}>
+                <button onClick={() => userCardDelete(card?.card_id, card?.id)}>
                   <i className="fas fa-times-circle"></i>
                 </button>
               )}

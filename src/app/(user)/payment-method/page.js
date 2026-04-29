@@ -54,6 +54,7 @@ const PaymentMethod = () => {
       });
       if (response?.data) {
         setReload(!reload);
+        toast.success("Card added successful!!");
       } else {
         throw response;
       }
@@ -91,20 +92,20 @@ const PaymentMethod = () => {
   //   }
   // };
 
-// new userCardDelete for deleting card at the first time.
-  const userCardDelete = async (cardId) => {
+  // new userCardDelete for deleting card at the first time.
+  const userCardDelete = async (cardId, id) => {
     try {
       const response = await postFetchDataWithAuth({
-        data: { user_id: userDetails?.user_id, card_id: cardId },
+        data: { user_id: userDetails?.user_id, card_id: id },
         endpoint: "user_CardDelete",
         authToken: userDetails?.token,
       });
-      if (response.hasOwnProperty("data")) {
+      if (response) {
+        setReload(!reload);
         toast.success(response?.message);
         // Immediately filter out the deleted card from local state
-        setCardList(prev => prev.filter(card => card.card_id !== cardId));
+        setCardList((prev) => prev.filter((card) => card.id !== id));
         // Still keep the reload to ensure sync with server
-        setReload(!reload);
       } else {
         throw response;
       }
