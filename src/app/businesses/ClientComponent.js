@@ -1547,7 +1547,7 @@ const ClientComponent = ({ categoryList, businessList }) => {
                               alt=""
                             />{" "}
                             {item.events_date
-                              ? DateTime.fromFormat(
+                              ? DateTime?.fromFormat(
                                   item.events_date,
                                   "yyyy-MM-dd"
                                 ).toFormat("MMMM dd, yyyy")

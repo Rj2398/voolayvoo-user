@@ -49,7 +49,6 @@ const ClientComponent = ({ eventDetail, qrCode }) => {
     setOpenQrCode(true);
   };
 
-
   return (
     <>
       <section className="details-page">
@@ -288,7 +287,7 @@ const ClientComponent = ({ eventDetail, qrCode }) => {
                       <span>
                         {eventDetail?.event_one?.events_date ||
                           (eventDetail?.event_two?.events_date &&
-                            DateTime.fromFormat(
+                            DateTime?.fromFormat(
                               eventDetail?.event_one?.events_date ||
                                 eventDetail?.event_two?.events_date,
                               "yyyy-MM-dd"

@@ -55,7 +55,60 @@ const Dialog = ({ open, setOpen }) => {
                           placeholder="****    ****    ****    ****"
                         />
                       </div>
-                      <div className="grid-add-card">
+
+                      <div
+                        className="grid-add-card"
+                        style={{
+                          display: "flex",
+                          gap: "20px",
+                          alignItems: "flex-end", // This aligns the bottom of the input boxes
+                        }}
+                      >
+                        <div
+                          className="exp-date half-Width"
+                          style={{ flex: 1 }}
+                        >
+                          <label
+                            style={{
+                              display: "block",
+                              minHeight: "45px", // Forces both labels to take up the same vertical space
+                              marginBottom: "8px",
+                              // fontWeight: 'bold'
+                            }}
+                          >
+                            Expiry Date
+                          </label>
+                          <div
+                            className="form-control cardElement"
+                            style={{ width: "100%" }}
+                          >
+                            <CardExpiryElement />
+                          </div>
+                        </div>
+
+                        <div
+                          className="exp-pass half-Width"
+                          style={{ flex: 1 }}
+                        >
+                          <label
+                            style={{
+                              display: "block",
+                              minHeight: "45px", // Matches the other label height
+                              marginBottom: "8px",
+                              // fontWeight: 'bold'
+                            }}
+                          >
+                            CVV
+                          </label>
+                          <div
+                            className="form-control cardElement"
+                            style={{ width: "100%" }}
+                          >
+                            <CardCvcElement />
+                          </div>
+                        </div>
+                      </div>
+                      {/* <div className="grid-add-card">
                         <div className="exp-date">
                           <label>Expiry Date</label>
                           <input
@@ -72,7 +125,7 @@ const Dialog = ({ open, setOpen }) => {
                             placeholder="***"
                           />
                         </div>
-                      </div>
+                      </div> */}
 
                       <a className="btn submit-add-card mt-3 mb-2" href="#">
                         {" "}

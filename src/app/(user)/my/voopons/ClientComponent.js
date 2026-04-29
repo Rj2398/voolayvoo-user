@@ -44,7 +44,6 @@ const ClientComponent = ({ categoryMainList = [] }) => {
 
   const [categoryList, setCategoryList] = useState([]);
 
-
   const [tempEventList, setTempVooponList] = useState([]);
   const [pageNo, setPageNo] = useState(1);
   const [selectCategory, setSelectCategory] = useState({
@@ -539,7 +538,7 @@ const CardItem = ({ item }) => {
           <h5>{truncateDescription(item?.voopons_description, 2)}</h5>
           <p>
             <Image width={20} height={20} src="/images/calendar.png" alt="" />{" "}
-            {DateTime.fromFormat(item?.voopons_date, "yyyy-MM-dd").toFormat(
+            {DateTime?.fromFormat(item?.voopons_date, "yyyy-MM-dd").toFormat(
               "MMMM dd, yyyy"
             )}
           </p>

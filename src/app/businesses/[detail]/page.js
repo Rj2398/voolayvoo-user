@@ -264,8 +264,9 @@ const Detail = () => {
                   height={315}
                   className="w-100"
                   src={
-                    data?.DetailsData?.businessdetails?.business_image?.length !== 0
-                       ? `${BASE_URL}/${data?.DetailsData?.businessdetails?.business_image?.[0]?.image}`
+                    data?.DetailsData?.businessdetails?.business_image
+                      ?.length !== 0
+                      ? `${BASE_URL}/${data?.DetailsData?.businessdetails?.business_image?.[0]?.image}`
                       : "/images/banners/slide1.png"
                   }
                   alt="business_image"
@@ -345,6 +346,7 @@ const Detail = () => {
               <div className="details-text-box-business">
                 <div className="busines-logo-hd mb-2">
                   <span>
+                    {console.log(data?.DetailsData?.businessdetails, "tcs***")}
                     <Image
                       width={58}
                       height={56}

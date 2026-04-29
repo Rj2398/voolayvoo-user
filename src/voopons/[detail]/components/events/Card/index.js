@@ -65,7 +65,7 @@ const Card = ({ cardData }) => {
           {cardData?.events_date && (
             <span>
               <img src="/images/calendar.png" alt="" />{" "}
-              {DateTime.fromFormat(
+              {DateTime?.fromFormat(
                 cardData?.events_date,
                 "yyyy-MM-dd"
               ).toFormat("MMMM dd, yyyy")}{" "}

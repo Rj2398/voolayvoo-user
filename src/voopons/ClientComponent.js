@@ -23,7 +23,6 @@ import {
 import CustomDatePicker from "@/components/CustomDatePicker";
 
 const ClientComponent = ({ categoryList, voopanList }) => {
-
   const [location, setLocation] = useState(false);
   const [tempVoopanList, setTempVoopanList] = useState([]);
   const [pageNo, setPageNo] = useState(1);
@@ -384,7 +383,7 @@ const ClientComponent = ({ categoryList, voopanList }) => {
                         </h5>
                         <p>
                           Valid Thru:{" "}
-                          {DateTime.fromFormat(
+                          {DateTime?.fromFormat(
                             item?.voopons_valid_thru,
                             "yyyy-MM-dd"
                           ).toFormat("MMMM dd, yyyy")}

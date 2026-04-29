@@ -171,12 +171,12 @@ const ClientComponent = ({ vooponDetail, qrCode }) => {
                 <span>
                   {" "}
                   {vooponDetail?.voopon_one?.voopons_valid_thru
-                    ? DateTime.fromFormat(
+                    ? DateTime?.fromFormat(
                         vooponDetail?.voopon_one?.voopons_valid_thru,
                         "yyyy-MM-dd"
                       ).toFormat("MMM dd, yyyy")
                     : vooponDetail?.voopon_two?.voopons_valid_thru
-                    ? DateTime.fromFormat(
+                    ? DateTime?.fromFormat(
                         vooponDetail?.voopon_two?.voopons_valid_thru,
                         "yyyy-MM-dd"
                       ).toFormat("MMM dd, yyyy")

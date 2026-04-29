@@ -77,7 +77,6 @@ const ClientComponent = ({ categoryMainList = [] }) => {
         authToken: userDetails.token,
       });
 
-
       let combinedTemplist = [];
 
       if (Array.isArray(resultEvent?.data?.event_one)) {
@@ -598,7 +597,7 @@ const CardItem = ({ item }) => {
             </div>
             <div>
               <Image width={20} height={20} src="/images/calendar.png" alt="" />{" "}
-              {DateTime.fromFormat(item?.events_date, "yyyy-MM-dd").toFormat(
+              {DateTime?.fromFormat(item?.events_date, "yyyy-MM-dd").toFormat(
                 "MMMM dd, yyyy"
               )}
             </div>
@@ -609,16 +608,14 @@ const CardItem = ({ item }) => {
             </span>
           </div>
 
-      
-            <Link
-              className="btn btn-viewmore-border"
-              role="button"
-              href={"#"}
-              onClick={handleMore}
-            >
-              View More
-            </Link>
-    
+          <Link
+            className="btn btn-viewmore-border"
+            role="button"
+            href={"#"}
+            onClick={handleMore}
+          >
+            View More
+          </Link>
         </div>
       </div>
     </div>

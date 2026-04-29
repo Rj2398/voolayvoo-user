@@ -184,7 +184,52 @@ const CheckoutForm = ({ setOpen, callBack }) => {
                     <CardNumberElement />
                   </div>
                 </div>
-                <div className="grid-add-card">
+
+                <div
+                  className="grid-add-card"
+                  style={{
+                    display: "flex",
+                    gap: "20px",
+                    alignItems: "flex-end", // This aligns the bottom of the input boxes
+                  }}
+                >
+                  <div className="exp-date half-Width" style={{ flex: 1 }}>
+                    <label
+                      style={{
+                        display: "block",
+                        minHeight: "45px", // Forces both labels to take up the same vertical space
+                        marginBottom: "8px",
+                      }}
+                    >
+                      Expiry Date
+                    </label>
+                    <div
+                      className="form-control cardElement"
+                      style={{ width: "100%" }}
+                    >
+                      <CardExpiryElement />
+                    </div>
+                  </div>
+
+                  <div className="exp-pass half-Width" style={{ flex: 1 }}>
+                    <label
+                      style={{
+                        display: "block",
+                        minHeight: "45px", // Matches the other label height
+                        marginBottom: "8px",
+                      }}
+                    >
+                      CVV
+                    </label>
+                    <div
+                      className="form-control cardElement"
+                      style={{ width: "100%" }}
+                    >
+                      <CardCvcElement />
+                    </div>
+                  </div>
+                </div>
+                {/* <div className="grid-add-card">
                   <div className="exp-date half-Width">
                     <label>Expiry Date</label>
                     <div className="form-control cardElement">
@@ -197,7 +242,7 @@ const CheckoutForm = ({ setOpen, callBack }) => {
                       <CardCvcElement />
                     </div>
                   </div>
-                </div>
+                </div> */}
                 <button className="btn submit-add-card mt-3 mb-2" type="submit">
                   Submit
                 </button>

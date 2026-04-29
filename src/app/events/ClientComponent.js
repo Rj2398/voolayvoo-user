@@ -318,7 +318,6 @@ const ClientComponent = ({ categoryList, eventList }) => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-
   let pageUrl = "";
   let pageTitle;
   if (typeof window !== "undefined") {
@@ -342,7 +341,6 @@ const ClientComponent = ({ categoryList, eventList }) => {
   const whatsappShareLink = `https://wa.me/?text=${encodeURIComponent(
     `${pageTitle} - ${pageUrl}`
   )}`;
-
 
   return (
     <>
@@ -491,8 +489,7 @@ const ClientComponent = ({ categoryList, eventList }) => {
                               : "$" + Number(item.events_price)}{" "}
                           </div>
                         </div>
-                        <div class="event-pad"
-                        >
+                        <div class="event-pad">
                           <div
                             style={{
                               display: "flex",
@@ -500,13 +497,15 @@ const ClientComponent = ({ categoryList, eventList }) => {
                               justifyContent: "space-between",
                             }}
                           >
-
                             <div>
                               <h6
                                 className="title-capitilize"
                                 style={{ margin: 0 }}
                               >
-                                {truncateDescriptionByWords(item.events_name, 20)}
+                                {truncateDescriptionByWords(
+                                  item.events_name,
+                                  20
+                                )}
                               </h6>
                             </div>
                             {/* <VisibilityIcon
@@ -524,7 +523,13 @@ const ClientComponent = ({ categoryList, eventList }) => {
                                 padding: "4px",
                               }}
                             /> */}
-                            <div style={{ display: "flex", gap: "5px", alignItems: "center" }}>
+                            <div
+                              style={{
+                                display: "flex",
+                                gap: "5px",
+                                alignItems: "center",
+                              }}
+                            >
                               <img
                                 // className="earth-size"
                                 src="/images/new-event-eyeicon.png"
@@ -540,11 +545,13 @@ const ClientComponent = ({ categoryList, eventList }) => {
                                   padding: "4px",
                                   objectFit: "contain",
                                   height: "33px",
-                                  width: "33px"
+                                  width: "33px",
                                 }}
                               />
 
-                              <img className="earth-size" src="/images/earth.png"
+                              <img
+                                className="earth-size"
+                                src="/images/earth.png"
                                 onClick={() => {
                                   const url = item?.event_link;
                                   if (url) {
@@ -559,8 +566,6 @@ const ClientComponent = ({ categoryList, eventList }) => {
                                   }
                                 }}
                               />
-
-
 
                               {/* <LanguageIcon
                                   onClick={() => {
@@ -692,9 +697,7 @@ const ClientComponent = ({ categoryList, eventList }) => {
                                   </div>
                                 </div>
                               </div>
-
                             </div>
-
                           </div>
 
                           <p style={{}}>
@@ -728,7 +731,7 @@ const ClientComponent = ({ categoryList, eventList }) => {
                               />{" "}
                               {/* {item.event_away_distance} miles away */}
                               {!isNaN(item.event_away_distance) &&
-                                item.event_away_distance !== null
+                              item.event_away_distance !== null
                                 ? `${item.event_away_distance} miles away`
                                 : "No location available"}
                             </span>
@@ -753,7 +756,7 @@ const ClientComponent = ({ categoryList, eventList }) => {
                                 alt=""
                               />{" "}
                               Start Date:{" "}
-                              {DateTime.fromFormat(
+                              {DateTime?.fromFormat(
                                 item.events_date,
                                 "yyyy-MM-dd"
                               ).toFormat("MMMM dd, yyyy")}
@@ -767,7 +770,7 @@ const ClientComponent = ({ categoryList, eventList }) => {
                                 alt=""
                               />{" "}
                               End Date:{" "}
-                              {DateTime.fromFormat(
+                              {DateTime?.fromFormat(
                                 item.events_end_date,
                                 "yyyy-MM-dd"
                               ).toFormat("MMMM dd, yyyy")}
@@ -843,7 +846,9 @@ const ClientComponent = ({ categoryList, eventList }) => {
                                     marginTop: "4px",
                                   }}
                                 >
-                                  {item?.business_details ? item?.business_details?.name : item?.promoter_details?.name}
+                                  {item?.business_details
+                                    ? item?.business_details?.name
+                                    : item?.promoter_details?.name}
                                 </span>
                               </div>
                             </div>

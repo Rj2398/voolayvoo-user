@@ -70,7 +70,9 @@ const Card = ({ data }) => {
           >
             {data?.voopons_name}
           </div>
-          <img className="earth-size" src="/images/earth.png"
+          <img
+            className="earth-size"
+            src="/images/earth.png"
             onClick={() => {
               const url = data?.voopon_link;
               if (url)
@@ -120,16 +122,16 @@ const Card = ({ data }) => {
         </div>
 
         <div style={{ marginTop: "8px" }}>
-           <strong> Code: </strong>
-            {data?.voopon_code || "N/A"}
-          </div>
+          <strong> Code: </strong>
+          {data?.voopon_code || "N/A"}
+        </div>
 
         {/* 4. Dates and Code */}
         <div style={{ fontSize: "15px", color: "#333", marginBottom: "15px" }}>
           <div style={{ fontWeight: "700" }}>
             Start:{" "}
             <span style={{ fontWeight: "400" }}>
-              {DateTime.fromFormat(data?.voopons_date, "yyyy-MM-dd").toFormat(
+              {DateTime?.fromFormat(data?.voopons_date, "yyyy-MM-dd").toFormat(
                 "MMM dd, yyyy"
               )}
             </span>
@@ -137,7 +139,7 @@ const Card = ({ data }) => {
           <div style={{ fontWeight: "700" }}>
             End:{" "}
             <span style={{ fontWeight: "400" }}>
-              {DateTime.fromFormat(
+              {DateTime?.fromFormat(
                 data?.voopons_valid_thru,
                 "yyyy-MM-dd"
               ).toFormat("MMM dd, yyyy")}

@@ -83,8 +83,7 @@ const ClientComponent = ({ voopon_detail }) => {
       } else {
         throw response;
       }
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   const callBack = async (card) => {
@@ -110,7 +109,6 @@ const ClientComponent = ({ voopon_detail }) => {
         unique_number: params.detail,
       };
     }
-
 
     try {
       const response = await postFetchDataWithAuth({
@@ -284,7 +282,7 @@ const ClientComponent = ({ voopon_detail }) => {
                   {" "}
                   {voopon_detail?.voopon_one?.voopons_valid_thru ||
                     (voopon_detail?.voopon_two?.voopons_valid_thru &&
-                      DateTime.fromFormat(
+                      DateTime?.fromFormat(
                         voopon_detail?.voopon_one?.voopons_valid_thru ||
                           voopon_detail?.voopon_two?.voopons_valid_thru,
                         "yyyy-MM-dd"
