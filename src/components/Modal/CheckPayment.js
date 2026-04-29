@@ -95,7 +95,7 @@ const CheckPayment = ({ open, setOpen, callBack, reloadList }) => {
                     cardList={cardList}
                     isCardPaymentEnabled={true}
                     callPaymentCard={(card) => {
-                      console.log("Existing Card Selected:", card);
+                      // console.log("Existing Card Selected:", card);
                       callBack({ customer_id: card?.customer_id });
                     }}
                   />

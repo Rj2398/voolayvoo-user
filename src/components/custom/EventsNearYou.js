@@ -15,7 +15,7 @@ import Link from "next/link";
 const MAX_WORDS = 5;
 
 const EventsNearYou = ({ staticItems }) => {
-  console.log(staticItems);
+  // console.log(staticItems);
   const { isAuthenticated } = useAuth();
   const [combinedArray, setCombinedArray] = useState([]);
 
@@ -112,7 +112,8 @@ const EventsNearYou = ({ staticItems }) => {
                           : "No Title Available"}
                       </h6>
 
-                      <img className="earth-size"
+                      <img
+                        className="earth-size"
                         src="/images/earth.png"
                         onClick={() => {
                           const url = item?.event_link;

@@ -12,7 +12,7 @@ const MAX_WORDS = 3;
 
 const NewlyAddedVoop = ({ staticItems }) => {
   const { isAuthenticated } = useAuth();
-  console.log(staticItems, "static item****");
+  // console.log(staticItems, "static item****");
 
   const [swiperInstance, setSwiperInstance] = useState(null);
 
@@ -297,7 +297,7 @@ const NewlyAddedVoop = ({ staticItems }) => {
                         View More
                       </a> */}
 
-                        {console.log(item.report_status, "report status")}
+                        {/* {console.log(item.report_status, "report status")} */}
                         <a
                           className="btn btn-viewmore"
                           role="button"

@@ -554,10 +554,12 @@ const ClientComponent = ({ categoryList, eventList }) => {
                                 src="/images/earth.png"
                                 onClick={() => {
                                   const url = item?.event_link;
+
                                   if (url) {
                                     const validUrl = url.startsWith("http")
                                       ? url
                                       : `https://${url}`;
+
                                     window.open(
                                       validUrl,
                                       "_blank",
