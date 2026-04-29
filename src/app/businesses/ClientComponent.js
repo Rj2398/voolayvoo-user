@@ -1204,7 +1204,7 @@ const ClientComponent = ({ categoryList, businessList }) => {
   return (
     <div className="container myClassForFilter">
       {/* column first */}
-      <div className="ColumnValueOne">
+      {/* <div className="ColumnValueOne">
         <div className="event-cat TopMargin">
           <h5>Event Categories</h5>
           <ul>
@@ -1227,8 +1227,53 @@ const ClientComponent = ({ categoryList, businessList }) => {
             ))}
           </ul>
         </div>
-      </div>
+      </div> */}
+      <div className="event-cat TopMargin" style={{ padding: "0 15px" }}>
+        <h5 style={{ fontSize: "1.25rem", marginBottom: "15px" }}>
+          Event Categories
+        </h5>
+        <ul
+          style={{
+            listStyle: "none",
+            padding: 0,
+            margin: 0,
+            display: "flex",
+            flexDirection: "column", // Keeps them as a list
+            gap: "10px",
+          }}
+        >
+          {sortedCategoryList.map((item) => (
+            <li key={item.category_id} style={{ width: "100%" }}>
+              <a
+                style={{
+                  cursor: "pointer",
+                  display: "flex", // Use flex to keep name and count aligned
+                  justifyContent: "space-between", // Pushes count to the right
+                  alignItems: "flex-start",
+                  color:
+                    selectCategory.category_id === `${item.category_id}`
+                      ? "#F10027"
+                      : "black",
+                  textDecoration: "none",
+                  fontSize: "16px",
+                  wordBreak: "break-word", // Forces long text to wrap instead of crop
+                  lineHeight: "1.4",
+                }}
+                onClick={() => handleCategorySelect(item)}
+                id={item.category_id}
+              >
+                {/* Main Category Name */}
+                <span style={{ flex: 1, paddingRight: "10px" }}>
+                  {item.category_name}
+                </span>
 
+                {/* Count - keep it from shrinking */}
+                <span style={{ whiteSpace: "nowrap" }}>({item.count})</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
       {/* column two */}
       <div className="ColumnValueTwo">
         <div className="row justify-content-start p-3 ">

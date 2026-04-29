@@ -1,8 +1,4 @@
 {
-  "/events/page": "app/events/page.js",
   "/businesses/page": "app/businesses/page.js",
-  "/page": "app/page.js",
-  "/(page)/about/page": "app/(page)/about/page.js",
-  "/_not-found/page": "app/_not-found/page.js",
-  "/(user)/payment-method/page": "app/(user)/payment-method/page.js"
+  "/(page)/about/page": "app/(page)/about/page.js"
 }
