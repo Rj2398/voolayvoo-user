@@ -218,13 +218,15 @@ const ClientComponent = ({ categoryList, voopanList }) => {
                     src="/images/earth.png"
                     className="earth-size"
                     onClick={() => {
-                      if (item?.event_link)
-                        window.open(
-                          item.event_link.startsWith("http")
-                            ? item.event_link
-                            : `https://${item.event_link}`,
-                          "_blank"
-                        );
+                      const url = item?.voopon_link;
+
+                      if (url) {
+                        const validUrl = url.startsWith("http")
+                          ? url
+                          : `https://${url}`;
+
+                        window.open(validUrl, "_blank", "noopener,noreferrer");
+                      }
                     }}
                     style={{
                       position: "absolute",

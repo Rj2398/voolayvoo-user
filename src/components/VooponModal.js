@@ -20,6 +20,7 @@ import { truncateDescriptionByWords } from "@/utils/eventFunction";
 const VooponModal = ({ open, handleClose, activeData }) => {
   const { isAuthenticated, userDetails } = useAuth();
 
+  // console.log(activeData, "ACTIVE DATA COMES FROM MY PROFILE");
   const id = activeData?.id || activeData?.id;
   const user_type = activeData?.promoter_id
     ? "Promoter"
@@ -209,17 +210,17 @@ const VooponModal = ({ open, handleClose, activeData }) => {
                           20
                         )}
                       </div>
-                      <img className="earth-size" 
-                      src="/images/earth.png" 
-                      style={{
-                        position: "absolute",
+                      <img
+                        className="earth-size"
+                        src="/images/earth.png"
+                        style={{
+                          position: "absolute",
                           right: 0,
                           top: "50%",
                           transform: "translateY(-50%)",
-                      }}
-                      onClick={() => window.open(item.voopon_link, "_blank")}
+                        }}
+                        onClick={() => window.open(item.voopon_link, "_blank")}
                       />
-
 
                       {/* <LanguageIcon
                         onClick={() => window.open(item.voopon_link, "_blank")}

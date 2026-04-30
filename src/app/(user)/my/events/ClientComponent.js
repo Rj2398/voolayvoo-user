@@ -13,6 +13,7 @@ import {
   convertTo12HourFormat,
   filterObjectsByDateRangeMyEvents,
   getCurrentLocation,
+  truncateDescriptionByWords,
 } from "@/utils/eventFunction";
 import { DateTime } from "luxon";
 import { BASE_URL } from "@/constant/constant";
@@ -36,11 +37,14 @@ import { useAuth } from "@/app/UserProvider";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Loader from "@/components/custom/Loader";
+import VooponModal from "@/components/VooponModal";
 
 const ClientComponent = ({ categoryMainList = [] }) => {
   const { isAuthenticated, userDetails } = useAuth();
   const [location, setLocation] = useState(false);
   const [eventList, setEventList] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [activeData, setActiveData] = useState(null);
 
   const [categoryList, setCategoryList] = useState([]);
   const [tempEventList, setTempEventList] = useState([]);
@@ -515,7 +519,16 @@ const ClientComponent = ({ categoryMainList = [] }) => {
           {Array.isArray(renderList) &&
             renderList.length > 0 &&
             renderList.map((item, index) => {
-              return <CardItem key={`${item?.id + index}`} item={item} />;
+              return (
+                <CardItem
+                  key={`${item?.id + index}`}
+                  item={item}
+                  setActiveData={setActiveData}
+                  activeData={activeData}
+                  open={open}
+                  setOpen={setOpen}
+                />
+              );
             })}
           {/* {Array.isArray(renderList) && renderList?.length === 0 && (
             <div className="row">
@@ -536,13 +549,21 @@ const ClientComponent = ({ categoryMainList = [] }) => {
           />
         </div>
       </div>
+
+      <VooponModal
+        open={open}
+        handleClose={() => setOpen(false)}
+        allItems={[]}
+        BASE_URL={BASE_URL}
+        activeData={activeData}
+      />
     </div>
   );
 };
 
 export default ClientComponent;
 
-const CardItem = ({ item }) => {
+const CardItem = ({ item, setActiveData, activeData, open, setOpen }) => {
   const router = useRouter();
   const handleMore = useCallback(
     (e) => {
@@ -556,6 +577,31 @@ const CardItem = ({ item }) => {
     },
     [item]
   );
+
+  let pageUrl = "";
+  let pageTitle;
+  if (typeof window !== "undefined") {
+    pageUrl = window.location.href;
+    pageTitle = document?.title;
+  }
+
+  const facebookShareLink = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+    pageUrl
+  )}`;
+  const twitterShareLink = `https://twitter.com/intent/tweet?url=${encodeURIComponent(
+    pageUrl
+  )}&text=${encodeURIComponent(pageTitle)}`;
+  const instagramShareLink = `https://www.instagram.com/share?url=${encodeURIComponent(
+    pageUrl
+  )}`;
+  const snapchatShareLink = `https://www.snapchat.com/add/your-snapcode`; // Replace with your Snapcode link
+  const linkedinShareLink = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
+    pageUrl
+  )}`;
+  const whatsappShareLink = `https://wa.me/?text=${encodeURIComponent(
+    `${pageTitle} - ${pageUrl}`
+  )}`;
+
   return (
     <div className="col-lg-4">
       <div className="event-brand-box w-100">
@@ -566,7 +612,6 @@ const CardItem = ({ item }) => {
               ? "Free"
               : "$" + Number(item?.events_price)}
           </span>
-          {/* <span>{item?.eventsimage?.image_name}</span> */}
           <Image
             width={290}
             height={226}
@@ -583,8 +628,177 @@ const CardItem = ({ item }) => {
           />
         </div>
         <div className="event-pad">
-          <h6> {item?.events_name}</h6>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <div>
+              <h6 className="title-capitilize" style={{ margin: 0 }}>
+                {truncateDescriptionByWords(item.events_name, 20)}
+              </h6>
+            </div>
+
+            <div
+              style={{
+                display: "flex",
+                gap: "5px",
+                alignItems: "center",
+              }}
+            >
+              <img
+                // className="earth-size"
+                src="/images/new-event-eyeicon.png"
+                alt="view event"
+                onClick={() => {
+                  setActiveData(item);
+                  setOpen(true);
+                }}
+                style={{
+                  cursor: "pointer",
+                  backgroundColor: "#f8f9fa",
+                  borderRadius: "4px",
+                  padding: "4px",
+                  objectFit: "contain",
+                  height: "33px",
+                  width: "33px",
+                }}
+              />
+
+              <img
+                className="earth-size"
+                src="/images/earth.png"
+                onClick={() => {
+                  const url = item?.event_link;
+
+                  if (url) {
+                    const validUrl = url.startsWith("http")
+                      ? url
+                      : `https://${url}`;
+
+                    window.open(validUrl, "_blank", "noopener,noreferrer");
+                  }
+                }}
+              />
+
+              {/* share btn */}
+              <div className="col-lg-4 col-md-6">
+                <div className="share-media">
+                  <span>
+                    {" "}
+                    <Image
+                      width={24}
+                      height={24}
+                      src="/images/share.svg"
+                      alt=""
+                    />{" "}
+                    {/* Share with friends{" "} */}
+                  </span>
+                  <div className="show-social">
+                    <span>
+                      <Link
+                        href={twitterShareLink}
+                        passHref
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Image
+                          width={24}
+                          height={24}
+                          src="/images/social-icon-1.svg"
+                          alt="images"
+                        />
+                      </Link>
+                    </span>
+                    <span>
+                      <Link
+                        href={whatsappShareLink}
+                        passHref
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Image
+                          width={24}
+                          height={24}
+                          src="/images/social-icon-2.svg"
+                          alt="images"
+                        />
+                      </Link>
+                    </span>
+                    <span>
+                      <Link
+                        href={instagramShareLink}
+                        passHref
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Image
+                          width={24}
+                          height={24}
+                          src="/images/social-icon-3.svg"
+                          alt="images"
+                        />
+                      </Link>
+                    </span>
+                    <span>
+                      <Link
+                        href={facebookShareLink}
+                        passHref
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Image
+                          width={24}
+                          height={24}
+                          src="/images/social-icon-4.svg"
+                          alt="images"
+                        />
+                      </Link>
+                    </span>
+                    <span>
+                      <Link
+                        href={snapchatShareLink}
+                        passHref
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Image
+                          width={24}
+                          height={24}
+                          src="/images/social-icon-5.svg"
+                          alt="images"
+                        />
+                      </Link>
+                    </span>
+                    <span>
+                      <Link
+                        href={linkedinShareLink}
+                        passHref
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Image
+                          width={24}
+                          height={24}
+                          src="/images/social-icon-6.svg"
+                          alt="images"
+                        />
+                      </Link>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <p className="truncate-text">{item?.events_description}</p>
+          <div>
+            <span style={{ marginLeft: "20px" }}>
+              Code: {item?.event_code || "No event code available"}
+            </span>
+          </div>
           <div className="point-icon" style={{ height: "40%" }}>
             <div style={{ width: "80%" }}>
               <Image
@@ -595,17 +809,83 @@ const CardItem = ({ item }) => {
               />{" "}
               {item?.event_away_distance} miles away
             </div>
-            <div>
-              <Image width={20} height={20} src="/images/calendar.png" alt="" />{" "}
-              {DateTime?.fromFormat(item?.events_date, "yyyy-MM-dd").toFormat(
-                "MMMM dd, yyyy"
-              )}
-            </div>
+
             <span>
               <Image width={20} height={20} src="/images/watch.png" alt="" />{" "}
               {convertTo12HourFormat(item?.events_start_time)} to{" "}
               {convertTo12HourFormat(item?.events_end_time)}
             </span>
+
+            <div>
+              <Image width={20} height={20} src="/images/calendar.png" alt="" />{" "}
+              Start Date:{" "}
+              {DateTime?.fromFormat(item?.events_date, "yyyy-MM-dd").toFormat(
+                "MMMM dd, yyyy"
+              )}
+            </div>
+            <div>
+              <Image width={20} height={20} src="/images/calendar.png" alt="" />{" "}
+              End Date:{" "}
+              {DateTime?.fromFormat(
+                item.events_end_date,
+                "yyyy-MM-dd"
+              ).toFormat("MMMM dd, yyyy")}
+            </div>
+
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center", // Vertically centers the text with the image
+                gap: "15px", // Space between image and text
+                padding: "10px",
+              }}
+            >
+              {/* 1. Circular Image Container */}
+              <div
+                style={{
+                  width: "60px", // Size of the circle
+                  height: "60px",
+                  borderRadius: "50%",
+                  overflow: "hidden",
+                  position: "relative",
+                  border: "1px solid #ddd",
+                  flexShrink: 0, // Prevents the circle from squeezing
+                }}
+              >
+                <Image
+                  src={
+                    item?.business_details?.profile_image
+                      ? `${BASE_URL}${item.business_details.profile_image}`
+                      : `${BASE_URL}${item?.promoter_details?.profile_image}`
+                    // : "/images/placeholder-user.png"
+                  }
+                  alt="Promoter"
+                  fill
+                  style={{ objectFit: "cover" }}
+                />
+              </div>
+
+              {/* 2. Promoter Text on the Right */}
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <span
+                  style={{
+                    fontSize: "18px",
+                    fontWeight: "700",
+                    color: "#000",
+                    marginTop: "4px",
+                  }}
+                >
+                  {item?.business_details
+                    ? item?.business_details?.name
+                    : item?.promoter_details?.name}
+                </span>
+              </div>
+            </div>
           </div>
 
           <Link

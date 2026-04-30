@@ -739,18 +739,22 @@ const ClientComponent = ({ categoryList, businessList }) => {
                                 ).toFormat("MMMM dd, yyyy")
                               : "N/A"}{" "}
                           </span>
-
-                          {item?.location && (
-                            <span>
-                              <Image
-                                width={20}
-                                height={20}
-                                src="/images/loc-mark.svg"
-                                alt=""
-                              />{" "}
-                              {item?.location}{" "}
-                            </span>
-                          )}
+                          <div style={{ height: "50px" }}>
+                            {item?.location && (
+                              <span>
+                                <Image
+                                  width={20}
+                                  height={20}
+                                  src="/images/loc-mark.svg"
+                                  alt=""
+                                />{" "}
+                                {truncateDescriptionByWords(
+                                  item.location,
+                                  100
+                                ) || "Location"}
+                              </span>
+                            )}
+                          </div>
                         </div>
                         <Link
                           className="btn btn-viewmore-border "

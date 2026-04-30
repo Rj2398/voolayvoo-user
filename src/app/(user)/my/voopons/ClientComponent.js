@@ -148,18 +148,6 @@ const ClientComponent = ({ categoryMainList = [] }) => {
 
     setRenderList(filteredList); // Update renderList with filtered data
   };
-  // useEffect(() => {
-  //   const fetchUserLocation = async () => {
-  //     try {
-  //       const position: Coordinates = await getCurrentLocation();
-  //       setLocationFilter([position.latitude, position.longitude]);
-  //     } catch (error) {
-  //       console.error("Error fetching location:", error);
-  //     }
-  //   };
-
-  //   fetchUserLocation();
-  // }, []);
 
   // Code Written by Aman
   const handleSearchSubmit = (e) => {
@@ -298,7 +286,7 @@ const ClientComponent = ({ categoryMainList = [] }) => {
             <label className="interests-search">
               <input
                 type="text"
-                placeholder="Search for Promoters"
+                placeholder="Search for Voopons"
                 value={searchValue}
                 onChange={handleSearchChange} // Update search value when typing
               />
@@ -313,40 +301,6 @@ const ClientComponent = ({ categoryMainList = [] }) => {
         <div className="row">
           <div className="col-lg-12 mb-3">
             <div className="show-cal-loc-range">
-              {/* <div className="dropdown date-range">
-                  <a
-                    className="btn select-categories text-left"
-                    type="button"
-                    id="dropdownMenuButton1"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    {" "}
-                    Event Categories{" "}
-                  </a>
-                  <ul
-                    className="dropdown-menu w-100"
-                    aria-labelledby="dropdownMenuButton1"
-                  >
-                    {categoryList.map((item: any) => (
-                      <li key={item.category_id}>
-                        <a
-                          style={{
-                            cursor: "pointer",
-                            color:
-                              selectCategory.category_id === `${item.category_id}`
-                                ? "#F10027"
-                                : "black",
-                          }}
-                          onClick={() => handleCategorySelect(item)}
-                          id={item.category_id}
-                        >
-                          {item.category_name} <span>({item.count})</span>{" "}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div> */}
               <div className="calendar">
                 <div className="broker-date">
                   <CustomDatePicker
@@ -428,6 +382,10 @@ const truncateDescription = (description, wordLimit) => {
   return description; // If under the limit, return the full description
 };
 const CardItem = ({ item }) => {
+  const isBusiness = !!item?.business_details;
+  const creator = isBusiness ? item?.business_details : item?.promoter_details;
+  const userType = isBusiness ? "Business" : "Promoter";
+
   const currentDate = new Date();
   const vooponsValidThruDate = DateTime.fromFormat(
     item?.voopons_valid_thru,
@@ -446,69 +404,6 @@ const CardItem = ({ item }) => {
     [item]
   );
   return (
-    // <div className="col-lg-4">
-    //   <div className="event-brand-box w-100">
-    //     <div className="brand-logo">
-    //       <span>
-    //         {" "}
-    //         {Number(item?.voopons_price) === 0
-    //           ? "Free"
-    //           : "$" + Number(item?.voopons_price)}
-    //       </span>
-    //       <span>{item?.voopons_name}</span>
-    //       <Image
-    //         width={290}
-    //         height={226}
-    //         alt=""
-    //         style={{ objectFit: "cover" }}
-    //         src={
-    //           item?.business_voopon_image?.image_name
-    //             ? `${BASE_URL}/${item?.business_voopon_image?.image_name}`
-    //             : "/images/near-event1.png"
-    //         }
-    //         onError={(e) => {
-    //           e.target.src = "/images/near-event.png";
-    //         }}
-    //       />
-    //     </div>
-    //     <div className="event-pad">
-    //       <h6> {item?.promoter_details?.voopons_name}</h6>
-    //       <p className="truncate-text">
-    //         {item?.promoter_details?.voopons_description}
-    //       </p>
-    //       <div className="point-icon">
-    //         {/* <span>
-    //           <Image
-    //             width={20}
-    //             height={20}
-    //             src="/images/location-dot.png"
-    //             alt=""
-    //           />{" "}
-    //           {item?.distance} miles away
-    //         </span> */}
-    //         <span>
-    //           <Image width={20} height={20} src="/images/calendar.png" alt="" />{" "}
-    //           {DateTime.fromFormat(item?.voopons_date, "yyyy-MM-dd").toFormat(
-    //             "MMMM dd, yyyy"
-    //           )}
-    //         </span>
-    //         {/* <span>
-    //           <Image width={20} height={20} src="/images/watch.png" alt="" />{" "}
-    //           {convertTo12HourFormat(item?.voopons_date)} to{" "}
-    //           {convertTo12HourFormat(item?.voopons_valid_thru)}
-    //         </span> */}
-    //       </div>
-    //       <Link
-    //         className="btn btn-viewmore-border"
-    //         role="button"
-    //         href={"#"}
-    //         onClick={handleMore}
-    //       >
-    //         View More
-    //       </Link>
-    //     </div>
-    //   </div>
-    // </div>
     //code written by Aman
     <div className="col-lg-4">
       <div className="voopan-box">
@@ -535,13 +430,156 @@ const CardItem = ({ item }) => {
           <div className="voopon-heading " style={{ width: "100%" }}>
             {truncateDescription(item?.voopons_name, 2)}
           </div>
-          <h5>{truncateDescription(item?.voopons_description, 2)}</h5>
-          <p>
-            <Image width={20} height={20} src="/images/calendar.png" alt="" />{" "}
-            {DateTime?.fromFormat(item?.voopons_date, "yyyy-MM-dd").toFormat(
-              "MMMM dd, yyyy"
-            )}
-          </p>
+          {/* <h5>{truncateDescription(item?.voopons_description, 2)}</h5> */}
+          <div
+            style={{
+              position: "relative",
+              width: "100%",
+              marginBottom: "15px",
+            }}
+          >
+            <h5
+              style={{
+                fontWeight: "700",
+                fontSize: "18px",
+                margin: "0 25px",
+                color: "#222",
+              }}
+            >
+              {truncateDescription(item?.voopons_description, 4)}
+            </h5>
+            {console.log(item, "Link crash****")}
+            <img
+              src="/images/earth.png"
+              className="earth-size"
+              onClick={() => {
+                const url = item?.voopon_link;
+
+                if (url) {
+                  const validUrl = url.startsWith("http")
+                    ? url
+                    : `https://${url}`;
+
+                  window.open(validUrl, "_blank", "noopener,noreferrer");
+                }
+              }}
+              style={{
+                position: "absolute",
+                right: 0,
+                top: 0,
+              }}
+            />
+          </div>
+
+          <div
+            style={{
+              textAlign: "center",
+              marginTop: "8px",
+            }}
+          >
+            <strong> Code: </strong>
+            {item?.voopon_code || "Not Available"}
+          </div>
+
+          {/* 4. Dates & Code */}
+          <div
+            style={{
+              textAlign: "left",
+              width: "fit-content",
+              fontSize: "14px",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                marginBottom: "4px",
+              }}
+            >
+              <Image
+                width={18}
+                height={18}
+                src="/images/calendar.png"
+                alt=""
+                style={{ marginRight: "8px" }}
+              />
+              <span>
+                <strong>Start Date:</strong>{" "}
+                {item?.voopons_date
+                  ? DateTime.fromISO(item.voopons_date).toFormat(
+                      "MMMM dd, yyyy"
+                    )
+                  : "N/A"}
+              </span>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                marginBottom: "4px",
+              }}
+            >
+              <Image
+                width={18}
+                height={18}
+                src="/images/calendar.png"
+                alt=""
+                style={{ marginRight: "8px" }}
+              />
+              <span>
+                <strong>End Date:</strong>{" "}
+                {item?.voopons_valid_thru
+                  ? DateTime.fromISO(item.voopons_valid_thru).toFormat(
+                      "MMMM dd, yyyy"
+                    )
+                  : "N/A"}
+              </span>
+            </div>
+          </div>
+
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "12px",
+              margin: "20px 0",
+              width: "100%",
+              justifyContent: "center",
+            }}
+          >
+            <div
+              style={{
+                width: "50px",
+                height: "50px",
+                borderRadius: "50%",
+                overflow: "hidden",
+                position: "relative",
+                border: "1px solid #ddd",
+              }}
+            >
+              <Image
+                src={
+                  creator?.profile_image
+                    ? `${BASE_URL}${creator.profile_image}`
+                    : "/images/placeholder-user.png"
+                }
+                alt=""
+                fill
+                style={{ objectFit: "cover" }}
+              />
+            </div>
+            <div style={{ textAlign: "left" }}>
+              <div
+                style={{
+                  fontSize: "15px",
+                  fontWeight: "700",
+                  color: "#000",
+                }}
+              >
+                {creator?.name || "Anonymous"}
+              </div>
+            </div>
+          </div>
         </div>
         <Link
           className="btn btn-viewmore"
