@@ -183,21 +183,27 @@ const ClientComponent = ({ categoryList, voopanList }) => {
                     style={{ objectFit: "contain" }}
                   />
                 </div>
-                <div className="creator-container">
-                  <div className="creator-avatar-wrapper2">
-                    <Image
-                      src={
-                        creator?.profile_image
-                          ? `${BASE_URL}${creator.profile_image}`
-                          : "/images/placeholder-user.png"
-                      }
-                      alt=""
-                      fill
-                      style={{ objectFit: "cover" }}
-                    />
+                <div className="profile-main-box">
+                  {/* Left Side: Creator Profile */}
+
+                  {/* Right Side: Your Content goes here */}
+                  <div className="extra-content-box">
+                    <span></span>
                   </div>
-                  <div style={{ textAlign: "left" }}>
-                    <div className="creator-name">
+                  <div className="user-info-box">
+                    <div className="avatar-pic-frame">
+                      <Image
+                        src={
+                          creator?.profile_image
+                            ? `${BASE_URL}${creator.profile_image}`
+                            : "/images/placeholder-user.png"
+                        }
+                        alt=""
+                        fill
+                        style={{ objectFit: "cover" }}
+                      />
+                    </div>
+                    <div className="profile-name-text">
                       {creator?.name || "Anonymous"}
                     </div>
                   </div>
@@ -249,41 +255,9 @@ const ClientComponent = ({ categoryList, voopanList }) => {
                     style={{
                       position: "absolute",
                       right: 0,
-                      top: 0,
+                      top: -32,
                     }}
                   />
-                  {/* <LanguageIcon
-                    onClick={() => {
-                      if (item?.event_link)
-                        window.open(
-                          item.event_link.startsWith("http")
-                            ? item.event_link
-                            : `https://${item.event_link}`,
-                          "_blank"
-                        );
-                    }}
-                    sx={{
-                      position: "absolute",
-                      right: 0,
-                      top: 0,
-                      cursor: "pointer",
-                      backgroundColor: "#f3f4f6",
-                      borderRadius: "4px",
-                      fontSize: "22px",
-                      padding: "2px",
-                    }}
-                  /> */}
-                </div>
-
-                <div
-                  style={{
-                    textAlign: "center",
-                    marginTop: "8px",
-                    // fontWeight: "600",
-                  }}
-                >
-                  <strong> Code: </strong>
-                  {item?.voopon_code || "Not Available"}
                 </div>
 
                 {/* 4. Dates & Code */}
@@ -294,6 +268,10 @@ const ClientComponent = ({ categoryList, voopanList }) => {
                     fontSize: "14px",
                   }}
                 >
+                  <div>
+                    <strong style={{ color: "#FF0000" }}> Code: </strong>
+                    {item?.voopon_code || "Not Available"}
+                  </div>
                   <div
                     style={{
                       display: "flex",

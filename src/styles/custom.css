@@ -279,11 +279,12 @@ code written by rajan
   /* border-top: 1px solid #f0f0f0; */
   margin-bottom: 10px;
   justify-content: flex-end;
+  /* align-content: flex-end; */
 }
 
 .creator-avatar-wrapper {
-  width: 40px;
-  height: 40px;
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
   overflow: hidden;
   position: relative;
@@ -336,4 +337,38 @@ code written by rajan
   font-size: 15px;
   font-weight: 500;
   color: #333;
+}
+
+.profile-main-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px 0;
+}
+
+.user-info-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+/* voopon root */
+.avatar-pic-frame {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+}
+
+.profile-name-text {
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
+}
+
+.extra-content-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
