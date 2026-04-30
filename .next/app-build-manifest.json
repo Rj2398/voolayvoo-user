@@ -56,6 +56,17 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/businesses/page.js"
+    ],
+    "/voopons/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/voopons/page.js"
+    ],
+    "/businesses/[detail]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/businesses/[detail]/page.css",
+      "static/chunks/app/businesses/[detail]/page.js"
     ]
   }
 }

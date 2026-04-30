@@ -489,7 +489,62 @@ const ClientComponent = ({ categoryList, eventList }) => {
                               : "$" + Number(item.events_price)}{" "}
                           </div>
                         </div>
+
                         <div class="event-pad">
+                          <div
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              gap: "15px",
+                              padding: "10px",
+                            }}
+                          >
+                            <div
+                              style={{
+                                width: "60px",
+                                height: "60px",
+                                borderRadius: "50%",
+                                overflow: "hidden",
+                                position: "relative",
+                                border: "1px solid #ddd",
+                                flexShrink: 0,
+                              }}
+                            >
+                              <Image
+                                src={
+                                  item?.business_details?.profile_image
+                                    ? `${BASE_URL}${item.business_details.profile_image}`
+                                    : `${BASE_URL}${item?.promoter_details?.profile_image}`
+                                  // : "/images/placeholder-user.png"
+                                }
+                                alt="Promoter"
+                                fill
+                                style={{ objectFit: "cover" }}
+                              />
+                            </div>
+
+                            {/* 2. Promoter Text on the Right */}
+                            <div
+                              style={{
+                                display: "flex",
+                                flexDirection: "column",
+                              }}
+                            >
+                              <span
+                                style={{
+                                  fontSize: "18px",
+                                  fontWeight: "700",
+                                  color: "#000",
+                                  marginTop: "4px",
+                                }}
+                              >
+                                {item?.business_details
+                                  ? item?.business_details?.name
+                                  : item?.promoter_details?.name}
+                              </span>
+                            </div>
+                          </div>
+
                           <div
                             style={{
                               display: "flex",
@@ -508,21 +563,7 @@ const ClientComponent = ({ categoryList, eventList }) => {
                                 )}
                               </h6>
                             </div>
-                            {/* <VisibilityIcon
-                              onClick={() => {
-                                // Set the data first
 
-                                setActiveData(item);
-                                setOpen(true);
-                              }}
-                              sx={{
-                                cursor: "pointer",
-                                backgroundColor: "#fff",
-                                borderRadius: "4px",
-                                fontSize: "26px",
-                                padding: "4px",
-                              }}
-                            /> */}
                             <div
                               style={{
                                 display: "flex",
@@ -531,7 +572,6 @@ const ClientComponent = ({ categoryList, eventList }) => {
                               }}
                             >
                               <img
-                                // className="earth-size"
                                 src="/images/new-event-eyeicon.png"
                                 alt="view event"
                                 onClick={() => {
@@ -568,29 +608,6 @@ const ClientComponent = ({ categoryList, eventList }) => {
                                   }
                                 }}
                               />
-
-                              {/* <LanguageIcon
-                                  onClick={() => {
-                                    const url = item?.event_link;
-                                    if (url) {
-                                      const validUrl = url.startsWith("http")
-                                        ? url
-                                        : `https://${url}`;
-                                      window.open(
-                                        validUrl,
-                                        "_blank",
-                                        "noopener,noreferrer"
-                                      );
-                                    }
-                                  }}
-                                  sx={{
-                                    cursor: "pointer",
-                                    backgroundColor: "#fff",
-                                    borderRadius: "4px",
-                                    fontSize: "24px",
-                                    padding: "4px",
-                                  }}
-                                /> */}
 
                               {/* share btn */}
                               <div className="col-lg-4 col-md-6">
@@ -711,15 +728,8 @@ const ClientComponent = ({ categoryList, eventList }) => {
                           </p>
 
                           <span style={{ marginLeft: "29px" }}>
-                            {/* <Image
-                                width={20}
-                                height={20}
-                                src="/images/calendar.png"
-                                alt=""
-                              />{" "} */}
                             Code:{" "}
                             {item?.event_code || "No event code available"}
-                            {/* <br /> */}
                           </span>
 
                           <div class="point-icon">
@@ -777,87 +787,9 @@ const ClientComponent = ({ categoryList, eventList }) => {
                                 "yyyy-MM-dd"
                               ).toFormat("MMMM dd, yyyy")}
                             </span>
-
-                            {/* <Image
-                                width={20}
-                                height={20}
-                                src="/images/calendar.png"
-                                alt=""
-                              />{" "} */}
-                            {/* <span style={{ marginLeft: "29px" }}>
-                              Code:{" "}
-                              {item?.event_code || "No event code available"}
-                              <br />
-                            </span> */}
-
-                            <div
-                              style={{
-                                display: "flex",
-                                alignItems: "center", // Vertically centers the text with the image
-                                gap: "15px", // Space between image and text
-                                padding: "10px",
-                              }}
-                            >
-                              {/* 1. Circular Image Container */}
-                              <div
-                                style={{
-                                  width: "60px", // Size of the circle
-                                  height: "60px",
-                                  borderRadius: "50%",
-                                  overflow: "hidden",
-                                  position: "relative",
-                                  border: "1px solid #ddd",
-                                  flexShrink: 0, // Prevents the circle from squeezing
-                                }}
-                              >
-                                <Image
-                                  src={
-                                    item?.business_details?.profile_image
-                                      ? `${BASE_URL}${item.business_details.profile_image}`
-                                      : `${BASE_URL}${item?.promoter_details?.profile_image}`
-                                    // : "/images/placeholder-user.png"
-                                  }
-                                  alt="Promoter"
-                                  fill
-                                  style={{ objectFit: "cover" }}
-                                />
-                              </div>
-
-                              {/* 2. Promoter Text on the Right */}
-                              <div
-                                style={{
-                                  display: "flex",
-                                  flexDirection: "column",
-                                }}
-                              >
-                                {/* <span
-                                  style={{
-                                    fontSize: "14px",
-                                    color: "#888",
-                                    fontWeight: "500",
-                                    lineHeight: "1",
-                                  }}
-                                >
-                                  {item?.business_details ? "Business" : "Promoter"}
-                                </span> */}
-                                <span
-                                  style={{
-                                    fontSize: "18px",
-                                    fontWeight: "700",
-                                    color: "#000",
-                                    marginTop: "4px",
-                                  }}
-                                >
-                                  {item?.business_details
-                                    ? item?.business_details?.name
-                                    : item?.promoter_details?.name}
-                                </span>
-                              </div>
-                            </div>
                           </div>
                           <Link
                             className="btn btn-viewmore-border btn-align"
-                            // href={`/events/${item.id}?promoter_id=${item.promoter_id}`}
                             href={`/events/${item.checked_id}?promoter_id=${item.promoter_id}`}
                             role="button"
                           >

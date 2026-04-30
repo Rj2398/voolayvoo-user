@@ -35,12 +35,12 @@ const Card = ({ cardData }) => {
   const imageSrc = cardData?.events_data?.eventimage?.image_name
     ? `${BASE_URL}/${cardData?.events_data?.eventimage?.image_name}`
     : cardData?.business_event_image?.image_name
-      ? `${BASE_URL}/${cardData?.business_event_image?.image_name}`
-      : "/images/near-event1.png";
+    ? `${BASE_URL}/${cardData?.business_event_image?.image_name}`
+    : "/images/near-event1.png";
 
   if (!cardData) return null;
 
-    let pageUrl = "";
+  let pageUrl = "";
   let pageTitle;
   if (typeof window !== "undefined") {
     pageUrl = window.location.href;
@@ -91,13 +91,13 @@ const Card = ({ cardData }) => {
             />
             <div className="event-price">
               {cardData?.events_data?.events_price == "0" ||
-                cardData?.events_price == "0" ||
-                cardData?.events_data_business?.events_price == "0"
+              cardData?.events_price == "0" ||
+              cardData?.events_data_business?.events_price == "0"
                 ? "Free"
                 : "$" +
-                (cardData?.events_data?.events_price ||
-                  cardData?.events_data_business?.events_price ||
-                  cardData?.events_price)}
+                  (cardData?.events_data?.events_price ||
+                    cardData?.events_data_business?.events_price ||
+                    cardData?.events_price)}
             </div>
           </div>
 
@@ -110,6 +110,58 @@ const Card = ({ cardData }) => {
               flexGrow: 1,
             }}
           >
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "10px",
+                padding: "10px 0",
+                borderTop: "1px solid #f0f0f0",
+                marginBottom: "10px",
+              }}
+            >
+              <div
+                style={{
+                  width: "40px",
+                  height: "40px",
+                  borderRadius: "50%",
+                  overflow: "hidden",
+                  position: "relative",
+                  flexShrink: 0,
+                }}
+              >
+                <Image
+                  src={
+                    creator?.profile_image
+                      ? `${BASE_URL}${creator.profile_image}`
+                      : "/images/placeholder-user.png"
+                  }
+                  alt="creator"
+                  fill
+                  style={{ objectFit: "cover" }}
+                />
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  overflow: "hidden",
+                }}
+              >
+                <span
+                  style={{
+                    fontSize: "13px",
+                    fontWeight: "600",
+                    color: "#333",
+                    whiteSpace: "nowrap",
+                    理论: "ellipsis",
+                    overflow: "hidden",
+                  }}
+                >
+                  {creator?.name || "User"}
+                </span>
+              </div>
+            </div>
             <div style={{ flexGrow: 1 }}>
               <div
                 style={{
@@ -127,21 +179,9 @@ const Card = ({ cardData }) => {
                     cardData?.events_data_business?.events_name ||
                     cardData?.events_name}
                 </h6>
-                <div style={{ display: "flex", gap: "5px", alignItems: "center" }}>
-                  {/* <VisibilityIcon
-                    onClick={() => {
-                      setActiveData(cardData);
-                      setOpen(true);
-                    }}
-                    sx={{
-                      cursor: "pointer",
-                      backgroundColor: "#f8f9fa",
-                      borderRadius: "4px",
-                      fontSize: "24px",
-                      padding: "4px",
-                    }}
-                  /> */}
-
+                <div
+                  style={{ display: "flex", gap: "5px", alignItems: "center" }}
+                >
                   <img
                     src="/images/new-event-eyeicon.png"
                     alt="view event"
@@ -158,10 +198,12 @@ const Card = ({ cardData }) => {
                       padding: "4px",
                       objectFit: "contain",
                       height: "33px",
-                      width: "33px"
+                      width: "33px",
                     }}
                   />
-                  <img className="earth-size" src="/images/earth.png"
+                  <img
+                    className="earth-size"
+                    src="/images/earth.png"
                     onClick={() => {
                       const url = cardData?.event_link;
                       if (url) {
@@ -172,27 +214,7 @@ const Card = ({ cardData }) => {
                       }
                     }}
                   />
-                  {/* <LanguageIcon
-                    onClick={() => {
-                      const url = cardData?.event_link;
-                      if (url) {
-                        const validUrl = url.startsWith("http")
-                          ? url
-                          : `https://${url}`;
-                        window.open(validUrl, "_blank", "noopener,noreferrer");
-                      }
-                    }}
-                    sx={{
-                      cursor: "pointer",
-                      backgroundColor: "#f8f9fa",
-                      borderRadius: "4px",
-                      fontSize: "24px",
-                      padding: "4px",
-                    }}
-                  /> */}
 
-
-                  {/* share icon */}
                   <div className="col-lg-4 col-md-6">
                     <div className="share-media">
                       <span>
@@ -203,7 +225,6 @@ const Card = ({ cardData }) => {
                           src="/images/share.svg"
                           alt=""
                         />{" "}
-                        {/* Share with friends{" "} */}
                       </span>
                       <div className="show-social">
                         <span>
@@ -299,7 +320,6 @@ const Card = ({ cardData }) => {
                       </div>
                     </div>
                   </div>
-
                 </div>
               </div>
 
@@ -311,7 +331,6 @@ const Card = ({ cardData }) => {
                   marginBottom: "15px",
                 }}
               >
-                
                 {cardData?.events_data?.events_description ||
                   cardData?.events_data_business?.events_description ||
                   cardData?.events_description}
@@ -340,74 +359,6 @@ const Card = ({ cardData }) => {
                     cardData?.events_data?.events_date || cardData?.events_date
                   ).toFormat("MMM dd, yyyy")}
                 </div>
-                {/* <div style={{ marginBottom: "10px" }}>
-                  <strong>Code:</strong> {cardData?.event_code || "N/A"}
-                </div> */}
-              </div>
-            </div>
-
-            {/* --- NEW PROMOTER/BUSINESS UI SECTION --- */}
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "10px",
-                padding: "10px 0",
-                borderTop: "1px solid #f0f0f0",
-                marginBottom: "10px",
-              }}
-            >
-              <div
-                style={{
-                  width: "40px",
-                  height: "40px",
-                  borderRadius: "50%",
-                  overflow: "hidden",
-                  position: "relative",
-                  border: "1px solid #eee",
-                  flexShrink: 0,
-                }}
-              >
-                <Image
-                  src={
-                    creator?.profile_image
-                      ? `${BASE_URL}${creator.profile_image}`
-                      : "/images/placeholder-user.png"
-                  }
-                  alt="creator"
-                  fill
-                  style={{ objectFit: "cover" }}
-                />
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  overflow: "hidden",
-                }}
-              >
-                {/* <span
-                  style={{
-                    fontSize: "10px",
-                    color: "#FF0015",
-                    fontWeight: "700",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  {userType}
-                </span> */}
-                <span
-                  style={{
-                    fontSize: "13px",
-                    fontWeight: "600",
-                    color: "#333",
-                    whiteSpace: "nowrap",
-                    理论: "ellipsis",
-                    overflow: "hidden",
-                  }}
-                >
-                  {creator?.name || "User"}
-                </span>
               </div>
             </div>
 
