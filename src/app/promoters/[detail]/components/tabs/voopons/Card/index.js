@@ -60,7 +60,7 @@ const Card = ({ data }) => {
 
         {/* 2. Red Heading & Language Icon Wrapper */}
         <div style={{ position: "relative", width: "100%" }}>
-          <div className="creator-container2">
+          <div className="creator-container">
             <div className="creator-avatar-wrapper2">
               <Image
                 src={
@@ -121,7 +121,7 @@ const Card = ({ data }) => {
         </div>
 
         <div style={{ marginTop: "8px" }}>
-          <strong> Code: </strong>
+          <strong style={{ color: "#FF0000" }}> Code: </strong>
           {data?.voopon_code || "N/A"}
         </div>
 

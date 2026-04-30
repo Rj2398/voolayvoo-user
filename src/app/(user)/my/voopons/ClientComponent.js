@@ -426,7 +426,7 @@ const CardItem = ({ item }) => {
             }}
           />
         </div>
-        <div style={{}}>
+        <div style={{ marginBottom: 20 }}>
           <div className="creator-container">
             <div className="creator-avatar-wrapper2">
               <Image
