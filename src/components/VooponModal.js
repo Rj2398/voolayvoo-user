@@ -112,6 +112,18 @@ const VooponModal = ({ open, handleClose, activeData }) => {
           boxShadow: 24,
         }}
       >
+        <h1
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            textAlign: "center",
+            color: "#FF0000",
+            textDecoration: "underline",
+            textUnderlineOffset: "6px", // Controls the gap between the text and the underline
+          }}
+        >
+          Voopon list
+        </h1>
         <IconButton
           onClick={handleClose}
           sx={{ position: "absolute", right: 15, top: 15, zIndex: 10 }}
@@ -216,7 +228,7 @@ const VooponModal = ({ open, handleClose, activeData }) => {
                         style={{
                           position: "absolute",
                           right: 0,
-                          top: "50%",
+                          top: -20,
                           transform: "translateY(-50%)",
                         }}
                         onClick={() => window.open(item.voopon_link, "_blank")}
