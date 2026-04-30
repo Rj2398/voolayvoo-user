@@ -427,10 +427,52 @@ const CardItem = ({ item }) => {
           />
         </div>
         <div style={{}}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "12px",
+              margin: "20px 0",
+              width: "100%",
+              justifyContent: "center",
+            }}
+          >
+            <div
+              style={{
+                width: "50px",
+                height: "50px",
+                borderRadius: "50%",
+                overflow: "hidden",
+                position: "relative",
+                border: "1px solid #ddd",
+              }}
+            >
+              <Image
+                src={
+                  creator?.profile_image
+                    ? `${BASE_URL}${creator.profile_image}`
+                    : "/images/placeholder-user.png"
+                }
+                alt=""
+                fill
+                style={{ objectFit: "cover" }}
+              />
+            </div>
+            <div style={{ textAlign: "left" }}>
+              <div
+                style={{
+                  fontSize: "15px",
+                  fontWeight: "700",
+                  color: "#000",
+                }}
+              >
+                {creator?.name || "Anonymous"}
+              </div>
+            </div>
+          </div>
           <div className="voopon-heading " style={{ width: "100%" }}>
             {truncateDescription(item?.voopons_name, 2)}
           </div>
-          {/* <h5>{truncateDescription(item?.voopons_description, 2)}</h5> */}
           <div
             style={{
               position: "relative",
@@ -448,7 +490,6 @@ const CardItem = ({ item }) => {
             >
               {truncateDescription(item?.voopons_description, 4)}
             </h5>
-            {console.log(item, "Link crash****")}
             <img
               src="/images/earth.png"
               className="earth-size"
@@ -534,50 +575,6 @@ const CardItem = ({ item }) => {
                     )
                   : "N/A"}
               </span>
-            </div>
-          </div>
-
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "12px",
-              margin: "20px 0",
-              width: "100%",
-              justifyContent: "center",
-            }}
-          >
-            <div
-              style={{
-                width: "50px",
-                height: "50px",
-                borderRadius: "50%",
-                overflow: "hidden",
-                position: "relative",
-                border: "1px solid #ddd",
-              }}
-            >
-              <Image
-                src={
-                  creator?.profile_image
-                    ? `${BASE_URL}${creator.profile_image}`
-                    : "/images/placeholder-user.png"
-                }
-                alt=""
-                fill
-                style={{ objectFit: "cover" }}
-              />
-            </div>
-            <div style={{ textAlign: "left" }}>
-              <div
-                style={{
-                  fontSize: "15px",
-                  fontWeight: "700",
-                  color: "#000",
-                }}
-              >
-                {creator?.name || "Anonymous"}
-              </div>
             </div>
           </div>
         </div>

@@ -183,7 +183,49 @@ const ClientComponent = ({ categoryList, voopanList }) => {
                     style={{ objectFit: "contain" }}
                   />
                 </div>
-
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "12px",
+                    margin: "20px 0",
+                    width: "100%",
+                    justifyContent: "center",
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "50px",
+                      height: "50px",
+                      borderRadius: "50%",
+                      overflow: "hidden",
+                      position: "relative",
+                      border: "1px solid #ddd",
+                    }}
+                  >
+                    <Image
+                      src={
+                        creator?.profile_image
+                          ? `${BASE_URL}${creator.profile_image}`
+                          : "/images/placeholder-user.png"
+                      }
+                      alt=""
+                      fill
+                      style={{ objectFit: "cover" }}
+                    />
+                  </div>
+                  <div style={{ textAlign: "left" }}>
+                    <div
+                      style={{
+                        fontSize: "15px",
+                        fontWeight: "700",
+                        color: "#000",
+                      }}
+                    >
+                      {creator?.name || "Anonymous"}
+                    </div>
+                  </div>
+                </div>
                 {/* 2. Red Title */}
                 <h4
                   style={{
@@ -334,58 +376,6 @@ const ClientComponent = ({ categoryList, voopanList }) => {
                 </div>
 
                 {/* 5. Promoter Circle & Text (Horizontal) */}
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "12px",
-                    margin: "20px 0",
-                    width: "100%",
-                    justifyContent: "center",
-                  }}
-                >
-                  <div
-                    style={{
-                      width: "50px",
-                      height: "50px",
-                      borderRadius: "50%",
-                      overflow: "hidden",
-                      position: "relative",
-                      border: "1px solid #ddd",
-                    }}
-                  >
-                    <Image
-                      src={
-                        creator?.profile_image
-                          ? `${BASE_URL}${creator.profile_image}`
-                          : "/images/placeholder-user.png"
-                      }
-                      alt=""
-                      fill
-                      style={{ objectFit: "cover" }}
-                    />
-                  </div>
-                  <div style={{ textAlign: "left" }}>
-                    {/* <div
-                      style={{
-                        fontSize: "12px",
-                        color: "#888",
-                        lineHeight: "1",
-                      }}
-                    >
-                      {userType}
-                    </div> */}
-                    <div
-                      style={{
-                        fontSize: "15px",
-                        fontWeight: "700",
-                        color: "#000",
-                      }}
-                    >
-                      {creator?.name || "Anonymous"}
-                    </div>
-                  </div>
-                </div>
 
                 {/* 6. View More Pill Button */}
                 <Link

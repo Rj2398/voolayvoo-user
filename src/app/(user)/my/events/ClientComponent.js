@@ -631,6 +631,60 @@ const CardItem = ({ item, setActiveData, activeData, open, setOpen }) => {
           <div
             style={{
               display: "flex",
+              alignItems: "center", // Vertically centers the text with the image
+              gap: "15px", // Space between image and text
+              padding: "10px",
+            }}
+          >
+            {/* 1. Circular Image Container */}
+            <div
+              style={{
+                width: "60px", // Size of the circle
+                height: "60px",
+                borderRadius: "50%",
+                overflow: "hidden",
+                position: "relative",
+                border: "1px solid #ddd",
+                flexShrink: 0, // Prevents the circle from squeezing
+              }}
+            >
+              <Image
+                src={
+                  item?.business_details?.profile_image
+                    ? `${BASE_URL}${item.business_details.profile_image}`
+                    : `${BASE_URL}${item?.promoter_details?.profile_image}`
+                  // : "/images/placeholder-user.png"
+                }
+                alt="Promoter"
+                fill
+                style={{ objectFit: "cover" }}
+              />
+            </div>
+
+            {/* 2. Promoter Text on the Right */}
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <span
+                style={{
+                  fontSize: "18px",
+                  fontWeight: "700",
+                  color: "#000",
+                  marginTop: "4px",
+                }}
+              >
+                {item?.business_details
+                  ? item?.business_details?.name
+                  : item?.promoter_details?.name}
+              </span>
+            </div>
+          </div>
+          <div
+            style={{
+              display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
             }}
@@ -830,61 +884,6 @@ const CardItem = ({ item, setActiveData, activeData, open, setOpen }) => {
                 item.events_end_date,
                 "yyyy-MM-dd"
               ).toFormat("MMMM dd, yyyy")}
-            </div>
-
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center", // Vertically centers the text with the image
-                gap: "15px", // Space between image and text
-                padding: "10px",
-              }}
-            >
-              {/* 1. Circular Image Container */}
-              <div
-                style={{
-                  width: "60px", // Size of the circle
-                  height: "60px",
-                  borderRadius: "50%",
-                  overflow: "hidden",
-                  position: "relative",
-                  border: "1px solid #ddd",
-                  flexShrink: 0, // Prevents the circle from squeezing
-                }}
-              >
-                <Image
-                  src={
-                    item?.business_details?.profile_image
-                      ? `${BASE_URL}${item.business_details.profile_image}`
-                      : `${BASE_URL}${item?.promoter_details?.profile_image}`
-                    // : "/images/placeholder-user.png"
-                  }
-                  alt="Promoter"
-                  fill
-                  style={{ objectFit: "cover" }}
-                />
-              </div>
-
-              {/* 2. Promoter Text on the Right */}
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
-                <span
-                  style={{
-                    fontSize: "18px",
-                    fontWeight: "700",
-                    color: "#000",
-                    marginTop: "4px",
-                  }}
-                >
-                  {item?.business_details
-                    ? item?.business_details?.name
-                    : item?.promoter_details?.name}
-                </span>
-              </div>
             </div>
           </div>
 
