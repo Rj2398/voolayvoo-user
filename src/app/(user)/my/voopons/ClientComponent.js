@@ -427,26 +427,8 @@ const CardItem = ({ item }) => {
           />
         </div>
         <div style={{}}>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "12px",
-              margin: "20px 0",
-              width: "100%",
-              justifyContent: "center",
-            }}
-          >
-            <div
-              style={{
-                width: "50px",
-                height: "50px",
-                borderRadius: "50%",
-                overflow: "hidden",
-                position: "relative",
-                border: "1px solid #ddd",
-              }}
-            >
+          <div className="creator-container2">
+            <div className="creator-avatar-wrapper2">
               <Image
                 src={
                   creator?.profile_image
@@ -458,16 +440,9 @@ const CardItem = ({ item }) => {
                 style={{ objectFit: "cover" }}
               />
             </div>
-            <div style={{ textAlign: "left" }}>
-              <div
-                style={{
-                  fontSize: "15px",
-                  fontWeight: "700",
-                  color: "#000",
-                }}
-              >
-                {creator?.name || "Anonymous"}
-              </div>
+
+            <div className="creator-name" style={{ marginLeft: 10 }}>
+              {creator?.name || "Anonymous"}
             </div>
           </div>
           <div className="voopon-heading " style={{ width: "100%" }}>

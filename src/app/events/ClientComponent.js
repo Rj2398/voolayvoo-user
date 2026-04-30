@@ -491,25 +491,9 @@ const ClientComponent = ({ categoryList, eventList }) => {
                         </div>
 
                         <div class="event-pad">
-                          <div
-                            style={{
-                              display: "flex",
-                              alignItems: "center",
-                              gap: "15px",
-                              padding: "10px",
-                            }}
-                          >
-                            <div
-                              style={{
-                                width: "60px",
-                                height: "60px",
-                                borderRadius: "50%",
-                                overflow: "hidden",
-                                position: "relative",
-                                border: "1px solid #ddd",
-                                flexShrink: 0,
-                              }}
-                            >
+                          <div className="profile-container">
+                            {/* 1. Image Container */}
+                            <div className="avatar-wrapper">
                               <Image
                                 src={
                                   item?.business_details?.profile_image
@@ -524,20 +508,8 @@ const ClientComponent = ({ categoryList, eventList }) => {
                             </div>
 
                             {/* 2. Promoter Text on the Right */}
-                            <div
-                              style={{
-                                display: "flex",
-                                flexDirection: "column",
-                              }}
-                            >
-                              <span
-                                style={{
-                                  fontSize: "18px",
-                                  fontWeight: "700",
-                                  color: "#000",
-                                  marginTop: "4px",
-                                }}
-                              >
+                            <div className="text-container">
+                              <span className="name-text">
                                 {item?.business_details
                                   ? item?.business_details?.name
                                   : item?.promoter_details?.name}

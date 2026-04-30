@@ -1,6 +1,9 @@
 "use client";
 import { BASE_URL } from "@/constant/constant";
-import { convertTo12HourFormat } from "@/utils/eventFunction";
+import {
+  convertTo12HourFormat,
+  truncateDescriptionByWords,
+} from "@/utils/eventFunction";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import LanguageIcon from "@mui/icons-material/Language";
 import { DateTime } from "luxon";
@@ -110,26 +113,8 @@ const Card = ({ cardData }) => {
               flexGrow: 1,
             }}
           >
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "10px",
-                padding: "10px 0",
-                borderTop: "1px solid #f0f0f0",
-                marginBottom: "10px",
-              }}
-            >
-              <div
-                style={{
-                  width: "40px",
-                  height: "40px",
-                  borderRadius: "50%",
-                  overflow: "hidden",
-                  position: "relative",
-                  flexShrink: 0,
-                }}
-              >
+            <div className="creator-container">
+              <div className="creator-avatar-wrapper">
                 <Image
                   src={
                     creator?.profile_image
@@ -141,23 +126,8 @@ const Card = ({ cardData }) => {
                   style={{ objectFit: "cover" }}
                 />
               </div>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  overflow: "hidden",
-                }}
-              >
-                <span
-                  style={{
-                    fontSize: "13px",
-                    fontWeight: "600",
-                    color: "#333",
-                    whiteSpace: "nowrap",
-                    理论: "ellipsis",
-                    overflow: "hidden",
-                  }}
-                >
+              <div className="creator-text-container">
+                <span className="creator-name-text">
                   {creator?.name || "User"}
                 </span>
               </div>
@@ -173,11 +143,14 @@ const Card = ({ cardData }) => {
               >
                 <h6
                   className="title-capitilize"
-                  style={{ margin: 0, fontWeight: "700", fontSize: "16px" }}
+                  style={{ margin: 0, fontWeight: "400", fontSize: "16px" }}
                 >
-                  {cardData?.events_data?.events_name ||
-                    cardData?.events_data_business?.events_name ||
-                    cardData?.events_name}
+                  {truncateDescriptionByWords(
+                    cardData?.events_data?.events_name ||
+                      cardData?.events_data_business?.events_name ||
+                      cardData?.events_name,
+                    20
+                  )}
                 </h6>
                 <div
                   style={{ display: "flex", gap: "5px", alignItems: "center" }}
@@ -206,15 +179,18 @@ const Card = ({ cardData }) => {
                     src="/images/earth.png"
                     onClick={() => {
                       const url = cardData?.event_link;
+
                       if (url) {
                         const validUrl = url.startsWith("http")
                           ? url
                           : `https://${url}`;
+
                         window.open(validUrl, "_blank", "noopener,noreferrer");
                       }
                     }}
                   />
 
+                  {/* share icon */}
                   <div className="col-lg-4 col-md-6">
                     <div className="share-media">
                       <span>
@@ -225,6 +201,7 @@ const Card = ({ cardData }) => {
                           src="/images/share.svg"
                           alt=""
                         />{" "}
+                        {/* Share with friends{" "} */}
                       </span>
                       <div className="show-social">
                         <span>
@@ -331,13 +308,19 @@ const Card = ({ cardData }) => {
                   marginBottom: "15px",
                 }}
               >
-                {cardData?.events_data?.events_description ||
-                  cardData?.events_data_business?.events_description ||
-                  cardData?.events_description}
+                {truncateDescriptionByWords(
+                  cardData?.events_data?.events_description ||
+                    cardData?.events_data_business?.events_description ||
+                    cardData?.events_description,
+                  50
+                )}
               </p>
 
               <div style={{ marginBottom: "10px" }}>
-                <strong>Code:</strong> {cardData?.event_code || "N/A"}
+                <span style={{ color: "#FF0000", fontWeight: "500" }}>
+                  Code:
+                </span>
+                {cardData?.event_code || "N/A"}
               </div>
 
               <div className="point-icon" style={{ fontSize: "13px" }}>
@@ -361,6 +344,8 @@ const Card = ({ cardData }) => {
                 </div>
               </div>
             </div>
+
+            {/* --- NEW PROMOTER/BUSINESS UI SECTION --- */}
 
             <a
               className="btn btn-viewmore-border"

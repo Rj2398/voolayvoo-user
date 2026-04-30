@@ -628,26 +628,9 @@ const CardItem = ({ item, setActiveData, activeData, open, setOpen }) => {
           />
         </div>
         <div className="event-pad">
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center", // Vertically centers the text with the image
-              gap: "15px", // Space between image and text
-              padding: "10px",
-            }}
-          >
+          <div className="profile-container">
             {/* 1. Circular Image Container */}
-            <div
-              style={{
-                width: "60px", // Size of the circle
-                height: "60px",
-                borderRadius: "50%",
-                overflow: "hidden",
-                position: "relative",
-                border: "1px solid #ddd",
-                flexShrink: 0, // Prevents the circle from squeezing
-              }}
-            >
+            <div className="avatar-wrapper">
               <Image
                 src={
                   item?.business_details?.profile_image
@@ -662,20 +645,8 @@ const CardItem = ({ item, setActiveData, activeData, open, setOpen }) => {
             </div>
 
             {/* 2. Promoter Text on the Right */}
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-              }}
-            >
-              <span
-                style={{
-                  fontSize: "18px",
-                  fontWeight: "700",
-                  color: "#000",
-                  marginTop: "4px",
-                }}
-              >
+            <div className="text-container">
+              <span className="name-text">
                 {item?.business_details
                   ? item?.business_details?.name
                   : item?.promoter_details?.name}

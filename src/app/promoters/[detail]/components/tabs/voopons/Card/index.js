@@ -60,28 +60,8 @@ const Card = ({ data }) => {
 
         {/* 2. Red Heading & Language Icon Wrapper */}
         <div style={{ position: "relative", width: "100%" }}>
-          <div
-            style={{
-              width: "100%",
-              borderTop: "1px solid #eee",
-              paddingTop: "15px",
-              display: "flex",
-              alignItems: "center",
-              gap: "12px",
-              marginBottom: "20px",
-              justifyContent: "flex-start",
-              textAlign: "left",
-            }}
-          >
-            <div
-              style={{
-                width: "45px",
-                height: "45px",
-                borderRadius: "50%",
-                overflow: "hidden",
-                position: "relative",
-              }}
-            >
+          <div className="creator-container2">
+            <div className="creator-avatar-wrapper2">
               <Image
                 src={
                   creator?.profile_image
@@ -94,9 +74,7 @@ const Card = ({ data }) => {
               />
             </div>
             <div>
-              <div
-                style={{ fontSize: "15px", fontWeight: "700", color: "#333" }}
-              >
+              <div className="creator-name" style={{ marginLeft: 10 }}>
                 {creator?.name || "User"}
               </div>
             </div>
@@ -125,7 +103,7 @@ const Card = ({ data }) => {
             style={{
               position: "absolute",
               right: 0,
-              top: "5px",
+              bottom: 10,
             }}
           />
         </div>
