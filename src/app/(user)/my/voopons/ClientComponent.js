@@ -427,7 +427,7 @@ const CardItem = ({ item }) => {
           />
         </div>
         <div style={{}}>
-          <div className="creator-container2">
+          <div className="creator-container">
             <div className="creator-avatar-wrapper2">
               <Image
                 src={
@@ -441,11 +441,14 @@ const CardItem = ({ item }) => {
               />
             </div>
 
-            <div className="creator-name" style={{ marginLeft: 10 }}>
+            <div className="creator-name" style={{ marginLeft: 5 }}>
               {creator?.name || "Anonymous"}
             </div>
           </div>
-          <div className="voopon-heading " style={{ width: "100%" }}>
+          <div
+            className="voopon-heading "
+            style={{ width: "100%", marginTop: -10 }}
+          >
             {truncateDescription(item?.voopons_name, 2)}
           </div>
           <div
@@ -482,19 +485,9 @@ const CardItem = ({ item }) => {
               style={{
                 position: "absolute",
                 right: 0,
-                top: 0,
+                top: -32,
               }}
             />
-          </div>
-
-          <div
-            style={{
-              textAlign: "center",
-              marginTop: "8px",
-            }}
-          >
-            <strong> Code: </strong>
-            {item?.voopon_code || "Not Available"}
           </div>
 
           {/* 4. Dates & Code */}
@@ -505,6 +498,14 @@ const CardItem = ({ item }) => {
               fontSize: "14px",
             }}
           >
+            <div
+              style={{
+                marginLeft: 5,
+              }}
+            >
+              <strong style={{ color: "#FF0000" }}> Code: </strong>
+              {item?.voopon_code || "Not Available"}
+            </div>
             <div
               style={{
                 display: "flex",
