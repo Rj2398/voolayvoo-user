@@ -366,7 +366,7 @@ const Detail = async ({ params: { detail } }) => {
   }
 
   const { promoter_detail, tabs, rating_details } = data;
-
+  // console.log(promoter_detail, "TEST *******");
   // console.log(rating_details, "promoter_detail"); // This will show in server console if it's a server component
 
   return (
@@ -399,7 +399,11 @@ const Detail = async ({ params: { detail } }) => {
                 <p>{promoter_detail?.description}</p>
                 <div className="row mb-3">
                   <div className="col-lg-7 col-md-6">
-                    <FollowerDetails promoter_id={promoter_detail?.id} />
+                    {/* {console.log(promoter_detail.follow_count, "*************")} */}
+                    <FollowerDetails
+                      promoter_id={promoter_detail?.id}
+                      follow_count={promoter_detail.follow_count}
+                    />
                   </div>
                   {rating_details.promoter_rating !== 0 && (
                     <div className="col-lg-5 col-md-6">

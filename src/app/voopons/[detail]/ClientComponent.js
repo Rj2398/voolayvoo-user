@@ -358,7 +358,7 @@ const ClientComponent = ({ voopon_detail }) => {
           <div className="row mt-3">
             <div className="col-lg-8 col-md-8">
               <div className="location-box">
-                <h4> Location :</h4>
+                <h4> Location:</h4>
                 <span>
                   {" "}
                   {voopon_detail?.voopon_one?.location ||

@@ -1,7 +1,9 @@
 {
+  "/promoters/page": "app/promoters/page.js",
   "/businesses/page": "app/businesses/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
   "/businesses/[detail]/page": "app/businesses/[detail]/page.js",
-  "/page": "app/page.js",
-  "/(onboard)/login/page": "app/(onboard)/login/page.js",
-  "/(page)/about/page": "app/(page)/about/page.js"
+  "/voopons/[detail]/page": "app/voopons/[detail]/page.js",
+  "/voopons/page": "app/voopons/page.js",
+  "/promoters/[detail]/page": "app/promoters/[detail]/page.js"
 }

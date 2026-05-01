@@ -54,7 +54,7 @@
 import Image from "next/image";
 import { Rating } from "@mui/material";
 const Card = ({ DataMap }) => {
-  {console.log(DataMap, "111111111111")}
+  // {console.log(DataMap, "111111111111")}
   // const user_data_comment = [
   //   {
   //     user_id: 368,
