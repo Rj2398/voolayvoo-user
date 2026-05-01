@@ -32956,7 +32956,7 @@ button.btn.btn-bnr:hover {
 
 .location-box > h4,
 .valid-thru > h4,
-.copy-content>h5,
+.copy-content > h5,
 .quantity > h4,
 .quantityStatic > h4,
 .price-box > h4 {
@@ -32964,6 +32964,8 @@ button.btn.btn-bnr:hover {
   color: #303030;
   font-size: 20px;
   font-weight: 600;
+  display: flex;
+  gap: 10px;
 }
 
 .location-box,
@@ -32974,6 +32976,8 @@ button.btn.btn-bnr:hover {
 .price-box {
   padding-left: 40px;
   position: relative;
+  display: flex;
+  gap: 10px;
 }
 
 .price-box > h4 > span {
@@ -33051,7 +33055,6 @@ button.btn.btn-bnr:hover {
   left: 0;
   background-repeat: no-repeat;
 }
-
 
 .copy-content:before {
   content: "";
@@ -33566,7 +33569,7 @@ li.prom-tab-designs,
   width: 51px;
   height: 53px;
   position: absolute;
-     /* top: 0;
+  /* top: 0;
   left: 0; */
   top: 1px;
   left: 10px;
@@ -38099,12 +38102,11 @@ label.textarea-fields-inner-list-label {
   align-items: center;
 }
 
-
-.css-1qqgbpl-MuiRating-root.Mui-disabled{
+.css-1qqgbpl-MuiRating-root.Mui-disabled {
   opacity: 1 !important;
 }
 
-.howit-txt li{
+.howit-txt li {
   list-style: none !important;
 }
 
@@ -38114,10 +38116,10 @@ label.textarea-fields-inner-list-label {
 .react-multiple-carousel__arrow--right {
   right: calc(-1%) !important;
 }
-.react-multiple-carousel__arrow::before{
-  color:#E60023 !important;
+.react-multiple-carousel__arrow::before {
+  color: #e60023 !important;
 }
-.react-multiple-carousel__arrow{
+.react-multiple-carousel__arrow {
   background-color: transparent !important;
   border: none !important;
   outline: none !important;
@@ -38125,19 +38127,16 @@ label.textarea-fields-inner-list-label {
   height: 30px !important;
 }
 
-.earth-size{
+.earth-size {
   height: 25px;
   width: 25px;
   cursor: pointer;
 }
 
-
-
 /*!***********************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[3]!./src/styles/responsive.css ***!
   \***********************************************************************************************************************************************************************************************************************************************************************/
 @media (min-width: 1300px) {
-
   .container,
   .container-lg,
   .container-md,
@@ -38147,7 +38146,7 @@ label.textarea-fields-inner-list-label {
   }
 }
 
-@media(min-width: 680px) {
+@media (min-width: 680px) {
   button.owl-next {
     margin-right: -20px;
   }
@@ -38184,7 +38183,7 @@ label.textarea-fields-inner-list-label {
   }
 }
 
-@media(max-width:991px) {
+@media (max-width: 991px) {
   a.navbar-brand {
     max-width: 75%;
   }
@@ -38195,8 +38194,7 @@ label.textarea-fields-inner-list-label {
   }
 }
 
-@media only screen and (min-width:1280px) and (max-width:1300px) {
-
+@media only screen and (min-width: 1280px) and (max-width: 1300px) {
   .business-statistics-chart {
     width: 78%;
   }
@@ -38221,10 +38219,9 @@ label.textarea-fields-inner-list-label {
   .business-add-payment-card-details-bottom .input-2 {
     font-size: 13px;
   }
-
 }
 
-@media only screen and (min-width:1000px) and (max-width:1279px) {
+@media only screen and (min-width: 1000px) and (max-width: 1279px) {
   .top-part .row {
     display: flex;
     align-items: center;
@@ -38361,7 +38358,7 @@ label.textarea-fields-inner-list-label {
     flex-wrap: wrap;
   }
 
-  .sub-srchbox>input {
+  .sub-srchbox > input {
     padding: 15px 20px;
     width: 100%;
   }
@@ -38382,15 +38379,15 @@ label.textarea-fields-inner-list-label {
     width: 100%;
   }
 
-  .referbox-text>h1 {
+  .referbox-text > h1 {
     font-size: 30px;
   }
 
-  .referbox-text>h2 {
+  .referbox-text > h2 {
     font-size: 23px;
   }
 
-  .referbox-text>p {
+  .referbox-text > p {
     font-size: 19px;
   }
 
@@ -38431,7 +38428,7 @@ label.textarea-fields-inner-list-label {
     padding-right: 0px;
   }
 
-  .loginflow>h1 {
+  .loginflow > h1 {
     font-size: 26px;
   }
 
@@ -38443,7 +38440,7 @@ label.textarea-fields-inner-list-label {
     margin-top: 10px;
   }
 
-  .same-inner-tab>h1 {
+  .same-inner-tab > h1 {
     font-size: 26px;
     margin-bottom: 20px !important;
   }
@@ -38464,7 +38461,6 @@ label.textarea-fields-inner-list-label {
   }
 
   .modal-hd {
-
     font-size: 26px;
   }
 
@@ -38478,7 +38474,7 @@ label.textarea-fields-inner-list-label {
     height: 150px;
   }
 
-  .inner-banner>h1 {
+  .inner-banner > h1 {
     font-size: 36px;
     text-align: center;
   }
@@ -38506,7 +38502,6 @@ label.textarea-fields-inner-list-label {
   .terms-cond .deal-search-filter {
     width: 48%;
   }
-
 
   .user-dashboard-list {
     width: 40%;
@@ -38572,7 +38567,7 @@ label.textarea-fields-inner-list-label {
     padding: 20px 10px;
   }
 
-  .voopan-box>h5 {
+  .voopan-box > h5 {
     font-size: 18px;
     overflow: hidden;
     display: -webkit-box;
@@ -38697,7 +38692,7 @@ label.textarea-fields-inner-list-label {
     flex-wrap: wrap;
   }
 
-  .busines-logo-hd>h1 {
+  .busines-logo-hd > h1 {
     font-size: 20px;
   }
 
@@ -38720,7 +38715,7 @@ label.textarea-fields-inner-list-label {
   }
 
   .tab-style li.nav-item:first-child {
-    border-top: 0px solid #CFCFCF !important;
+    border-top: 0px solid #cfcfcf !important;
   }
 
   .rating-flex {
@@ -38735,7 +38730,6 @@ label.textarea-fields-inner-list-label {
   }
 
   .gallery-box {
-
     justify-content: center;
   }
 
@@ -38920,7 +38914,6 @@ label.textarea-fields-inner-list-label {
     width: 70%;
   }
 
-
   .create-ev-btn {
     width: auto;
   }
@@ -39020,7 +39013,6 @@ label.textarea-fields-inner-list-label {
     width: 48.5%;
   }
 
-
   .business-collaboration-box-top-image {
     width: 50px;
     height: 50px;
@@ -39036,7 +39028,6 @@ label.textarea-fields-inner-list-label {
     width: 47%;
     margin-bottom: 0;
   }
-
 
   .business-my-voopon-boxes .business-my-events-filter-left .calendar {
     width: 100%;
@@ -39122,7 +39113,7 @@ label.textarea-fields-inner-list-label {
   /*BUSINESS-DASHBOARD*/
 }
 
-@media only screen and (min-width:912px) and (max-width:999px) {
+@media only screen and (min-width: 912px) and (max-width: 999px) {
   .sign-in-top-box {
     margin-top: 10px;
     justify-content: flex-end !important;
@@ -39245,7 +39236,7 @@ label.textarea-fields-inner-list-label {
     flex-wrap: wrap;
   }
 
-  .sub-srchbox>input {
+  .sub-srchbox > input {
     padding: 15px 20px;
     width: 100%;
   }
@@ -39266,15 +39257,15 @@ label.textarea-fields-inner-list-label {
     width: 100%;
   }
 
-  .referbox-text>h1 {
+  .referbox-text > h1 {
     font-size: 30px;
   }
 
-  .referbox-text>h2 {
+  .referbox-text > h2 {
     font-size: 23px;
   }
 
-  .referbox-text>p {
+  .referbox-text > p {
     font-size: 19px;
   }
 
@@ -39322,10 +39313,9 @@ label.textarea-fields-inner-list-label {
 
   .login-sign-box {
     border-radius: 10px;
-
   }
 
-  .loginflow>h1 {
+  .loginflow > h1 {
     font-size: 26px;
   }
 
@@ -39339,7 +39329,7 @@ label.textarea-fields-inner-list-label {
     margin-top: 10px;
   }
 
-  .same-inner-tab>h1 {
+  .same-inner-tab > h1 {
     font-size: 26px;
     margin-bottom: 20px !important;
   }
@@ -39360,7 +39350,6 @@ label.textarea-fields-inner-list-label {
   }
 
   .modal-hd {
-
     font-size: 26px;
   }
 
@@ -39374,7 +39363,7 @@ label.textarea-fields-inner-list-label {
     height: 150px;
   }
 
-  .inner-banner>h1 {
+  .inner-banner > h1 {
     font-size: 36px;
     text-align: center;
   }
@@ -39402,7 +39391,6 @@ label.textarea-fields-inner-list-label {
   .terms-cond .deal-search-filter {
     width: 48%;
   }
-
 
   .user-dashboard-list {
     width: 40%;
@@ -39468,7 +39456,7 @@ label.textarea-fields-inner-list-label {
     padding: 20px 10px;
   }
 
-  .voopan-box>h5 {
+  .voopan-box > h5 {
     font-size: 18px;
     overflow: hidden;
     display: -webkit-box;
@@ -39515,7 +39503,8 @@ label.textarea-fields-inner-list-label {
     padding: 10px 30px;
   }
 
-  .mission-vission .col-lg-12.text-center.mt-3.gap-3.d-flex.justify-content-center {
+  .mission-vission
+    .col-lg-12.text-center.mt-3.gap-3.d-flex.justify-content-center {
     flex-direction: column;
   }
 
@@ -39593,7 +39582,7 @@ label.textarea-fields-inner-list-label {
     flex-wrap: wrap;
   }
 
-  .busines-logo-hd>h1 {
+  .busines-logo-hd > h1 {
     font-size: 20px;
   }
 
@@ -39616,7 +39605,7 @@ label.textarea-fields-inner-list-label {
   }
 
   .tab-style li.nav-item:first-child {
-    border-top: 0px solid #CFCFCF !important;
+    border-top: 0px solid #cfcfcf !important;
   }
 
   .rating-box-details {
@@ -39642,7 +39631,6 @@ label.textarea-fields-inner-list-label {
   }
 
   .gallery-box {
-
     justify-content: center;
   }
 
@@ -40050,7 +40038,7 @@ label.textarea-fields-inner-list-label {
   /*PROMOTER-DASHBOARD*/
 }
 
-@media only screen and (min-width:800px) and (max-width:911px) {
+@media only screen and (min-width: 800px) and (max-width: 911px) {
   .sign-in-top-box {
     margin-top: 10px;
     justify-content: flex-end !important;
@@ -40173,7 +40161,7 @@ label.textarea-fields-inner-list-label {
     flex-wrap: wrap;
   }
 
-  .sub-srchbox>input {
+  .sub-srchbox > input {
     padding: 15px 20px;
     width: 100%;
   }
@@ -40194,15 +40182,15 @@ label.textarea-fields-inner-list-label {
     width: 100%;
   }
 
-  .referbox-text>h1 {
+  .referbox-text > h1 {
     font-size: 30px;
   }
 
-  .referbox-text>h2 {
+  .referbox-text > h2 {
     font-size: 23px;
   }
 
-  .referbox-text>p {
+  .referbox-text > p {
     font-size: 19px;
   }
 
@@ -40250,10 +40238,9 @@ label.textarea-fields-inner-list-label {
 
   .login-sign-box {
     border-radius: 10px;
-
   }
 
-  .loginflow>h1 {
+  .loginflow > h1 {
     font-size: 26px;
   }
 
@@ -40267,7 +40254,7 @@ label.textarea-fields-inner-list-label {
     margin-top: 10px;
   }
 
-  .same-inner-tab>h1 {
+  .same-inner-tab > h1 {
     font-size: 26px;
     margin-bottom: 20px !important;
   }
@@ -40288,7 +40275,6 @@ label.textarea-fields-inner-list-label {
   }
 
   .modal-hd {
-
     font-size: 26px;
   }
 
@@ -40302,7 +40288,7 @@ label.textarea-fields-inner-list-label {
     height: 150px;
   }
 
-  .inner-banner>h1 {
+  .inner-banner > h1 {
     font-size: 36px;
     text-align: center;
   }
@@ -40330,7 +40316,6 @@ label.textarea-fields-inner-list-label {
   .terms-cond .deal-search-filter {
     width: 48%;
   }
-
 
   .user-dashboard-list {
     width: 40%;
@@ -40396,7 +40381,7 @@ label.textarea-fields-inner-list-label {
     padding: 20px 10px;
   }
 
-  .voopan-box>h5 {
+  .voopan-box > h5 {
     font-size: 18px;
     overflow: hidden;
     display: -webkit-box;
@@ -40443,7 +40428,8 @@ label.textarea-fields-inner-list-label {
     padding: 10px 30px;
   }
 
-  .mission-vission .col-lg-12.text-center.mt-3.gap-3.d-flex.justify-content-center {
+  .mission-vission
+    .col-lg-12.text-center.mt-3.gap-3.d-flex.justify-content-center {
     flex-direction: inherit;
   }
 
@@ -40521,7 +40507,7 @@ label.textarea-fields-inner-list-label {
     flex-wrap: wrap;
   }
 
-  .busines-logo-hd>h1 {
+  .busines-logo-hd > h1 {
     font-size: 20px;
   }
 
@@ -40544,7 +40530,7 @@ label.textarea-fields-inner-list-label {
   }
 
   .tab-style li.nav-item:first-child {
-    border-top: 0px solid #CFCFCF !important;
+    border-top: 0px solid #cfcfcf !important;
   }
 
   .rating-box-details {
@@ -40570,7 +40556,6 @@ label.textarea-fields-inner-list-label {
   }
 
   .gallery-box {
-
     justify-content: center;
   }
 
@@ -40891,7 +40876,6 @@ label.textarea-fields-inner-list-label {
     width: 100%;
   }
 
-
   .business-collaboration-box-top-image {
     width: 50px;
     height: 50px;
@@ -40983,7 +40967,7 @@ label.textarea-fields-inner-list-label {
   /*PROMOTER-DASHBOARD*/
 }
 
-@media only screen and (min-width:768px) and (max-width:799px) {
+@media only screen and (min-width: 768px) and (max-width: 799px) {
   .sign-in-top-box {
     margin-top: 10px;
     justify-content: flex-end !important;
@@ -41106,7 +41090,7 @@ label.textarea-fields-inner-list-label {
     flex-wrap: wrap;
   }
 
-  .sub-srchbox>input {
+  .sub-srchbox > input {
     padding: 15px 20px;
     width: 100%;
   }
@@ -41127,15 +41111,15 @@ label.textarea-fields-inner-list-label {
     width: 100%;
   }
 
-  .referbox-text>h1 {
+  .referbox-text > h1 {
     font-size: 30px;
   }
 
-  .referbox-text>h2 {
+  .referbox-text > h2 {
     font-size: 23px;
   }
 
-  .referbox-text>p {
+  .referbox-text > p {
     font-size: 19px;
   }
 
@@ -41183,10 +41167,9 @@ label.textarea-fields-inner-list-label {
 
   .login-sign-box {
     border-radius: 10px;
-
   }
 
-  .loginflow>h1 {
+  .loginflow > h1 {
     font-size: 26px;
   }
 
@@ -41200,7 +41183,7 @@ label.textarea-fields-inner-list-label {
     margin-top: 10px;
   }
 
-  .same-inner-tab>h1 {
+  .same-inner-tab > h1 {
     font-size: 26px;
     margin-bottom: 20px !important;
   }
@@ -41221,7 +41204,6 @@ label.textarea-fields-inner-list-label {
   }
 
   .modal-hd {
-
     font-size: 26px;
   }
 
@@ -41235,7 +41217,7 @@ label.textarea-fields-inner-list-label {
     height: 150px;
   }
 
-  .inner-banner>h1 {
+  .inner-banner > h1 {
     font-size: 36px;
     text-align: center;
   }
@@ -41263,7 +41245,6 @@ label.textarea-fields-inner-list-label {
   .terms-cond .deal-search-filter {
     width: 48%;
   }
-
 
   .user-dashboard-list {
     width: 40%;
@@ -41329,7 +41310,7 @@ label.textarea-fields-inner-list-label {
     padding: 20px 10px;
   }
 
-  .voopan-box>h5 {
+  .voopan-box > h5 {
     font-size: 18px;
     overflow: hidden;
     display: -webkit-box;
@@ -41376,7 +41357,8 @@ label.textarea-fields-inner-list-label {
     padding: 10px 30px;
   }
 
-  .mission-vission .col-lg-12.text-center.mt-3.gap-3.d-flex.justify-content-center {
+  .mission-vission
+    .col-lg-12.text-center.mt-3.gap-3.d-flex.justify-content-center {
     flex-direction: inherit;
   }
 
@@ -41454,7 +41436,7 @@ label.textarea-fields-inner-list-label {
     flex-wrap: wrap;
   }
 
-  .busines-logo-hd>h1 {
+  .busines-logo-hd > h1 {
     font-size: 20px;
   }
 
@@ -41477,7 +41459,7 @@ label.textarea-fields-inner-list-label {
   }
 
   .tab-style li.nav-item:first-child {
-    border-top: 0px solid #CFCFCF !important;
+    border-top: 0px solid #cfcfcf !important;
   }
 
   .rating-box-details {
@@ -41503,7 +41485,6 @@ label.textarea-fields-inner-list-label {
   }
 
   .gallery-box {
-
     justify-content: center;
   }
 
@@ -41824,7 +41805,6 @@ label.textarea-fields-inner-list-label {
     width: 100%;
   }
 
-
   .business-collaboration-box-top-image {
     width: 50px;
     height: 50px;
@@ -41916,7 +41896,7 @@ label.textarea-fields-inner-list-label {
   /*PROMOTER-DASHBOARD*/
 }
 
-@media only screen and (min-width:480px) and (max-width:767px) {
+@media only screen and (min-width: 480px) and (max-width: 767px) {
   .sign-in-top-box {
     margin-top: 10px;
     justify-content: flex-start !important;
@@ -42031,7 +42011,7 @@ label.textarea-fields-inner-list-label {
     flex-wrap: wrap;
   }
 
-  .sub-srchbox>input {
+  .sub-srchbox > input {
     padding: 10px 20px;
     width: 100%;
     text-align: center;
@@ -42053,15 +42033,15 @@ label.textarea-fields-inner-list-label {
     text-align: center;
   }
 
-  .referbox-text>h1 {
+  .referbox-text > h1 {
     font-size: 30px;
   }
 
-  .referbox-text>h2 {
+  .referbox-text > h2 {
     font-size: 23px;
   }
 
-  .referbox-text>p {
+  .referbox-text > p {
     font-size: 19px;
   }
 
@@ -42107,10 +42087,9 @@ label.textarea-fields-inner-list-label {
 
   .login-sign-box {
     border-radius: 10px;
-
   }
 
-  .loginflow>h1 {
+  .loginflow > h1 {
     font-size: 26px;
   }
 
@@ -42124,7 +42103,7 @@ label.textarea-fields-inner-list-label {
     margin-top: 10px;
   }
 
-  .same-inner-tab>h1 {
+  .same-inner-tab > h1 {
     font-size: 26px;
     margin-bottom: 20px !important;
   }
@@ -42146,7 +42125,6 @@ label.textarea-fields-inner-list-label {
   }
 
   .modal-hd {
-
     font-size: 26px;
   }
 
@@ -42160,7 +42138,7 @@ label.textarea-fields-inner-list-label {
     height: 150px;
   }
 
-  .inner-banner>h1 {
+  .inner-banner > h1 {
     font-size: 36px;
     text-align: center;
   }
@@ -42291,7 +42269,8 @@ label.textarea-fields-inner-list-label {
     padding: 10px 30px;
   }
 
-  .mission-vission .col-lg-12.text-center.mt-3.gap-3.d-flex.justify-content-center {
+  .mission-vission
+    .col-lg-12.text-center.mt-3.gap-3.d-flex.justify-content-center {
     flex-direction: column;
   }
 
@@ -42371,7 +42350,7 @@ label.textarea-fields-inner-list-label {
     flex-wrap: wrap;
   }
 
-  .busines-logo-hd>h1 {
+  .busines-logo-hd > h1 {
     font-size: 20px;
   }
 
@@ -42393,11 +42372,11 @@ label.textarea-fields-inner-list-label {
 
   .tab-style li.nav-item {
     border: 0 !important;
-    border-top: 1px solid #CFCFCF !important;
+    border-top: 1px solid #cfcfcf !important;
   }
 
   .tab-style li.nav-item:focus {
-    border-top: 1px solid #CFCFCF !important;
+    border-top: 1px solid #cfcfcf !important;
   }
 
   .tab-style li.nav-item button {
@@ -42407,7 +42386,7 @@ label.textarea-fields-inner-list-label {
   }
 
   .tab-style li.nav-item:first-child {
-    border-top: 0px solid #CFCFCF !important;
+    border-top: 0px solid #cfcfcf !important;
   }
 
   .rating-box-details {
@@ -42433,7 +42412,6 @@ label.textarea-fields-inner-list-label {
   }
 
   .gallery-box {
-
     justify-content: center;
   }
 
@@ -42708,7 +42686,6 @@ label.textarea-fields-inner-list-label {
     width: 100%;
   }
 
-
   .business-collaboration-box-top-image {
     width: 50px;
     height: 50px;
@@ -42795,10 +42772,9 @@ label.textarea-fields-inner-list-label {
 
   /* PROMOTER-PROFILE */
   /*PROMOTER-DASHBOARD*/
-
 }
 
-@media only screen and (min-width:390px) and (max-width:479px) {
+@media only screen and (min-width: 390px) and (max-width: 479px) {
   .sign-in-top-box {
     margin-top: 10px;
     justify-content: flex-start !important;
@@ -42913,7 +42889,7 @@ label.textarea-fields-inner-list-label {
     flex-wrap: wrap;
   }
 
-  .sub-srchbox>input {
+  .sub-srchbox > input {
     padding: 10px 20px;
     width: 100%;
     text-align: center;
@@ -42935,15 +42911,15 @@ label.textarea-fields-inner-list-label {
     text-align: center;
   }
 
-  .referbox-text>h1 {
+  .referbox-text > h1 {
     font-size: 30px;
   }
 
-  .referbox-text>h2 {
+  .referbox-text > h2 {
     font-size: 23px;
   }
 
-  .referbox-text>p {
+  .referbox-text > p {
     font-size: 19px;
   }
 
@@ -42989,10 +42965,9 @@ label.textarea-fields-inner-list-label {
 
   .login-sign-box {
     border-radius: 10px;
-
   }
 
-  .loginflow>h1 {
+  .loginflow > h1 {
     font-size: 26px;
   }
 
@@ -43006,7 +42981,7 @@ label.textarea-fields-inner-list-label {
     margin-top: 10px;
   }
 
-  .same-inner-tab>h1 {
+  .same-inner-tab > h1 {
     font-size: 26px;
     margin-bottom: 20px !important;
   }
@@ -43028,7 +43003,6 @@ label.textarea-fields-inner-list-label {
   }
 
   .modal-hd {
-
     font-size: 26px;
   }
 
@@ -43042,7 +43016,7 @@ label.textarea-fields-inner-list-label {
     height: 150px;
   }
 
-  .inner-banner>h1 {
+  .inner-banner > h1 {
     font-size: 36px;
     text-align: center;
   }
@@ -43173,7 +43147,8 @@ label.textarea-fields-inner-list-label {
     padding: 10px 30px;
   }
 
-  .mission-vission .col-lg-12.text-center.mt-3.gap-3.d-flex.justify-content-center {
+  .mission-vission
+    .col-lg-12.text-center.mt-3.gap-3.d-flex.justify-content-center {
     flex-direction: column;
   }
 
@@ -43253,7 +43228,7 @@ label.textarea-fields-inner-list-label {
     flex-wrap: wrap;
   }
 
-  .busines-logo-hd>h1 {
+  .busines-logo-hd > h1 {
     font-size: 20px;
   }
 
@@ -43275,11 +43250,11 @@ label.textarea-fields-inner-list-label {
 
   .tab-style li.nav-item {
     border: 0 !important;
-    border-top: 1px solid #CFCFCF !important;
+    border-top: 1px solid #cfcfcf !important;
   }
 
   .tab-style li.nav-item:focus {
-    border-top: 1px solid #CFCFCF !important;
+    border-top: 1px solid #cfcfcf !important;
   }
 
   .tab-style li.nav-item button {
@@ -43289,7 +43264,7 @@ label.textarea-fields-inner-list-label {
   }
 
   .tab-style li.nav-item:first-child {
-    border-top: 0px solid #CFCFCF !important;
+    border-top: 0px solid #cfcfcf !important;
   }
 
   .rating-box-details {
@@ -43315,7 +43290,6 @@ label.textarea-fields-inner-list-label {
   }
 
   .gallery-box {
-
     justify-content: center;
   }
 
@@ -43588,7 +43562,6 @@ label.textarea-fields-inner-list-label {
   .business-collaboration-box {
     width: 100%;
   }
-
 
   .business-collaboration-box-top-image {
     width: 50px;
@@ -43680,7 +43653,7 @@ label.textarea-fields-inner-list-label {
   /*BUSINESS-DASHBOARD*/
 }
 
-@media only screen and (min-width:360px) and (max-width:389px) {
+@media only screen and (min-width: 360px) and (max-width: 389px) {
   .sign-in-top-box {
     margin-top: 10px;
     justify-content: flex-start !important;
@@ -43795,7 +43768,7 @@ label.textarea-fields-inner-list-label {
     flex-wrap: wrap;
   }
 
-  .sub-srchbox>input {
+  .sub-srchbox > input {
     padding: 10px 20px;
     width: 100%;
     text-align: center;
@@ -43817,15 +43790,15 @@ label.textarea-fields-inner-list-label {
     text-align: center;
   }
 
-  .referbox-text>h1 {
+  .referbox-text > h1 {
     font-size: 30px;
   }
 
-  .referbox-text>h2 {
+  .referbox-text > h2 {
     font-size: 23px;
   }
 
-  .referbox-text>p {
+  .referbox-text > p {
     font-size: 19px;
   }
 
@@ -43870,10 +43843,9 @@ label.textarea-fields-inner-list-label {
 
   .login-sign-box {
     border-radius: 10px;
-
   }
 
-  .loginflow>h1 {
+  .loginflow > h1 {
     font-size: 26px;
   }
 
@@ -43887,7 +43859,7 @@ label.textarea-fields-inner-list-label {
     margin-top: 10px;
   }
 
-  .same-inner-tab>h1 {
+  .same-inner-tab > h1 {
     font-size: 26px;
     margin-bottom: 20px !important;
   }
@@ -43909,7 +43881,6 @@ label.textarea-fields-inner-list-label {
   }
 
   .modal-hd {
-
     font-size: 26px;
   }
 
@@ -43923,7 +43894,7 @@ label.textarea-fields-inner-list-label {
     height: 150px;
   }
 
-  .inner-banner>h1 {
+  .inner-banner > h1 {
     font-size: 36px;
     text-align: center;
   }
@@ -44054,7 +44025,8 @@ label.textarea-fields-inner-list-label {
     padding: 10px 30px;
   }
 
-  .mission-vission .col-lg-12.text-center.mt-3.gap-3.d-flex.justify-content-center {
+  .mission-vission
+    .col-lg-12.text-center.mt-3.gap-3.d-flex.justify-content-center {
     flex-direction: column;
   }
 
@@ -44134,7 +44106,7 @@ label.textarea-fields-inner-list-label {
     flex-wrap: wrap;
   }
 
-  .busines-logo-hd>h1 {
+  .busines-logo-hd > h1 {
     font-size: 20px;
   }
 
@@ -44156,11 +44128,11 @@ label.textarea-fields-inner-list-label {
 
   .tab-style li.nav-item {
     border: 0 !important;
-    border-top: 1px solid #CFCFCF !important;
+    border-top: 1px solid #cfcfcf !important;
   }
 
   .tab-style li.nav-item:focus {
-    border-top: 1px solid #CFCFCF !important;
+    border-top: 1px solid #cfcfcf !important;
   }
 
   .tab-style li.nav-item button {
@@ -44170,7 +44142,7 @@ label.textarea-fields-inner-list-label {
   }
 
   .tab-style li.nav-item:first-child {
-    border-top: 0px solid #CFCFCF !important;
+    border-top: 0px solid #cfcfcf !important;
   }
 
   .rating-box-details {
@@ -44196,7 +44168,6 @@ label.textarea-fields-inner-list-label {
   }
 
   .gallery-box {
-
     justify-content: center;
   }
 
@@ -44475,7 +44446,6 @@ label.textarea-fields-inner-list-label {
   }
 
   /* BUSINESS-COLLABORATION-MANAGEMENT */
-
 
   /* BUSINESS-MY-VOOPONS */
   .business-my-events-boxes .voopan-box {
@@ -44567,7 +44537,7 @@ label.textarea-fields-inner-list-label {
   /*BUSINESS-DASHBOARD*/
 }
 
-@media only screen and (min-width:320px) and (max-width:359px) {
+@media only screen and (min-width: 320px) and (max-width: 359px) {
   .sign-in-top-box {
     margin-top: 10px;
     justify-content: flex-start !important;
@@ -44682,7 +44652,7 @@ label.textarea-fields-inner-list-label {
     flex-wrap: wrap;
   }
 
-  .sub-srchbox>input {
+  .sub-srchbox > input {
     padding: 10px 20px;
     width: 100%;
     text-align: center;
@@ -44704,15 +44674,15 @@ label.textarea-fields-inner-list-label {
     text-align: center;
   }
 
-  .referbox-text>h1 {
+  .referbox-text > h1 {
     font-size: 30px;
   }
 
-  .referbox-text>h2 {
+  .referbox-text > h2 {
     font-size: 23px;
   }
 
-  .referbox-text>p {
+  .referbox-text > p {
     font-size: 19px;
   }
 
@@ -44757,10 +44727,9 @@ label.textarea-fields-inner-list-label {
 
   .login-sign-box {
     border-radius: 10px;
-
   }
 
-  .loginflow>h1 {
+  .loginflow > h1 {
     font-size: 26px;
   }
 
@@ -44774,7 +44743,7 @@ label.textarea-fields-inner-list-label {
     margin-top: 10px;
   }
 
-  .same-inner-tab>h1 {
+  .same-inner-tab > h1 {
     font-size: 26px;
     margin-bottom: 20px !important;
   }
@@ -44796,7 +44765,6 @@ label.textarea-fields-inner-list-label {
   }
 
   .modal-hd {
-
     font-size: 26px;
   }
 
@@ -44810,7 +44778,7 @@ label.textarea-fields-inner-list-label {
     height: 150px;
   }
 
-  .inner-banner>h1 {
+  .inner-banner > h1 {
     font-size: 36px;
     text-align: center;
   }
@@ -44939,7 +44907,8 @@ label.textarea-fields-inner-list-label {
     padding: 10px 30px;
   }
 
-  .mission-vission .col-lg-12.text-center.mt-3.gap-3.d-flex.justify-content-center {
+  .mission-vission
+    .col-lg-12.text-center.mt-3.gap-3.d-flex.justify-content-center {
     flex-direction: column;
   }
 
@@ -45019,7 +44988,7 @@ label.textarea-fields-inner-list-label {
     flex-wrap: wrap;
   }
 
-  .busines-logo-hd>h1 {
+  .busines-logo-hd > h1 {
     font-size: 20px;
   }
 
@@ -45041,11 +45010,11 @@ label.textarea-fields-inner-list-label {
 
   .tab-style li.nav-item {
     border: 0 !important;
-    border-top: 1px solid #CFCFCF !important;
+    border-top: 1px solid #cfcfcf !important;
   }
 
   .tab-style li.nav-item:focus {
-    border-top: 1px solid #CFCFCF !important;
+    border-top: 1px solid #cfcfcf !important;
   }
 
   .tab-style li.nav-item button {
@@ -45055,7 +45024,7 @@ label.textarea-fields-inner-list-label {
   }
 
   .tab-style li.nav-item:first-child {
-    border-top: 0px solid #CFCFCF !important;
+    border-top: 0px solid #cfcfcf !important;
   }
 
   .rating-box-details {
@@ -45081,7 +45050,6 @@ label.textarea-fields-inner-list-label {
   }
 
   .gallery-box {
-
     justify-content: center;
   }
 
@@ -45216,7 +45184,6 @@ label.textarea-fields-inner-list-label {
   .availability-info-text {
     min-width: 130px;
   }
-
 
   /* BUSINESS-CREATE-EVENT */
   .business-create-event {
@@ -45363,11 +45330,7 @@ label.textarea-fields-inner-list-label {
     height: 50px;
   }
 
-
-
-
   /* BUSINESS-COLLABORATION-MANAGEMENT */
-
 
   /* BUSINESS-MY-VOOPONS */
   .business-my-events-boxes .voopan-box {
@@ -45462,6 +45425,7 @@ label.textarea-fields-inner-list-label {
 
   /*BUSINESS-DASHBOARD*/
 }
+
 /*!*****************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[3]!./src/styles/fonts/stylesheet.css ***!
   \*****************************************************************************************************************************************************************************************************************************************************************************/

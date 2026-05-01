@@ -370,7 +370,7 @@ const ClientComponent = ({ voopon_detail }) => {
             <div className="row mt-2 align-items-center">
               <div className="col-lg-8 col-md-6">
                 <div className="valid-thru">
-                  <h4> Start Date </h4>
+                  <h4> Start Date: </h4>
                   <span>
                     {voopon_detail?.voopon_one?.voopons_date
                       ? DateTime.fromISO(

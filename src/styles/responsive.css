@@ -1,5 +1,4 @@
 @media (min-width: 1300px) {
-
   .container,
   .container-lg,
   .container-md,
@@ -9,7 +8,7 @@
   }
 }
 
-@media(min-width: 680px) {
+@media (min-width: 680px) {
   button.owl-next {
     margin-right: -20px;
   }
@@ -46,7 +45,7 @@
   }
 }
 
-@media(max-width:991px) {
+@media (max-width: 991px) {
   a.navbar-brand {
     max-width: 75%;
   }
@@ -57,8 +56,7 @@
   }
 }
 
-@media only screen and (min-width:1280px) and (max-width:1300px) {
-
+@media only screen and (min-width: 1280px) and (max-width: 1300px) {
   .business-statistics-chart {
     width: 78%;
   }
@@ -83,10 +81,9 @@
   .business-add-payment-card-details-bottom .input-2 {
     font-size: 13px;
   }
-
 }
 
-@media only screen and (min-width:1000px) and (max-width:1279px) {
+@media only screen and (min-width: 1000px) and (max-width: 1279px) {
   .top-part .row {
     display: flex;
     align-items: center;
@@ -223,7 +220,7 @@
     flex-wrap: wrap;
   }
 
-  .sub-srchbox>input {
+  .sub-srchbox > input {
     padding: 15px 20px;
     width: 100%;
   }
@@ -244,15 +241,15 @@
     width: 100%;
   }
 
-  .referbox-text>h1 {
+  .referbox-text > h1 {
     font-size: 30px;
   }
 
-  .referbox-text>h2 {
+  .referbox-text > h2 {
     font-size: 23px;
   }
 
-  .referbox-text>p {
+  .referbox-text > p {
     font-size: 19px;
   }
 
@@ -293,7 +290,7 @@
     padding-right: 0px;
   }
 
-  .loginflow>h1 {
+  .loginflow > h1 {
     font-size: 26px;
   }
 
@@ -305,7 +302,7 @@
     margin-top: 10px;
   }
 
-  .same-inner-tab>h1 {
+  .same-inner-tab > h1 {
     font-size: 26px;
     margin-bottom: 20px !important;
   }
@@ -326,7 +323,6 @@
   }
 
   .modal-hd {
-
     font-size: 26px;
   }
 
@@ -340,7 +336,7 @@
     height: 150px;
   }
 
-  .inner-banner>h1 {
+  .inner-banner > h1 {
     font-size: 36px;
     text-align: center;
   }
@@ -368,7 +364,6 @@
   .terms-cond .deal-search-filter {
     width: 48%;
   }
-
 
   .user-dashboard-list {
     width: 40%;
@@ -433,7 +428,7 @@
     padding: 20px 10px;
   }
 
-  .voopan-box>h5 {
+  .voopan-box > h5 {
     font-size: 18px;
     overflow: hidden;
     display: -webkit-box;
@@ -558,7 +553,7 @@
     flex-wrap: wrap;
   }
 
-  .busines-logo-hd>h1 {
+  .busines-logo-hd > h1 {
     font-size: 20px;
   }
 
@@ -581,7 +576,7 @@
   }
 
   .tab-style li.nav-item:first-child {
-    border-top: 0px solid #CFCFCF !important;
+    border-top: 0px solid #cfcfcf !important;
   }
 
   .rating-flex {
@@ -596,7 +591,6 @@
   }
 
   .gallery-box {
-
     justify-content: center;
   }
 
@@ -780,7 +774,6 @@
     width: 70%;
   }
 
-
   .create-ev-btn {
     width: auto;
   }
@@ -880,7 +873,6 @@
     width: 48.5%;
   }
 
-
   .business-collaboration-box-top-image {
     width: 50px;
     height: 50px;
@@ -896,7 +888,6 @@
     width: 47%;
     margin-bottom: 0;
   }
-
 
   .business-my-voopon-boxes .business-my-events-filter-left .calendar {
     width: 100%;
@@ -982,7 +973,7 @@
   /*BUSINESS-DASHBOARD*/
 }
 
-@media only screen and (min-width:912px) and (max-width:999px) {
+@media only screen and (min-width: 912px) and (max-width: 999px) {
   .sign-in-top-box {
     margin-top: 10px;
     justify-content: flex-end !important;
@@ -1105,7 +1096,7 @@
     flex-wrap: wrap;
   }
 
-  .sub-srchbox>input {
+  .sub-srchbox > input {
     padding: 15px 20px;
     width: 100%;
   }
@@ -1126,15 +1117,15 @@
     width: 100%;
   }
 
-  .referbox-text>h1 {
+  .referbox-text > h1 {
     font-size: 30px;
   }
 
-  .referbox-text>h2 {
+  .referbox-text > h2 {
     font-size: 23px;
   }
 
-  .referbox-text>p {
+  .referbox-text > p {
     font-size: 19px;
   }
 
@@ -1182,10 +1173,9 @@
 
   .login-sign-box {
     border-radius: 10px;
-
   }
 
-  .loginflow>h1 {
+  .loginflow > h1 {
     font-size: 26px;
   }
 
@@ -1199,7 +1189,7 @@
     margin-top: 10px;
   }
 
-  .same-inner-tab>h1 {
+  .same-inner-tab > h1 {
     font-size: 26px;
     margin-bottom: 20px !important;
   }
@@ -1220,7 +1210,6 @@
   }
 
   .modal-hd {
-
     font-size: 26px;
   }
 
@@ -1234,7 +1223,7 @@
     height: 150px;
   }
 
-  .inner-banner>h1 {
+  .inner-banner > h1 {
     font-size: 36px;
     text-align: center;
   }
@@ -1262,7 +1251,6 @@
   .terms-cond .deal-search-filter {
     width: 48%;
   }
-
 
   .user-dashboard-list {
     width: 40%;
@@ -1327,7 +1315,7 @@
     padding: 20px 10px;
   }
 
-  .voopan-box>h5 {
+  .voopan-box > h5 {
     font-size: 18px;
     overflow: hidden;
     display: -webkit-box;
@@ -1374,7 +1362,8 @@
     padding: 10px 30px;
   }
 
-  .mission-vission .col-lg-12.text-center.mt-3.gap-3.d-flex.justify-content-center {
+  .mission-vission
+    .col-lg-12.text-center.mt-3.gap-3.d-flex.justify-content-center {
     flex-direction: column;
   }
 
@@ -1452,7 +1441,7 @@
     flex-wrap: wrap;
   }
 
-  .busines-logo-hd>h1 {
+  .busines-logo-hd > h1 {
     font-size: 20px;
   }
 
@@ -1475,7 +1464,7 @@
   }
 
   .tab-style li.nav-item:first-child {
-    border-top: 0px solid #CFCFCF !important;
+    border-top: 0px solid #cfcfcf !important;
   }
 
   .rating-box-details {
@@ -1501,7 +1490,6 @@
   }
 
   .gallery-box {
-
     justify-content: center;
   }
 
@@ -1907,7 +1895,7 @@
   /*PROMOTER-DASHBOARD*/
 }
 
-@media only screen and (min-width:800px) and (max-width:911px) {
+@media only screen and (min-width: 800px) and (max-width: 911px) {
   .sign-in-top-box {
     margin-top: 10px;
     justify-content: flex-end !important;
@@ -2030,7 +2018,7 @@
     flex-wrap: wrap;
   }
 
-  .sub-srchbox>input {
+  .sub-srchbox > input {
     padding: 15px 20px;
     width: 100%;
   }
@@ -2051,15 +2039,15 @@
     width: 100%;
   }
 
-  .referbox-text>h1 {
+  .referbox-text > h1 {
     font-size: 30px;
   }
 
-  .referbox-text>h2 {
+  .referbox-text > h2 {
     font-size: 23px;
   }
 
-  .referbox-text>p {
+  .referbox-text > p {
     font-size: 19px;
   }
 
@@ -2107,10 +2095,9 @@
 
   .login-sign-box {
     border-radius: 10px;
-
   }
 
-  .loginflow>h1 {
+  .loginflow > h1 {
     font-size: 26px;
   }
 
@@ -2124,7 +2111,7 @@
     margin-top: 10px;
   }
 
-  .same-inner-tab>h1 {
+  .same-inner-tab > h1 {
     font-size: 26px;
     margin-bottom: 20px !important;
   }
@@ -2145,7 +2132,6 @@
   }
 
   .modal-hd {
-
     font-size: 26px;
   }
 
@@ -2159,7 +2145,7 @@
     height: 150px;
   }
 
-  .inner-banner>h1 {
+  .inner-banner > h1 {
     font-size: 36px;
     text-align: center;
   }
@@ -2187,7 +2173,6 @@
   .terms-cond .deal-search-filter {
     width: 48%;
   }
-
 
   .user-dashboard-list {
     width: 40%;
@@ -2252,7 +2237,7 @@
     padding: 20px 10px;
   }
 
-  .voopan-box>h5 {
+  .voopan-box > h5 {
     font-size: 18px;
     overflow: hidden;
     display: -webkit-box;
@@ -2299,7 +2284,8 @@
     padding: 10px 30px;
   }
 
-  .mission-vission .col-lg-12.text-center.mt-3.gap-3.d-flex.justify-content-center {
+  .mission-vission
+    .col-lg-12.text-center.mt-3.gap-3.d-flex.justify-content-center {
     flex-direction: inherit;
   }
 
@@ -2377,7 +2363,7 @@
     flex-wrap: wrap;
   }
 
-  .busines-logo-hd>h1 {
+  .busines-logo-hd > h1 {
     font-size: 20px;
   }
 
@@ -2400,7 +2386,7 @@
   }
 
   .tab-style li.nav-item:first-child {
-    border-top: 0px solid #CFCFCF !important;
+    border-top: 0px solid #cfcfcf !important;
   }
 
   .rating-box-details {
@@ -2426,7 +2412,6 @@
   }
 
   .gallery-box {
-
     justify-content: center;
   }
 
@@ -2745,7 +2730,6 @@
     width: 100%;
   }
 
-
   .business-collaboration-box-top-image {
     width: 50px;
     height: 50px;
@@ -2837,7 +2821,7 @@
   /*PROMOTER-DASHBOARD*/
 }
 
-@media only screen and (min-width:768px) and (max-width:799px) {
+@media only screen and (min-width: 768px) and (max-width: 799px) {
   .sign-in-top-box {
     margin-top: 10px;
     justify-content: flex-end !important;
@@ -2960,7 +2944,7 @@
     flex-wrap: wrap;
   }
 
-  .sub-srchbox>input {
+  .sub-srchbox > input {
     padding: 15px 20px;
     width: 100%;
   }
@@ -2981,15 +2965,15 @@
     width: 100%;
   }
 
-  .referbox-text>h1 {
+  .referbox-text > h1 {
     font-size: 30px;
   }
 
-  .referbox-text>h2 {
+  .referbox-text > h2 {
     font-size: 23px;
   }
 
-  .referbox-text>p {
+  .referbox-text > p {
     font-size: 19px;
   }
 
@@ -3037,10 +3021,9 @@
 
   .login-sign-box {
     border-radius: 10px;
-
   }
 
-  .loginflow>h1 {
+  .loginflow > h1 {
     font-size: 26px;
   }
 
@@ -3054,7 +3037,7 @@
     margin-top: 10px;
   }
 
-  .same-inner-tab>h1 {
+  .same-inner-tab > h1 {
     font-size: 26px;
     margin-bottom: 20px !important;
   }
@@ -3075,7 +3058,6 @@
   }
 
   .modal-hd {
-
     font-size: 26px;
   }
 
@@ -3089,7 +3071,7 @@
     height: 150px;
   }
 
-  .inner-banner>h1 {
+  .inner-banner > h1 {
     font-size: 36px;
     text-align: center;
   }
@@ -3117,7 +3099,6 @@
   .terms-cond .deal-search-filter {
     width: 48%;
   }
-
 
   .user-dashboard-list {
     width: 40%;
@@ -3182,7 +3163,7 @@
     padding: 20px 10px;
   }
 
-  .voopan-box>h5 {
+  .voopan-box > h5 {
     font-size: 18px;
     overflow: hidden;
     display: -webkit-box;
@@ -3229,7 +3210,8 @@
     padding: 10px 30px;
   }
 
-  .mission-vission .col-lg-12.text-center.mt-3.gap-3.d-flex.justify-content-center {
+  .mission-vission
+    .col-lg-12.text-center.mt-3.gap-3.d-flex.justify-content-center {
     flex-direction: inherit;
   }
 
@@ -3307,7 +3289,7 @@
     flex-wrap: wrap;
   }
 
-  .busines-logo-hd>h1 {
+  .busines-logo-hd > h1 {
     font-size: 20px;
   }
 
@@ -3330,7 +3312,7 @@
   }
 
   .tab-style li.nav-item:first-child {
-    border-top: 0px solid #CFCFCF !important;
+    border-top: 0px solid #cfcfcf !important;
   }
 
   .rating-box-details {
@@ -3356,7 +3338,6 @@
   }
 
   .gallery-box {
-
     justify-content: center;
   }
 
@@ -3675,7 +3656,6 @@
     width: 100%;
   }
 
-
   .business-collaboration-box-top-image {
     width: 50px;
     height: 50px;
@@ -3767,7 +3747,7 @@
   /*PROMOTER-DASHBOARD*/
 }
 
-@media only screen and (min-width:480px) and (max-width:767px) {
+@media only screen and (min-width: 480px) and (max-width: 767px) {
   .sign-in-top-box {
     margin-top: 10px;
     justify-content: flex-start !important;
@@ -3882,7 +3862,7 @@
     flex-wrap: wrap;
   }
 
-  .sub-srchbox>input {
+  .sub-srchbox > input {
     padding: 10px 20px;
     width: 100%;
     text-align: center;
@@ -3904,15 +3884,15 @@
     text-align: center;
   }
 
-  .referbox-text>h1 {
+  .referbox-text > h1 {
     font-size: 30px;
   }
 
-  .referbox-text>h2 {
+  .referbox-text > h2 {
     font-size: 23px;
   }
 
-  .referbox-text>p {
+  .referbox-text > p {
     font-size: 19px;
   }
 
@@ -3958,10 +3938,9 @@
 
   .login-sign-box {
     border-radius: 10px;
-
   }
 
-  .loginflow>h1 {
+  .loginflow > h1 {
     font-size: 26px;
   }
 
@@ -3975,7 +3954,7 @@
     margin-top: 10px;
   }
 
-  .same-inner-tab>h1 {
+  .same-inner-tab > h1 {
     font-size: 26px;
     margin-bottom: 20px !important;
   }
@@ -3997,7 +3976,6 @@
   }
 
   .modal-hd {
-
     font-size: 26px;
   }
 
@@ -4011,7 +3989,7 @@
     height: 150px;
   }
 
-  .inner-banner>h1 {
+  .inner-banner > h1 {
     font-size: 36px;
     text-align: center;
   }
@@ -4142,7 +4120,8 @@
     padding: 10px 30px;
   }
 
-  .mission-vission .col-lg-12.text-center.mt-3.gap-3.d-flex.justify-content-center {
+  .mission-vission
+    .col-lg-12.text-center.mt-3.gap-3.d-flex.justify-content-center {
     flex-direction: column;
   }
 
@@ -4222,7 +4201,7 @@
     flex-wrap: wrap;
   }
 
-  .busines-logo-hd>h1 {
+  .busines-logo-hd > h1 {
     font-size: 20px;
   }
 
@@ -4244,11 +4223,11 @@
 
   .tab-style li.nav-item {
     border: 0 !important;
-    border-top: 1px solid #CFCFCF !important;
+    border-top: 1px solid #cfcfcf !important;
   }
 
   .tab-style li.nav-item:focus {
-    border-top: 1px solid #CFCFCF !important;
+    border-top: 1px solid #cfcfcf !important;
   }
 
   .tab-style li.nav-item button {
@@ -4258,7 +4237,7 @@
   }
 
   .tab-style li.nav-item:first-child {
-    border-top: 0px solid #CFCFCF !important;
+    border-top: 0px solid #cfcfcf !important;
   }
 
   .rating-box-details {
@@ -4284,7 +4263,6 @@
   }
 
   .gallery-box {
-
     justify-content: center;
   }
 
@@ -4559,7 +4537,6 @@
     width: 100%;
   }
 
-
   .business-collaboration-box-top-image {
     width: 50px;
     height: 50px;
@@ -4646,10 +4623,9 @@
 
   /* PROMOTER-PROFILE */
   /*PROMOTER-DASHBOARD*/
-
 }
 
-@media only screen and (min-width:390px) and (max-width:479px) {
+@media only screen and (min-width: 390px) and (max-width: 479px) {
   .sign-in-top-box {
     margin-top: 10px;
     justify-content: flex-start !important;
@@ -4764,7 +4740,7 @@
     flex-wrap: wrap;
   }
 
-  .sub-srchbox>input {
+  .sub-srchbox > input {
     padding: 10px 20px;
     width: 100%;
     text-align: center;
@@ -4786,15 +4762,15 @@
     text-align: center;
   }
 
-  .referbox-text>h1 {
+  .referbox-text > h1 {
     font-size: 30px;
   }
 
-  .referbox-text>h2 {
+  .referbox-text > h2 {
     font-size: 23px;
   }
 
-  .referbox-text>p {
+  .referbox-text > p {
     font-size: 19px;
   }
 
@@ -4840,10 +4816,9 @@
 
   .login-sign-box {
     border-radius: 10px;
-
   }
 
-  .loginflow>h1 {
+  .loginflow > h1 {
     font-size: 26px;
   }
 
@@ -4857,7 +4832,7 @@
     margin-top: 10px;
   }
 
-  .same-inner-tab>h1 {
+  .same-inner-tab > h1 {
     font-size: 26px;
     margin-bottom: 20px !important;
   }
@@ -4879,7 +4854,6 @@
   }
 
   .modal-hd {
-
     font-size: 26px;
   }
 
@@ -4893,7 +4867,7 @@
     height: 150px;
   }
 
-  .inner-banner>h1 {
+  .inner-banner > h1 {
     font-size: 36px;
     text-align: center;
   }
@@ -5024,7 +4998,8 @@
     padding: 10px 30px;
   }
 
-  .mission-vission .col-lg-12.text-center.mt-3.gap-3.d-flex.justify-content-center {
+  .mission-vission
+    .col-lg-12.text-center.mt-3.gap-3.d-flex.justify-content-center {
     flex-direction: column;
   }
 
@@ -5104,7 +5079,7 @@
     flex-wrap: wrap;
   }
 
-  .busines-logo-hd>h1 {
+  .busines-logo-hd > h1 {
     font-size: 20px;
   }
 
@@ -5126,11 +5101,11 @@
 
   .tab-style li.nav-item {
     border: 0 !important;
-    border-top: 1px solid #CFCFCF !important;
+    border-top: 1px solid #cfcfcf !important;
   }
 
   .tab-style li.nav-item:focus {
-    border-top: 1px solid #CFCFCF !important;
+    border-top: 1px solid #cfcfcf !important;
   }
 
   .tab-style li.nav-item button {
@@ -5140,7 +5115,7 @@
   }
 
   .tab-style li.nav-item:first-child {
-    border-top: 0px solid #CFCFCF !important;
+    border-top: 0px solid #cfcfcf !important;
   }
 
   .rating-box-details {
@@ -5166,7 +5141,6 @@
   }
 
   .gallery-box {
-
     justify-content: center;
   }
 
@@ -5439,7 +5413,6 @@
   .business-collaboration-box {
     width: 100%;
   }
-
 
   .business-collaboration-box-top-image {
     width: 50px;
@@ -5531,7 +5504,7 @@
   /*BUSINESS-DASHBOARD*/
 }
 
-@media only screen and (min-width:360px) and (max-width:389px) {
+@media only screen and (min-width: 360px) and (max-width: 389px) {
   .sign-in-top-box {
     margin-top: 10px;
     justify-content: flex-start !important;
@@ -5646,7 +5619,7 @@
     flex-wrap: wrap;
   }
 
-  .sub-srchbox>input {
+  .sub-srchbox > input {
     padding: 10px 20px;
     width: 100%;
     text-align: center;
@@ -5668,15 +5641,15 @@
     text-align: center;
   }
 
-  .referbox-text>h1 {
+  .referbox-text > h1 {
     font-size: 30px;
   }
 
-  .referbox-text>h2 {
+  .referbox-text > h2 {
     font-size: 23px;
   }
 
-  .referbox-text>p {
+  .referbox-text > p {
     font-size: 19px;
   }
 
@@ -5721,10 +5694,9 @@
 
   .login-sign-box {
     border-radius: 10px;
-
   }
 
-  .loginflow>h1 {
+  .loginflow > h1 {
     font-size: 26px;
   }
 
@@ -5738,7 +5710,7 @@
     margin-top: 10px;
   }
 
-  .same-inner-tab>h1 {
+  .same-inner-tab > h1 {
     font-size: 26px;
     margin-bottom: 20px !important;
   }
@@ -5760,7 +5732,6 @@
   }
 
   .modal-hd {
-
     font-size: 26px;
   }
 
@@ -5774,7 +5745,7 @@
     height: 150px;
   }
 
-  .inner-banner>h1 {
+  .inner-banner > h1 {
     font-size: 36px;
     text-align: center;
   }
@@ -5905,7 +5876,8 @@
     padding: 10px 30px;
   }
 
-  .mission-vission .col-lg-12.text-center.mt-3.gap-3.d-flex.justify-content-center {
+  .mission-vission
+    .col-lg-12.text-center.mt-3.gap-3.d-flex.justify-content-center {
     flex-direction: column;
   }
 
@@ -5985,7 +5957,7 @@
     flex-wrap: wrap;
   }
 
-  .busines-logo-hd>h1 {
+  .busines-logo-hd > h1 {
     font-size: 20px;
   }
 
@@ -6007,11 +5979,11 @@
 
   .tab-style li.nav-item {
     border: 0 !important;
-    border-top: 1px solid #CFCFCF !important;
+    border-top: 1px solid #cfcfcf !important;
   }
 
   .tab-style li.nav-item:focus {
-    border-top: 1px solid #CFCFCF !important;
+    border-top: 1px solid #cfcfcf !important;
   }
 
   .tab-style li.nav-item button {
@@ -6021,7 +5993,7 @@
   }
 
   .tab-style li.nav-item:first-child {
-    border-top: 0px solid #CFCFCF !important;
+    border-top: 0px solid #cfcfcf !important;
   }
 
   .rating-box-details {
@@ -6047,7 +6019,6 @@
   }
 
   .gallery-box {
-
     justify-content: center;
   }
 
@@ -6326,7 +6297,6 @@
   }
 
   /* BUSINESS-COLLABORATION-MANAGEMENT */
-
 
   /* BUSINESS-MY-VOOPONS */
   .business-my-events-boxes .voopan-box {
@@ -6418,7 +6388,7 @@
   /*BUSINESS-DASHBOARD*/
 }
 
-@media only screen and (min-width:320px) and (max-width:359px) {
+@media only screen and (min-width: 320px) and (max-width: 359px) {
   .sign-in-top-box {
     margin-top: 10px;
     justify-content: flex-start !important;
@@ -6533,7 +6503,7 @@
     flex-wrap: wrap;
   }
 
-  .sub-srchbox>input {
+  .sub-srchbox > input {
     padding: 10px 20px;
     width: 100%;
     text-align: center;
@@ -6555,15 +6525,15 @@
     text-align: center;
   }
 
-  .referbox-text>h1 {
+  .referbox-text > h1 {
     font-size: 30px;
   }
 
-  .referbox-text>h2 {
+  .referbox-text > h2 {
     font-size: 23px;
   }
 
-  .referbox-text>p {
+  .referbox-text > p {
     font-size: 19px;
   }
 
@@ -6608,10 +6578,9 @@
 
   .login-sign-box {
     border-radius: 10px;
-
   }
 
-  .loginflow>h1 {
+  .loginflow > h1 {
     font-size: 26px;
   }
 
@@ -6625,7 +6594,7 @@
     margin-top: 10px;
   }
 
-  .same-inner-tab>h1 {
+  .same-inner-tab > h1 {
     font-size: 26px;
     margin-bottom: 20px !important;
   }
@@ -6647,7 +6616,6 @@
   }
 
   .modal-hd {
-
     font-size: 26px;
   }
 
@@ -6661,7 +6629,7 @@
     height: 150px;
   }
 
-  .inner-banner>h1 {
+  .inner-banner > h1 {
     font-size: 36px;
     text-align: center;
   }
@@ -6790,7 +6758,8 @@
     padding: 10px 30px;
   }
 
-  .mission-vission .col-lg-12.text-center.mt-3.gap-3.d-flex.justify-content-center {
+  .mission-vission
+    .col-lg-12.text-center.mt-3.gap-3.d-flex.justify-content-center {
     flex-direction: column;
   }
 
@@ -6870,7 +6839,7 @@
     flex-wrap: wrap;
   }
 
-  .busines-logo-hd>h1 {
+  .busines-logo-hd > h1 {
     font-size: 20px;
   }
 
@@ -6892,11 +6861,11 @@
 
   .tab-style li.nav-item {
     border: 0 !important;
-    border-top: 1px solid #CFCFCF !important;
+    border-top: 1px solid #cfcfcf !important;
   }
 
   .tab-style li.nav-item:focus {
-    border-top: 1px solid #CFCFCF !important;
+    border-top: 1px solid #cfcfcf !important;
   }
 
   .tab-style li.nav-item button {
@@ -6906,7 +6875,7 @@
   }
 
   .tab-style li.nav-item:first-child {
-    border-top: 0px solid #CFCFCF !important;
+    border-top: 0px solid #cfcfcf !important;
   }
 
   .rating-box-details {
@@ -6932,7 +6901,6 @@
   }
 
   .gallery-box {
-
     justify-content: center;
   }
 
@@ -7067,7 +7035,6 @@
   .availability-info-text {
     min-width: 130px;
   }
-
 
   /* BUSINESS-CREATE-EVENT */
   .business-create-event {
@@ -7214,11 +7181,7 @@
     height: 50px;
   }
 
-
-
-
   /* BUSINESS-COLLABORATION-MANAGEMENT */
-
 
   /* BUSINESS-MY-VOOPONS */
   .business-my-events-boxes .voopan-box {

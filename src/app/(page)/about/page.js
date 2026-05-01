@@ -112,9 +112,22 @@ const About = async () => {
           <div className="row justify-content-center">
             <div className="col-lg-10 text-center">
               <div className="heading-semi">How it Works</div>
-              <div className="heading text-white">Voopons You Will Love</div>
+              <div
+                className="heading text-white"
+                style={{
+                  textAlign: "center",
+                  width: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  marginBottom: 5,
+                }}
+              >
+                Voopons You Will Love
+              </div>
               <div
                 className="text-center md:text-center text-white"
+                style={{ letterSpacing: -1 }}
                 dangerouslySetInnerHTML={{ __html: separatedContent.voopons }}
               />
 
