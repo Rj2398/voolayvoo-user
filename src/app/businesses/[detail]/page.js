@@ -137,7 +137,7 @@ const Detail = () => {
   const tempPathName =
     pathName + `?business_id=${searchParams.get("business_id")}`;
   const business_id = searchParams.get("business_id");
-
+  // data?.DetailsData?.followers_count
   const [data, setData] = useState({
     EventList: [],
     VooponsList: [],
@@ -145,7 +145,7 @@ const Detail = () => {
     DetailsData: null,
     BusinessRatingResponse: null,
   });
-
+  const [Count, setCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -172,6 +172,7 @@ const Detail = () => {
       );
       fetchData();
       setCheckedFollow((pre) => !pre);
+      if (id === 0) setCount(Count - 1);
       // setCheckStatus(response?.data?.data);
     } catch (error) {
       // console.error('Error:', error.response ? error.response.data : error.message);
@@ -191,6 +192,7 @@ const Detail = () => {
         userDetails.token
       );
       setData(result);
+      setCount(result?.DetailsData?.followers_count);
     } catch (err) {
       setError(err);
     } finally {
@@ -345,7 +347,7 @@ const Detail = () => {
                           src="/images/followers-icon.png"
                           alt=""
                         />{" "}
-                        {data?.DetailsData?.followers_count} Followers
+                        {Count} Followers
                       </span>
 
                       {data?.DetailsData?.follow_status?.follow_status ==
