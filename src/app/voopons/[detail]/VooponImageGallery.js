@@ -45,8 +45,8 @@ const VooponImageGallery = ({ voopon_detail, BASE_URL }) => {
       <div
         className="details-img"
         style={{
-          width: 596,
-          height: 375,
+          width: "100%", // Let it fill the container width
+          maxWidth: "596px", // But don't let it get bigger than 596px
           position: "relative",
           overflow: "hidden",
           borderRadius: "12px",
@@ -76,12 +76,16 @@ const VooponImageGallery = ({ voopon_detail, BASE_URL }) => {
           </Tooltip>
         )}
         <Image
-          width={596}
-          height={375}
           src={imageSrc}
           alt="voopon image"
-          className="img-voopon"
-          style={{ objectFit: "cover", width: "100%", height: "100%" }}
+          width={596} // These act as aspect ratio hints
+          height={375}
+          sizes="100vw" // Tells Next.js to use full width
+          style={{
+            width: "100%", // Makes the image scale to the container
+            height: "auto", // Keeps the aspect ratio perfect
+            display: "block",
+          }}
         />
       </div>
 

@@ -114,16 +114,10 @@ const About = async () => {
               <div className="heading-semi">How it Works</div>
               <div className="heading text-white">Voopons You Will Love</div>
               <div
+                className="text-center md:text-center text-white"
                 dangerouslySetInnerHTML={{ __html: separatedContent.voopons }}
               />
-              {/* <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry&apos;s standard
-                dummy text ever since the 1500s, when an unknown printer took a
-                galley of type and scrambled it to make a type specimen book.
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry.{" "}
-              </p> */}
+
               <Link
                 className="btn btn-learnmore"
                 href={"/how-it-works"}

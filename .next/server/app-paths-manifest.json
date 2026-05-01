@@ -1,4 +1,7 @@
 {
-  "/page": "app/page.js",
-  "/(user)/my/voopons/page": "app/(user)/my/voopons/page.js"
+  "/voopons/page": "app/voopons/page.js",
+  "/voopons/[detail]/page": "app/voopons/[detail]/page.js",
+  "/businesses/page": "app/businesses/page.js",
+  "/promoters/page": "app/promoters/page.js",
+  "/promoters/[detail]/page": "app/promoters/[detail]/page.js"
 }

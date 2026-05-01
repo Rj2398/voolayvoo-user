@@ -259,20 +259,6 @@ const Detail = () => {
           <div className="row">
             <div className="col-lg-6">
               <div className="slider-box">
-                {/* <Image
-                  width={596}
-                  height={315}
-                  className="w-100"
-                  src={
-                    data?.DetailsData?.businessdetails?.business_image
-                      ?.length !== 0
-                      ? `${BASE_URL}/${data?.DetailsData?.businessdetails?.business_image?.[0]?.image}`
-                      : "/images/banners/slide1.png"
-                  }
-                  alt="business_image"
-                  id="product-main-image"
-                /> */}
-
                 <Image
                   width={596}
                   height={315}
@@ -286,9 +272,12 @@ const Detail = () => {
                   alt="business_image"
                   id="product-main-image"
                   style={{
-                    height: "315px", // Height fix rakhein taaki layout na hile
-                    objectFit: "contain", // Isse image poori dikhegi, kategi nahi
-                    backgroundColor: "#f8f8f8", // Optional: taaki sides ki khali jagah buri na lage
+                    width: "100%",
+                    height: "auto", // 1. Replaces fixed 315px so it scales on mobile
+                    aspectRatio: "596 / 315", // 2. Forces the box to maintain the correct aspect ratio
+                    objectFit: "contain", // Keeps the whole image visible
+                    backgroundColor: "#f8f8f8",
+                    maxHeight: "315px", // 3. Prevents it from getting too large on desktop
                     display: "block",
                   }}
                 />
@@ -324,42 +313,6 @@ const Detail = () => {
                     </div>
                   ))}
                 </Carousel>
-
-                {/* <div
-                  id="pro-slider"
-                  className="product-image-slider owl-carousel"
-                >
-                  <img
-                    src="../images/banners/slide1.png"
-                    alt=""
-                    className="image-list image-list-bdr w-100"
-                  />
-                  <img
-                    src="../images/banners/slide2.png"
-                    alt=""
-                    className="image-list w-100"
-                  />
-                  <img
-                    src="../images/banners/slide3.png"
-                    alt=""
-                    className="image-list w-100"
-                  />
-                  <img
-                    src="../images/banners/slide1.png"
-                    alt=""
-                    className="image-list w-100"
-                  />
-                  <img
-                    src="../images/banners/slide2.png"
-                    alt=""
-                    className="image-list w-100"
-                  />
-                  <img
-                    src="../images/banners/slide3.png"
-                    alt=""
-                    className="image-list w-100"
-                  />
-                </div> */}
               </div>
             </div>
             <div className="col-lg-6">

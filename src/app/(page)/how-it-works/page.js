@@ -1,4 +1,4 @@
-export const dynamic = "force-dynamic";    // Ensures server renders fresh content. extra addition line
+export const dynamic = "force-dynamic"; // Ensures server renders fresh content. extra addition line
 import Link from "next/link";
 import Image from "next/image";
 import { BASE_URL } from "@/constant/constant";
@@ -31,7 +31,7 @@ const HowItWorks = async () => {
           backgroundSize: "cover",
         }}
       >
-        <h1> How it Works</h1>
+        <h1>How it Works</h1>
       </div>
       <section className="how-it-work-sec">
         <div className="container">

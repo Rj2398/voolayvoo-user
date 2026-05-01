@@ -725,6 +725,7 @@ const ClientComponent = ({ categoryList, businessList }) => {
                             {item?.event_away_distance?.toFixed(1) || 0} miles
                             away{" "}
                           </span>
+                          <br />
                           <span>
                             <Image
                               width={20}
@@ -737,7 +738,7 @@ const ClientComponent = ({ categoryList, businessList }) => {
                                   item.events_date,
                                   "yyyy-MM-dd"
                                 ).toFormat("MMMM dd, yyyy")
-                              : "N/A"}{" "}
+                              : "N/A"}
                           </span>
                           <div style={{ height: "50px" }}>
                             {item?.location && (

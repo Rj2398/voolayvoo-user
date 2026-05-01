@@ -372,3 +372,10 @@ code written by rajan
   align-items: center;
   gap: 10px;
 }
+@media (max-width: 768px) {
+  .heading-semi + div {
+    /* Target the div containing the text */
+    text-align: left !important;
+    word-break: break-word;
+  }
+}

@@ -271,82 +271,6 @@ const ClientComponent = ({ voopon_detail }) => {
       toast.error("An unexpected error occurred during payment.");
     }
   };
-  // const callBack = async (card) => {
-  //   try {
-  //     // Recheck limit right before purchase
-  //     const limitResponse = await checkVooponPurchaseLimit({
-  //       user_id: userDetails?.user_id,
-  //       voopon_unique_number: params.detail,
-  //       authToken: userDetails.token,
-  //     });
-
-  //     if (!limitResponse.success) {
-  //       toast.error(
-  //         limitResponse.message || "Failed to verify purchase limits"
-  //       );
-  //       return;
-  //     }
-  //     const current_usage = limitResponse.data?.current_usage;
-  //     const max_limit = limitResponse.data?.max_limit;
-
-  //     if (current_usage < max_limit) {
-  //       toast.error(
-  //         `You can only purchase ${
-  //           max_limit - current_usage
-  //         } more of this voopon`
-  //       );
-  //       return;
-  //     } else if (current_usage == max_limit) {
-  //       toast.error(message);
-  //       return;
-  //     }
-
-  //     let requestData;
-  //     if (card?.token) {
-  //       requestData = {
-  //         user_id: `${userDetails?.user_id}`,
-  //         email: userDetails?.email,
-  //         price: `${voopansPrice}`,
-  //         unique_number: params.detail,
-  //         voopon_quantity: `${quantity}`,
-  //         event_quantity: null,
-  //         token: card?.token,
-  //       };
-  //     } else if (card?.customer_id) {
-  //       requestData = {
-  //         user_id: `${userDetails?.user_id}`,
-  //         email: userDetails?.email,
-  //         price: `${voopansPrice}`,
-  //         voopon_quantity: `${quantity}`,
-  //         customer_id: card?.customer_id,
-  //         event_quantity: null,
-  //         unique_number: params.detail,
-  //       };
-  //     }
-
-  //     const response = await postFetchDataWithAuth({
-  //       data: requestData,
-  //       endpoint: "user_buy_now",
-  //       authToken: userDetails.token,
-  //     });
-
-  //     if (response.success) {
-  //       setReload(!reload);
-  //       toast.success(`Payment successful`);
-  //       setOpenCard(false);
-  //     } else {
-  //       throw response;
-  //     }
-  //   } catch (error) {
-  //     const errorMessage =
-  //       typeof error === "string"
-  //         ? `${error}`
-  //         : error?.message
-  //         ? error?.message
-  //         : `${error}`;
-  //     toast.error(errorMessage);
-  //   }
-  // };
 
   return (
     <>
@@ -462,8 +386,7 @@ const ClientComponent = ({ voopon_detail }) => {
               </div>
 
               <div className="col-lg-4 col-md-6">
-                <div className="valid-thru" style={{ marginLeft: "13px" }}>
-                  {"  "}
+                <div className="valid-thru" style={{}}>
                   <h4> End Date : </h4>
                   <span>
                     {voopon_detail?.voopon_one?.voopons_valid_thru
@@ -506,7 +429,7 @@ const ClientComponent = ({ voopon_detail }) => {
           <div className="row mt-2 align-items-center">
             <div className="col-lg-8 col-md-6">
               <div className="copy-content">
-                <h5>Code: </h5>
+                <h5 style={{ color: "#FF0000" }}>Code: </h5>
                 <span>
                   {/* {" "} */}
                   {voopon_detail?.voopon_one?.voopon_code ||
