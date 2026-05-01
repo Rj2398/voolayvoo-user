@@ -318,7 +318,7 @@ const VooponModal = ({ open, handleClose, activeData }) => {
                           marginBottom: "15px",
                         }}
                       >
-                        Code:{" "}
+                        <span style={{ color: "#FF0000" }}> Code: </span>
                         {item?.voopon_code ? item.voopon_code : "Not Available"}
                       </div>
                     </div>
