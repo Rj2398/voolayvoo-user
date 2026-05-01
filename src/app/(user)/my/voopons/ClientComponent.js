@@ -426,25 +426,24 @@ const CardItem = ({ item }) => {
             }}
           />
         </div>
-        <div style={{ marginBottom: 20 }}>
-          <div className="creator-container">
-            <div className="creator-avatar-wrapper2">
-              <Image
-                src={
-                  creator?.profile_image
-                    ? `${BASE_URL}${creator.profile_image}`
-                    : "/images/placeholder-user.png"
-                }
-                alt=""
-                fill
-                style={{ objectFit: "cover" }}
-              />
-            </div>
 
-            <div className="creator-name" style={{ marginLeft: 5 }}>
-              {creator?.name || "Anonymous"}
-            </div>
+        <div className="creator-container" style={{ marginRight: -15 }}>
+          <div className="creator-avatar-wrapper2">
+            <Image
+              src={
+                creator?.profile_image
+                  ? `${BASE_URL}${creator.profile_image}`
+                  : "/images/placeholder-user.png"
+              }
+              alt=""
+              fill
+              style={{ objectFit: "cover" }}
+            />
           </div>
+
+          <div className="creator-name">{creator?.name || "Anonymous"}</div>
+        </div>
+        <div style={{ marginBottom: 20 }}>
           <div
             className="voopon-heading "
             style={{ width: "100%", marginTop: -10 }}
