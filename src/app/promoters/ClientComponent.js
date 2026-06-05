@@ -1457,7 +1457,27 @@ const ClientComponent = ({ categoryList, promoterList }) => {
                         </div>
                       </div>
                       <div className="Pro-text">
-                        <h4>{item?.name}</h4>
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "flex-start",
+                          }}
+                        >
+                          <h4>{item?.name}</h4>
+
+                          <span
+                            style={{ marginBottom: "6px", marginLeft: "5px" }}
+                          >
+                            <Image
+                              width={25}
+                              height={25}
+                              src="/images/verifiedLogo.png"
+                              alt=""
+                            />
+                          </span>
+                        </div>
+
                         <div className="rating-box mb-3">
                           <span>
                             <Rating

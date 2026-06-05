@@ -701,7 +701,26 @@ const ClientComponent = ({ categoryList, businessList }) => {
                           flexDirection: "column",
                         }}
                       >
-                        <h6>{item?.name}</h6>
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "flex-start",
+                          }}
+                        >
+                          <h6>{item?.name}</h6>
+
+                          <span
+                            style={{ marginBottom: "10px", marginLeft: "5px" }}
+                          >
+                            <Image
+                              width={20}
+                              height={20}
+                              src="/images/verifiedLogo.png"
+                              alt=""
+                            />
+                          </span>
+                        </div>
 
                         <Rating
                           value={item?.rating}
