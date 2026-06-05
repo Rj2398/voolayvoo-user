@@ -335,14 +335,17 @@ const Detail = () => {
                     />
                   </span>
                   <h1>{data?.DetailsData?.businessdetails?.name} </h1>
-                  <span style={{ marginBottom: "10px" }}>
-                    <Image
-                      width={32}
-                      height={32}
-                      src="/images/verifiedLogo.png"
-                      alt=""
-                    />
-                  </span>
+
+                  {data?.DetailsData?.businessdetails?.badge_status === 1 && (
+                    <span style={{ marginBottom: "10px" }}>
+                      <Image
+                        width={32}
+                        height={32}
+                        src="/images/verifiedLogo.png"
+                        alt=""
+                      />
+                    </span>
+                  )}
                 </div>
                 <p>{data?.DetailsData?.businessdetails?.description}</p>
                 <div className="row mb-3">

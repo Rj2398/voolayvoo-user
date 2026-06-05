@@ -591,6 +591,7 @@ const ClientComponent = ({ categoryList, businessList }) => {
                   self.findIndex((i) => i.business_id === item.business_id)
               )
               .map((item) => {
+                console.log(item, "item list **");
                 return (
                   <div
                     key={`${item.business_id}`} // Use a stable unique key
@@ -709,17 +710,21 @@ const ClientComponent = ({ categoryList, businessList }) => {
                           }}
                         >
                           <h6>{item?.name}</h6>
-
-                          <span
-                            style={{ marginBottom: "10px", marginLeft: "5px" }}
-                          >
-                            <Image
-                              width={20}
-                              height={20}
-                              src="/images/verifiedLogo.png"
-                              alt=""
-                            />
-                          </span>
+                          {item?.badge_status === 1 && (
+                            <span
+                              style={{
+                                marginBottom: "10px",
+                                marginLeft: "5px",
+                              }}
+                            >
+                              <Image
+                                width={20}
+                                height={20}
+                                src="/images/verifiedLogo.png"
+                                alt=""
+                              />
+                            </span>
+                          )}
                         </div>
 
                         <Rating

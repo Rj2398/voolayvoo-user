@@ -1466,16 +1466,18 @@ const ClientComponent = ({ categoryList, promoterList }) => {
                         >
                           <h4>{item?.name}</h4>
 
-                          <span
-                            style={{ marginBottom: "6px", marginLeft: "5px" }}
-                          >
-                            <Image
-                              width={25}
-                              height={25}
-                              src="/images/verifiedLogo.png"
-                              alt=""
-                            />
-                          </span>
+                          {item?.badge_status === 1 && (
+                            <span
+                              style={{ marginBottom: "6px", marginLeft: "5px" }}
+                            >
+                              <Image
+                                width={25}
+                                height={25}
+                                src="/images/verifiedLogo.png"
+                                alt=""
+                              />
+                            </span>
+                          )}
                         </div>
 
                         <div className="rating-box mb-3">

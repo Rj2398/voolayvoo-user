@@ -395,15 +395,16 @@ const Detail = async ({ params: { detail } }) => {
               <div className="details-text-box-business">
                 <div className="busines-logo-hd mb-2">
                   <h1 className="title-capitilize">{promoter_detail?.name}</h1>
-
-                  <span style={{ marginBottom: "10px" }}>
-                    <Image
-                      width={32}
-                      height={32}
-                      src="/images/verifiedLogo.png"
-                      alt=""
-                    />
-                  </span>
+                  {promoter_detail?.badge_status === 1 && (
+                    <span style={{ marginBottom: "10px" }}>
+                      <Image
+                        width={32}
+                        height={32}
+                        src="/images/verifiedLogo.png"
+                        alt=""
+                      />
+                    </span>
+                  )}
                 </div>
                 <p>{promoter_detail?.description}</p>
                 <div className="row mb-3">
