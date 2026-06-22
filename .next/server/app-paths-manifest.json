@@ -1,8 +1,8 @@
 {
+  "/(onboard)/login/page": "app/(onboard)/login/page.js",
   "/page": "app/page.js",
-  "/businesses/page": "app/businesses/page.js",
   "/businesses/[detail]/page": "app/businesses/[detail]/page.js",
-  "/promoters/page": "app/promoters/page.js",
   "/_not-found/page": "app/_not-found/page.js",
-  "/promoters/[detail]/page": "app/promoters/[detail]/page.js"
+  "/businesses/page": "app/businesses/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js"
 }

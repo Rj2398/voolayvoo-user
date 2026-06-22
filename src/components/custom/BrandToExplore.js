@@ -519,8 +519,10 @@ import { BASE_URL } from "@/constant/constant";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/app/UserProvider";
 import axios from "axios";
+import Image from "next/image";
 
 const BrandExplore = ({ staticItems, brand }) => {
+  console.log(staticItems, "staticItemsstaticItems");
   const { userDetails, isAuthenticated } = useAuth();
   const [buttonStatus, setButtonStatus] = useState({});
   const [swiperInstance, setSwiperInstance] = useState(null);
@@ -682,6 +684,21 @@ const BrandExplore = ({ staticItems, brand }) => {
                             2
                           )
                         : "No Title Available"}
+                      {item?.badge_status === 1 && (
+                        <span
+                          style={{
+                            marginBottom: "10px",
+                            marginLeft: "5px",
+                          }}
+                        >
+                          <Image
+                            width={22}
+                            height={22}
+                            src="/images/verifiedLogo.png"
+                            alt=""
+                          />
+                        </span>
+                      )}
                     </div>
                     <a
                       className="btn btn-viewmore"

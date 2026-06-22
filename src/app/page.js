@@ -417,8 +417,8 @@ export default function Home() {
                   />
                 </div>
                 <div className="howhd">
-                  Receive Notifications of Events, and activities from your
-                  favorite Business &Promotors
+                  Receive notifications of Events and Activities from your
+                  favorite Businesses & Promoters
                 </div>
               </div>
             </div>
