@@ -1,8 +1,5 @@
 {
-  "/(onboard)/login/page": "app/(onboard)/login/page.js",
   "/page": "app/page.js",
-  "/businesses/[detail]/page": "app/businesses/[detail]/page.js",
-  "/_not-found/page": "app/_not-found/page.js",
-  "/businesses/page": "app/businesses/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js"
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/_not-found/page": "app/_not-found/page.js"
 }

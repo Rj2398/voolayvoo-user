@@ -387,7 +387,7 @@ export default function Home() {
                   />
                 </div>
                 <div className="howhd">
-                  Choose your <br /> interest
+                  Choose your <br /> interests
                 </div>
               </div>
             </div>
@@ -402,7 +402,7 @@ export default function Home() {
                   />
                 </div>
                 <div className="howhd">
-                  Turn on your location and notification{" "}
+                  Turn on your location and notifications{" "}
                 </div>
               </div>
             </div>
