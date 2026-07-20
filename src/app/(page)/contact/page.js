@@ -84,10 +84,7 @@ const Contact = () => {
                   We’d Love to <span>Hear From You!</span>
                 </h2>
                 <p>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum is simply dummy text of the
-                  printing and typesetting industry. Lorem Ipsum is simply dummy
-                  text of the printing and typesetting industry.
+                 We’d love to hear from you! Whether you have a question, suggestion, success story, or need support, the VoolayVoo team is here to help. Your feedback helps us build a better platform for businesses, promoters, nonprofits, and communities. Reach out today—we’re listening!
                 </p>
                 <div className="contact-detail">
                   <div className="contact-detail-in">
