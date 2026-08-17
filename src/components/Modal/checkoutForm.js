@@ -119,15 +119,35 @@ import Image from "next/image";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
-const CheckoutForm = ({ setOpen, callBack }) => {
+const CheckoutForm = ({ setOpen, callBack, pickTheCard }) => {
   const stripe = useStripe();
   const elements = useElements();
   const [cardHolderName, setCardHolderName] = useState("");
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   if (!stripe || !elements) {
+  //     // Stripe.js hasn't yet loaded.
+  //     return;
+  //   }
+
+  //   const cardNumberElement = elements.getElement(CardNumberElement);
+  //   const result = await stripe.createToken(cardNumberElement, {
+  //     name: cardHolderName,
+  //   });
+
+  //   if (result.error) {
+  //     toast.error(result.error.message);
+  //   } else {
+  //     setOpen(false);
+  //     callBack(result.token);
+  //   }
+  // };
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!stripe || !elements) {
-      // Stripe.js hasn't yet loaded.
       return;
     }
 
@@ -139,8 +159,21 @@ const CheckoutForm = ({ setOpen, callBack }) => {
     if (result.error) {
       toast.error(result.error.message);
     } else {
+      // Extract metadata directly from the card object inside the token
+      const { last4, exp_month, exp_year, brand, name } = result.token.card;
+
       setOpen(false);
       callBack(result.token);
+      // Pass the full token or an object containing the extracted details
+      pickTheCard({
+        token: result.token,
+        tokenId: result.token.id,
+        cardHolderName: name || cardHolderName,
+        last4,
+        expiryMonth: exp_month,
+        expiryYear: exp_year,
+        brand,
+      });
     }
   };
 

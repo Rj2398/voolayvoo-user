@@ -17,6 +17,9 @@ const CheckPayment = ({ open, setOpen, callBack, reloadList, amount }) => {
   const [openBreakdown, setOpenBreakdown] = useState(false);
   const [pendingPaymentData, setPendingPaymentData] = useState(null);
   const [getSelectedCard, setSelectedCard] = useState(null);
+  const [firstCardData, setFirstAddedCard] = useState(null)
+
+
 
   useEffect(() => {
     if (isAuthenticated && open) {
@@ -125,6 +128,9 @@ const CheckPayment = ({ open, setOpen, callBack, reloadList, amount }) => {
                     <AddCard
                       setOpen={setOpen}
                       open={open}
+                      pickTheCard={(txt) => {
+                        setFirstAddedCard(txt);
+                      }}
                       callBack={(tok) => {
                         setPendingPaymentData({ token: tok?.id });
                         setOpenBreakdown(true);
@@ -141,6 +147,9 @@ const CheckPayment = ({ open, setOpen, callBack, reloadList, amount }) => {
             <AddCard
               setOpen={setOpenCard}
               open={openCard}
+              pickTheCard={(txt) => {
+                setFirstAddedCard(txt);
+              }}
               callBack={(tok) => {
                 setPendingPaymentData({ token: tok?.id });
                 setOpenCard(false);
@@ -158,6 +167,7 @@ const CheckPayment = ({ open, setOpen, callBack, reloadList, amount }) => {
         onPayNow={handlePayNowSubmit}
         amount={amount}
         getSelectedCard={getSelectedCard}
+        firstCardData={firstCardData}
       />
     </>
   );

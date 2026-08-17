@@ -49,12 +49,12 @@ import CheckoutForm from "./checkoutForm";
 // Corrected line without the '!'
 const stripePromise = loadStripe(STRIPE_PUB_KEY);
 
-const AddCard = ({ open, setOpen, callBack }) => {
+const AddCard = ({ open, setOpen, callBack, pickTheCard }) => {
   return (
     <Modal open={open} className="password-popup">
       <Box>
         <Elements stripe={stripePromise}>
-          <CheckoutForm setOpen={setOpen} callBack={callBack} />
+          <CheckoutForm setOpen={setOpen} callBack={callBack} pickTheCard={pickTheCard} />
         </Elements>
       </Box>
     </Modal>
