@@ -522,7 +522,7 @@ import axios from "axios";
 import Image from "next/image";
 
 const BrandExplore = ({ staticItems, brand }) => {
-  console.log(staticItems, "staticItemsstaticItems");
+  // console.log(staticItems, "staticItemsstaticItems");
   const { userDetails, isAuthenticated } = useAuth();
   const [buttonStatus, setButtonStatus] = useState({});
   const [swiperInstance, setSwiperInstance] = useState(null);

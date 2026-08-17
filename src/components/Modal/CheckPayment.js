@@ -2,17 +2,21 @@
 import CardList from "@/app/(user)/payment-method/components/CardList";
 import { Modal, Box, Skeleton } from "@mui/material";
 import AddCard from "./addCard";
+import PaymentBreakDown from "../custom/PaymentBreakDown";
 import { toast } from "react-toastify";
 import { postFetchDataWithAuth } from "@/fetchData/fetchApi";
 import { useEffect, useState } from "react";
 import { useAuth } from "@/app/UserProvider";
 import Image from "next/image";
 
-const CheckPayment = ({ open, setOpen, callBack, reloadList }) => {
+const CheckPayment = ({ open, setOpen, callBack, reloadList, amount }) => {
   const [openCard, setOpenCard] = useState(false);
   const { isAuthenticated, userDetails } = useAuth();
   const [cardList, setCardList] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [openBreakdown, setOpenBreakdown] = useState(false);
+  const [pendingPaymentData, setPendingPaymentData] = useState(null);
+  const [getSelectedCard, setSelectedCard] = useState(null);
 
   useEffect(() => {
     if (isAuthenticated && open) {
@@ -48,85 +52,114 @@ const CheckPayment = ({ open, setOpen, callBack, reloadList }) => {
     setOpenCard(true);
   };
 
+  const handlePayNowSubmit = () => {
+    setOpenBreakdown(false);
+    setOpen(false);
+    if (pendingPaymentData && callBack) {
+      callBack(pendingPaymentData);
+      setPendingPaymentData(null);
+    }
+  };
+
   return (
-    <Modal
-      open={open}
-      onClose={() => setOpen(false)}
-      className="password-popup"
-    >
-      <Box sx={{ outline: "none" }}>
-        <div
-          className="modal fade show"
-          style={{
-            display: openCard ? "none" : "block",
-            paddingRight: "0px",
-            position: "relative",
-          }}
-        >
-          <div className="modal-dialog card-width">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title modal-title-center add-card-hd">
-                  {cardList.length > 0 ? "Select Card" : "Add New Card"}
-                </h5>
-                <button
-                  onClick={() => setOpen(false)}
-                  type="button"
-                  className="close collab-btn"
-                >
-                  <Image
-                    width={28}
-                    height={28}
-                    src="/images/cross.svg"
-                    alt="close"
-                  />
-                </button>
-              </div>
-              <div className="modal-body">
-                {loading ? (
-                  <Box sx={{ display: "flex", justifyContent: "center", p: 3 }}>
-                    <Skeleton variant="rounded" width={"100%"} height={160} />
-                  </Box>
-                ) : cardList.length > 0 ? (
-                  /* CASE 1: USER HAS SAVED CARDS */
-                  <CardList
-                    setOpen={handleOpenCard}
-                    userCardDelete={() => fetchCardList()}
-                    cardList={cardList}
-                    isCardPaymentEnabled={true}
-                    callPaymentCard={(card) => {
-                      // console.log("Existing Card Selected:", card);
-                      callBack({ customer_id: card?.customer_id });
-                    }}
-                  />
-                ) : (
-                  /* CASE 2: NO CARDS - SHOW ADD CARD FORM DIRECTLY */
-                  <AddCard
-                    setOpen={setOpen}
-                    open={open}
-                    callBack={(tok) => {
-                      console.log("New Card Token Generated:", tok);
-                      callBack({ token: tok?.id });
-                    }}
-                  />
-                )}
+    <>
+      <Modal
+        open={open}
+        onClose={() => setOpen(false)}
+        className="password-popup"
+      >
+        <Box sx={{ outline: "none" }}>
+          <div
+            className="modal fade show"
+            style={{
+              display: openCard ? "none" : "block",
+              paddingRight: "0px",
+              position: "relative",
+            }}
+          >
+            <div className="modal-dialog card-width">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h5 className="modal-title modal-title-center add-card-hd">
+                    {cardList.length > 0 ? "Select Card" : "Add New Card"}
+                  </h5>
+                  <button
+                    onClick={() => setOpen(false)}
+                    type="button"
+                    className="close collab-btn"
+                  >
+                    <Image
+                      width={28}
+                      height={28}
+                      src="/images/cross.svg"
+                      alt="close"
+                    />
+                  </button>
+                </div>
+                <div className="modal-body">
+                  {loading ? (
+                    <Box
+                      sx={{ display: "flex", justifyContent: "center", p: 3 }}
+                    >
+                      <Skeleton variant="rounded" width={"100%"} height={160} />
+                    </Box>
+                  ) : cardList.length > 0 ? (
+                    /* CASE 1: USER HAS SAVED CARDS */
+                    <CardList
+                      setOpen={handleOpenCard}
+                      userCardDelete={() => fetchCardList()}
+                      cardList={cardList}
+                      isCardPaymentEnabled={true}
+                      selectedDataCalBack={(txt) => {
+                        setSelectedCard(txt);
+                      }}
+                      callPaymentCard={(card) => {
+                        setPendingPaymentData({
+                          customer_id: card?.customer_id,
+                        });
+                        setOpenBreakdown(true);
+                      }}
+                    />
+                  ) : (
+                    /* CASE 2: NO CARDS - SHOW ADD CARD FORM DIRECTLY */
+                    <AddCard
+                      setOpen={setOpen}
+                      open={open}
+                      callBack={(tok) => {
+                        setPendingPaymentData({ token: tok?.id });
+                        setOpenBreakdown(true);
+                      }}
+                    />
+                  )}
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Nested AddCard Modal if user clicks 'Add New' from the list view */}
-        {openCard && (
-          <AddCard
-            setOpen={setOpenCard}
-            open={openCard}
-            callBack={(tok) => {
-              callBack({ token: tok?.id });
-            }}
-          />
-        )}
-      </Box>
-    </Modal>
+          {/* Nested AddCard Modal if user clicks 'Add New' from the list view */}
+          {openCard && (
+            <AddCard
+              setOpen={setOpenCard}
+              open={openCard}
+              callBack={(tok) => {
+                setPendingPaymentData({ token: tok?.id });
+                setOpenCard(false);
+                setOpenBreakdown(true);
+              }}
+            />
+          )}
+        </Box>
+      </Modal>
+
+      {/* Payment Breakdown Modal */}
+      <PaymentBreakDown
+        isOpen={openBreakdown}
+        setIsOpen={setOpenBreakdown}
+        onPayNow={handlePayNowSubmit}
+        amount={amount}
+        getSelectedCard={getSelectedCard}
+      />
+    </>
   );
 };
 

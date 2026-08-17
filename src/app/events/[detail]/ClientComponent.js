@@ -28,6 +28,18 @@ import ReportModal from "@/components/ReportModal";
 const ClientComponent = ({ eventDetail, relatedVoopon = [] }) => {
   console.log(eventDetail, "eventDetaileventDetail");
 
+  const event = eventDetail?.event_one || eventDetail?.event_two;
+
+  const tax = Number(event?.tax_amount || 0);
+  const fee = Number(event?.events_price || 0);
+  const total = fee + tax;
+
+  const amount = {
+    tax: tax.toFixed(2), // e.g. "20.00"
+    fee: fee.toFixed(2), // e.g. "30.00"
+    total: total.toFixed(2), // e.g. "50.00"
+  };
+
   const reportFlag =
     eventDetail?.event_one?.report_status ||
     eventDetail?.event_two?.report_status;
@@ -37,6 +49,7 @@ const ClientComponent = ({ eventDetail, relatedVoopon = [] }) => {
   const [open, setOpen] = useState(false);
   const [openCard, setOpenCard] = useState(false);
   const [currentReportData, setCurrentReportData] = useState(null);
+
   // const [eventPrice, setEventPrice] = useState<number>(
   //   eventDetail?.event_one?.hasOwnProperty("events_price")
   //     ? Number(eventDetail?.event_one?.events_price)
@@ -532,6 +545,7 @@ const ClientComponent = ({ eventDetail, relatedVoopon = [] }) => {
                   setOpen={setOpenCard}
                   callBack={callBack}
                   reloadList={reload}
+                  amount={amount}
                 />
 
                 <div className="row mt-2 align-items-center">

@@ -18,7 +18,20 @@ import { toast } from "react-toastify";
 import CheckPayment from "@/components/Modal/CheckPayment";
 
 const ClientComponent = ({ voopon_detail }) => {
-  // console.log(voopon_detail);
+  console.log(voopon_detail, "voopon_detailvoopon_detail");
+
+  const event = voopon_detail?.voopon_two || voopon_detail?.voopon_one;
+
+  const tax = Number(event?.tax_amount || 0);
+  const fee = Number(event?.voopons_price || 0);
+  const total = fee + tax;
+
+  const amount = {
+    tax: tax.toFixed(2), // e.g. "20.00"
+    fee: fee.toFixed(2), // e.g. "30.00"
+    total: total.toFixed(2), // e.g. "50.00"
+  };
+
   const [open, setOpen] = useState(false);
   const [openCard, setOpenCard] = useState(false);
   const [voopansPrice, setVoopansPrice] = useState(
@@ -353,6 +366,7 @@ const ClientComponent = ({ voopon_detail }) => {
             setOpen={setOpenCard}
             callBack={callBack}
             reloadList={reload}
+            amount={amount}
           />
 
           <div className="row mt-3">

@@ -6,10 +6,13 @@ const CardList = ({
   userCardDelete,
   isCardPaymentEnabled,
   callPaymentCard,
+  selectedDataCalBack,
 }) => {
   const [selectCard, setSelectCard] = useState("");
-  const handleCardSelection = (id) => {
+  const handleCardSelection = (id, card) => {
     setSelectCard(id);
+    selectedDataCalBack(card)
+
   };
   const handlePayNow = (card) => {
     if (selectCard) {
@@ -18,6 +21,7 @@ const CardList = ({
       );
 
       callPaymentCard(selectCardData);
+
     }
   };
   return (
@@ -30,12 +34,11 @@ const CardList = ({
           {cardList.map((card, indx) => (
             <div
               key={card?.card_id}
-              className={`business-add-payment-card-box ${
-                isCardPaymentEnabled && selectCard === card?.card_id
+              className={`business-add-payment-card-box ${isCardPaymentEnabled && selectCard === card?.card_id
                   ? "active"
                   : ""
-              }`}
-              onClick={() => handleCardSelection(card?.card_id)}
+                }`}
+              onClick={() => handleCardSelection(card?.card_id, card)}
             >
               {!isCardPaymentEnabled && (
                 <button onClick={() => userCardDelete(card?.card_id, card?.id)}>
