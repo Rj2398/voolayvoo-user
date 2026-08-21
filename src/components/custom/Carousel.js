@@ -140,7 +140,9 @@ const CarouselHeader = ({ categories }) => {
                     />
                   </div>
 
-                  <p style={{paddingTop:"10px"}}>{category.category_name}</p>
+                  <p style={{paddingTop:"10px"}}>{category?.category_name?.length > 30
+                      ? `${category.category_name.slice(0, 30)}...`
+                      : category?.category_name}</p>
                 </div>
               </div>
             </div>
