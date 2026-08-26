@@ -26,8 +26,10 @@ import { Rating } from "@mui/material";
 import ReportModal from "@/components/ReportModal";
 
 const ClientComponent = ({ eventDetail, relatedVoopon = [] }) => {
-  console.log(eventDetail, "eventDetaileventDetail");
-
+  // console.log(eventDetail, "eventDetaileventDetail");
+  const [checkedPurchasedStatus, setCheckedPurchaseStatus] = useState(
+    eventDetail?.purchase_status
+  );
   const event = eventDetail?.event_one || eventDetail?.event_two;
 
   const tax = Number(event?.tax_amount || 0);
@@ -676,7 +678,11 @@ const ClientComponent = ({ eventDetail, relatedVoopon = [] }) => {
                       className="btn btn-learnmore"
                       role="button"
                     >
-                      {eventPrice === 0 ? "Grab Deal" : "Book Now"}
+                      {eventPrice === 0
+                        ? "Grab Deal"
+                        : checkedPurchasedStatus == 0
+                        ? "Book Now"
+                        : "Purchased"}
                     </a>
                   </div>
                   <div className="col-lg-4 col-md-6">

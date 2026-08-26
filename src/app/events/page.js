@@ -9,7 +9,7 @@ import Loader from "@/components/custom/Loader";
 import { useRouter } from "next/navigation";
 import useLocalStorage from "@/constant/useLocalStorage";
 
-async function getData(id) {
+async function getData(id, token) {
   const resCategory = await fetch(`${BASE_URL}/api/user_category_list`, {
     method: "POST",
     headers: {
@@ -23,6 +23,9 @@ async function getData(id) {
   const resEventList = await fetch(`${BASE_URL}/api/user_event_list`, {
     method: "POST",
     body: formData,
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
   });
 
   // Check for HTTP 401 Unauthorized status
@@ -78,7 +81,7 @@ const Events = () => {
       }
 
       try {
-        const result = await getData(userDetails.user_id);
+        const result = await getData(userDetails.user_id, userDetails?.token);
         setData(result);
       } catch (err) {
         if (err?.status === 401 || err?.message === "Unauthorized") {

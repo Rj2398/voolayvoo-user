@@ -6,21 +6,26 @@ import { BASE_URL, GOOGLE_KEY } from "@/constant/constant";
 import { useAuth } from "@/app/UserProvider";
 import { useEffect, useState } from "react";
 
-async function fetchEventList(id) {
+async function fetchEventList(id, token) {
   const formData = new FormData();
   formData.append("user_id", id);
 
   const resEventList = await fetch(`${BASE_URL}/api/user_event_list`, {
     method: "POST",
     body: formData,
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
   });
   return resEventList.json();
 }
 
 const Map = () => {
   const { userDetails } = useAuth();
+
+  const token = userDetails?.token;
   const [eventList, setEventList] = useState([]); // Full event list
-  const [location, setLocation] = useState({ latitude: "", longitude: ""});
+  const [location, setLocation] = useState({ latitude: "", longitude: "" });
 
   const [filteredEvents, setFilteredEvents] = useState([]); // Filtered event list
 
@@ -31,11 +36,10 @@ const Map = () => {
     isMilesAppy: false,
   });
 
-  
   useEffect(() => {
     if (userDetails?.user_id) {
       const fetchData = async () => {
-        const eventData = await fetchEventList(userDetails.user_id);
+        const eventData = await fetchEventList(userDetails.user_id, token);
         setEventList(eventData.data); // Store the full event list
         setFilteredEvents(eventData.data); // Initially set filtered list to full list
       };
@@ -74,7 +78,6 @@ const Map = () => {
     applyFilters();
   }, [appliedFilter, eventList]);
 
-            
   useEffect(() => {
     if (window.navigator.geolocation) {
       window.navigator.geolocation.getCurrentPosition(
@@ -82,7 +85,7 @@ const Map = () => {
           setLocation({
             latitude: position.coords.latitude,
             longitude: position.coords.longitude,
-          }); 
+          });
         },
         (err) => {
           console.error(err.message);
@@ -94,23 +97,25 @@ const Map = () => {
   }, []);
 
   return (
-    // <>
-    //   {/* Pass the filter state setter to MapFilter */}
-    //   <MapFilter setAppliedFilter={setAppliedFilter} />
-
-    //   {/* Pass the filtered events to GoogleMapComp */}
-    //   <GoogleMapComp markerList={filteredEvents} />
-    // </>
     <div style={{ position: "relative" }}>
-
-    <div style={{ position: "absolute", bottom: "20px", left: "10%", transform: "translateX(-50%)", zIndex: 10,
-      background: "#fff", padding: "10px", borderRadius: "8px", boxShadow: "0 2px 8px rgba(0,0,0,0.15)" }}>
-      <MapFilter setAppliedFilter={setAppliedFilter} />
-    </div>
+      <div
+        style={{
+          position: "absolute",
+          bottom: "20px",
+          left: "10%",
+          transform: "translateX(-50%)",
+          zIndex: 10,
+          background: "#fff",
+          padding: "10px",
+          borderRadius: "8px",
+          boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
+        }}
+      >
+        <MapFilter setAppliedFilter={setAppliedFilter} />
+      </div>
       {/* <GoogleMapComp markerList={filteredEvents}  /> */}
       <GoogleMapComp markerList={filteredEvents} location={location} />
-  </div>
-
+    </div>
   );
 };
 
