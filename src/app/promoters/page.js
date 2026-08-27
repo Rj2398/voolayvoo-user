@@ -11,7 +11,7 @@ import { useAuth } from "../UserProvider";
 import { useRouter } from "next/navigation";
 import useLocalStorage from "@/constant/useLocalStorage";
 
-async function getData(id) {
+async function getData(id, token) {
   const resCategory = await fetch(`${BASE_URL}/api/user_category_list`, {
     method: "POST",
     headers: {
@@ -27,6 +27,9 @@ async function getData(id) {
     {
       method: "POST",
       body: formData,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     }
   );
 
@@ -91,7 +94,7 @@ const Promoters = () => {
       }
       try {
         setLoading(true);
-        const result = await getData(userDetails.user_id);
+        const result = await getData(userDetails.user_id, userDetails?.token);
         if (result) {
           setData(result);
           setLoading(false);
