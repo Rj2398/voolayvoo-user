@@ -678,11 +678,13 @@ const ClientComponent = ({ eventDetail, relatedVoopon = [] }) => {
                       className="btn btn-learnmore"
                       role="button"
                     >
-                      {eventPrice === 0
+                      {/* {eventPrice === 0
                         ? "Grab Deal"
                         : checkedPurchasedStatus == 0
                         ? "Book Now"
-                        : "Purchased"}
+                        : "Purchased"} */}
+
+                      {eventPrice === 0 ? "Grab Deal" : "Book Now"}
                     </a>
                   </div>
                   <div className="col-lg-4 col-md-6">
