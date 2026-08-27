@@ -46,7 +46,7 @@ const ClientComponent = ({ eventDetail, relatedVoopon = [] }) => {
     eventDetail?.event_one?.report_status ||
     eventDetail?.event_two?.report_status;
 
-  console.log(reportFlag, "reportFlagreportFlag");
+  // console.log(reportFlag, "reportFlagreportFlag");
   const [isReportOpen, setIsReportOpen] = useState(false);
   const [open, setOpen] = useState(false);
   const [openCard, setOpenCard] = useState(false);

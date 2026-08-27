@@ -29,14 +29,14 @@ const Card = ({ cardData }) => {
     : cardData?.promoter_details || cardData?.events_data?.promoter_details;
 
   const userType = isBusiness ? "Business" : "Promoter";
-
+  // console.log(cardData, "Card data******");
   const checkedId =
     cardData?.events_data?.checked_id ||
     cardData?.events_data_business?.checked_id ||
     cardData?.checked_id;
 
-  const imageSrc = cardData?.events_data?.eventimage?.image_name
-    ? `${BASE_URL}/${cardData?.events_data?.eventimage?.image_name}`
+  const imageSrc = cardData?.eventimage?.image_name
+    ? `${BASE_URL}/${cardData?.eventimage?.image_name}`
     : cardData?.business_event_image?.image_name
     ? `${BASE_URL}/${cardData?.business_event_image?.image_name}`
     : "/images/near-event1.png";
