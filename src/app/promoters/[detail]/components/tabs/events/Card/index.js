@@ -128,7 +128,7 @@ const Card = ({ cardData }) => {
               </div>
               <div className="creator-text-container">
                 <span className="creator-name-text">
-                  {creator?.name || "User"}
+                  {(creator?.name || "User").slice(0, 7)}
                 </span>
               </div>
             </div>
