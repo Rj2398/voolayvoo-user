@@ -49,24 +49,28 @@ const ClientComponent = ({ categoryList, voopanList }) => {
     const fetchLocation = async () => {
       try {
         const position = await getCurrentLocation();
-        if (categoryList && voopanList && position) {
-          const updatedList = voopanList.map((item) => ({
-            ...item,
-            voopan_away_distance: calculateDistanceInMiles(position, {
-              latitude: item.latitude,
-              longitude: item.longitude,
-            }),
-          }));
+        if (categoryList && voopanList) {
+          let updatedList = voopanList;
+          if (position) {
+            updatedList = voopanList.map((item) => ({
+              ...item,
+              voopan_away_distance: calculateDistanceInMiles(position, {
+                latitude: item.latitude,
+                longitude: item.longitude,
+              }),
+            }));
+          }
           const tempEvtList = filterEvent(updatedList, categoryList);
           setTempVoopanList(tempEvtList);
-          if (tempEvtList.length > 9) {
-            setAppliedFilter((pre) => ({ ...pre, isPaginationApply: true }));
-          } else {
-            setRenderList(tempEvtList);
-          }
+          setRenderList(tempEvtList.slice(0, 9));
         }
       } catch (error) {
-        console.error(error);
+        console.error("Error fetching location:", error);
+        if (categoryList && voopanList) {
+          const tempEvtList = filterEvent(voopanList, categoryList);
+          setTempVoopanList(tempEvtList);
+          setRenderList(tempEvtList.slice(0, 9));
+        }
       }
     };
     fetchLocation();
@@ -74,19 +78,19 @@ const ClientComponent = ({ categoryList, voopanList }) => {
 
   useEffect(() => {
     let tempList = filterEvent(voopanList, categoryList);
-    if (appliedFilter.isCategoryApply) {
+    if (appliedFilter.isCategoryApply && selectCategory.category_id !== "All") {
       tempList = filterEvent(tempList, [
         { category_id: Number(selectCategory.category_id) },
       ]);
     }
-    if (appliedFilter.isSearchApply) {
+    if (appliedFilter.isSearchApply && searchValue) {
       tempList = tempList.filter((evt) =>
-        evt?.voopons_name.toLowerCase()?.includes(searchValue.toLowerCase())
+        evt?.voopons_name?.toLowerCase()?.includes(searchValue.toLowerCase())
       );
     }
-    // ... rest of your filter logic ...
+    setTempVoopanList(tempList);
     setRenderList(tempList.slice((pageNo - 1) * 9, pageNo * 9));
-  }, [appliedFilter, locationFilter, pageNo]);
+  }, [appliedFilter, locationFilter, pageNo, voopanList, categoryList, selectCategory, searchValue]);
 
   const truncateDescription = (description, wordLimit) => {
     if (!description) return "";
@@ -356,6 +360,12 @@ const ClientComponent = ({ categoryList, voopanList }) => {
           );
         })}
       </div>
+
+      {Array.isArray(renderList) && renderList.length === 0 && (
+        <div className="row text-center py-5">
+          <p className="noDataText">No Voopon Found</p>
+        </div>
+      )}
 
       <CustomPagination
         dataArray={tempVoopanList}

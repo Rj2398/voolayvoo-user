@@ -23,6 +23,29 @@ import {
 import axios from "axios";
 import { useSelector } from "react-redux";
 
+const getUniqueBusinesses = (list) => {
+  if (!Array.isArray(list)) return [];
+  const seen = new Set();
+  return list.filter((item) => {
+    const rawId = item?.business_id ?? item?.id ?? item?.outerId ?? item?.name;
+    if (rawId === undefined || rawId === null) return true;
+    const stringId = String(rawId);
+    if (seen.has(stringId)) {
+      return false;
+    }
+    seen.add(stringId);
+    return true;
+  });
+};
+
+const truncateTitle = (text, maxLength = 18) => {
+  if (!text) return "";
+  if (text.length > maxLength) {
+    return text.substring(0, maxLength).trim() + "...";
+  }
+  return text;
+};
+
 const ClientComponent = ({ categoryList, businessList }) => {
   // console.log(businessList, "business list ***");
   const { categoryId } = useSelector((state) => state.user);
@@ -87,7 +110,7 @@ const ClientComponent = ({ categoryList, businessList }) => {
         console.error("Error getting current location:", error);
         // If location fails, proceed without distance calculation, don't block
       }
-      setBusinessesWithDistances(tempBusinesses);
+      setBusinessesWithDistances(getUniqueBusinesses(tempBusinesses));
     };
 
     if (businessList && businessList.length > 0) {
@@ -173,7 +196,8 @@ const ClientComponent = ({ categoryList, businessList }) => {
         break;
     }
 
-    setFilteredAndSortedBusinesses(currentList);
+    const uniqueList = getUniqueBusinesses(currentList);
+    setFilteredAndSortedBusinesses(uniqueList);
     setPageNo(1); // Reset to first page whenever filters/sorts change
   }, [
     businessesWithDistances, // Base data for filtering/sorting
@@ -707,14 +731,27 @@ const ClientComponent = ({ categoryList, businessList }) => {
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "flex-start",
+                            maxWidth: "100%",
+                            overflow: "hidden",
                           }}
                         >
-                          <h6>{item?.name}</h6>
+                          <h6
+                            title={item?.name}
+                            style={{
+                              whiteSpace: "nowrap",
+                              overflow: "hidden",
+                              textOverflow: "ellipsis",
+                              maxWidth: "100%",
+                            }}
+                          >
+                            {truncateTitle(item?.name, 18)}
+                          </h6>
                           {item?.badge_status === 1 && (
                             <span
                               style={{
                                 marginBottom: "10px",
                                 marginLeft: "5px",
+                                flexShrink: 0,
                               }}
                             >
                               <Image
