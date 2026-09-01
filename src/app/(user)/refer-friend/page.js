@@ -35,8 +35,8 @@ const ReferFriend = () => {
         typeof error === "string"
           ? `${error}`
           : error?.message
-          ? error?.message
-          : `${error}`;
+            ? error?.message
+            : `${error}`;
       toast.error(errorMessage);
     } finally {
       setLoading(false);

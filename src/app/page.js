@@ -18,6 +18,7 @@ import { useSelector } from "react-redux";
 import { htmlToText } from "html-to-text";
 
 import { separateContentWithoutParser } from "@/components/HtmlToObjectParse";
+import ShareReferral from "@/components/Modal/ShareReferral";
 
 export default function Home() {
   const [separatedContent, setSeparatedContent] = useState(null);
@@ -36,6 +37,7 @@ export default function Home() {
   const [testimonialData, setTestimonialData] = useState([]);
 
   const [loginUserData, setLoginUserData] = useState([]);
+  const [open, setOpen] = useState(false);
 
   // Fetch about data
   useEffect(() => {
@@ -172,6 +174,20 @@ export default function Home() {
   const handleRefer = async (data) => {
     navigator.clipboard.writeText(data);
     toast.info("Refer Code copy");
+  };
+
+  const copyText = (e) => {
+    e.preventDefault();
+    const code = loginUserData?.user_referral_code?.referral_code;
+    if (code) {
+      navigator.clipboard.writeText(code);
+      toast.info("Refer Friend code copy");
+    }
+  };
+
+  const handleReferralFriend = (e) => {
+    e.preventDefault();
+    setOpen(true);
   };
 
   return (
@@ -530,19 +546,30 @@ export default function Home() {
                     Refer & Earn Rewards
                   </h1>
                   <h2>Invite friends & business</h2>
-                  <p>Refer a Friend and earn exciting rewards!</p>
-                  <a
-                    className="btn btn-viewmore"
-                    href="#"
-                    role="button"
-                    onClick={() =>
-                      handleRefer(
-                        `Your referral code is: ${loginUserData.user_referral_code.referral_code}`
-                      )
-                    }
-                  >
-                    Refer Friend
-                  </a>
+                  <div className="user-refer-btn">
+                    <a href="#" onClick={handleReferralFriend}>
+                      <Image
+                        width={15}
+                        height={16}
+                        src="/images/share-white.svg"
+                        alt=""
+                      />
+                      Refer Friend
+                    </a>
+                    <a href="#" onClick={copyText}>
+                      <Image
+                        width={20}
+                        height={23}
+                        src="/images/user-dashboard/refer-friend/copy.svg"
+                        alt=""
+                      />
+                    </a>
+                  </div>
+                  <ShareReferral
+                    open={open}
+                    setOpen={setOpen}
+                    code={loginUserData?.user_referral_code?.referral_code}
+                  />
                 </div>
               </div>
               <div className="col-lg-4 col-md-3">
