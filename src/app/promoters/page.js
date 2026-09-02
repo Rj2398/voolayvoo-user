@@ -52,12 +52,19 @@ async function getData(id, token) {
 
   const filteredData = resPromoterData?.data
     ?.filter((item) => item.promoter_data_show)
-    .map((item) => ({
-      ...item,
-      ...item.promoter_data_show,
-      promoter_data_show: null,
-      outerId: item.id,
-    }));
+    .map((item) => {
+      const pData = item.promoter_data_show || {};
+      const realPromoterId =
+        pData.promoter_id || pData.id || item.promoter_id || item.user_id;
+      return {
+        ...item,
+        ...pData,
+        promoter_id: realPromoterId,
+        id: realPromoterId,
+        promoter_data_show: null,
+        outerId: item.id,
+      };
+    });
 
   if (resultCat.code != 200 || resPromoterData.code != 200) {
     throw new Error("Failed to fetch data");

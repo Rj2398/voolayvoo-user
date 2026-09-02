@@ -31,7 +31,7 @@ const getUniquePromoters = (list) => {
   if (!Array.isArray(list)) return [];
   const seen = new Set();
   return list.filter((item) => {
-    const rawId = item?.promoter_id ?? item?.user_id ?? item?.id ?? item?.name;
+    const rawId = item?.promoter_id ?? item?.id ?? item?.user_id;
     if (rawId === undefined || rawId === null) return true;
     const stringId = String(rawId);
     if (seen.has(stringId)) {

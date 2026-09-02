@@ -56,12 +56,19 @@ async function getData(id, token) {
 
   const filteredData = resBusinessData?.data
     ?.filter((item) => item.business_data_show)
-    .map((item) => ({
-      ...item,
-      ...item.business_data_show,
-      business_data_show: null,
-      outerId: item.id,
-    }));
+    .map((item) => {
+      const bData = item.business_data_show || {};
+      const realBusinessId =
+        bData.business_id || bData.id || item.business_id || item.user_id;
+      return {
+        ...item,
+        ...bData,
+        business_id: realBusinessId,
+        id: realBusinessId,
+        business_data_show: null,
+        outerId: item.id,
+      };
+    });
 
   if (resultCat.code != 200 || resBusinessData.code != 200) {
     throw new Error("Failed to fetch data");

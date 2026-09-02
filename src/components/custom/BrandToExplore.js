@@ -522,7 +522,7 @@ import axios from "axios";
 import Image from "next/image";
 
 const BrandExplore = ({ staticItems, brand }) => {
-  // console.log(staticItems, "staticItemsstaticItems");
+  console.log(staticItems, "staticItemsstaticItems");
   const { userDetails, isAuthenticated } = useAuth();
   const [buttonStatus, setButtonStatus] = useState({});
   const [swiperInstance, setSwiperInstance] = useState(null);
@@ -575,15 +575,32 @@ const BrandExplore = ({ staticItems, brand }) => {
   };
 
   /// handle click to navigate
+  // const handleClick = (item) => {
+  //   if (!isAuthenticated) {
+  //     router.push("/auth-users");
+  //   } else {
+  //     router.push(
+  //       brand == true
+  //         ? `/voopons/${item.category_id}`
+  //         : `/businesses/${item?.id}?business_id=${item?.id}`
+  //     );
+  //   }
+  // };
+
+
   const handleClick = (item) => {
     if (!isAuthenticated) {
       router.push("/auth-users");
+      return;
+    }
+
+    if (brand == true) {
+      router.push(`/voopons/${item.category_id}`);
+    } else if (item?.type === "promoter") {
+      router.push(`/promoters/${item?.id}?promoter_id=${item?.id}`);
     } else {
-      router.push(
-        brand == true
-          ? `/voopons/${item.category_id}`
-          : `/businesses/${item?.id}?business_id=${item?.id}`
-      );
+      // By default ya item?.type === "business" ke liye
+      router.push(`/businesses/${item?.id}?business_id=${item?.id}`);
     }
   };
 
@@ -670,9 +687,8 @@ const BrandExplore = ({ staticItems, brand }) => {
                         )}
                       </div>
                       <img
-                        src={`${BASE_URL}/${
-                          item.vooponimage?.image_name || item?.profile_image
-                        }`}
+                        src={`${BASE_URL}/${item.vooponimage?.image_name || item?.profile_image
+                          }`}
                         style={{ width: "100%", height: "220px" }}
                         alt="brand"
                       />
@@ -680,9 +696,9 @@ const BrandExplore = ({ staticItems, brand }) => {
                     <div className="brand-heading">
                       {item.voopons_name || item.name
                         ? truncateDescriptionTitle(
-                            item.voopons_name || item.name,
-                            2
-                          )
+                          item.voopons_name || item.name,
+                          2
+                        )
                         : "No Title Available"}
                       {item?.badge_status === 1 && (
                         <span

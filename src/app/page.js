@@ -164,6 +164,9 @@ export default function Home() {
       //
       //
       setLoginUserData(response.data.data);
+
+      // console.log(response.data.data.brands_to_explore, "brand to explore***");
+
     } catch (error) {
       console.error(error); // For debugging
     }

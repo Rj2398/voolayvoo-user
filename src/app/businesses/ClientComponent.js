@@ -27,7 +27,7 @@ const getUniqueBusinesses = (list) => {
   if (!Array.isArray(list)) return [];
   const seen = new Set();
   return list.filter((item) => {
-    const rawId = item?.business_id ?? item?.id ?? item?.outerId ?? item?.name;
+    const rawId = item?.business_id ?? item?.id ?? item?.user_id;
     if (rawId === undefined || rawId === null) return true;
     const stringId = String(rawId);
     if (seen.has(stringId)) {
