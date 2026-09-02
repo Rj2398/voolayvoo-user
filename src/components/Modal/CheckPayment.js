@@ -17,9 +17,7 @@ const CheckPayment = ({ open, setOpen, callBack, reloadList, amount }) => {
   const [openBreakdown, setOpenBreakdown] = useState(false);
   const [pendingPaymentData, setPendingPaymentData] = useState(null);
   const [getSelectedCard, setSelectedCard] = useState(null);
-  const [firstCardData, setFirstAddedCard] = useState(null)
-
-
+  const [firstCardData, setFirstAddedCard] = useState(null);
 
   useEffect(() => {
     if (isAuthenticated && open) {

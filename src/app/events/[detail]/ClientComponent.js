@@ -30,16 +30,25 @@ const ClientComponent = ({ eventDetail, relatedVoopon = [] }) => {
   const [checkedPurchasedStatus, setCheckedPurchaseStatus] = useState(
     eventDetail?.purchase_status
   );
+  const [quantity, setQuantity] = useState(1);
+
   const event = eventDetail?.event_one || eventDetail?.event_two;
 
-  const tax = Number(event?.tax_amount || 0);
-  const fee = Number(event?.events_price || 0);
-  const total = fee + tax;
+  const unitTax = Number(event?.tax_amount || 0);
+  const unitFee = eventDetail?.event_one?.hasOwnProperty("events_price")
+    ? Number(eventDetail?.event_one?.events_price)
+    : eventDetail?.event_two?.hasOwnProperty("events_price")
+    ? Number(eventDetail?.event_two?.events_price)
+    : 0;
+
+  const totalFee = unitFee * quantity;
+  const totalTax = unitTax * quantity;
+  const grandTotal = totalFee + totalTax;
 
   const amount = {
-    tax: tax.toFixed(2), // e.g. "20.00"
-    fee: fee.toFixed(2), // e.g. "30.00"
-    total: total.toFixed(2), // e.g. "50.00"
+    tax: totalTax.toFixed(2),
+    fee: totalFee.toFixed(2),
+    total: grandTotal.toFixed(2),
   };
 
   const reportFlag =
@@ -68,8 +77,6 @@ const ClientComponent = ({ eventDetail, relatedVoopon = [] }) => {
       ? Number(eventDetail?.event_two?.events_price)
       : 0
   );
-
-  const [quantity, setQuantity] = useState(1);
   const { isAuthenticated, userDetails } = useAuth();
   const router = useRouter();
   let pathName = usePathname();

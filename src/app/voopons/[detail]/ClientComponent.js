@@ -20,16 +20,25 @@ import CheckPayment from "@/components/Modal/CheckPayment";
 const ClientComponent = ({ voopon_detail }) => {
   console.log(voopon_detail, "voopon_detailvoopon_detail");
 
+  const [quantity, setQuantity] = useState(1);
+
   const event = voopon_detail?.voopon_two || voopon_detail?.voopon_one;
 
-  const tax = Number(event?.tax_amount || 0);
-  const fee = Number(event?.voopons_price || 0);
-  const total = fee + tax;
+  const unitTax = Number(event?.tax_amount || 0);
+  const unitFee = Number(
+    voopon_detail?.voopon_one?.voopons_price ||
+      voopon_detail?.voopon_two?.voopons_price ||
+      0
+  );
+
+  const totalFee = unitFee * quantity;
+  const totalTax = unitTax * quantity;
+  const grandTotal = totalFee + totalTax;
 
   const amount = {
-    tax: tax.toFixed(2), // e.g. "20.00"
-    fee: fee.toFixed(2), // e.g. "30.00"
-    total: total.toFixed(2), // e.g. "50.00"
+    tax: totalTax.toFixed(2),
+    fee: totalFee.toFixed(2),
+    total: grandTotal.toFixed(2),
   };
 
   const [open, setOpen] = useState(false);
@@ -39,8 +48,6 @@ const ClientComponent = ({ voopon_detail }) => {
       voopon_detail?.voopon_two?.voopons_price ||
       0
   );
-
-  const [quantity, setQuantity] = useState(1);
   const { isAuthenticated, userDetails } = useAuth();
   const [reload, setReload] = useState(false);
   const router = useRouter();
@@ -64,7 +71,7 @@ const ClientComponent = ({ voopon_detail }) => {
         authToken: userDetails.token,
       });
 
-      console.log(limitResponse, "Shalu baby**");
+      // console.log(limitResponse, "Shalu baby**");
       // console.log(limitResponse?.data, "limit response **");
       if (!limitResponse.success) {
         toast.error(limitResponse.message || "Failed to check purchase limits");

@@ -42,6 +42,14 @@ const PaymentBreakDown = ({
     }
   };
 
+  const taxVal = amount?.tax;
+  const numericTax =
+    typeof taxVal === "number"
+      ? taxVal
+      : parseFloat(String(taxVal || "0").replace(/[^0-9.-]+/g, ""));
+
+  const hasTax = !isNaN(numericTax) && numericTax > 0;
+
   return (
     <div style={styles.overlay}>
       <div style={styles.modalCard}>
@@ -73,17 +81,19 @@ const PaymentBreakDown = ({
 
           <div style={styles.infoRow}>
             <span style={styles.label}>Price :</span>
-            <span style={styles.value}>{amount?.fee ?? "$0.00"}</span>
+            <span style={styles.value}>{amount?.fee ?? "0.00"}</span>
           </div>
 
-          <div style={styles.infoRow}>
-            <span style={styles.label}>Tax Amount :</span>
-            <span style={styles.value}>{amount?.tax ?? "$0.00"}</span>
-          </div>
+          {hasTax && (
+            <div style={styles.infoRow}>
+              <span style={styles.label}>Tax Amount :</span>
+              <span style={styles.value}>{amount?.tax ?? "0.00"}</span>
+            </div>
+          )}
 
           <div style={styles.infoRow}>
             <span style={styles.label}>Total Amt :</span>
-            <span style={styles.value}>{amount?.total ?? "$0.00"}</span>
+            <span style={styles.value}>{amount?.total ?? "0.00"}</span>
           </div>
 
           {/* Pay Now Button */}
