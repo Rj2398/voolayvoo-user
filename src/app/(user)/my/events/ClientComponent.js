@@ -146,7 +146,7 @@ const ClientComponent = ({ categoryMainList = [] }) => {
     }
   };
 
-  const sortedCategoryList = categoryList.sort((a, b) => {
+  const sortedCategoryList = [...(categoryList || [])].sort((a, b) => {
     if (a.category_name < b.category_name) {
       return -1;
     }
@@ -862,17 +862,21 @@ const CardItem = ({ item, setActiveData, activeData, open, setOpen }) => {
             <div>
               <Image width={20} height={20} src="/images/calendar.png" alt="" />{" "}
               Start Date:{" "}
-              {DateTime?.fromFormat(item?.events_date, "yyyy-MM-dd").toFormat(
-                "MMMM dd, yyyy"
-              )}
+              {item?.events_date
+                ? DateTime.fromFormat(item.events_date, "yyyy-MM-dd").toFormat(
+                    "MMMM dd, yyyy"
+                  )
+                : ""}
             </div>
             <div>
               <Image width={20} height={20} src="/images/calendar.png" alt="" />{" "}
               End Date:{" "}
-              {DateTime?.fromFormat(
-                item.events_end_date,
-                "yyyy-MM-dd"
-              ).toFormat("MMMM dd, yyyy")}
+              {item?.events_end_date
+                ? DateTime.fromFormat(
+                    item.events_end_date,
+                    "yyyy-MM-dd"
+                  ).toFormat("MMMM dd, yyyy")
+                : ""}
             </div>
           </div>
 

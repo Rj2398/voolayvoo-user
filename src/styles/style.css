@@ -5393,7 +5393,9 @@ label.textarea-fields-inner-list-label {
 }
 
 .business-add-payment-card-box {
-  width: 35%;
+  width: 100%;
+  max-width: 340px;
+  min-width: 260px;
   position: relative;
 }
 

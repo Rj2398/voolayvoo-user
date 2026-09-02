@@ -124,7 +124,7 @@ const ClientComponent = ({ categoryMainList = [] }) => {
     }
   };
 
-  const sortedCategoryList = categoryList.sort((a, b) => {
+  const sortedCategoryList = [...(categoryList || [])].sort((a, b) => {
     if (a.category_name < b.category_name) {
       return -1;
     }
@@ -404,11 +404,10 @@ const CardItem = ({ item }) => {
   const userType = isBusiness ? "Business" : "Promoter";
 
   const currentDate = new Date();
-  const vooponsValidThruDate = DateTime.fromFormat(
-    item?.voopons_valid_thru,
-    "yyyy-MM-dd"
-  );
-  const diffInMilliseconds = vooponsValidThruDate - currentDate;
+  const vooponsValidThruDate = item?.voopons_valid_thru
+    ? DateTime.fromFormat(item.voopons_valid_thru, "yyyy-MM-dd")
+    : null;
+  const diffInMilliseconds = vooponsValidThruDate ? vooponsValidThruDate - currentDate : 0;
   const diffInDays = Math.round(diffInMilliseconds / (1000 * 60 * 60 * 24));
   const router = useRouter();
   const handleMore = useCallback(

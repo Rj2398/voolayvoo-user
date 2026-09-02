@@ -34,10 +34,17 @@ const CardList = ({
           {cardList.map((card, indx) => (
             <div
               key={card?.card_id}
-              className={`business-add-payment-card-box ${isCardPaymentEnabled && selectCard === card?.card_id
+              className={`business-add-payment-card-box ${
+                isCardPaymentEnabled && selectCard === card?.card_id
                   ? "active"
                   : ""
-                }`}
+              }`}
+              style={{
+                width: "100%",
+                maxWidth: "340px",
+                minWidth: "260px",
+                margin: "0 auto 15px auto",
+              }}
               onClick={() => handleCardSelection(card?.card_id, card)}
             >
               {!isCardPaymentEnabled && (
