@@ -38,8 +38,8 @@ const ClientComponent = ({ eventDetail, relatedVoopon = [] }) => {
   const unitFee = eventDetail?.event_one?.hasOwnProperty("events_price")
     ? Number(eventDetail?.event_one?.events_price)
     : eventDetail?.event_two?.hasOwnProperty("events_price")
-    ? Number(eventDetail?.event_two?.events_price)
-    : 0;
+      ? Number(eventDetail?.event_two?.events_price)
+      : 0;
 
   const totalFee = unitFee * quantity;
   const totalTax = unitTax * quantity;
@@ -74,8 +74,8 @@ const ClientComponent = ({ eventDetail, relatedVoopon = [] }) => {
     eventDetail?.event_one?.hasOwnProperty("events_price")
       ? Number(eventDetail?.event_one?.events_price)
       : eventDetail?.event_two?.hasOwnProperty("events_price")
-      ? Number(eventDetail?.event_two?.events_price)
-      : 0
+        ? Number(eventDetail?.event_two?.events_price)
+        : 0
   );
   const { isAuthenticated, userDetails } = useAuth();
   const router = useRouter();
@@ -127,8 +127,8 @@ const ClientComponent = ({ eventDetail, relatedVoopon = [] }) => {
     const price = eventDetail?.event_one?.hasOwnProperty("events_price")
       ? Number(eventDetail?.event_one?.events_price)
       : eventDetail?.event_two?.hasOwnProperty("events_price")
-      ? Number(eventDetail?.event_two?.events_price)
-      : 0;
+        ? Number(eventDetail?.event_two?.events_price)
+        : 0;
     setEventPrice(price * qty);
   };
 
@@ -185,8 +185,8 @@ const ClientComponent = ({ eventDetail, relatedVoopon = [] }) => {
         typeof error === "string"
           ? `${error}`
           : error?.message
-          ? error?.message
-          : `${error}`;
+            ? error?.message
+            : `${error}`;
       toast.error(errorMessage);
     }
   };
@@ -214,7 +214,7 @@ const ClientComponent = ({ eventDetail, relatedVoopon = [] }) => {
       } else {
         throw response;
       }
-    } catch (error) {}
+    } catch (error) { }
   };
   //
   const handleReportSubmit = (text) => {
@@ -278,7 +278,7 @@ const ClientComponent = ({ eventDetail, relatedVoopon = [] }) => {
                         console.log(
                           "Report button clicked for ID:",
                           eventDetail?.event_one?.id ||
-                            eventDetail?.event_two?.id
+                          eventDetail?.event_two?.id
                         );
                       }}
                       sx={{
@@ -303,12 +303,11 @@ const ClientComponent = ({ eventDetail, relatedVoopon = [] }) => {
                   className="w-100"
                   src={
                     eventDetail?.event_one?.eventsimage[0]?.image_name ||
-                    eventDetail?.event_two?.business_events_image[0]?.image_name
-                      ? `${BASE_URL}/${
-                          eventDetail?.event_one?.eventsimage[0]?.image_name ||
-                          eventDetail?.event_two?.business_events_image[0]
-                            ?.image_name
-                        }`
+                      eventDetail?.event_two?.business_events_image[0]?.image_name
+                      ? `${BASE_URL}/${eventDetail?.event_one?.eventsimage[0]?.image_name ||
+                      eventDetail?.event_two?.business_events_image[0]
+                        ?.image_name
+                      }`
                       : "/images/banners/slide1.png"
                   }
                   alt=""
@@ -417,103 +416,103 @@ const ClientComponent = ({ eventDetail, relatedVoopon = [] }) => {
                   {/* For event_one */}
                   {(eventDetail?.event_one?.collaborator_data?.length !== 0 ||
                     eventDetail?.event_two?.collaborator_data?.length !==
-                      0) && (
-                    <div className="collaborators">
-                      <span>
-                        <Image
-                          width={31}
-                          height={31}
-                          src="/images/collabo-icon.png"
-                          alt="images"
-                          className="img-fluid"
-                        />
-                      </span>
-                      <span className="col-font" onClick={() => setOpen(true)}>
-                        Collaborator(s):{" "}
-                      </span>
-                      <span>
-                        {/* For event_one collaborators */}
-                        {eventDetail?.event_one?.collaborator_data?.length >
-                          0 &&
-                          eventDetail?.event_one?.collaborator_data.map(
-                            (collaborator, idx) => {
-                              if (idx < 3) {
-                                return (
-                                  <Image
-                                    key={collaborator?.id}
-                                    width={31}
-                                    height={31}
-                                    src={
-                                      collaborator?.promoter_data
-                                        ? `${BASE_URL}/${collaborator.promoter_data.profile_image}`
-                                        : collaborator?.business_data
+                    0) && (
+                      <div className="collaborators">
+                        <span>
+                          <Image
+                            width={31}
+                            height={31}
+                            src="/images/collabo-icon.png"
+                            alt="images"
+                            className="img-fluid"
+                          />
+                        </span>
+                        <span className="col-font" onClick={() => setOpen(true)}>
+                          Collaborator(s):{" "}
+                        </span>
+                        <span>
+                          {/* For event_one collaborators */}
+                          {eventDetail?.event_one?.collaborator_data?.length >
+                            0 &&
+                            eventDetail?.event_one?.collaborator_data.map(
+                              (collaborator, idx) => {
+                                if (idx < 3) {
+                                  return (
+                                    <Image
+                                      key={collaborator?.id}
+                                      width={31}
+                                      height={31}
+                                      src={
+                                        collaborator?.promoter_data
+                                          ? `${BASE_URL}/${collaborator.promoter_data.profile_image}`
+                                          : collaborator?.business_data
                                             ?.profile_image
-                                        ? `${BASE_URL}/${collaborator.business_data.profile_image}`
-                                        : "/images/colebr-1.png"
-                                    }
-                                    alt="images"
-                                    className="collabeIcon"
-                                  />
-                                );
+                                            ? `${BASE_URL}/${collaborator.business_data.profile_image}`
+                                            : "/images/colebr-1.png"
+                                      }
+                                      alt="images"
+                                      className="collabeIcon"
+                                    />
+                                  );
+                                }
                               }
-                            }
-                          )}
-                        {/* For event_two collaborators */}
-                        {eventDetail?.event_two?.collaborator_data?.length >
-                          0 &&
-                          eventDetail?.event_two?.collaborator_data?.map(
-                            (collaborator, idx) => {
-                              if (idx < 3) {
-                                return (
-                                  <Image
-                                    key={collaborator?.id}
-                                    width={31}
-                                    height={31}
-                                    src={
-                                      collaborator?.promoter_data
-                                        ? `${BASE_URL}/${collaborator.promoter_data.profile_image}`
-                                        : collaborator?.business_data
+                            )}
+                          {/* For event_two collaborators */}
+                          {eventDetail?.event_two?.collaborator_data?.length >
+                            0 &&
+                            eventDetail?.event_two?.collaborator_data?.map(
+                              (collaborator, idx) => {
+                                if (idx < 3) {
+                                  return (
+                                    <Image
+                                      key={collaborator?.id}
+                                      width={31}
+                                      height={31}
+                                      src={
+                                        collaborator?.promoter_data
+                                          ? `${BASE_URL}/${collaborator.promoter_data.profile_image}`
+                                          : collaborator?.business_data
                                             ?.profile_image
-                                        ? `${BASE_URL}/${collaborator.business_data.profile_image}`
-                                        : "/images/colebr-1.png"
-                                    }
-                                    alt="images"
-                                    className="collabeIcon"
-                                  />
-                                );
+                                            ? `${BASE_URL}/${collaborator.business_data.profile_image}`
+                                            : "/images/colebr-1.png"
+                                      }
+                                      alt="images"
+                                      className="collabeIcon"
+                                    />
+                                  );
+                                }
                               }
-                            }
-                          )}
+                            )}
 
-                        {/* Show additional collaborators */}
-                        {(eventDetail?.event_one?.collaborator_data?.length >
-                          3 ||
-                          eventDetail?.event_two?.collaborator_data?.length >
+                          {/* Show additional collaborators */}
+                          {(eventDetail?.event_one?.collaborator_data?.length >
+                            3 ||
+                            eventDetail?.event_two?.collaborator_data?.length >
                             3) && (
-                          <div className="more">
-                            {" "}
-                            +
-                            {Math.max(
-                              eventDetail?.event_one?.collaborator_data
-                                ?.length || 0,
-                              eventDetail?.event_two?.collaborator_data
-                                ?.length || 0
-                            ) - 3}{" "}
-                          </div>
-                        )}
-                      </span>
-                    </div>
-                  )}
+                              <div className="more">
+                                {" "}
+                                +
+                                {Math.max(
+                                  eventDetail?.event_one?.collaborator_data
+                                    ?.length || 0,
+                                  eventDetail?.event_two?.collaborator_data
+                                    ?.length || 0
+                                ) - 3}{" "}
+                              </div>
+                            )}
+                        </span>
+                      </div>
+                    )}
 
                   {/* For rating */}
                   {(Array.isArray(eventDetail?.event_one?.rating_data) &&
                     eventDetail?.event_one?.rating_data?.[0] !== 0 &&
                     eventDetail?.event_one?.rating_data?.[1] !== 0 &&
                     eventDetail?.event_one?.rating_data?.length > 1) ||
-                  (Array.isArray(eventDetail?.event_two?.rating_data) &&
-                    eventDetail?.event_two?.rating_data?.[0] !== 0 &&
-                    eventDetail?.event_two?.rating_data?.[1] !== 0 &&
-                    eventDetail?.event_two?.rating_data?.length > 1) ? (
+                    (Array.isArray(eventDetail?.event_two?.rating_data) &&
+                      eventDetail?.event_two?.rating_data?.[0] !== 0 &&
+                      eventDetail?.event_two?.rating_data?.[1] !== 0 &&
+                      eventDetail?.event_two?.rating_data?.length > 1) ? (
                     <div className="rating-box">
                       {" "}
                       {eventDetail?.event_one?.rating_data?.[0]?.toFixed(1) ||
@@ -583,13 +582,13 @@ const ClientComponent = ({ eventDetail, relatedVoopon = [] }) => {
                       <span>
                         {eventDetail?.event_one?.events_date
                           ? DateTime.fromISO(
-                              eventDetail.event_one.events_date
-                            ).toFormat("MMMM dd, yyyy")
+                            eventDetail.event_one.events_date
+                          ).toFormat("MMMM dd, yyyy")
                           : eventDetail?.event_two?.events_date
-                          ? DateTime.fromISO(
+                            ? DateTime.fromISO(
                               eventDetail.event_two.events_date
                             ).toFormat("MMMM dd, yyyy")
-                          : ""}{" "}
+                            : ""}{" "}
                       </span>
                     </div>
                   </div>
@@ -600,13 +599,13 @@ const ClientComponent = ({ eventDetail, relatedVoopon = [] }) => {
                       <span>
                         {eventDetail?.event_one?.events_date
                           ? DateTime.fromISO(
-                              eventDetail.event_one.events_end_date
-                            ).toFormat("MMMM dd, yyyy")
+                            eventDetail.event_one.events_end_date
+                          ).toFormat("MMMM dd, yyyy")
                           : eventDetail?.event_two?.events_date
-                          ? DateTime.fromISO(
+                            ? DateTime.fromISO(
                               eventDetail.event_two.events_end_date
                             ).toFormat("MMMM dd, yyyy")
-                          : ""}{" "}
+                            : ""}{" "}
                       </span>
                     </div>
                   </div>
@@ -620,8 +619,8 @@ const ClientComponent = ({ eventDetail, relatedVoopon = [] }) => {
                         {eventDetail?.event_one?.events_start_time
                           ? eventDetail?.event_one?.events_start_time
                           : eventDetail?.event_two?.events_start_time
-                          ? eventDetail?.event_two?.events_start_time
-                          : ""}{" "}
+                            ? eventDetail?.event_two?.events_start_time
+                            : ""}{" "}
                       </span>
                     </div>
                   </div>
@@ -633,8 +632,8 @@ const ClientComponent = ({ eventDetail, relatedVoopon = [] }) => {
                         {eventDetail?.event_one?.events_end_time
                           ? eventDetail?.event_one?.events_end_time
                           : eventDetail?.event_two?.events_end_time
-                          ? eventDetail?.event_two?.events_end_time
-                          : ""}{" "}
+                            ? eventDetail?.event_two?.events_end_time
+                            : ""}{" "}
                       </span>
                     </div>
                   </div>

@@ -38,8 +38,8 @@ const Card = ({ cardData }) => {
   const imageSrc = cardData?.eventimage?.image_name
     ? `${BASE_URL}/${cardData?.eventimage?.image_name}`
     : cardData?.business_event_image?.image_name
-    ? `${BASE_URL}/${cardData?.business_event_image?.image_name}`
-    : "/images/near-event1.png";
+      ? `${BASE_URL}/${cardData?.business_event_image?.image_name}`
+      : "/images/near-event1.png";
 
   if (!cardData) return null;
 
@@ -94,13 +94,13 @@ const Card = ({ cardData }) => {
             />
             <div className="event-price">
               {cardData?.events_data?.events_price == "0" ||
-              cardData?.events_price == "0" ||
-              cardData?.events_data_business?.events_price == "0"
+                cardData?.events_price == "0" ||
+                cardData?.events_data_business?.events_price == "0"
                 ? "Free"
                 : "$" +
-                  (cardData?.events_data?.events_price ||
-                    cardData?.events_data_business?.events_price ||
-                    cardData?.events_price)}
+                (cardData?.events_data?.events_price ||
+                  cardData?.events_data_business?.events_price ||
+                  cardData?.events_price)}
             </div>
           </div>
 
@@ -147,8 +147,8 @@ const Card = ({ cardData }) => {
                 >
                   {truncateDescriptionByWords(
                     cardData?.events_data?.events_name ||
-                      cardData?.events_data_business?.events_name ||
-                      cardData?.events_name,
+                    cardData?.events_data_business?.events_name ||
+                    cardData?.events_name,
                     20
                   )}
                 </h6>
@@ -310,8 +310,8 @@ const Card = ({ cardData }) => {
               >
                 {truncateDescriptionByWords(
                   cardData?.events_data?.events_description ||
-                    cardData?.events_data_business?.events_description ||
-                    cardData?.events_description,
+                  cardData?.events_data_business?.events_description ||
+                  cardData?.events_description,
                   50
                 )}
               </p>
